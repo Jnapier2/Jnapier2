@@ -4,6 +4,8 @@
 
 I turn ambiguous workflows into explicit controls, reproducible tests, and decision-ready evidence across Windows operations, media metadata, and structured-data analysis.
 
+Across the portfolio, the common pattern is deliberate automation: centralize the operating boundary, make uncertainty visible, and reserve state changes for evidence-backed decisions.
+
 ## Featured work
 
 - **[BotOps Manager](https://github.com/Jnapier2/botops-manager)** — Centralizes launcher audits, health evidence, and project-scoped process control for independent Windows automation.
@@ -35,6 +37,7 @@ I turn ambiguous workflows into explicit controls, reproducible tests, and decis
 - Preview potentially destructive changes before applying them
 - Verify process identity and ownership before process control
 - Prefer structured evidence and checksums to assumptions
+- Centralize scope, thresholds, and operating limits when one reviewable configuration improves control
 - Stop safely when recovery cannot be verified
 
 _Fixtures in these repositories are synthetic or non-sensitive; credentials, runtime data, generated diagnostics, and downloaded media are not committed._
