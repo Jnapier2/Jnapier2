@@ -1,17 +1,17 @@
 # Jerry R. Napier
 
-**Local-first Python and PowerShell systems for safer operations, clearer decisions, and recoverable change.**
+**Automation and reliability engineering in Python and PowerShell for safer Windows operations, clearer data decisions, and recoverable workflows.**
 
 I turn ambiguous workflows into explicit controls, reproducible tests, and decision-ready evidence across Windows operations, media metadata, and structured-data analysis.
 
 ## Featured work
 
-- **[Beta Earth](https://github.com/Jnapier2/beta-earth)** — A working browser RPG whose layered engine, validated content, and revision-safe saves keep feature work testable and local state recoverable.
-- **[MediaTaggerBot](https://github.com/Jnapier2/media-tagger-bot)** — Standardizes music libraries while limiting bad-match and partial-write risk through evidence-based matching, dry-run review, journaled writes, and rollback.
 - **[BotOps Manager](https://github.com/Jnapier2/botops-manager)** — Centralizes launcher audits, health evidence, and project-scoped process control for independent Windows automation.
-- **[Large Text Chunker](https://github.com/Jnapier2/large-text-chunker)** — Prepares long documents for downstream processing while preserving readable boundaries, traceability, and exact reconstruction.
-- **[Digital Asset Governance Audit](https://github.com/Jnapier2/digital-asset-governance-case-study)** — Turns provenance gaps, confidence signals, and duplicate candidates into a reproducible human-review queue using synthetic data.
 - **[Automation Reliability Case Studies](https://github.com/Jnapier2/automation-reliability-case-studies)** — Three design studies on containing risk when external state is uncertain, using explicit evidence, bounded recovery, and stop conditions.
+- **[Digital Asset Governance Audit](https://github.com/Jnapier2/digital-asset-governance-case-study)** — Turns provenance gaps, confidence signals, and duplicate candidates into a reproducible human-review queue using synthetic data.
+- **[MediaTaggerBot](https://github.com/Jnapier2/media-tagger-bot)** — Standardizes music libraries while limiting bad-match and partial-write risk through evidence-based matching, dry-run review, journaled writes, and rollback.
+- **[Large Text Chunker](https://github.com/Jnapier2/large-text-chunker)** — Prepares long documents for downstream processing while preserving readable boundaries, traceability, and exact reconstruction.
+- **[Beta Earth](https://github.com/Jnapier2/beta-earth)** — A working browser RPG whose layered engine, validated content, and revision-safe saves keep feature work testable and local state recoverable.
 
 ## Research and analysis
 
