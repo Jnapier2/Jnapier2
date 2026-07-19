@@ -1,17 +1,21 @@
 # Jerry R. Napier
 
-**Systems automation and digital asset reliability engineer building local-first tools, verifiable data pipelines, and safe operational workflows.**
+**Reliable Python and PowerShell tools for Windows operations, data quality, and local-first workflows.**
 
-I turn messy operational environments into understandable systems using Python, PowerShell, SQL, structured data, and Windows automation.
+My work covers systems automation, media metadata, and structured-data analysis. I care about clear behavior, reproducible tests, and recoverable file changes.
 
 ## Featured work
 
-- **[Beta Earth](https://github.com/Jnapier2/beta-earth)** — Layered Python architecture, validated content, atomic saves, and an accessible local web UI.
-- **[MediaTaggerBot](https://github.com/Jnapier2/media-tagger-bot)** — Evidence-based identification, fail-closed metadata changes, journaling, rollback, and path-safe batch operations.
-- **[BotOps Manager](https://github.com/Jnapier2/botops-manager)** — Health contracts, launcher safety scoring, scoped process control, and privacy-conscious diagnostics.
-- **[Large Text Chunker](https://github.com/Jnapier2/large-text-chunker)** — Boundary-aware splitting, exact reconstruction, overlap accounting, and tamper detection.
-- **[Digital Asset Governance Audit](https://github.com/Jnapier2/digital-asset-governance-case-study)** — Provenance, coverage, confidence, and duplicate-candidate analysis using synthetic data.
-- **[Automation Reliability Case Studies](https://github.com/Jnapier2/automation-reliability-case-studies)** — Concise studies of reconciliation, bounded recovery, and resilient transfer design.
+- **[Beta Earth](https://github.com/Jnapier2/beta-earth)** — A browser-based Python RPG with a layered engine, validated content, atomic saves, and a local web interface.
+- **[MediaTaggerBot](https://github.com/Jnapier2/media-tagger-bot)** — A cautious batch tool for identifying and retagging music libraries, with dry-run review, journaled writes, and rollback.
+- **[BotOps Manager](https://github.com/Jnapier2/botops-manager)** — A Windows console for auditing launchers, reading health checks, and controlling only the processes it started.
+- **[Large Text Chunker](https://github.com/Jnapier2/large-text-chunker)** — Splits long documents at readable boundaries and verifies exact reconstruction.
+- **[Digital Asset Governance Audit](https://github.com/Jnapier2/digital-asset-governance-case-study)** — A reproducible audit of catalog provenance, coverage, confidence, and possible duplicates using synthetic data.
+- **[Automation Reliability Case Studies](https://github.com/Jnapier2/automation-reliability-case-studies)** — Three studies on ambiguous writes, worker supervision, and recoverable media transfer.
+
+## Research and analysis
+
+- **[Chicago Food Inspection Outcomes, 2010–2018](https://github.com/Jnapier2/DataAnalyticsDemoJerryRNapier)** — A reproducible descriptive study of 13,333 inspection records across three Chicago ZIP codes, with explicit denominators and limitations.
 
 <details>
 <summary><strong>Additional engineering tools</strong></summary>
@@ -27,10 +31,10 @@ I turn messy operational environments into understandable systems using Python, 
 
 ## Engineering principles
 
-- Local-first when privacy or operator control matters
-- Dry-run and fail-closed behavior before mutation
-- Explicit identity and ownership checks before process control
-- Structured evidence, hashes, and reconciliation over assumptions
-- Bounded recovery with a clear operator handoff
+- Keep work local when privacy or operator control matters
+- Preview potentially destructive changes before applying them
+- Verify process identity and ownership before process control
+- Prefer structured evidence and checksums to assumptions
+- Stop safely when recovery cannot be verified
 
-_All examples use synthetic or non-sensitive fixtures; credentials, generated diagnostics, and runtime artifacts remain outside version control._
+_Fixtures in these repositories are synthetic or non-sensitive; credentials, runtime data, generated diagnostics, and downloaded media are not committed._
