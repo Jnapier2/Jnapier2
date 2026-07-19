@@ -14,7 +14,7 @@ I turn messy operational environments into understandable systems using Python, 
 - **[Automation Reliability Case Studies](https://github.com/Jnapier2/automation-reliability-case-studies)** — Concise studies of reconciliation, bounded recovery, and resilient transfer design.
 
 <details>
-<summary><strong>More focused utilities</strong></summary>
+<summary><strong>Additional engineering tools</strong></summary>
 
 - [Safe Video Downloader](https://github.com/Jnapier2/safe-video-downloader) — Guarded, observable retrieval of authorized media.
 - [MP3 Downloader](https://github.com/Jnapier2/mp3-downloader) — Bounded audio-only downloads with duplicate verification.
@@ -33,4 +33,4 @@ I turn messy operational environments into understandable systems using Python, 
 - Structured evidence, hashes, and reconciliation over assumptions
 - Bounded recovery with a clear operator handoff
 
-_Every public repository is a curated edition with private data, credentials, third-party media, generated diagnostics, and internal operating material removed._
+_All examples use synthetic or non-sensitive fixtures; credentials, generated diagnostics, and runtime artifacts remain outside version control._
