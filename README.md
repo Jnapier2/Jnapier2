@@ -6,7 +6,7 @@ My background spans more than 10 years across production operations, database op
 
 I hold an M.S. in Information Management and a Certificate in Digital Curation from Dominican University.
 
-Portfolio: [jerry-napier-portfolio.netlify.app](https://jerry-napier-portfolio.netlify.app)
+Portfolio: [project overview](https://jerry-napier-portfolio.netlify.app) · [case studies](https://coral-yucca-521511.framer.app)
 
 ## Selected work
 
