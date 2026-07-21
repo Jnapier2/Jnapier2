@@ -11,7 +11,7 @@ I hold an M.S. in Information Management and a Certificate in Digital Curation f
 - **[Digital Asset Governance Audit](https://github.com/Jnapier2/digital-asset-governance-case-study)** — Turns provenance gaps, confidence signals, and duplicate candidates into a reproducible human-review queue using synthetic data.
 - **[MediaTaggerBot](https://github.com/Jnapier2/media-tagger-bot)** — Standardizes music libraries while limiting bad-match and partial-write risk through evidence-based matching, dry-run review, journaled writes, and rollback.
 - **[BotOps Manager](https://github.com/Jnapier2/botops-manager)** — Centralizes launcher audits, health evidence, and project-scoped process control for independent Windows automation.
-- **[Large Text Chunker](https://github.com/Jnapier2/large-text-chunker)** — Prepares long documents for downstream processing while preserving readable boundaries, traceability, and exact reconstruction.
+- **[Avalon Q Supervisor](https://github.com/Jnapier2/avalon-q-supervisor)** — Turns local device telemetry into explicit health states, dry-run-first recovery decisions, bounded recovery budgets, and auditable operator evidence.
 - **[Automation Reliability Case Studies](https://github.com/Jnapier2/automation-reliability-case-studies)** — Three design studies on containing risk when external state is uncertain, using explicit evidence, bounded recovery, and stop conditions.
 - **[Beta Earth](https://github.com/Jnapier2/beta-earth)** — A working browser RPG whose layered engine, validated content, and revision-safe saves keep feature work testable and local state recoverable.
 
@@ -25,10 +25,10 @@ I hold an M.S. in Information Management and a Certificate in Digital Curation f
 - [Safe Video Downloader](https://github.com/Jnapier2/safe-video-downloader) — Guarded, observable retrieval of authorized media.
 - [MP3 Downloader](https://github.com/Jnapier2/mp3-downloader) — Bounded audio-only downloads with duplicate verification.
 - [Image Downloader](https://github.com/Jnapier2/image-downloader) — Rights-aware retrieval with verified writes and duplicate detection.
+- [Large Text Chunker](https://github.com/Jnapier2/large-text-chunker) — Readable document chunking with traceability and exact reconstruction.
 - [NetLossDoctor](https://github.com/Jnapier2/net-loss-doctor) — Read-first network diagnosis with redacted reports.
 - [LAN Router Comms](https://github.com/Jnapier2/lan-router-comms) — Authenticated local messaging with bounded queues.
 - [Windows Health Audit](https://github.com/Jnapier2/windows-health-audit) — Failure-isolated, privacy-preserving health snapshots.
-- [Avalon Q Supervisor](https://github.com/Jnapier2/avalon-q-supervisor) — Turns local device telemetry into explicit health states, bounded recovery, and auditable operator decisions.
 - [Market Automation Pair: entry planner](https://github.com/Jnapier2/kalshi-10x1c-public) and [dry-run exit preview](https://github.com/Jnapier2/kalshi-15m-sell-bot-public-preview) — Demonstrate API integration, reconciliation, fail-closed controls, and release verification across a coordinated workflow. The entry edition requires explicit activation; the exit edition blocks all writes.
 
 </details>
