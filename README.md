@@ -29,7 +29,6 @@ I hold an M.S. in Information Management and a Certificate in Digital Curation f
 - [LAN Router Comms](https://github.com/Jnapier2/lan-router-comms) — Authenticated local messaging with bounded queues.
 - [Windows Health Audit](https://github.com/Jnapier2/windows-health-audit) — Failure-isolated, privacy-preserving health snapshots.
 - [Avalon Q Supervisor](https://github.com/Jnapier2/avalon-q-supervisor) — Turns local device telemetry into explicit health states, bounded recovery, and auditable operator decisions.
-- [Inbox From Hell](https://github.com/Jnapier2/inbox-from-hell) — A zero-dependency browser game with data-driven outcomes, resilient local saves, accessible controls, and full-playthrough testing.
 - [Market Automation Pair: entry planner](https://github.com/Jnapier2/kalshi-10x1c-public) and [dry-run exit preview](https://github.com/Jnapier2/kalshi-15m-sell-bot-public-preview) — Demonstrate API integration, reconciliation, fail-closed controls, and release verification across a coordinated workflow. The entry edition requires explicit activation; the exit edition blocks all writes.
 
 </details>
