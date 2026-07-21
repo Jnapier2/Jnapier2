@@ -6,6 +6,8 @@ My background spans more than 10 years across production operations, database op
 
 I hold an M.S. in Information Management and a Certificate in Digital Curation from Dominican University.
 
+Portfolio: [jerry-napier-portfolio.netlify.app](https://jerry-napier-portfolio.netlify.app)
+
 ## Selected work
 
 - **[Digital Asset Governance Audit](https://github.com/Jnapier2/digital-asset-governance-case-study)** — Turns provenance gaps, confidence signals, and duplicate candidates into a reproducible human-review queue using synthetic data.
