@@ -19,7 +19,7 @@ Portfolio: [project overview](https://jerry-napier-portfolio.netlify.app) · [ca
 
 ## Research and analysis
 
-- **[Chicago Food Inspection Outcomes, 2010–2018](https://github.com/Jnapier2/DataAnalyticsDemoJerryRNapier)** — A reproducible analysis of 13,333 public inspection records that separates outcome from facility risk, surfaces decision-relevant follow-up questions, and makes its limitations explicit.
+- **[Chicago Food Inspection Outcomes, 2010–2018](https://github.com/Jnapier2/chicago-food-inspections-analysis)** — A reproducible analysis of 13,333 public inspection records that separates outcome from facility risk, surfaces decision-relevant follow-up questions, and makes its limitations explicit.
 
 <details>
 <summary><strong>Additional tools</strong></summary>
