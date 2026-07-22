@@ -10,7 +10,7 @@ Portfolio: [project overview](https://jerry-napier-portfolio.netlify.app) · [ca
 
 ## Selected work
 
-- **[Digital Asset Governance Audit](https://github.com/Jnapier2/digital-asset-governance-case-study)** — Turns provenance gaps, confidence signals, and duplicate candidates into a reproducible human-review queue using synthetic data.
+- **[Digital Asset Governance Audit](https://github.com/Jnapier2/digital-asset-governance-case-study)** — Turns provenance gaps, confidence signals, and duplicate candidates into a prioritized stewardship queue with reason-coded next steps using synthetic data.
 - **[MediaTaggerBot](https://github.com/Jnapier2/media-tagger-bot)** — Standardizes music libraries while limiting bad-match and partial-write risk through evidence-based matching, dry-run review, journaled writes, and rollback.
 - **[BotOps Manager](https://github.com/Jnapier2/botops-manager)** — Centralizes launcher audits, health evidence, and project-scoped process control for independent Windows automation.
 - **[Avalon Q Supervisor](https://github.com/Jnapier2/avalon-q-supervisor)** — Turns local device telemetry into explicit health states, dry-run-first recovery decisions, bounded recovery budgets, and auditable operator evidence.
@@ -31,6 +31,7 @@ Portfolio: [project overview](https://jerry-napier-portfolio.netlify.app) · [ca
 - [NetLossDoctor](https://github.com/Jnapier2/net-loss-doctor) — Read-first network diagnosis with redacted reports.
 - [LAN Router Comms](https://github.com/Jnapier2/lan-router-comms) — Authenticated local messaging with bounded queues.
 - [Windows Health Audit](https://github.com/Jnapier2/windows-health-audit) — Failure-isolated, privacy-preserving health snapshots.
+- [Inbox From Hell](https://github.com/Jnapier2/inbox-from-hell) — A five-shift browser game with transparent decision feedback, layered progression, accessible controls, resilient saves, and full-campaign acceptance testing.
 - [Market Automation Pair: entry planner](https://github.com/Jnapier2/kalshi-10x1c-public) and [dry-run exit preview](https://github.com/Jnapier2/kalshi-15m-sell-bot-public-preview) — Demonstrate API integration, reconciliation, fail-closed controls, and release verification across a coordinated workflow. The entry edition requires explicit activation; the exit edition blocks all writes.
 
 </details>
