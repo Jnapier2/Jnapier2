@@ -11,7 +11,7 @@ Portfolio: [project overview](https://jerry-napier-portfolio.netlify.app) · [ca
 ## Selected work
 
 - **[Digital Asset Governance Audit](https://github.com/Jnapier2/digital-asset-governance-case-study)** — Turns provenance gaps, confidence signals, and duplicate candidates into a prioritized stewardship queue with reason-coded next steps using synthetic data.
-- **[MediaTaggerBot](https://github.com/Jnapier2/media-tagger-bot)** — Standardizes music libraries while limiting bad-match and partial-write risk through evidence-based matching, dry-run review, journaled writes, and rollback.
+- **[MediaTaggerBot](https://github.com/Jnapier2/media-tagger-bot)** — Uses evidence-based matching, dry-run review, and journaled writes to limit bad-match and partial-write risk. The design is informed by a private 38,171-file audit that verified 838 outcomes and held preservation-sensitive cases closed rather than guessing.
 - **[BotOps Manager](https://github.com/Jnapier2/botops-manager)** — Centralizes launcher audits, health evidence, and project-scoped process control for independent Windows automation.
 - **[Avalon Q Supervisor](https://github.com/Jnapier2/avalon-q-supervisor)** — Turns local device telemetry into explicit health states, dry-run-first recovery decisions, bounded recovery budgets, and auditable operator evidence.
 - **[Automation Reliability Case Studies](https://github.com/Jnapier2/automation-reliability-case-studies)** — Three design studies on containing risk when external state is uncertain, using explicit evidence, bounded recovery, and stop conditions.
