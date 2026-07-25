@@ -17,6 +17,7 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
+from datetime import datetime, timezone
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -25,6 +26,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[2]
 MANIFEST_PATH = ROOT / ".github" / "portfolio-manifest.json"
 PROFILE_README_PATH = ROOT / "README.md"
+OUTPUT_DIR = ROOT / "audit-output"
 HTTP_TIMEOUT_SECONDS = 15
 HTTP_ATTEMPTS = 3
 MAX_TEXT_BYTES = 2_000_000
@@ -508,7 +510,7 @@ def audit_pins(audit: Audit, manifest: dict[str, Any]) -> None:
         )
 
 
-def write_summary(audit: Audit) -> None:
+def write_reports(audit: Audit, manifest: dict[str, Any]) -> None:
     lines = [
         "# Portfolio health audit",
         "",
@@ -546,10 +548,40 @@ def write_summary(audit: Audit) -> None:
             "",
             "This workflow is report-only and does not change repository settings, pins, deployments, or external permissions.",
             "",
-            "Copyright © 2026 Gateway Information Group LLC. All rights reserved.",
+            manifest["rights_notice"],
         ]
     )
     summary = "\n".join(lines) + "\n"
+
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    (OUTPUT_DIR / "portfolio-audit.md").write_text(summary, encoding="utf-8")
+    machine_report = {
+        "schema_version": 1,
+        "generated_utc": datetime.now(timezone.utc).isoformat(),
+        "owner": manifest["owner"],
+        "canonical_portfolio_url": manifest["canonical_portfolio_url"],
+        "rights_notice": manifest["rights_notice"],
+        "critical_findings": len(audit.errors),
+        "manual_review_warnings": len(audit.warnings),
+        "repositories_checked": len(audit.repository_rows),
+        "repositories": audit.repository_rows,
+        "findings": [
+            {
+                "severity": item.severity,
+                "area": item.area,
+                "message": item.message,
+            }
+            for item in sorted(
+                audit.findings,
+                key=lambda item: (item.severity, item.area, item.message),
+            )
+        ],
+    }
+    (OUTPUT_DIR / "portfolio-audit.json").write_text(
+        json.dumps(machine_report, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+
     print(summary)
     step_summary = os.environ.get("GITHUB_STEP_SUMMARY")
     if step_summary:
@@ -568,7 +600,7 @@ def main() -> int:
     audit_portfolio_site(audit, manifest)
     audit_public_profile_render(audit, manifest)
     audit_pins(audit, manifest)
-    write_summary(audit)
+    write_reports(audit, manifest)
     return 1 if audit.errors else 0
 
 
