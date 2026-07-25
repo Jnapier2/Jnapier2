@@ -13,6 +13,9 @@ Complex projects often fail for ordinary reasons: multiple “final” versions,
 - Selects a verified working baseline when source packages conflict.
 - Keeps one shared package portable across distinct Windows environments.
 - Uses capability detection and local overlays instead of machine-specific code forks.
+- Keeps local process locks isolated to one computer so another computer is not blocked unnecessarily.
+- Uses explicit ownership, expiry, and clean handoff rules when a unique write-capable job must move between computers.
+- Preserves one canonical project name and searchable aliases across thread transfers and project branches.
 - Separates reversible local work from destructive, live-financial, credential, administrator, security, public, and bulk-write actions.
 - Requires critical inputs to be recognized, validated, mapped, exercised, and confirmed.
 - Produces bounded, redacted diagnostic packages that preserve the most useful evidence.
@@ -24,12 +27,23 @@ Complex projects often fail for ordinary reasons: multiple “final” versions,
 | Measure | Result |
 |---|---:|
 | Release package | 15 files; ZIP integrity passed |
-| Control areas represented | **24 / 24** |
-| Scenario simulations passed | **35 / 35** |
-| Negative-conflict checks passed | **16 / 16** |
+| Rule families represented | **26 / 26** |
+| Representative scenarios passed | **40 / 40** |
+| Negative/conflict safeguards passed | **20 / 20** |
+| Document quality | 11-page DOCX visually reviewed; accessibility audit found 0 high, 0 medium, and 0 low findings |
 | Privacy boundary | Raw machine reports and unique identifiers excluded |
 
-The validation confirms internal consistency and expected decision paths in the v2.17.0 framework package. It does not replace project-specific testing or guarantee future system behavior.
+The validation confirms internal consistency and expected decision paths in the v2.17.2 framework package. It is a document-level communication and scenario test; it does not replace project-specific implementation or physical acceptance testing.
+
+## What changed in v2.17.2
+
+### Lower-friction work across multiple computers
+
+A local lock belongs only to the computer that created it. When a task must have a single active writer across the fleet, the framework requires a separate owner record with expiry and generation controls. An unowned or verified-stale task may be claimed automatically; a healthy task on the same computer is reused; a healthy task on another computer exposes status or a clean handoff path. Uncertain ownership stays read-only and fails closed for writes.
+
+### Persistent project and thread identity
+
+Each project keeps one canonical name across successor threads, transfer packages, audits, diagnostics, and release records. Prior names remain searchable aliases, while continuation or branch markers describe the current workstream without fragmenting the project identity. When an interface cannot be renamed, the framework records a truthful suggested title rather than claiming the change occurred.
 
 ## Decision flow
 
@@ -77,6 +91,7 @@ A release is not complete until the source, version, documentation, checks, righ
 - Release engineering and configuration management
 - Quality assurance and scenario-based testing
 - Windows portability and environment-aware design
+- Cross-computer ownership and clean-handoff design
 - Observability, diagnostics, and recovery planning
 - Privacy-by-design and controlled public disclosure
 - Clear technical communication across complex project states
