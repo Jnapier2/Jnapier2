@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "project": "Reliable Project Delivery Framework — Public Case Study",
+  "version": "1.0.0",
+  "release_date": "2026-07-25",
+  "generated_utc": "2026-07-25T08:25:36Z",
+  "data_classification": "public",
+  "source_classification": "sanitized case study; complete internal framework excluded",
+  "rights_holder": "Gateway Information Group LLC",
+  "rights_notice": "Copyright © 2026 Gateway Information Group LLC. All rights reserved.",
+  "license_status": "All rights reserved; no software license granted.",
+  "third_party_content": "none included",
+  "files": [
+    {
+      "path": "PUBLIC_SCOPE.md",
+      "size_bytes": 1556,
+      "sha256": "95a275b6a5a3430c4ac17e01d69cdfc124cef7f1fffcf94d17aa2cf55ba4cceb",
+      "purpose": "Public disclosure boundary"
+    },
+    {
+      "path": "README.md",
+      "size_bytes": 5105,
+      "sha256": "44fd50dd26ea9811ad2a7e2c1c5293788c21d8a0b73fb66e1fd38397ea1b89dc",
+      "purpose": "Case study and design summary"
+    },
+    {
+      "path": "RIGHTS.md",
+      "size_bytes": 644,
+      "sha256": "051c8c859cf8030082f76e49a34ffc3a952f543cc4ef5620f124ac7564acc585",
+      "purpose": "Rights and reuse terms"
+    },
+    {
+      "path": "VALIDATION_SUMMARY.json",
+      "size_bytes": 1324,
+      "sha256": "8dcb47117ef535b1f3e56dfa0f360f6a0a69d08e179445ffcaf3419e93b08617",
+      "purpose": "Structured validation results and claim limits"
+    }
+  ]
+}
