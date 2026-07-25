@@ -1,28 +1,28 @@
 # Jerry R. Napier
 
-**Information management, data governance, data analytics, and workflow automation for clearer decisions and more reliable operations.**
+**Information management · Data governance · Analytics · Reliable automation**
 
-My background spans more than 10 years across production operations, database operations, digital asset management, reporting, metadata, taxonomy, and process improvement. The projects below show how I turn that experience into tested Python and PowerShell tools with clear operating controls and documented results.
+I turn complex systems into trusted ones. My background spans more than 10 years across production operations, database operations, digital asset management, reporting, metadata, taxonomy, and process improvement. The work here shows how I translate that experience into tested tools and analyses with explicit controls, documented results, and clear limits.
 
-I hold an M.S. in Information Management and a Certificate in Digital Curation from Dominican University.
+**M.S. in Information Management · Certificate in Digital Curation · Dominican University**
 
-Portfolio: [project overview](https://jerry-napier-portfolio.netlify.app) · [case studies](https://coral-yucca-521511.framer.app)
+[Portfolio](https://jerry-napier-portfolio.netlify.app/) · [LinkedIn](https://www.linkedin.com/in/jrnapier)
 
-## Selected work
+## Start here
 
+- **[BotOps Manager](https://github.com/Jnapier2/botops-manager)** — Centralizes launcher audits, health evidence, and project-scoped process control for independent Windows automation.
 - **[Digital Asset Governance Audit](https://github.com/Jnapier2/digital-asset-governance-case-study)** — Turns provenance gaps, confidence signals, and duplicate candidates into a prioritized stewardship queue with reason-coded next steps using synthetic data.
 - **[MediaTaggerBot](https://github.com/Jnapier2/media-tagger-bot)** — Uses evidence-based matching, dry-run review, and journaled writes to limit bad-match and partial-write risk. The design is informed by a private 38,171-file audit that verified 838 outcomes and held preservation-sensitive cases closed rather than guessing.
-- **[BotOps Manager](https://github.com/Jnapier2/botops-manager)** — Centralizes launcher audits, health evidence, and project-scoped process control for independent Windows automation.
+
+## Additional portfolio evidence
+
+- **[Chicago Food Inspection Outcomes, 2010–2018](https://github.com/Jnapier2/chicago-food-inspections-analysis)** — A reproducible analysis of 13,333 public inspection records that separates outcome from facility risk, surfaces decision-relevant follow-up questions, and makes its limitations explicit.
 - **[Avalon Q Supervisor](https://github.com/Jnapier2/avalon-q-supervisor)** — Turns local device telemetry into explicit health states, dry-run-first recovery decisions, bounded recovery budgets, and auditable operator evidence.
 - **[Automation Reliability Case Studies](https://github.com/Jnapier2/automation-reliability-case-studies)** — Three design studies on containing risk when external state is uncertain, using explicit evidence, bounded recovery, and stop conditions.
 - **[Beta Earth](https://github.com/Jnapier2/beta-earth)** — A working browser RPG whose layered engine, validated content, and revision-safe saves keep feature work testable and local state recoverable.
 
-## Research and analysis
-
-- **[Chicago Food Inspection Outcomes, 2010–2018](https://github.com/Jnapier2/chicago-food-inspections-analysis)** — A reproducible analysis of 13,333 public inspection records that separates outcome from facility risk, surfaces decision-relevant follow-up questions, and makes its limitations explicit.
-
 <details>
-<summary><strong>Additional tools</strong></summary>
+<summary><strong>Additional tools and learning releases</strong></summary>
 
 - [Safe Video Downloader](https://github.com/Jnapier2/safe-video-downloader) — Guarded, observable retrieval of authorized media.
 - [MP3 Downloader](https://github.com/Jnapier2/mp3-downloader) — Bounded audio-only downloads with duplicate verification.
