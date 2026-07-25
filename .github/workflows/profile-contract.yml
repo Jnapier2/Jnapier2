@@ -10,6 +10,7 @@ on:
       - .github/scripts/portfolio_audit.py
       - .github/scripts/portfolio_audit_html.py
       - .github/scripts/release_reconciliation_audit.py
+      - .github/scripts/diagnose_image_actions.py
       - .github/workflows/profile-contract.yml
   pull_request:
     paths:
@@ -20,6 +21,7 @@ on:
       - .github/scripts/portfolio_audit.py
       - .github/scripts/portfolio_audit_html.py
       - .github/scripts/release_reconciliation_audit.py
+      - .github/scripts/diagnose_image_actions.py
       - .github/workflows/profile-contract.yml
   workflow_dispatch:
   schedule:
@@ -54,6 +56,7 @@ jobs:
           .github/scripts/portfolio_audit.py
           .github/scripts/portfolio_audit_html.py
           .github/scripts/release_reconciliation_audit.py
+          .github/scripts/diagnose_image_actions.py
 
       - name: Audit profile, repositories, links, metadata, and pins
         env:
@@ -64,6 +67,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: python .github/scripts/release_reconciliation_audit.py
+
+      - name: Observe Image Downloader workflow runs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python .github/scripts/diagnose_image_actions.py
 
       - name: Upload bounded audit evidence
         if: always()
