@@ -4,16 +4,22 @@ on:
   push:
     paths:
       - README.md
+      - RELEASE_RECONCILIATION.md
       - .github/portfolio-manifest.json
+      - .github/release-reconciliation.json
       - .github/scripts/portfolio_audit.py
       - .github/scripts/portfolio_audit_html.py
+      - .github/scripts/release_reconciliation_audit.py
       - .github/workflows/profile-contract.yml
   pull_request:
     paths:
       - README.md
+      - RELEASE_RECONCILIATION.md
       - .github/portfolio-manifest.json
+      - .github/release-reconciliation.json
       - .github/scripts/portfolio_audit.py
       - .github/scripts/portfolio_audit_html.py
+      - .github/scripts/release_reconciliation_audit.py
       - .github/workflows/profile-contract.yml
   workflow_dispatch:
   schedule:
@@ -42,16 +48,22 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Compile audit
+      - name: Compile audits
         run: >-
           python -m py_compile
           .github/scripts/portfolio_audit.py
           .github/scripts/portfolio_audit_html.py
+          .github/scripts/release_reconciliation_audit.py
 
       - name: Audit profile, repositories, links, metadata, and pins
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: python .github/scripts/portfolio_audit_html.py
+
+      - name: Audit represented and latest verified project versions
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python .github/scripts/release_reconciliation_audit.py
 
       - name: Upload bounded audit evidence
         if: always()
