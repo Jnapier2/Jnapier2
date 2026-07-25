@@ -8,6 +8,7 @@ from __future__ import annotations
 import base64
 import json
 import os
+import re
 import sys
 import time
 import urllib.error
@@ -36,6 +37,7 @@ PENDING_STATUSES = {
 }
 HTTP_TIMEOUT_SECONDS = 15
 HTTP_ATTEMPTS = 3
+SHA40_RE = re.compile(r"^[0-9a-f]{40}$")
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -48,7 +50,7 @@ def load_json(path: Path) -> dict[str, Any]:
 def github_headers() -> dict[str, str]:
     headers = {
         "Accept": "application/vnd.github+json",
-        "User-Agent": "Gateway-Release-Reconciliation-Audit/1.0",
+        "User-Agent": "Gateway-Release-Reconciliation-Audit/1.1",
         "X-GitHub-Api-Version": "2022-11-28",
     }
     token = os.environ.get("GITHUB_TOKEN", "").strip()
@@ -57,26 +59,44 @@ def github_headers() -> dict[str, str]:
     return headers
 
 
+def fetch_github_json(url: str, maximum_bytes: int = 4_000_000) -> Any:
+    last_error: Exception | None = None
+    for attempt in range(1, HTTP_ATTEMPTS + 1):
+        try:
+            request = urllib.request.Request(url, headers=github_headers())
+            with urllib.request.urlopen(request, timeout=HTTP_TIMEOUT_SECONDS) as response:
+                return json.loads(response.read(maximum_bytes).decode("utf-8"))
+        except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError, ValueError, json.JSONDecodeError) as exc:
+            last_error = exc
+            if attempt < HTTP_ATTEMPTS:
+                time.sleep(0.75 * attempt)
+    raise RuntimeError(f"GitHub request failed for {url}: {last_error}")
+
+
 def fetch_public_file(owner: str, repository: str, path: str) -> str:
     quoted_path = "/".join(urllib.parse.quote(part, safe="") for part in path.split("/"))
     url = (
         f"https://api.github.com/repos/{urllib.parse.quote(owner, safe='')}/"
         f"{urllib.parse.quote(repository, safe='')}/contents/{quoted_path}?ref=main"
     )
-    last_error: Exception | None = None
-    for attempt in range(1, HTTP_ATTEMPTS + 1):
-        try:
-            request = urllib.request.Request(url, headers=github_headers())
-            with urllib.request.urlopen(request, timeout=HTTP_TIMEOUT_SECONDS) as response:
-                payload = json.loads(response.read(4_000_000).decode("utf-8"))
-            if payload.get("encoding") != "base64" or not isinstance(payload.get("content"), str):
-                raise ValueError("GitHub did not return base64 file content")
-            return base64.b64decode(payload["content"], validate=False).decode("utf-8-sig")
-        except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError, ValueError, json.JSONDecodeError) as exc:
-            last_error = exc
-            if attempt < HTTP_ATTEMPTS:
-                time.sleep(0.75 * attempt)
-    raise RuntimeError(f"unable to read {repository}/{path}: {last_error}")
+    payload = fetch_github_json(url)
+    if not isinstance(payload, dict) or payload.get("encoding") != "base64" or not isinstance(payload.get("content"), str):
+        raise ValueError("GitHub did not return base64 file content")
+    return base64.b64decode(payload["content"], validate=False).decode("utf-8-sig")
+
+
+def fetch_public_main_head(owner: str, repository: str) -> str:
+    url = (
+        f"https://api.github.com/repos/{urllib.parse.quote(owner, safe='')}/"
+        f"{urllib.parse.quote(repository, safe='')}/commits/main"
+    )
+    payload = fetch_github_json(url, maximum_bytes=1_000_000)
+    if not isinstance(payload, dict):
+        raise ValueError("GitHub did not return a commit object")
+    sha = str(payload.get("sha") or "").lower()
+    if not SHA40_RE.fullmatch(sha):
+        raise ValueError("GitHub did not return a complete 40-character head SHA")
+    return sha
 
 
 def workflow_message(level: str, message: str) -> None:
@@ -86,6 +106,7 @@ def workflow_message(level: str, message: str) -> None:
 def main() -> int:
     errors: list[str] = []
     warnings: list[str] = []
+    verified_heads = 0
 
     try:
         ledger = load_json(LEDGER_PATH)
@@ -120,6 +141,9 @@ def main() -> int:
     if owner != portfolio.get("owner"):
         errors.append("release reconciliation owner does not match portfolio manifest")
 
+    if ledger.get("reviewed_public_project_count") != len(projects):
+        errors.append("reviewed public project count does not match the ledger")
+
     for item in projects:
         if not isinstance(item, dict):
             errors.append("release reconciliation contains a non-object project record")
@@ -129,6 +153,7 @@ def main() -> int:
         represented = item.get("represented_version")
         latest = item.get("latest_verified_version")
         marker = item.get("source_marker")
+        reviewed_head = str(item.get("reviewed_head_sha") or "").lower()
 
         if status not in ALLOWED_STATUSES:
             errors.append(f"{repository}: unsupported status {status!r}")
@@ -142,6 +167,21 @@ def main() -> int:
             warnings.append(f"{repository}: GitHub represents {represented}; latest verified is {latest} ({status})")
         elif represented is not None and latest is not None and represented != latest:
             errors.append(f"{repository}: non-pending status has version drift {represented} != {latest}")
+
+        if not SHA40_RE.fullmatch(reviewed_head):
+            errors.append(f"{repository}: reviewed head SHA is missing or incomplete")
+        else:
+            try:
+                current_head = fetch_public_main_head(owner, repository)
+            except Exception as exc:
+                errors.append(f"{repository}: unable to verify reviewed main head: {exc}")
+            else:
+                if current_head != reviewed_head:
+                    errors.append(
+                        f"{repository}: main moved after reconciliation: reviewed {reviewed_head}, current {current_head}"
+                    )
+                else:
+                    verified_heads += 1
 
         if marker is not None:
             if not isinstance(marker, dict) or not marker.get("path") or not marker.get("text"):
@@ -161,6 +201,7 @@ def main() -> int:
         "# Release reconciliation",
         "",
         f"- Public project records: **{len(projects)}**",
+        f"- Exact reviewed heads verified: **{verified_heads} / {len(projects)}**",
         f"- Structural/version errors: **{len(errors)}**",
         f"- Explicit pending or blocked successors: **{len(warnings)}**",
         "",
@@ -182,9 +223,15 @@ def main() -> int:
         workflow_message("error", message)
 
     if errors:
-        print(f"Release reconciliation: FAIL ({len(errors)} error(s), {len(warnings)} warning(s))")
+        print(
+            f"Release reconciliation: FAIL ({len(errors)} error(s), {len(warnings)} warning(s), "
+            f"{verified_heads}/{len(projects)} heads verified)"
+        )
         return 1
-    print(f"Release reconciliation: PASS ({len(projects)} projects, {len(warnings)} explicit pending/blocked successor(s))")
+    print(
+        f"Release reconciliation: PASS ({len(projects)} projects, {verified_heads} exact heads, "
+        f"{len(warnings)} explicit pending/blocked successor(s))"
+    )
     return 0
 
 

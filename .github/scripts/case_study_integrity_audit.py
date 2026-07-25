@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -14,6 +15,9 @@ ROOT = Path(__file__).resolve().parents[2]
 CASE_DIR = ROOT / "case-studies" / "reliable-project-delivery-framework"
 OUTPUT_DIR = ROOT / "audit-output"
 RIGHTS_NOTICE = "Copyright © 2026 Gateway Information Group LLC. All rights reserved."
+CASE_STUDY_VERSION = "1.1.0"
+SOURCE_FRAMEWORK_VERSION = "2.17.2"
+SOURCE_PACKAGE_SHA256 = "e0615823cfde6ae6eff6d4c028a6f2f1f54d251df90bd64f3cad8a6475b6d1d6"
 EXPECTED_FILES = {
     "MANIFEST.json",
     "PUBLIC_SCOPE.md",
@@ -42,8 +46,12 @@ def main() -> int:
         fail(f"release inventory differs: {sorted(actual_files ^ EXPECTED_FILES)}")
 
     manifest = json.loads((CASE_DIR / "MANIFEST.json").read_text(encoding="utf-8"))
-    if manifest.get("schema_version") != 1 or manifest.get("version") != "1.0.0":
+    if manifest.get("schema_version") != 1 or manifest.get("version") != CASE_STUDY_VERSION:
         fail("manifest identity is invalid")
+    if manifest.get("source_framework_version") != SOURCE_FRAMEWORK_VERSION:
+        fail("source framework version is invalid")
+    if manifest.get("source_package_sha256") != SOURCE_PACKAGE_SHA256:
+        fail("source package SHA-256 is invalid")
     if manifest.get("rights_notice") != RIGHTS_NOTICE:
         fail("canonical rights notice is missing from the manifest")
     if manifest.get("data_classification") != "public":
@@ -66,7 +74,10 @@ def main() -> int:
 
     checksum_records: dict[str, str] = {}
     for raw in (CASE_DIR / "SHA256SUMS.txt").read_text(encoding="utf-8").splitlines():
-        digest, name = raw.split("  ", 1)
+        match = re.fullmatch(r"([0-9a-f]{64})  (.+)", raw)
+        if not match:
+            fail(f"invalid checksum record: {raw!r}")
+        digest, name = match.groups()
         if name in checksum_records:
             fail(f"duplicate checksum record: {name}")
         checksum_records[name] = digest
@@ -77,19 +88,31 @@ def main() -> int:
             fail(f"checksum mismatch: {name}")
 
     summary = json.loads((CASE_DIR / "VALIDATION_SUMMARY.json").read_text(encoding="utf-8"))
+    if summary.get("case_study_version") != CASE_STUDY_VERSION:
+        fail("validation summary case-study version changed")
+    if summary.get("source_framework_version") != SOURCE_FRAMEWORK_VERSION:
+        fail("validation summary source version changed")
+    if summary.get("source_package_sha256") != SOURCE_PACKAGE_SHA256:
+        fail("validation summary source package hash changed")
     validation = summary.get("validation", {})
     expected_metrics = {
         "release_package_files": 15,
         "zip_integrity": "pass",
-        "control_areas": {"passed": 24, "total": 24},
-        "scenario_simulations": {"passed": 35, "total": 35},
-        "negative_conflict_checks": {"passed": 16, "total": 16},
+        "control_areas": {"passed": 26, "total": 26},
+        "scenario_simulations": {"passed": 40, "total": 40},
+        "negative_conflict_checks": {"passed": 20, "total": 20},
+        "docx_render": {"pages": 11, "visual_review": "pass"},
+        "docx_accessibility": {"high": 0, "medium": 0, "low": 0},
     }
     if validation != expected_metrics:
         fail("validation scorecard changed")
     boundary = summary.get("claim_boundary", {})
     if boundary.get("physical_multi_system_verification_claimed") is not False:
         fail("physical verification is being overclaimed")
+    if boundary.get("shared_coordinator_deployed") is not False:
+        fail("shared-coordinator deployment is being overclaimed")
+    if boundary.get("running_processes_modified") is not False:
+        fail("running-process modification is being overclaimed")
     if boundary.get("executable_included") is not False:
         fail("executable-content boundary changed")
     if summary.get("rights_notice") != RIGHTS_NOTICE:
@@ -105,7 +128,9 @@ def main() -> int:
         "schema_version": 1,
         "generated_utc": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
         "case_study": "Reliable Project Delivery Framework",
-        "case_study_version": "1.0.0",
+        "case_study_version": CASE_STUDY_VERSION,
+        "source_framework_version": SOURCE_FRAMEWORK_VERSION,
+        "source_package_sha256": SOURCE_PACKAGE_SHA256,
         "files_verified": len(SEALED_FILES),
         "manifest_records_verified": len(records),
         "validation_scorecard": expected_metrics,
