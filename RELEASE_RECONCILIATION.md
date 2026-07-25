@@ -13,10 +13,10 @@ Last reconciled: **July 25, 2026**
 | Avalon Q Supervisor | Current source | Current source | GitHub-only source authority |
 | Automation Reliability Case Studies | Current studies | Current studies | Current |
 | Beta Earth | 0.4.11 | 0.5.0 | Verified successor awaits exact checksum-matched source transfer |
-| Safe Video Downloader | 1.14.1 | 1.14.2 | Verified successor under security-preserving reconciliation |
+| Safe Video Downloader | 1.14.2 | 1.14.2 | Current; verified no-progress watchdog merged into stronger public source |
 | MP3 Downloader | 1.0.0 | 1.0.0 | Current; Drive label adds release-profile metadata only |
 | Image Downloader | 2026.07.18.1 | 2026.07.19.1 | Verified successor under security-preserving reconciliation |
-| Large Text Chunker | 1.0.0 | 1.10.0 | Newer historical candidate unavailable; promotion blocked |
+| Large Text Chunker | 1.0.0 | 1.10.0 | Checksum companion retained, exact successor ZIP unavailable; promotion blocked |
 | NetLossDoctor | 2.10.0 | 2.10.0 | Current |
 | LAN Router Comms | 2.3.0 | 2.3.0 | Current |
 | Windows Health Audit | Current source | Current source | GitHub-only source authority |
@@ -36,11 +36,14 @@ The v0.5.0 final is recorded with SHA-256 `ea30ceb8a16566f0bcc20035360eba7bdeb8c
 
 ### Large Text Chunker 1.10.0
 
-A newer historical candidate is cataloged, but the package is unavailable or retired. The public 1.0.0 source remains authoritative until exact successor bytes are recovered and verified.
+The checksum companion for `ChatGPT_Text_Chunker_v1.10.0_20260718_0111_CDT.zip` is retained and records SHA-256 `20a428ae390b0443ef08acc5bbcc562124f0f748be74be25b6d9e547916d8ebf`, but the exact ZIP is not currently retrievable. The public 1.0.0 source remains authoritative until those successor bytes are recovered and verified.
 
-## Active reconciliations
+## Completed reconciliations
 
-- [Safe Video Downloader 1.14.2](https://github.com/Jnapier2/safe-video-downloader/pull/4): merge the verified five-second no-progress worker watchdog without losing the stronger public URL, destination, cancellation, duplicate, visibility, and redaction controls.
+- **Safe Video Downloader 1.14.2:** the verified five-second no-progress worker watchdog is merged into the stronger public URL, destination, cancellation, duplicate, visibility, and redaction controls. Silent-worker, activity-reset, and post-processing-disarm regression tests are retained; temporary application scaffolding removed itself after validation.
+
+## Active reconciliation
+
 - [Image Downloader 2026.07.19.1](https://github.com/Jnapier2/image-downloader/pull/4): merge the verified five-second per-image network budget without reverting public destination checks, content validation, visible output, duplicate controls, or browser guardrails.
 
 The machine-readable authority is [`.github/release-reconciliation.json`](.github/release-reconciliation.json). The portfolio health workflow validates its completeness and version markers.
