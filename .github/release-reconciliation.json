@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-07-25T05:00:00Z",
+  "generated_utc": "2026-07-25T05:35:00Z",
   "owner": "Jnapier2",
   "rights_notice": "Copyright © 2026 Gateway Information Group LLC. All rights reserved.",
   "status_definitions": {
@@ -69,13 +69,12 @@
     },
     {
       "repository": "safe-video-downloader",
-      "represented_version": "1.14.1",
+      "represented_version": "1.14.2",
       "latest_verified_version": "1.14.2",
-      "status": "verified_successor_under_reconciliation",
-      "source_marker": {"path": "safe_media_downloader.py", "text": "APP_VERSION = \"1.14.1\""},
+      "status": "current",
+      "source_marker": {"path": "safe_media_downloader.py", "text": "APP_VERSION = \"1.14.2\""},
       "recorded_successor_sha256": "d873bf140713a978375b6693e784726973a5ab6934f529437ede671f90b1fd1a",
-      "tracking_url": "https://github.com/Jnapier2/safe-video-downloader/pull/4",
-      "note": "Five-second no-progress watchdog must be merged into the stronger public-security source rather than replacing it wholesale."
+      "note": "The verified five-second no-progress watchdog is merged into the stronger public-security source; the one-use reconciliation scaffolding removed itself after validation."
     },
     {
       "repository": "mp3-downloader",
@@ -101,7 +100,7 @@
       "latest_verified_version": "1.10.0",
       "status": "verified_successor_unavailable",
       "source_marker": {"path": "src/large_text_chunker.py", "text": "VERSION = \"1.0.0\""},
-      "note": "A newer historical candidate is cataloged, but its exact source package is unavailable; no speculative relabeling is permitted."
+      "note": "A newer historical candidate is cataloged and its checksum companion is retained, but the exact source ZIP is unavailable; no speculative relabeling is permitted."
     },
     {
       "repository": "net-loss-doctor",
