@@ -1,0 +1,51 @@
+name: Validate Image dependency pins
+
+on:
+  push:
+    branches: [agent/validate-image-dependency-pins]
+    paths:
+      - .github/workflows/validate-image-dependency-pins.yml
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/validate-image-dependency-pins.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-image-dependency-pins-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out exact Image Downloader candidate
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: Jnapier2/image-downloader
+          ref: d5970e901455a8690b157b49d2a911964f18f679
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements.txt
+      - name: Install exact direct dependencies
+        run: python -m pip install --only-binary=:all: -r requirements.txt
+      - name: Verify installed dependency consistency
+        run: python -m pip check
+      - name: Compile exact candidate
+        run: python -m compileall -q image_downloader.py tests
+      - name: Run exact candidate test suite
+        run: python -m unittest discover -s tests -v
+      - name: Verify candidate identity
+        run: >-
+          python -c "import image_downloader as app; assert app.APP_VERSION == '2026.07.19.1'; print('Exact Image dependency candidate validation: PASS')"
+
+# Temporary read-only validation only; this workflow is not intended for main.
+# Copyright © 2026 Gateway Information Group LLC. All rights reserved.
