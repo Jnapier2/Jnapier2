@@ -11,6 +11,7 @@ on:
       - .github/scripts/portfolio_audit_html.py
       - .github/scripts/release_reconciliation_audit.py
       - .github/scripts/action_pin_audit.py
+      - .github/scripts/public_sanitization_audit.py
       - .github/workflows/profile-contract.yml
   pull_request:
     paths:
@@ -22,6 +23,7 @@ on:
       - .github/scripts/portfolio_audit_html.py
       - .github/scripts/release_reconciliation_audit.py
       - .github/scripts/action_pin_audit.py
+      - .github/scripts/public_sanitization_audit.py
       - .github/workflows/profile-contract.yml
   workflow_dispatch:
   schedule:
@@ -37,7 +39,7 @@ concurrency:
 jobs:
   audit-portfolio:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     steps:
       - name: Check out repository
@@ -57,6 +59,7 @@ jobs:
           .github/scripts/portfolio_audit_html.py
           .github/scripts/release_reconciliation_audit.py
           .github/scripts/action_pin_audit.py
+          .github/scripts/public_sanitization_audit.py
 
       - name: Audit profile, repositories, links, metadata, and pins
         env:
@@ -72,6 +75,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: python .github/scripts/action_pin_audit.py
+
+      - name: Audit public content, privacy, and release sanitation
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python .github/scripts/public_sanitization_audit.py
 
       - name: Upload bounded audit evidence
         if: always()
