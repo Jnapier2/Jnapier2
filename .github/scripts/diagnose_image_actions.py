@@ -10,7 +10,7 @@ import os
 import urllib.request
 from pathlib import Path
 
-RUNS_URL = "https://api.github.com/repos/Jnapier2/image-downloader/actions/runs?per_page=15"
+RUNS_URL = "https://api.github.com/repos/Jnapier2/image-downloader/actions/runs?per_page=14"
 FAILED_JOB_LOG_URL = "https://api.github.com/repos/Jnapier2/image-downloader/actions/jobs/89649754456/logs"
 headers = {
     "Accept": "application/vnd.github+json",
