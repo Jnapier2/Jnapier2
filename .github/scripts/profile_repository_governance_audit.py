@@ -1,0 +1,88 @@
+#!/usr/bin/env python3
+"""Validate repository-level ownership and security controls for the public profile.
+
+Copyright © 2026 Gateway Information Group LLC. All rights reserved.
+"""
+from __future__ import annotations
+
+import json
+from datetime import datetime, timezone
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+OUTPUT_DIR = ROOT / "audit-output"
+RIGHTS_NOTICE = "Copyright © 2026 Gateway Information Group LLC. All rights reserved."
+
+
+def require_text(path: Path, markers: list[str]) -> None:
+    if not path.is_file():
+        raise SystemExit(f"Profile repository governance failure: missing {path.relative_to(ROOT)}")
+    text = path.read_text(encoding="utf-8")
+    for marker in markers:
+        if marker not in text:
+            raise SystemExit(
+                f"Profile repository governance failure: {path.relative_to(ROOT)} lacks {marker!r}"
+            )
+
+
+def main() -> int:
+    require_text(
+        ROOT / "LICENSE.md",
+        [
+            RIGHTS_NOTICE,
+            "no permission is granted",
+            "Linked project repositories are governed by their own license or rights files.",
+            "This notice does not create or replace a software license.",
+        ],
+    )
+    require_text(
+        ROOT / "SECURITY.md",
+        [
+            RIGHTS_NOTICE,
+            "private vulnerability reporting",
+            "Do not include vulnerability details",
+            "Do not test against accounts, systems, data, or services you do not own",
+        ],
+    )
+    require_text(
+        ROOT / ".github" / "CODEOWNERS",
+        [
+            RIGHTS_NOTICE,
+            "* @Jnapier2",
+            "/README.md @Jnapier2",
+            "/.github/ @Jnapier2",
+            "/case-studies/ @Jnapier2",
+        ],
+    )
+    require_text(
+        ROOT / "README.md",
+        [
+            "Reliable Project Delivery Framework",
+            "Public project release reconciliation",
+        ],
+    )
+
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    evidence = {
+        "schema_version": 1,
+        "generated_utc": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+        "repository": "Jnapier2/Jnapier2",
+        "controls": {
+            "repository_rights": "PASS",
+            "security_reporting": "PASS",
+            "code_ownership": "PASS",
+            "profile_links": "PASS",
+        },
+        "result": "PASS",
+        "rights_notice": RIGHTS_NOTICE,
+    }
+    (OUTPUT_DIR / "profile-repository-governance.json").write_text(
+        json.dumps(evidence, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+    print("Profile repository governance: PASS")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
