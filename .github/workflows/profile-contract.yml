@@ -7,11 +7,13 @@ on:
       - RELEASE_RECONCILIATION.md
       - .github/portfolio-manifest.json
       - .github/release-reconciliation.json
+      - .github/public-sanitization-allowlist.json
       - .github/scripts/portfolio_audit.py
       - .github/scripts/portfolio_audit_html.py
       - .github/scripts/release_reconciliation_audit.py
       - .github/scripts/action_pin_audit.py
       - .github/scripts/public_sanitization_audit.py
+      - .github/scripts/public_sanitization_runner.py
       - .github/workflows/profile-contract.yml
   pull_request:
     paths:
@@ -19,11 +21,13 @@ on:
       - RELEASE_RECONCILIATION.md
       - .github/portfolio-manifest.json
       - .github/release-reconciliation.json
+      - .github/public-sanitization-allowlist.json
       - .github/scripts/portfolio_audit.py
       - .github/scripts/portfolio_audit_html.py
       - .github/scripts/release_reconciliation_audit.py
       - .github/scripts/action_pin_audit.py
       - .github/scripts/public_sanitization_audit.py
+      - .github/scripts/public_sanitization_runner.py
       - .github/workflows/profile-contract.yml
   workflow_dispatch:
   schedule:
@@ -60,6 +64,7 @@ jobs:
           .github/scripts/release_reconciliation_audit.py
           .github/scripts/action_pin_audit.py
           .github/scripts/public_sanitization_audit.py
+          .github/scripts/public_sanitization_runner.py
 
       - name: Audit profile, repositories, links, metadata, and pins
         env:
@@ -79,7 +84,7 @@ jobs:
       - name: Audit public content, privacy, and release sanitation
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: python .github/scripts/public_sanitization_audit.py
+        run: python .github/scripts/public_sanitization_runner.py
 
       - name: Upload bounded audit evidence
         if: always()
