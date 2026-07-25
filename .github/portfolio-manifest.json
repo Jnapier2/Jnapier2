@@ -53,7 +53,8 @@
       "tier": "flagship",
       "ci_path": ".github/workflows/test.yml",
       "require_portfolio_backlink": true,
-      "rights_mode": "all-rights-reserved"
+      "rights_mode": "all-rights-reserved",
+      "expected_homepage": "https://jerry-napier-portfolio.netlify.app/#work"
     },
     {
       "name": "digital-asset-governance-case-study",
@@ -97,7 +98,8 @@
       "tier": "evidence",
       "ci_path": ".github/workflows/ci.yml",
       "require_portfolio_backlink": true,
-      "rights_mode": "all-rights-reserved"
+      "rights_mode": "all-rights-reserved",
+      "expected_homepage": "https://jerry-napier-portfolio.netlify.app/#work"
     },
     {
       "name": "safe-video-downloader",
@@ -161,14 +163,16 @@
       "tier": "learning-release",
       "ci_path": ".github/workflows/security.yml",
       "require_portfolio_backlink": false,
-      "rights_mode": "mit-sealed"
+      "rights_mode": "mit-sealed",
+      "expected_homepage": "https://jerry-napier-portfolio.netlify.app/#gift"
     },
     {
       "name": "kalshi-15m-sell-bot-public-preview",
       "tier": "learning-release",
       "ci_path": ".github/workflows/security.yml",
       "require_portfolio_backlink": false,
-      "rights_mode": "mit-sealed"
+      "rights_mode": "mit-sealed",
+      "expected_homepage": "https://jerry-napier-portfolio.netlify.app/#gift"
     }
   ]
 }
