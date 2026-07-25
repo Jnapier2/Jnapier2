@@ -10,7 +10,8 @@ import os
 import urllib.request
 from pathlib import Path
 
-URL = "https://api.github.com/repos/Jnapier2/image-downloader/actions/runs?per_page=30"
+RUNS_URL = "https://api.github.com/repos/Jnapier2/image-downloader/actions/runs?per_page=30"
+FAILED_JOB_LOG_URL = "https://api.github.com/repos/Jnapier2/image-downloader/actions/jobs/89649754456/logs"
 headers = {
     "Accept": "application/vnd.github+json",
     "User-Agent": "Gateway-Image-Reconciliation-Observer/1.0",
@@ -19,7 +20,7 @@ headers = {
 token = os.environ.get("GITHUB_TOKEN", "").strip()
 if token:
     headers["Authorization"] = f"Bearer {token}"
-request = urllib.request.Request(URL, headers=headers)
+request = urllib.request.Request(RUNS_URL, headers=headers)
 with urllib.request.urlopen(request, timeout=20) as response:
     payload = json.load(response)
 records = []
@@ -42,9 +43,9 @@ for run in payload.get("workflow_runs", []):
     records.append(record)
     print(json.dumps(record, sort_keys=True))
 print("IMAGE_ACTION_RUNS_END")
-output = Path("audit-output/image-downloader-actions.json")
-output.parent.mkdir(parents=True, exist_ok=True)
-output.write_text(
+output_dir = Path("audit-output")
+output_dir.mkdir(parents=True, exist_ok=True)
+(output_dir / "image-downloader-actions.json").write_text(
     json.dumps(
         {
             "schema_version": 1,
@@ -58,3 +59,11 @@ output.write_text(
     + "\n",
     encoding="utf-8",
 )
+try:
+    log_request = urllib.request.Request(FAILED_JOB_LOG_URL, headers=headers)
+    with urllib.request.urlopen(log_request, timeout=30) as response:
+        log_bytes = response.read(8_000_000)
+    log_text = log_bytes.decode("utf-8-sig", errors="replace")
+except Exception as exc:
+    log_text = f"Unable to fetch failed job log: {type(exc).__name__}: {exc}\n"
+(output_dir / "image-downloader-failed-job.log").write_text(log_text[-50000:], encoding="utf-8")
