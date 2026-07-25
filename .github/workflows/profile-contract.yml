@@ -112,5 +112,6 @@ jobs:
         run: >-
           python -c "import image_downloader as app; assert app.APP_VERSION == '2026.07.19.1'; print('Exact Image dependency candidate validation: PASS')"
 
-# Temporary Image candidate validation is confined to this unmerged branch.
+# Temporary Image candidate validation synchronization: 2026-07-25T07:02Z.
+# This unmerged workflow exists only to validate one exact external candidate.
 # Copyright © 2026 Gateway Information Group LLC. All rights reserved.
