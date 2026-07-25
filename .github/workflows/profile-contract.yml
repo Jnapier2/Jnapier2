@@ -6,12 +6,14 @@ on:
       - README.md
       - .github/portfolio-manifest.json
       - .github/scripts/portfolio_audit.py
+      - .github/scripts/portfolio_audit_html.py
       - .github/workflows/profile-contract.yml
   pull_request:
     paths:
       - README.md
       - .github/portfolio-manifest.json
       - .github/scripts/portfolio_audit.py
+      - .github/scripts/portfolio_audit_html.py
       - .github/workflows/profile-contract.yml
   workflow_dispatch:
   schedule:
@@ -41,12 +43,15 @@ jobs:
           python-version: "3.12"
 
       - name: Compile audit
-        run: python -m py_compile .github/scripts/portfolio_audit.py
+        run: >-
+          python -m py_compile
+          .github/scripts/portfolio_audit.py
+          .github/scripts/portfolio_audit_html.py
 
       - name: Audit profile, repositories, links, metadata, and pins
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: python .github/scripts/portfolio_audit.py
+        run: python .github/scripts/portfolio_audit_html.py
 
       - name: Upload bounded audit evidence
         if: always()

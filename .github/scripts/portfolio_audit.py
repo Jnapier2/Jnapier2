@@ -64,15 +64,19 @@ class Audit:
         return [item for item in self.findings if item.severity == "warning"]
 
 
-def _headers(*, json_request: bool = False) -> dict[str, str]:
-    headers = {
-        "Accept": "application/vnd.github+json",
-        "User-Agent": USER_AGENT,
-        "X-GitHub-Api-Version": "2022-11-28",
-    }
-    token = os.environ.get("GITHUB_TOKEN", "").strip()
-    if token:
-        headers["Authorization"] = f"Bearer {token}"
+def _headers(url: str, *, json_request: bool = False) -> dict[str, str]:
+    hostname = (urllib.parse.urlparse(url).hostname or "").lower()
+    headers = {"User-Agent": USER_AGENT}
+    if hostname == "api.github.com":
+        headers["Accept"] = "application/vnd.github+json"
+        headers["X-GitHub-Api-Version"] = "2022-11-28"
+        token = os.environ.get("GITHUB_TOKEN", "").strip()
+        if token:
+            headers["Authorization"] = f"Bearer {token}"
+    elif hostname == "raw.githubusercontent.com":
+        headers["Accept"] = "text/plain, */*;q=0.1"
+    else:
+        headers["Accept"] = "text/html, application/xhtml+xml;q=0.9, */*;q=0.8"
     if json_request:
         headers["Content-Type"] = "application/json"
     return headers
@@ -91,7 +95,7 @@ def request_bytes(
             url,
             data=payload,
             method=method,
-            headers=_headers(json_request=accept_json),
+            headers=_headers(url, json_request=accept_json),
         )
         try:
             with urllib.request.urlopen(request, timeout=HTTP_TIMEOUT_SECONDS) as response:
