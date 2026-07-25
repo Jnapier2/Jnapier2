@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "generated_utc": "2026-07-25T05:00:00Z",
+  "owner": "Jnapier2",
+  "rights_notice": "Copyright © 2026 Gateway Information Group LLC. All rights reserved.",
+  "status_definitions": {
+    "current": "GitHub represents the latest verified source/build version.",
+    "nonversioned_current": "The repository is a current case study or source artifact without a release version.",
+    "github_source_authority": "GitHub is the current source authority; an exact packaged Drive release may still be pending.",
+    "github_source_only": "GitHub is the only registered source authority and no final Drive release is registered.",
+    "verified_successor_pending_exact_transfer": "A newer final passed originating checks, but its exact bytes are not available for safe promotion.",
+    "verified_successor_under_reconciliation": "A newer checksum-verified package is available and a security-preserving GitHub reconciliation is in progress.",
+    "verified_successor_unavailable": "A newer historical candidate is recorded, but its exact package is unavailable or retired."
+  },
+  "projects": [
+    {
+      "repository": "botops-manager",
+      "represented_version": "1.13.0",
+      "latest_verified_version": "1.13.0",
+      "status": "current",
+      "source_marker": {"path": "bot_manager.py", "text": "APP_VERSION = \"1.13.0\""},
+      "note": "GitHub retains post-package public hardening and is not replaced by the older same-version Drive ZIP."
+    },
+    {
+      "repository": "digital-asset-governance-case-study",
+      "represented_version": null,
+      "latest_verified_version": null,
+      "status": "nonversioned_current",
+      "note": "Current recruiter-facing read-only case study."
+    },
+    {
+      "repository": "media-tagger-bot",
+      "represented_version": "0.5.7",
+      "latest_verified_version": "0.5.7",
+      "status": "github_source_authority",
+      "source_marker": {"path": "pyproject.toml", "text": "version = \"0.5.7\""},
+      "note": "Current GitHub source is verified; an exact v0.5.7 Drive release package remains open."
+    },
+    {
+      "repository": "chicago-food-inspections-analysis",
+      "represented_version": null,
+      "latest_verified_version": null,
+      "status": "nonversioned_current",
+      "note": "Current reproducible analysis case study."
+    },
+    {
+      "repository": "avalon-q-supervisor",
+      "represented_version": null,
+      "latest_verified_version": null,
+      "status": "github_source_only",
+      "note": "Current GitHub source candidate; no registered final Drive release."
+    },
+    {
+      "repository": "automation-reliability-case-studies",
+      "represented_version": null,
+      "latest_verified_version": null,
+      "status": "nonversioned_current",
+      "note": "Current design-study collection."
+    },
+    {
+      "repository": "beta-earth",
+      "represented_version": "0.4.11",
+      "latest_verified_version": "0.5.0",
+      "status": "verified_successor_pending_exact_transfer",
+      "source_marker": {"path": "pyproject.toml", "text": "version = \"0.4.11\""},
+      "recorded_successor_sha256": "ea30ceb8a16566f0bcc20035360eba7bdeb8c8395e044d909ed99a2395e8f97b",
+      "tracking_url": "https://github.com/Jnapier2/beta-earth/issues/5",
+      "note": "The repository now discloses the v0.5.0 final while keeping v0.4.11 as the honest source identity until exact transfer."
+    },
+    {
+      "repository": "safe-video-downloader",
+      "represented_version": "1.14.1",
+      "latest_verified_version": "1.14.2",
+      "status": "verified_successor_under_reconciliation",
+      "source_marker": {"path": "safe_media_downloader.py", "text": "APP_VERSION = \"1.14.1\""},
+      "recorded_successor_sha256": "d873bf140713a978375b6693e784726973a5ab6934f529437ede671f90b1fd1a",
+      "tracking_url": "https://github.com/Jnapier2/safe-video-downloader/pull/4",
+      "note": "Five-second no-progress watchdog must be merged into the stronger public-security source rather than replacing it wholesale."
+    },
+    {
+      "repository": "mp3-downloader",
+      "represented_version": "1.0.0",
+      "latest_verified_version": "1.0.0",
+      "status": "current",
+      "source_marker": {"path": "mp3_downloader.py", "text": "APP_VERSION = \"1.0.0\""},
+      "note": "The Drive package label adds audio-only/v2.16.6/stable metadata but the public product version remains 1.0.0."
+    },
+    {
+      "repository": "image-downloader",
+      "represented_version": "2026.07.18.1",
+      "latest_verified_version": "2026.07.19.1",
+      "status": "verified_successor_under_reconciliation",
+      "source_marker": {"path": "image_downloader.py", "text": "APP_VERSION = \"2026.07.18.1\""},
+      "recorded_successor_sha256": "0b8acc9b4e6cbcfda899186e6a2c5ac9aeee9609a7143013f6015cda8c22b6d6",
+      "tracking_url": "https://github.com/Jnapier2/image-downloader/pull/4",
+      "note": "Five-second per-image budget is being merged without reverting public visible-output and destination-security controls."
+    },
+    {
+      "repository": "large-text-chunker",
+      "represented_version": "1.0.0",
+      "latest_verified_version": "1.10.0",
+      "status": "verified_successor_unavailable",
+      "source_marker": {"path": "src/large_text_chunker.py", "text": "VERSION = \"1.0.0\""},
+      "note": "A newer historical candidate is cataloged, but its exact source package is unavailable; no speculative relabeling is permitted."
+    },
+    {
+      "repository": "net-loss-doctor",
+      "represented_version": "2.10.0",
+      "latest_verified_version": "2.10.0",
+      "status": "current",
+      "source_marker": {"path": "NetLossDoctor.ps1", "text": "$Script:Version = '2.10.0'"},
+      "note": "GitHub already contains the cataloged final version."
+    },
+    {
+      "repository": "lan-router-comms",
+      "represented_version": "2.3.0",
+      "latest_verified_version": "2.3.0",
+      "status": "current",
+      "source_marker": {"path": "LAN_Router_Comms.ps1", "text": "$script:Version = '2.3.0'"},
+      "note": "GitHub already contains the cataloged final version."
+    },
+    {
+      "repository": "windows-health-audit",
+      "represented_version": null,
+      "latest_verified_version": null,
+      "status": "github_source_only",
+      "note": "Current read-only GitHub source; no separate semantic release is registered."
+    },
+    {
+      "repository": "inbox-from-hell",
+      "represented_version": "0.7.0",
+      "latest_verified_version": "0.7.0",
+      "status": "github_source_authority",
+      "source_marker": {"path": "package.json", "text": "\"version\": \"0.7.0\""},
+      "note": "Current GitHub source is ahead of the older packaged Drive lineage."
+    },
+    {
+      "repository": "kalshi-10x1c-public",
+      "represented_version": "1.0.0",
+      "latest_verified_version": "1.0.0",
+      "status": "current",
+      "source_marker": {"path": "pyproject.toml", "text": "version = \"1.0.0\""},
+      "note": "Current checksum-controlled educational entry planner."
+    },
+    {
+      "repository": "kalshi-15m-sell-bot-public-preview",
+      "represented_version": "41.22.3",
+      "latest_verified_version": "41.22.3",
+      "status": "current",
+      "source_marker": {"path": "pyproject.toml", "text": "version = \"41.22.3\""},
+      "note": "Current checksum-consistent public dry-run preview; all mutation paths remain blocked."
+    }
+  ]
+}
