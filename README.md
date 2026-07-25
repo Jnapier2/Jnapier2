@@ -19,7 +19,7 @@ I turn complex systems into trusted ones. My background spans more than 10 years
 - **[Chicago Food Inspection Outcomes, 2010–2018](https://github.com/Jnapier2/chicago-food-inspections-analysis)** — A reproducible analysis of 13,333 public inspection records that separates outcome from facility risk, surfaces decision-relevant follow-up questions, and makes its limitations explicit.
 - **[Avalon Q Supervisor](https://github.com/Jnapier2/avalon-q-supervisor)** — Turns local device telemetry into explicit health states, dry-run-first recovery decisions, bounded recovery budgets, and auditable operator evidence.
 - **[Automation Reliability Case Studies](https://github.com/Jnapier2/automation-reliability-case-studies)** — Three design studies on containing risk when external state is uncertain, using explicit evidence, bounded recovery, and stop conditions.
-- **[Beta Earth](https://github.com/Jnapier2/beta-earth)** — A working browser RPG whose layered engine, validated content, and revision-safe saves keep feature work testable and local state recoverable.
+- **[Beta Earth](https://github.com/Jnapier2/beta-earth)** — A working browser RPG with verified public source at v0.4.11; a newer verified v0.5.0 final is disclosed and held behind an exact-source checksum gate rather than being falsely represented by the older tree.
 
 <details>
 <summary><strong>Additional tools and learning releases</strong></summary>
@@ -35,6 +35,8 @@ I turn complex systems into trusted ones. My background spans more than 10 years
 - [Market Automation Pair: entry planner](https://github.com/Jnapier2/kalshi-10x1c-public) and [dry-run exit preview](https://github.com/Jnapier2/kalshi-15m-sell-bot-public-preview) — Demonstrate API integration, reconciliation, fail-closed controls, and release verification across a coordinated workflow. The entry edition requires explicit activation; the exit edition blocks all writes.
 
 </details>
+
+[Public project release reconciliation](RELEASE_RECONCILIATION.md) records the version actually present in each repository, the latest verified build, and any checksum-gated promotion blocker.
 
 ## Working principles
 
