@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-07-25T05:35:00Z",
+  "generated_utc": "2026-07-25T06:27:43Z",
   "owner": "Jnapier2",
   "rights_notice": "Copyright © 2026 Gateway Information Group LLC. All rights reserved.",
   "status_definitions": {
@@ -65,7 +65,7 @@
       "source_marker": {"path": "pyproject.toml", "text": "version = \"0.4.11\""},
       "recorded_successor_sha256": "ea30ceb8a16566f0bcc20035360eba7bdeb8c8395e044d909ed99a2395e8f97b",
       "tracking_url": "https://github.com/Jnapier2/beta-earth/issues/5",
-      "note": "The repository now discloses the v0.5.0 final while keeping v0.4.11 as the honest source identity until exact transfer."
+      "note": "The repository discloses the v0.5.0 final while keeping v0.4.11 as the honest source identity until exact transfer."
     },
     {
       "repository": "safe-video-downloader",
@@ -74,7 +74,7 @@
       "status": "current",
       "source_marker": {"path": "safe_media_downloader.py", "text": "APP_VERSION = \"1.14.2\""},
       "recorded_successor_sha256": "d873bf140713a978375b6693e784726973a5ab6934f529437ede671f90b1fd1a",
-      "note": "The verified five-second no-progress watchdog is merged into the stronger public-security source; the one-use reconciliation scaffolding removed itself after validation."
+      "note": "The verified five-second no-progress watchdog is merged into the stronger public-security source; one-use reconciliation scaffolding removed itself after validation."
     },
     {
       "repository": "mp3-downloader",
@@ -86,13 +86,12 @@
     },
     {
       "repository": "image-downloader",
-      "represented_version": "2026.07.18.1",
+      "represented_version": "2026.07.19.1",
       "latest_verified_version": "2026.07.19.1",
-      "status": "verified_successor_under_reconciliation",
-      "source_marker": {"path": "image_downloader.py", "text": "APP_VERSION = \"2026.07.18.1\""},
+      "status": "current",
+      "source_marker": {"path": "image_downloader.py", "text": "APP_VERSION = \"2026.07.19.1\""},
       "recorded_successor_sha256": "0b8acc9b4e6cbcfda899186e6a2c5ac9aeee9609a7143013f6015cda8c22b6d6",
-      "tracking_url": "https://github.com/Jnapier2/image-downloader/pull/4",
-      "note": "Five-second per-image budget is being merged without reverting public visible-output and destination-security controls."
+      "note": "The verified five-second per-image network budget is merged into the stronger public destination, content-validation, duplicate-control, visibility, and redaction boundaries; clean pinned read-only CI passed before merge."
     },
     {
       "repository": "large-text-chunker",
@@ -100,6 +99,7 @@
       "latest_verified_version": "1.10.0",
       "status": "verified_successor_unavailable",
       "source_marker": {"path": "src/large_text_chunker.py", "text": "VERSION = \"1.0.0\""},
+      "tracking_url": "https://github.com/Jnapier2/large-text-chunker/issues/3",
       "note": "A newer historical candidate is cataloged and its checksum companion is retained, but the exact source ZIP is unavailable; no speculative relabeling is permitted."
     },
     {
