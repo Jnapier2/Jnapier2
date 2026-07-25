@@ -4,8 +4,11 @@ on:
   push:
     paths:
       - README.md
+      - LICENSE.md
+      - SECURITY.md
       - RELEASE_RECONCILIATION.md
       - case-studies/reliable-project-delivery-framework/**
+      - .github/CODEOWNERS
       - .github/portfolio-manifest.json
       - .github/release-reconciliation.json
       - .github/public-sanitization-allowlist.json
@@ -16,12 +19,16 @@ on:
       - .github/scripts/public_sanitization_audit.py
       - .github/scripts/public_sanitization_runner.py
       - .github/scripts/case_study_integrity_audit.py
+      - .github/scripts/profile_repository_governance_audit.py
       - .github/workflows/profile-contract.yml
   pull_request:
     paths:
       - README.md
+      - LICENSE.md
+      - SECURITY.md
       - RELEASE_RECONCILIATION.md
       - case-studies/reliable-project-delivery-framework/**
+      - .github/CODEOWNERS
       - .github/portfolio-manifest.json
       - .github/release-reconciliation.json
       - .github/public-sanitization-allowlist.json
@@ -32,6 +39,7 @@ on:
       - .github/scripts/public_sanitization_audit.py
       - .github/scripts/public_sanitization_runner.py
       - .github/scripts/case_study_integrity_audit.py
+      - .github/scripts/profile_repository_governance_audit.py
       - .github/workflows/profile-contract.yml
   workflow_dispatch:
   schedule:
@@ -70,6 +78,7 @@ jobs:
           .github/scripts/public_sanitization_audit.py
           .github/scripts/public_sanitization_runner.py
           .github/scripts/case_study_integrity_audit.py
+          .github/scripts/profile_repository_governance_audit.py
 
       - name: Audit profile, repositories, links, metadata, and pins
         env:
@@ -85,6 +94,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: python .github/scripts/action_pin_audit.py
+
+      - name: Verify profile repository governance
+        run: python .github/scripts/profile_repository_governance_audit.py
 
       - name: Verify Reliable Project Delivery Framework release
         run: python .github/scripts/case_study_integrity_audit.py
