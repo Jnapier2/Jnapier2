@@ -1,9 +1,21 @@
-name: Profile contract
+name: Portfolio health
 
 on:
   push:
+    paths:
+      - README.md
+      - .github/portfolio-manifest.json
+      - .github/scripts/portfolio_audit.py
+      - .github/workflows/profile-contract.yml
   pull_request:
+    paths:
+      - README.md
+      - .github/portfolio-manifest.json
+      - .github/scripts/portfolio_audit.py
+      - .github/workflows/profile-contract.yml
   workflow_dispatch:
+  schedule:
+    - cron: "17 13 * * 1"
 
 permissions:
   contents: read
@@ -13,9 +25,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  validate-profile:
+  audit-portfolio:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
 
     steps:
       - name: Check out repository
@@ -28,77 +40,12 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Validate recruiter-facing profile contract
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          import re
+      - name: Compile audit
+        run: python -m py_compile .github/scripts/portfolio_audit.py
 
-          readme = Path("README.md").read_text(encoding="utf-8")
-
-          required_text = [
-              "# Jerry R. Napier",
-              "Information management · Data governance · Analytics · Reliable automation",
-              "I turn complex systems into trusted ones.",
-              "M.S. in Information Management",
-              "https://jerry-napier-portfolio.netlify.app/",
-              "https://www.linkedin.com/in/jrnapier",
-              "## Start here",
-              "## Additional portfolio evidence",
-              "Additional tools and learning releases",
-              "## Working principles",
-          ]
-          missing_text = [value for value in required_text if value not in readme]
-          assert not missing_text, f"Missing required profile content: {missing_text}"
-
-          required_repositories = [
-              "botops-manager",
-              "digital-asset-governance-case-study",
-              "media-tagger-bot",
-              "chicago-food-inspections-analysis",
-              "avalon-q-supervisor",
-              "automation-reliability-case-studies",
-              "beta-earth",
-              "safe-video-downloader",
-              "mp3-downloader",
-              "image-downloader",
-              "large-text-chunker",
-              "net-loss-doctor",
-              "lan-router-comms",
-              "windows-health-audit",
-              "inbox-from-hell",
-              "kalshi-10x1c-public",
-              "kalshi-15m-sell-bot-public-preview",
-          ]
-          for repository in required_repositories:
-              url = f"https://github.com/Jnapier2/{repository}"
-              assert readme.count(url) == 1, f"Expected exactly one profile link for {repository}"
-
-          flagship_markers = [
-              "[BotOps Manager]",
-              "[Digital Asset Governance Audit]",
-              "[MediaTaggerBot]",
-          ]
-          flagship_positions = [readme.index(marker) for marker in flagship_markers]
-          assert flagship_positions == sorted(flagship_positions), "Flagship project order has drifted"
-
-          forbidden = [
-              "coral-yucca-521511.framer.app",
-              "framer.com/projects/",
-              "sites.google.com/view/jerryrnapier/home",
-              "sites.google.com/gatewayinformationgroup.com/jerryrnapier/home",
-          ]
-          present_forbidden = [value for value in forbidden if value.lower() in readme.lower()]
-          assert not present_forbidden, f"Stale or editor-only links found: {present_forbidden}"
-
-          repository_links = re.findall(r"https://github\.com/Jnapier2/[A-Za-z0-9._-]+", readme)
-          duplicates = sorted({link for link in repository_links if repository_links.count(link) > 1})
-          assert not duplicates, f"Duplicate repository links found: {duplicates}"
-
-          assert readme.count("## Start here") == 1, "Start-here section should appear exactly once"
-          assert readme.count("<details>") == 1 and readme.count("</details>") == 1, "Supporting-work disclosure should remain balanced"
-
-          print(f"Profile contract passed for {len(required_repositories)} linked repositories.")
-          PY
+      - name: Audit profile, repositories, links, metadata, and pins
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python .github/scripts/portfolio_audit.py
 
 # Copyright © 2026 Gateway Information Group LLC. All rights reserved.
