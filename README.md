@@ -14,6 +14,10 @@ I turn complex systems into trusted ones. My background spans more than 10 years
 - **[Digital Asset Governance Audit](https://github.com/Jnapier2/digital-asset-governance-case-study)** — Turns provenance gaps, confidence signals, and duplicate candidates into a prioritized stewardship queue with reason-coded next steps using synthetic data.
 - **[MediaTaggerBot](https://github.com/Jnapier2/media-tagger-bot)** — Uses evidence-based matching, dry-run review, and journaled writes to limit bad-match and partial-write risk. The design is informed by a private 38,171-file audit that verified 838 outcomes and held preservation-sensitive cases closed rather than guessing.
 
+## Featured framework
+
+- **[Reliable Project Delivery Framework](case-studies/reliable-project-delivery-framework/README.md)** — Converts uncertain sources, machine differences, risky changes, and incomplete release evidence into a verified path from baseline selection to rollback. The sanitized v2.17.0 case study records 24/24 control areas, 35/35 scenario simulations, and 16/16 conflict checks.
+
 ## More projects
 
 - **[Chicago Food Inspection Outcomes, 2010–2018](https://github.com/Jnapier2/chicago-food-inspections-analysis)** — A reproducible analysis of 13,333 public inspection records that separates outcome from facility risk, surfaces decision-relevant follow-up questions, and makes its limitations explicit.

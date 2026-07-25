@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "case_study": "Reliable Project Delivery Framework",
+  "case_study_version": "1.0.0",
+  "source_framework_version": "2.17.0",
+  "release_date": "2026-07-25",
+  "generated_utc": "2026-07-25T08:25:36Z",
+  "data_classification": "public",
+  "validation": {
+    "release_package_files": 15,
+    "zip_integrity": "pass",
+    "control_areas": {
+      "passed": 24,
+      "total": 24
+    },
+    "scenario_simulations": {
+      "passed": 35,
+      "total": 35
+    },
+    "negative_conflict_checks": {
+      "passed": 16,
+      "total": 16
+    }
+  },
+  "claim_boundary": {
+    "document_consistency_validated": true,
+    "project_specific_acceptance_required": true,
+    "physical_multi_system_verification_claimed": false,
+    "executable_included": false
+  },
+  "privacy_exclusions": [
+    "raw machine reports",
+    "hardware and network identifiers",
+    "usernames and private paths",
+    "credentials and account information",
+    "private document identifiers and permissions",
+    "runtime logs, diagnostics, state, and temporary files",
+    "complete internal operating instructions"
+  ],
+  "rights_notice": "Copyright © 2026 Gateway Information Group LLC. All rights reserved.",
+  "license_status": "All rights reserved; no software license granted.",
+  "third_party_content": "none included"
+}
