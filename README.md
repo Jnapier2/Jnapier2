@@ -16,7 +16,7 @@ I turn complex systems into trusted ones. My background spans more than 10 years
 
 ## Featured framework
 
-- **[Reliable Project Delivery Framework](case-studies/reliable-project-delivery-framework/README.md)** — Converts uncertain sources, machine differences, risky changes, and incomplete release evidence into a verified path from baseline selection to rollback. The sanitized v2.17.0 case study records 24/24 control areas, 35/35 scenario simulations, and 16/16 conflict checks.
+- **[Reliable Project Delivery Framework](case-studies/reliable-project-delivery-framework/README.md)** — Converts uncertain sources, machine differences, risky changes, cross-computer ownership, and incomplete release evidence into a verified path from baseline selection to rollback. The sanitized v1.1.0 public case study represents framework v2.17.2 and records 26/26 rule families, 40/40 scenario simulations, and 20/20 negative/conflict safeguards.
 
 ## More projects
 
@@ -40,7 +40,7 @@ I turn complex systems into trusted ones. My background spans more than 10 years
 
 </details>
 
-[Public project release reconciliation](RELEASE_RECONCILIATION.md) records the version actually present in each repository, the latest verified build, and any checksum-gated promotion blocker.
+[Public project release reconciliation](RELEASE_RECONCILIATION.md) records the version actually present in each repository, the latest verified build, the exact reviewed default-branch head, and any checksum-gated promotion blocker.
 
 ## Working principles
 
