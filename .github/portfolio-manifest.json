@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "owner": "Jnapier2",
+  "profile_repository": "Jnapier2",
+  "canonical_portfolio_url": "https://jerry-napier-portfolio.netlify.app/",
+  "canonical_linkedin_url": "https://www.linkedin.com/in/jrnapier",
+  "rights_notice": "Copyright © 2026 Gateway Information Group LLC. All rights reserved.",
+  "expected_public_repositories": [
+    "Jnapier2",
+    "automation-reliability-case-studies",
+    "avalon-q-supervisor",
+    "beta-earth",
+    "botops-manager",
+    "chicago-food-inspections-analysis",
+    "digital-asset-governance-case-study",
+    "image-downloader",
+    "inbox-from-hell",
+    "kalshi-10x1c-public",
+    "kalshi-15m-sell-bot-public-preview",
+    "lan-router-comms",
+    "large-text-chunker",
+    "media-tagger-bot",
+    "mp3-downloader",
+    "net-loss-doctor",
+    "safe-video-downloader",
+    "windows-health-audit"
+  ],
+  "flagship_repositories": [
+    "botops-manager",
+    "digital-asset-governance-case-study",
+    "media-tagger-bot"
+  ],
+  "expected_pins": [
+    "botops-manager",
+    "digital-asset-governance-case-study",
+    "media-tagger-bot",
+    "chicago-food-inspections-analysis",
+    "avalon-q-supervisor",
+    "beta-earth"
+  ],
+  "forbidden_public_link_fragments": [
+    "coral-yucca-521511.framer.app",
+    "framer.com/projects/",
+    "sites.google.com/view/jerryrnapier/home"
+  ],
+  "portfolio_privacy_review_fragments": [
+    "sites.google.com/gatewayinformationgroup.com/jerryrnapier/home",
+    "academic record"
+  ],
+  "repositories": [
+    {
+      "name": "botops-manager",
+      "tier": "flagship",
+      "ci_path": ".github/workflows/test.yml",
+      "require_portfolio_backlink": true,
+      "rights_mode": "all-rights-reserved"
+    },
+    {
+      "name": "digital-asset-governance-case-study",
+      "tier": "flagship",
+      "ci_path": ".github/workflows/ci.yml",
+      "require_portfolio_backlink": true,
+      "rights_mode": "all-rights-reserved",
+      "expected_homepage": "https://jerry-napier-portfolio.netlify.app/#work"
+    },
+    {
+      "name": "media-tagger-bot",
+      "tier": "flagship",
+      "ci_path": ".github/workflows/ci.yml",
+      "require_portfolio_backlink": true,
+      "rights_mode": "all-rights-reserved",
+      "expected_homepage": "https://jerry-napier-portfolio.netlify.app/#work"
+    },
+    {
+      "name": "chicago-food-inspections-analysis",
+      "tier": "evidence",
+      "ci_path": ".github/workflows/notebook.yml",
+      "require_portfolio_backlink": true,
+      "rights_mode": "all-rights-reserved"
+    },
+    {
+      "name": "avalon-q-supervisor",
+      "tier": "evidence",
+      "ci_path": ".github/workflows/test.yml",
+      "require_portfolio_backlink": true,
+      "rights_mode": "all-rights-reserved"
+    },
+    {
+      "name": "automation-reliability-case-studies",
+      "tier": "evidence",
+      "ci_path": ".github/workflows/ci.yml",
+      "require_portfolio_backlink": true,
+      "rights_mode": "all-rights-reserved"
+    },
+    {
+      "name": "beta-earth",
+      "tier": "evidence",
+      "ci_path": ".github/workflows/ci.yml",
+      "require_portfolio_backlink": true,
+      "rights_mode": "all-rights-reserved"
+    },
+    {
+      "name": "safe-video-downloader",
+      "tier": "supporting",
+      "ci_path": ".github/workflows/ci.yml",
+      "require_portfolio_backlink": true,
+      "rights_mode": "all-rights-reserved"
+    },
+    {
+      "name": "mp3-downloader",
+      "tier": "supporting",
+      "ci_path": ".github/workflows/ci.yml",
+      "require_portfolio_backlink": true,
+      "rights_mode": "all-rights-reserved"
+    },
+    {
+      "name": "image-downloader",
+      "tier": "supporting",
+      "ci_path": ".github/workflows/ci.yml",
+      "require_portfolio_backlink": true,
+      "rights_mode": "all-rights-reserved"
+    },
+    {
+      "name": "large-text-chunker",
+      "tier": "supporting",
+      "ci_path": ".github/workflows/test.yml",
+      "require_portfolio_backlink": true,
+      "rights_mode": "all-rights-reserved"
+    },
+    {
+      "name": "net-loss-doctor",
+      "tier": "supporting",
+      "ci_path": ".github/workflows/powershell-static.yml",
+      "require_portfolio_backlink": true,
+      "rights_mode": "all-rights-reserved"
+    },
+    {
+      "name": "lan-router-comms",
+      "tier": "supporting",
+      "ci_path": ".github/workflows/powershell-static.yml",
+      "require_portfolio_backlink": true,
+      "rights_mode": "all-rights-reserved"
+    },
+    {
+      "name": "windows-health-audit",
+      "tier": "supporting",
+      "ci_path": ".github/workflows/powershell-static.yml",
+      "require_portfolio_backlink": true,
+      "rights_mode": "all-rights-reserved"
+    },
+    {
+      "name": "inbox-from-hell",
+      "tier": "supporting",
+      "ci_path": ".github/workflows/ci.yml",
+      "require_portfolio_backlink": true,
+      "rights_mode": "all-rights-reserved",
+      "expected_homepage": "https://inbox-from-hell-demo.netlify.app/"
+    },
+    {
+      "name": "kalshi-10x1c-public",
+      "tier": "learning-release",
+      "ci_path": ".github/workflows/security.yml",
+      "require_portfolio_backlink": false,
+      "rights_mode": "mit-sealed"
+    },
+    {
+      "name": "kalshi-15m-sell-bot-public-preview",
+      "tier": "learning-release",
+      "ci_path": ".github/workflows/security.yml",
+      "require_portfolio_backlink": false,
+      "rights_mode": "mit-sealed"
+    }
+  ]
+}
