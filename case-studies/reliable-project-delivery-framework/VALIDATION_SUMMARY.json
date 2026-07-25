@@ -1,31 +1,44 @@
 {
   "schema_version": 1,
   "case_study": "Reliable Project Delivery Framework",
-  "case_study_version": "1.0.0",
-  "source_framework_version": "2.17.0",
+  "case_study_version": "1.1.0",
+  "source_framework_version": "2.17.2",
+  "source_package_filename": "chatgpt_new_thread_parameters_v2.17.2_fleet_handoff_thread_naming_2026-07-25_14-41-51_CDT.zip",
+  "source_package_sha256": "e0615823cfde6ae6eff6d4c028a6f2f1f54d251df90bd64f3cad8a6475b6d1d6",
   "release_date": "2026-07-25",
-  "generated_utc": "2026-07-25T08:25:36Z",
+  "generated_utc": "2026-07-25T23:19:01Z",
   "data_classification": "public",
   "validation": {
     "release_package_files": 15,
     "zip_integrity": "pass",
     "control_areas": {
-      "passed": 24,
-      "total": 24
+      "passed": 26,
+      "total": 26
     },
     "scenario_simulations": {
-      "passed": 35,
-      "total": 35
+      "passed": 40,
+      "total": 40
     },
     "negative_conflict_checks": {
-      "passed": 16,
-      "total": 16
+      "passed": 20,
+      "total": 20
+    },
+    "docx_render": {
+      "pages": 11,
+      "visual_review": "pass"
+    },
+    "docx_accessibility": {
+      "high": 0,
+      "medium": 0,
+      "low": 0
     }
   },
   "claim_boundary": {
     "document_consistency_validated": true,
     "project_specific_acceptance_required": true,
     "physical_multi_system_verification_claimed": false,
+    "shared_coordinator_deployed": false,
+    "running_processes_modified": false,
     "executable_included": false
   },
   "privacy_exclusions": [
