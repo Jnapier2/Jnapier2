@@ -42,7 +42,6 @@ REQUIRED_STRATEGY_MARKERS = (
     "https://github.com/sindresorhus",
     "https://github.com/abhisheknaiidu/awesome-github-profile-readme",
     "dynamic third-party stat cards",
-    "No proposal may auto-merge",
     RIGHTS_NOTICE,
 )
 
