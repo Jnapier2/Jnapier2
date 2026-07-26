@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import json
 import re
+import time
 from pathlib import Path
 from typing import Any
 
@@ -15,6 +16,7 @@ import public_sanitization_audit as audit
 ROOT = Path(__file__).resolve().parents[2]
 ALLOWLIST_PATH = ROOT / ".github" / "public-sanitization-allowlist.json"
 RIGHTS_NOTICE = "Copyright © 2026 Gateway Information Group LLC. All rights reserved."
+API_COOLDOWN_SECONDS = 30
 
 
 def load_allowlist() -> tuple[set[tuple[str, str, str]], dict[tuple[str, str, str], str]]:
@@ -66,10 +68,18 @@ def main() -> int:
     original_allowed_domains = set(audit.ALLOWED_EMAIL_DOMAINS)
     original_unix_user_path = audit.UNIX_USER_PATH
     original_public_copy_patterns = list(audit.PUBLIC_COPY_PATTERNS)
+    original_executor = audit.ThreadPoolExecutor
+    original_attempts = audit.HTTP_ATTEMPTS
+
+    def serial_executor(*args: object, **kwargs: object):
+        kwargs["max_workers"] = 1
+        return original_executor(*args, **kwargs)
 
     audit.MAX_FILE_BYTES = 5_000_000
     audit.ALLOWED_EMAIL_DOMAINS.update({"example.invalid", "external-api.kalshi.com"})
     audit.UNIX_USER_PATH = re.compile(r"/(?:home|Users)/([A-Za-z0-9._-]+)/")
+    audit.ThreadPoolExecutor = serial_executor
+    audit.HTTP_ATTEMPTS = 6
     if not any(rule == "copy.recruiter_meta" for rule, _ in audit.PUBLIC_COPY_PATTERNS):
         audit.PUBLIC_COPY_PATTERNS.append(
             ("copy.recruiter_meta", re.compile(r"(?i)\brecruiters?\b"))
@@ -88,6 +98,11 @@ def main() -> int:
 
     audit.add_finding = filtered_add_finding
     try:
+        print(
+            f"Cooling down GitHub API requests for {API_COOLDOWN_SECONDS} seconds "
+            "before the serialized sanitation scan."
+        )
+        time.sleep(API_COOLDOWN_SECONDS)
         result = audit.main()
     finally:
         audit.add_finding = original_add_finding
@@ -96,6 +111,8 @@ def main() -> int:
         audit.ALLOWED_EMAIL_DOMAINS.update(original_allowed_domains)
         audit.UNIX_USER_PATH = original_unix_user_path
         audit.PUBLIC_COPY_PATTERNS[:] = original_public_copy_patterns
+        audit.ThreadPoolExecutor = original_executor
+        audit.HTTP_ATTEMPTS = original_attempts
 
     stale = sorted(allowed - observed)
     if stale:
