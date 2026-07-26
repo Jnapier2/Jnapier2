@@ -8,6 +8,21 @@ I turn complex systems into trusted ones. My background spans more than 10 years
 
 [Portfolio](https://jerry-napier-portfolio.netlify.app/) · [LinkedIn](https://www.linkedin.com/in/jrnapier)
 
+**Current focus:** Building local-first tools and data systems where evidence, rollback, and clear operator control are part of the product.
+
+## Evidence at a glance
+
+| Verified evidence | What it demonstrates |
+|---|---|
+| **38,171-file media audit** with 838 verified or already-current outcomes | Evidence-based matching, review gates, preservation-aware decisions, and rollback-ready operations |
+| **13,333 public inspection records** analyzed reproducibly | Data quality, transparent methodology, careful interpretation, and documented limits |
+| **26/26 control areas, 40/40 scenario simulations, and 20/20 negative/conflict checks** | Systematic validation, explicit claim boundaries, and fail-closed delivery controls |
+| **29 branching support cases across five shifts** with automated full-campaign acceptance testing | Product design, state management, accessible interaction, and testable user journeys |
+
+## For hiring teams
+
+I’m open to senior roles in analytics, data governance, information management, and reliable automation. For a fast review, use **Start here** for flagship work, **Featured framework** for delivery controls, and **More projects** for applied analytics, product design, supervision, and Windows tooling.
+
 ## Start here
 
 - **[BotOps Manager](https://github.com/Jnapier2/botops-manager)** — Verifies launchers and process ownership before control, consolidates health evidence, and creates bounded redacted support exports for independent Windows automation.
