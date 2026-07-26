@@ -13,12 +13,14 @@ on:
       - .github/portfolio-manifest.json
       - .github/release-reconciliation.json
       - .github/dependency-reconciliation.json
+      - .github/dependabot-policy.json
       - .github/public-sanitization-allowlist.json
       - .github/scripts/portfolio_audit.py
       - .github/scripts/portfolio_audit_html.py
       - .github/scripts/project_description_audit.py
       - .github/scripts/release_reconciliation_audit.py
       - .github/scripts/dependency_reconciliation_audit.py
+      - .github/scripts/dependabot_policy_audit.py
       - .github/scripts/action_pin_audit.py
       - .github/scripts/public_sanitization_audit.py
       - .github/scripts/public_sanitization_runner.py
@@ -38,12 +40,14 @@ on:
       - .github/portfolio-manifest.json
       - .github/release-reconciliation.json
       - .github/dependency-reconciliation.json
+      - .github/dependabot-policy.json
       - .github/public-sanitization-allowlist.json
       - .github/scripts/portfolio_audit.py
       - .github/scripts/portfolio_audit_html.py
       - .github/scripts/project_description_audit.py
       - .github/scripts/release_reconciliation_audit.py
       - .github/scripts/dependency_reconciliation_audit.py
+      - .github/scripts/dependabot_policy_audit.py
       - .github/scripts/action_pin_audit.py
       - .github/scripts/public_sanitization_audit.py
       - .github/scripts/public_sanitization_runner.py
@@ -86,6 +90,7 @@ jobs:
           .github/scripts/project_description_audit.py
           .github/scripts/release_reconciliation_audit.py
           .github/scripts/dependency_reconciliation_audit.py
+          .github/scripts/dependabot_policy_audit.py
           .github/scripts/action_pin_audit.py
           .github/scripts/public_sanitization_audit.py
           .github/scripts/public_sanitization_runner.py
@@ -112,6 +117,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: python .github/scripts/dependency_reconciliation_audit.py
+
+      - name: Audit per-ecosystem Dependabot policy and auto-merge prohibition
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python .github/scripts/dependabot_policy_audit.py
 
       - name: Audit immutable GitHub Action references
         env:
