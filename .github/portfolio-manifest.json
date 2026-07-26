@@ -10,7 +10,6 @@
     "public_copy": "Outcome-focused, recruiter-ready, and limited to capabilities present in the reviewed public source.",
     "stable_identity": "Repository slugs, package names, dependency-sensitive paths, checksummed artifacts, and historical release names remain unchanged.",
     "version_language": "Version numbers appear in public descriptions only when needed to explain a verified source or checksum-gated successor.",
-    "quantitative_claims": "Use only publicly traceable figures that can be defined in plain language, tied to a professional decision, and accompanied by a source or limitation. Private aggregates do not appear in recruiter-facing summaries.",
     "live_metadata_enforcement": "Source-controlled descriptions are canonical; live GitHub About-field drift is reported for manual correction."
   },
   "expected_public_repositories": [
