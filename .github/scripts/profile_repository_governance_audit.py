@@ -9,6 +9,8 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
+import portfolio_audit
+
 ROOT = Path(__file__).resolve().parents[2]
 OUTPUT_DIR = ROOT / "audit-output"
 RIGHTS_NOTICE = "Copyright © 2026 Gateway Information Group LLC. All rights reserved."
@@ -23,6 +25,15 @@ def require_text(path: Path, markers: list[str]) -> None:
             raise SystemExit(
                 f"Profile repository governance failure: {path.relative_to(ROOT)} lacks {marker!r}"
             )
+
+
+def verify_shared_profile_contract() -> None:
+    manifest = portfolio_audit.load_manifest()
+    audit = portfolio_audit.Audit()
+    portfolio_audit.audit_profile_readme(audit, manifest)
+    if audit.errors:
+        details = "; ".join(f"{item.area}: {item.message}" for item in audit.errors)
+        raise SystemExit(f"Profile repository governance failure: shared profile contract failed: {details}")
 
 
 def main() -> int:
@@ -61,6 +72,7 @@ def main() -> int:
             "Public project release reconciliation",
         ],
     )
+    verify_shared_profile_contract()
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     evidence = {
@@ -72,6 +84,7 @@ def main() -> int:
             "security_reporting": "PASS",
             "code_ownership": "PASS",
             "profile_links": "PASS",
+            "shared_profile_contract": "PASS",
         },
         "result": "PASS",
         "rights_notice": RIGHTS_NOTICE,
