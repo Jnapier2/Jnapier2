@@ -43,6 +43,8 @@ I turn complex systems into trusted ones. My background spans more than 10 years
 
 [Public project release reconciliation](RELEASE_RECONCILIATION.md) records the version actually present in each repository, the latest verified build, the exact reviewed default-branch head, and any checksum-gated promotion blocker.
 
+[Public dependency reconciliation](DEPENDENCY_RECONCILIATION.md) records dependency modes, exact pins and hashes, installation and consistency checks, deferred major-version reviews, and private-workspace boundaries across all public repositories.
+
 ## Working principles
 
 - Keep work local when privacy or operator control matters
