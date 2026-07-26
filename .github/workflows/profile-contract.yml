@@ -17,6 +17,7 @@ on:
       - .github/public-sanitization-allowlist.json
       - .github/scripts/portfolio_audit.py
       - .github/scripts/portfolio_audit_html.py
+      - .github/scripts/portfolio_audit_rate_safe.py
       - .github/scripts/project_description_audit.py
       - .github/scripts/release_reconciliation_audit.py
       - .github/scripts/dependency_reconciliation_audit.py
@@ -44,6 +45,7 @@ on:
       - .github/public-sanitization-allowlist.json
       - .github/scripts/portfolio_audit.py
       - .github/scripts/portfolio_audit_html.py
+      - .github/scripts/portfolio_audit_rate_safe.py
       - .github/scripts/project_description_audit.py
       - .github/scripts/release_reconciliation_audit.py
       - .github/scripts/dependency_reconciliation_audit.py
@@ -87,6 +89,7 @@ jobs:
           python -m py_compile
           .github/scripts/portfolio_audit.py
           .github/scripts/portfolio_audit_html.py
+          .github/scripts/portfolio_audit_rate_safe.py
           .github/scripts/project_description_audit.py
           .github/scripts/release_reconciliation_audit.py
           .github/scripts/dependency_reconciliation_audit.py
@@ -101,7 +104,7 @@ jobs:
       - name: Audit profile, repositories, links, metadata, and pins
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: python .github/scripts/portfolio_audit_html.py
+        run: python .github/scripts/portfolio_audit_rate_safe.py
 
       - name: Audit canonical project descriptions
         env:
