@@ -2,7 +2,7 @@
 
 This ledger distinguishes the source actually present on GitHub from newer verified builds that cannot yet be promoted safely. It prevents an older tree from being relabeled as code it does not contain while keeping successor evidence visible.
 
-Last reconciled: **July 26, 2026 at 2:40 AM CDT**
+Last reconciled: **July 26, 2026 at 10:37 AM CDT**
 
 All 17 public project default-branch heads and every declared version marker were checked in this pass. Exact 40-character reviewed heads are retained in [`.github/release-reconciliation.json`](.github/release-reconciliation.json). Dependency and installation controls for all 18 public repositories are recorded in [Dependency Reconciliation](DEPENDENCY_RECONCILIATION.md).
 
@@ -12,21 +12,21 @@ The profile case study **Reliable Project Delivery Framework v1.1.0** represents
 |---|---:|---:|---|---|
 | BotOps Manager | 1.13.0 | 1.13.0 | `f5a8c5db` | Current; GitHub retains later public hardening |
 | Digital Asset Governance Audit | Current | Current | `05e2513f` | Current |
-| MediaTaggerBot | 0.5.7 | 0.5.7 | `a4728e77` | Current source authority; fail-closed dependency installation and launcher/lock contract |
-| Chicago Food Inspection Outcomes | Current | Current | `ed7783d8` | Current analysis; compatible Python 3.12 dependency refresh |
+| MediaTaggerBot | 0.5.7 | 0.5.7 | `e825255b` | Current source authority; hash-locked runtime and Actions-only update monitoring |
+| Chicago Food Inspection Outcomes | Current | Current | `a3ae06d4` | Current analysis; exact Python 3.12 pins and review-only update monitoring |
 | Avalon Q Supervisor | Current | Current | `621791f9` | GitHub-only source authority |
 | Automation Reliability Case Studies | Current | Current | `553719f7` | Current |
 | Beta Earth | 0.4.11 | 0.5.0 | `99c05ae3` | Verified successor awaits exact checksum-matched source transfer |
-| Safe Video Downloader | 1.14.2 | 1.14.2 | `68cf9627` | Current; exact dependency consistency gate added |
-| MP3 Downloader | 1.0.0 | 1.0.0 | `236dcbb2` | Current; hash-locked dependency consistency gate added |
-| Image Downloader | 2026.07.19.1 | 2026.07.19.1 | `9a61d2a6` | Current; bounded-range dependency consistency gate added |
+| Safe Video Downloader | 1.14.2 | 1.14.2 | `0f14ac4d` | Current; exact dependency checks and review-only monitoring |
+| MP3 Downloader | 1.0.0 | 1.0.0 | `a5af3a48` | Current; SHA-256 lock, consistency checks, and review-only monitoring |
+| Image Downloader | 2026.07.19.1 | 2026.07.19.1 | `630e71dd` | Current; standard and optional browser dependencies now have separate validation |
 | Large Text Chunker | 1.0.0 | 1.10.0 | `4bca8818` | Checksum companion retained; exact successor ZIP unavailable; promotion blocked |
 | NetLossDoctor | 2.10.0 | 2.10.0 | `8252dbb6` | Current; immutable CI reference retained |
 | LAN Router Comms | 2.3.0 | 2.3.0 | `cb2afe75` | Current; immutable CI reference retained |
 | Windows Health Audit | Current | Current | `9185f61e` | GitHub-only source authority |
 | Inbox From Hell | 0.7.0 | 0.7.0 | `8752ac02` | Current GitHub source authority; immutable CI references retained |
-| Kalshi 10×1¢ Public Edition | 1.0.0 | 1.0.0 | `737ebe6d` | Current checksum-controlled learning release |
-| Kalshi 15m Sell Preview | 41.22.3 | 41.22.3 | `15fba07c` | Current checksum-controlled dry-run preview |
+| Kalshi 10×1¢ Public Edition | 1.0.0 | 1.0.0 | `737ebe6d` | Current sealed learning release; monitoring-only proposal rejected without changing main |
+| Kalshi 15m Sell Preview | 41.22.3 | 41.22.3 | `15fba07c` | Current sealed dry-run preview; existing monitoring retained unchanged |
 
 ## Promotion rule
 
@@ -42,13 +42,16 @@ The v0.5.0 final is recorded with SHA-256 `ea30ceb8a16566f0bcc20035360eba7bdeb8c
 
 The checksum companion for `ChatGPT_Text_Chunker_v1.10.0_20260718_0111_CDT.zip` is retained and records SHA-256 `20a428ae390b0443ef08acc5bbcc562124f0f748be74be25b6d9e547916d8ebf`, but the exact ZIP is not currently retrievable. [Issue #3](https://github.com/Jnapier2/large-text-chunker/issues/3) is the checksum-gated promotion record. The public 1.0.0 source remains authoritative until those successor bytes are recovered and verified.
 
-## Completed reconciliations
+## Completed update pass
 
-- **MediaTaggerBot 0.5.7:** the verified runtime set remains unchanged. CI now separates runtime, local-project, and test-tool installation; fails closed on the first failed stage; preserves bounded diagnostics; and tests that project metadata, the SHA-256 lock, and both BAT launcher checks agree.
-- **Chicago Food Inspection Outcomes:** exact Python 3.12 pins moved to compatible releases within the existing major-version lines. CI now uses binary distributions, checks the resolved environment, runs the offline retrieval tests, and executes the unchanged notebook and data snapshot.
-- **Safe Video Downloader 1.14.2:** the verified five-second no-progress worker watchdog remains current. CI now ties caching to the requirements file, installs binary dependencies, and checks the resolved environment before compilation and tests.
-- **MP3 Downloader 1.0.0:** the existing SHA-256-locked binary runtime remains unchanged. CI now checks the installed dependency graph before runtime imports, compilation, and offline tests.
-- **Image Downloader 2026.07.19.1:** the verified five-second per-image request budget and content safeguards remain current. CI now resolves binary dependencies inside the reviewed ranges and checks the resulting environment before the offline safety suite.
+- **MediaTaggerBot 0.5.7:** GitHub Actions receive monthly review-only proposals. Runtime package proposals remain on the synchronized path that updates package metadata, the SHA-256 lock, both BAT launcher maps, tests, and Windows launch evidence together.
+- **Chicago Food Inspection Outcomes:** monthly grouped minor/patch proposals were added without changing the dataset, notebook, results, or exact Python 3.12 environment.
+- **Safe Video Downloader 1.14.2:** monthly grouped dependency and Action proposals were added without changing the verified watchdog or application dependency.
+- **MP3 Downloader 1.0.0:** monthly grouped proposals were added while preserving the exact hashed runtime and successful native CI.
+- **Image Downloader 2026.07.19.1:** monthly grouped proposals were added, and optional Playwright updates now require an actual binary install, `pip check`, and import test without downloading browser binaries.
+- **Kalshi sealed releases:** maintenance-only monitoring changes were rejected by their release verifiers and closed without merge. Their verified inventories, SBOMs, manifests, and checksums remain intact.
+
+No public product version changed in this pass. The source-controlled project descriptions remain accurate because the updates strengthen maintenance and verification rather than change what the projects do.
 
 There are no active public promotion branches. Two checksum-gated successor records remain blocked until their exact archives are recovered. The machine-readable source authority is [`.github/release-reconciliation.json`](.github/release-reconciliation.json), and the Portfolio health workflow validates its completeness, exact version markers, and reviewed default-branch heads.
 
