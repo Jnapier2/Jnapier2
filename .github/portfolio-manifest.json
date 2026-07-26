@@ -127,7 +127,7 @@
       "rights_mode": "all-rights-reserved",
       "expected_homepage": "https://jerry-napier-portfolio.netlify.app/#work",
       "expected_description": "Browser RPG with layered progression, portable local launchers, resilient saves, and verified v0.4.11 source; v0.5.0 awaits exact-source promotion.",
-      "profile_summary": "A working browser RPG with portable local launchers, resilient saves, bounded validation, and verified public source at v0.4.11. The newer verified v0.5.0 final remains visible behind an exact-source checksum gate instead of being falsely represented by the older tree."
+      "profile_summary": "A working browser RPG with portable local launchers, resilient saves, bounded validation, and verified public source at v0.4.11. The newer recorded v0.5.0 final remains visible behind an exact-source checksum gate instead of being falsely represented by the older tree."
     },
     {
       "name": "safe-video-downloader",
