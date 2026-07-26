@@ -18,7 +18,7 @@ The profile case study **Reliable Project Delivery Framework v1.1.0** represents
 | Automation Reliability Case Studies | Current | Current | `553719f7` | Current |
 | Beta Earth | 0.4.11 | 0.5.0 | `99c05ae3` | Verified successor awaits exact checksum-matched source transfer |
 | Safe Video Downloader | 1.14.2 | 1.14.2 | `0f14ac4d` | Current; exact dependency checks and review-only monitoring |
-| MP3 Downloader | 1.0.0 | 1.0.0 | `ca605389` | Current; SHA-256 runtime, Actions v7, and identity checks retained |
+| MP3 Downloader | 1.0.0 | 1.0.0 | `a5af3a48` | Current; SHA-256 runtime, Actions v7, identity checks, and monitoring retained |
 | Image Downloader | 2026.07.19.1 | 2026.07.19.1 | `94f55744` | Current; Playwright 1.61.0 validated in the optional-browser job |
 | Large Text Chunker | 1.0.0 | 1.10.0 | `4bca8818` | Checksum companion retained; exact successor ZIP unavailable; promotion blocked |
 | NetLossDoctor | 2.10.0 | 2.10.0 | `8252dbb6` | Current; immutable CI reference retained |
@@ -47,7 +47,7 @@ The checksum companion for `ChatGPT_Text_Chunker_v1.10.0_20260718_0111_CDT.zip` 
 - **MediaTaggerBot 0.5.7:** GitHub Actions receive monthly review-only proposals. Runtime package changes remain on the synchronized path that updates package metadata, the SHA-256 lock, both BAT launcher maps, tests, and Windows launch evidence together.
 - **Chicago Food Inspection Outcomes:** monitoring was added without changing the data, notebook, or results. Matplotlib 3.11.1 was rejected because its text/font changes require a dedicated notebook and figure-regression pass.
 - **Safe Video Downloader 1.14.2:** monthly grouped dependency and Action proposals were added without changing the verified watchdog or application dependency.
-- **MP3 Downloader 1.0.0:** GitHub Actions v7 passed the Python 3.11/3.13 matrix and merged. Certifi 2026.7.22 installed and imported, but its lock-only proposal was rejected because it diverged from the application’s embedded runtime identity.
+- **MP3 Downloader 1.0.0:** GitHub Actions v7 passed the Python 3.11/3.13 matrix and are included in the newer monitoring merge head. Certifi 2026.7.22 installed and imported, but its lock-only proposal was rejected because it diverged from the application’s embedded runtime identity.
 - **Image Downloader 2026.07.19.1:** optional browser dependencies now have a separate install, `pip check`, and import job. Playwright 1.61.0 passed that job and automated review before merge.
 - **Kalshi sealed releases:** maintenance-only monitoring changes were rejected by their release verifiers and closed without merge. Their verified inventories, SBOMs, manifests, and checksums remain intact.
 
