@@ -2,7 +2,7 @@
 
 This ledger distinguishes the source actually present on GitHub from newer verified builds that cannot yet be promoted safely. It prevents an older tree from being relabeled as code it does not contain while keeping successor evidence visible.
 
-Last reconciled: **July 26, 2026 at 10:37 AM CDT**
+Last reconciled: **July 26, 2026 at 11:05 AM CDT**
 
 All 17 public project default-branch heads and every declared version marker were checked in this pass. Exact 40-character reviewed heads are retained in [`.github/release-reconciliation.json`](.github/release-reconciliation.json). Dependency and installation controls for all 18 public repositories are recorded in [Dependency Reconciliation](DEPENDENCY_RECONCILIATION.md).
 
@@ -13,13 +13,13 @@ The profile case study **Reliable Project Delivery Framework v1.1.0** represents
 | BotOps Manager | 1.13.0 | 1.13.0 | `f5a8c5db` | Current; GitHub retains later public hardening |
 | Digital Asset Governance Audit | Current | Current | `05e2513f` | Current |
 | MediaTaggerBot | 0.5.7 | 0.5.7 | `e825255b` | Current source authority; hash-locked runtime and Actions-only update monitoring |
-| Chicago Food Inspection Outcomes | Current | Current | `a3ae06d4` | Current analysis; exact Python 3.12 pins and review-only update monitoring |
+| Chicago Food Inspection Outcomes | Current | Current | `a3ae06d4` | Current analysis; Matplotlib 3.11.x deferred for dedicated figure compatibility review |
 | Avalon Q Supervisor | Current | Current | `621791f9` | GitHub-only source authority |
 | Automation Reliability Case Studies | Current | Current | `553719f7` | Current |
 | Beta Earth | 0.4.11 | 0.5.0 | `99c05ae3` | Verified successor awaits exact checksum-matched source transfer |
 | Safe Video Downloader | 1.14.2 | 1.14.2 | `0f14ac4d` | Current; exact dependency checks and review-only monitoring |
-| MP3 Downloader | 1.0.0 | 1.0.0 | `a5af3a48` | Current; SHA-256 lock, consistency checks, and review-only monitoring |
-| Image Downloader | 2026.07.19.1 | 2026.07.19.1 | `630e71dd` | Current; standard and optional browser dependencies now have separate validation |
+| MP3 Downloader | 1.0.0 | 1.0.0 | `ca605389` | Current; SHA-256 runtime, Actions v7, and identity checks retained |
+| Image Downloader | 2026.07.19.1 | 2026.07.19.1 | `94f55744` | Current; Playwright 1.61.0 validated in the optional-browser job |
 | Large Text Chunker | 1.0.0 | 1.10.0 | `4bca8818` | Checksum companion retained; exact successor ZIP unavailable; promotion blocked |
 | NetLossDoctor | 2.10.0 | 2.10.0 | `8252dbb6` | Current; immutable CI reference retained |
 | LAN Router Comms | 2.3.0 | 2.3.0 | `cb2afe75` | Current; immutable CI reference retained |
@@ -44,11 +44,11 @@ The checksum companion for `ChatGPT_Text_Chunker_v1.10.0_20260718_0111_CDT.zip` 
 
 ## Completed update pass
 
-- **MediaTaggerBot 0.5.7:** GitHub Actions receive monthly review-only proposals. Runtime package proposals remain on the synchronized path that updates package metadata, the SHA-256 lock, both BAT launcher maps, tests, and Windows launch evidence together.
-- **Chicago Food Inspection Outcomes:** monthly grouped minor/patch proposals were added without changing the dataset, notebook, results, or exact Python 3.12 environment.
+- **MediaTaggerBot 0.5.7:** GitHub Actions receive monthly review-only proposals. Runtime package changes remain on the synchronized path that updates package metadata, the SHA-256 lock, both BAT launcher maps, tests, and Windows launch evidence together.
+- **Chicago Food Inspection Outcomes:** monitoring was added without changing the data, notebook, or results. Matplotlib 3.11.1 was rejected because its text/font changes require a dedicated notebook and figure-regression pass.
 - **Safe Video Downloader 1.14.2:** monthly grouped dependency and Action proposals were added without changing the verified watchdog or application dependency.
-- **MP3 Downloader 1.0.0:** monthly grouped proposals were added while preserving the exact hashed runtime and successful native CI.
-- **Image Downloader 2026.07.19.1:** monthly grouped proposals were added, and optional Playwright updates now require an actual binary install, `pip check`, and import test without downloading browser binaries.
+- **MP3 Downloader 1.0.0:** GitHub Actions v7 passed the Python 3.11/3.13 matrix and merged. Certifi 2026.7.22 installed and imported, but its lock-only proposal was rejected because it diverged from the application’s embedded runtime identity.
+- **Image Downloader 2026.07.19.1:** optional browser dependencies now have a separate install, `pip check`, and import job. Playwright 1.61.0 passed that job and automated review before merge.
 - **Kalshi sealed releases:** maintenance-only monitoring changes were rejected by their release verifiers and closed without merge. Their verified inventories, SBOMs, manifests, and checksums remain intact.
 
 No public product version changed in this pass. The source-controlled project descriptions remain accurate because the updates strengthen maintenance and verification rather than change what the projects do.
