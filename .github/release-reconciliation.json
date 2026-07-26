@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-07-26T15:52:00Z",
+  "generated_utc": "2026-07-26T15:56:00Z",
   "owner": "Jnapier2",
   "rights_notice": "Copyright © 2026 Gateway Information Group LLC. All rights reserved.",
-  "review_scope": "All 17 public project default-branch heads, declared version markers, the July 26 dependency-integrity update pass, five review-only dependency-monitoring heads, the MP3 Actions v7 compatibility pass, and the Reliable Project Delivery Framework v1.2.0 local-independence correction; account-level About links, pins, and rulesets are tracked separately.",
+  "review_scope": "All 17 public project default-branch heads, declared version markers, the July 26 dependency-integrity update pass, five review-only dependency-monitoring heads, the validated Image Downloader Playwright 1.61 dependency floor, the MP3 Actions v7 compatibility pass, and the Reliable Project Delivery Framework v1.2.0 local-independence correction; account-level About links, pins, and rulesets are tracked separately.",
   "reviewed_public_project_count": 17,
   "status_definitions": {
     "current": "GitHub represents the latest verified source/build version.",
@@ -120,8 +120,8 @@
         "text": "APP_VERSION = \"2026.07.19.1\""
       },
       "recorded_successor_sha256": "0b8acc9b4e6cbcfda899186e6a2c5ac9aeee9609a7143013f6015cda8c22b6d6",
-      "note": "The verified timeout-budget release remains current; CI validates standard and optional Playwright dependency sets without downloading browsers, and monthly proposals are review-only.",
-      "reviewed_head_sha": "630e71dd5921a978158d819cf5b3988738040858"
+      "note": "The verified timeout-budget release remains current; CI validates standard and optional Playwright dependency sets without downloading browsers, the tested optional lower bound is 1.61.0, and monthly proposals are review-only.",
+      "reviewed_head_sha": "94f55744ad052d252fa1bf972acc017a57b9c8b5"
     },
     {
       "repository": "large-text-chunker",
