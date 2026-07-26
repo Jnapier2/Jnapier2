@@ -1,6 +1,6 @@
 # Public Dependency Reconciliation
 
-This record identifies how each public repository controls third-party packages and installation behavior. It separates projects that need no application dependencies from exact pins, SHA-256 locks, bounded compatible ranges, and checksum-sealed releases.
+This record identifies how each public repository controls third-party packages and installation behavior. It separates projects that need no application dependencies from exact pins, SHA-256 locks, bounded compatible ranges, and checksum-sealed releases. All 18 public repositories are covered.
 
 Last reconciled: **July 26, 2026 at 2:40 AM CDT**
 
