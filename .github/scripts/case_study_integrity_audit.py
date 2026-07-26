@@ -15,9 +15,10 @@ ROOT = Path(__file__).resolve().parents[2]
 CASE_DIR = ROOT / "case-studies" / "reliable-project-delivery-framework"
 OUTPUT_DIR = ROOT / "audit-output"
 RIGHTS_NOTICE = "Copyright © 2026 Gateway Information Group LLC. All rights reserved."
-CASE_STUDY_VERSION = "1.1.0"
+CASE_STUDY_VERSION = "1.2.0"
 SOURCE_FRAMEWORK_VERSION = "2.17.2"
 SOURCE_PACKAGE_SHA256 = "e0615823cfde6ae6eff6d4c028a6f2f1f54d251df90bd64f3cad8a6475b6d1d6"
+PUBLIC_POLICY_REVISION = "2026-07-26-local-independent-operation"
 EXPECTED_FILES = {
     "MANIFEST.json",
     "PUBLIC_SCOPE.md",
@@ -52,6 +53,12 @@ def main() -> int:
         fail("source framework version is invalid")
     if manifest.get("source_package_sha256") != SOURCE_PACKAGE_SHA256:
         fail("source package SHA-256 is invalid")
+    if manifest.get("source_package_role") != (
+        "Historical checksum-verified validation baseline; not rewritten by the v1.2.0 public policy correction."
+    ):
+        fail("source package role is invalid")
+    if manifest.get("public_policy_revision") != PUBLIC_POLICY_REVISION:
+        fail("public policy revision is invalid")
     if manifest.get("rights_notice") != RIGHTS_NOTICE:
         fail("canonical rights notice is missing from the manifest")
     if manifest.get("data_classification") != "public":
@@ -94,6 +101,11 @@ def main() -> int:
         fail("validation summary source version changed")
     if summary.get("source_package_sha256") != SOURCE_PACKAGE_SHA256:
         fail("validation summary source package hash changed")
+    revision = summary.get("public_policy_revision", {})
+    if revision.get("id") != PUBLIC_POLICY_REVISION:
+        fail("validation summary policy revision changed")
+    if revision.get("status") != "supersedes fleet ownership and handoff language":
+        fail("validation summary policy status changed")
     validation = summary.get("validation", {})
     expected_metrics = {
         "release_package_files": 15,
@@ -111,14 +123,34 @@ def main() -> int:
         fail("physical verification is being overclaimed")
     if boundary.get("shared_coordinator_deployed") is not False:
         fail("shared-coordinator deployment is being overclaimed")
+    if boundary.get("cross_computer_launch_restrictions_included") is not False:
+        fail("cross-computer launch restrictions are being introduced")
     if boundary.get("running_processes_modified") is not False:
         fail("running-process modification is being overclaimed")
     if boundary.get("executable_included") is not False:
         fail("executable-content boundary changed")
+    if boundary.get("historical_metrics_rerun_for_policy_revision") is not False:
+        fail("historical validation metrics are being misrepresented as rerun")
     if summary.get("rights_notice") != RIGHTS_NOTICE:
         fail("validation summary rights notice changed")
 
     readme = (CASE_DIR / "README.md").read_text(encoding="utf-8")
+    required_policy_markers = [
+        "every installation independently launchable",
+        "may not block launch",
+        "Multi-computer portability without cross-computer restrictions",
+    ]
+    for marker in required_policy_markers:
+        if marker not in readme:
+            fail(f"README does not contain the local-independence marker: {marker}")
+    forbidden_policy_markers = [
+        "single active writer across the fleet",
+        "cross-computer ownership and clean-handoff design",
+    ]
+    for marker in forbidden_policy_markers:
+        if marker in readme:
+            fail(f"README retains retired fleet restriction language: {marker}")
+
     for name in EXPECTED_FILES:
         if name != "SHA256SUMS.txt" and name not in readme:
             fail(f"README does not reference {name}")
@@ -131,6 +163,7 @@ def main() -> int:
         "case_study_version": CASE_STUDY_VERSION,
         "source_framework_version": SOURCE_FRAMEWORK_VERSION,
         "source_package_sha256": SOURCE_PACKAGE_SHA256,
+        "public_policy_revision": PUBLIC_POLICY_REVISION,
         "files_verified": len(SEALED_FILES),
         "manifest_records_verified": len(records),
         "validation_scorecard": expected_metrics,

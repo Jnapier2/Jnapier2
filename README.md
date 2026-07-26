@@ -16,7 +16,7 @@ I turn complex systems into trusted ones. My background spans more than 10 years
 
 ## Featured framework
 
-- **[Reliable Project Delivery Framework](case-studies/reliable-project-delivery-framework/README.md)** — Converts uncertain sources, machine differences, risky changes, cross-computer ownership, and incomplete release evidence into a verified path from baseline selection to rollback. The sanitized v1.1.0 public case study represents framework v2.17.2 and records 26/26 rule families, 40/40 scenario simulations, and 20/20 negative/conflict safeguards.
+- **[Reliable Project Delivery Framework](case-studies/reliable-project-delivery-framework/README.md)** — Converts uncertain sources, machine differences, risky changes, and incomplete release evidence into a verified path from baseline selection to rollback. Public case study v1.2.0 preserves the historical v2.17.2 validation baseline while keeping every installation independently launchable and prohibiting cross-computer ownership, handoff, lease, or launch restrictions.
 
 ## More projects
 
