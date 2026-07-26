@@ -74,7 +74,7 @@ The detailed Reliable Project Delivery Framework scorecard remains in its case s
 - **What was counted:** 29 authored support cases distributed across a five-shift browser-game campaign.
 - **Why it matters:** the count makes the product scope concrete and shows that branching decisions, persistent state, progression, accessibility, and campaign completion are exercised together.
 - **Plain-language explanation:** “I built 29 branching support cases across five shifts and an automated test that completes the campaign. The number matters because each case interacts with shared state and progression; it is evidence of product scope, not a popularity metric.”
-- **Limitation:** the figure describes authored product content. It does not claim a number of players, downloads, or market adoption.
+- **Limitation:** The figure describes authored product content. It does not claim a number of players, downloads, or market adoption.
 
 ### 17 public projects reconciled to exact GitHub source
 
@@ -82,7 +82,7 @@ The detailed Reliable Project Delivery Framework scorecard remains in its case s
 - **What was counted:** 17 public project records, excluding the profile repository itself and the two private workspaces.
 - **Why it matters:** the ledger prevents the portfolio from presenting an older source tree as a newer final build and makes version gaps explicit instead of hiding them.
 - **Plain-language explanation:** “I maintain a source-of-truth ledger for 17 public projects. Each entry is tied to the exact GitHub commit and version actually present, so a newer package is not claimed unless its source can be verified.”
-- **Limitation:** the figure demonstrates portfolio governance. It is not a claim that every project has equal maturity, usage, or commercial adoption.
+- **Limitation:** The figure demonstrates portfolio governance. It is not a claim that every project has equal maturity, usage, or commercial adoption.
 
 ## Pin strategy
 
