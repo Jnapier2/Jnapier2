@@ -2,7 +2,7 @@
 
 This record identifies how each public repository controls third-party packages and installation behavior. It separates projects that need no application dependencies from exact pins, SHA-256 locks, bounded compatible ranges, and checksum-sealed releases. All 18 public repositories are covered.
 
-Last reconciled: **July 26, 2026 at 2:40 AM CDT**
+Last reconciled: **July 26, 2026 at 10:27 AM CDT**
 
 The machine-readable authority is [`.github/dependency-reconciliation.json`](.github/dependency-reconciliation.json). The Portfolio health workflow checks the declared files, version markers, installation commands, consistency gates, absence claims, and deferred compatibility decisions.
 
@@ -19,7 +19,7 @@ The machine-readable authority is [`.github/dependency-reconciliation.json`](.gi
 | Automation Reliability Case Studies | No third-party runtime | Documentation and standard-library tests only |
 | Beta Earth | No third-party runtime | Public v0.4.11 declares no runtime dependencies; v0.5.0 remains checksum-gated |
 | Safe Video Downloader | Exact pin | `yt-dlp[default]` fixed at 2026.07.04; binary install and `pip check` required |
-| MP3 Downloader | SHA-256 locked | Exact Certifi and yt-dlp artifacts; `pip check` required before import and tests |
+| MP3 Downloader | SHA-256 locked | Exact Certifi and yt-dlp artifacts; `pip check` required; immutable checkout/setup-python v7 commits verified on Windows |
 | Image Downloader | Bounded ranges | Requests, Beautiful Soup, and Pillow resolve inside reviewed major lines; binary install and `pip check` required |
 | Large Text Chunker | No third-party runtime | Dependency-free public v1.0.0; v1.10.0 remains checksum-gated |
 | NetLossDoctor | No third-party runtime | Windows PowerShell and operating-system tools only |
@@ -54,7 +54,9 @@ The dataset, notebook source, calculations, and reported findings did not change
 
 ### Safe Video Downloader, MP3 Downloader, and Image Downloader
 
-The existing application dependency versions remain unchanged. Their Windows workflows now tie pip caching to the declared requirements and validate the installed dependency graph before compilation and tests. Safe Video Downloader and Image Downloader require binary distributions; MP3 Downloader retains its complete SHA-256 lock.
+The existing application dependency versions remain unchanged. Their Windows workflows tie pip caching to the declared requirements and validate the installed dependency graph before compilation and tests. Safe Video Downloader and Image Downloader require binary distributions; MP3 Downloader retains its complete SHA-256 lock.
+
+The dedicated MP3 Downloader workflow-compatibility pass upgraded immutable `actions/checkout` and `actions/setup-python` references to the portfolio-validated v7.0.1 and v7.0.0 commits. Its Windows Python 3.11 and 3.13 jobs passed exact hash-locked installation, `pip check`, runtime imports, compilation, and offline tests before merge.
 
 ## Deliberately deferred compatibility changes
 
@@ -62,7 +64,6 @@ The existing application dependency versions remain unchanged. Their Windows wor
 - **Chicago major-version lines:** ipykernel 7.x, Matplotlib 3.11.x, and pandas 3.x require a dedicated notebook-compatibility review. They were not mixed into the maintenance update.
 - **Certifi:** authoritative package listings did not agree on the next release identity. MediaTaggerBot and MP3 Downloader retain the verified SHA-256-locked 2026.6.17 artifact.
 - **Kalshi 15m cryptography 49.x:** the public preview is checksum sealed. A major dependency transition requires regenerated locks, SBOM, manifests, checksums, and the complete security matrix.
-- **MP3 Downloader Action revisions:** its existing checkout and setup-python references remain immutable v6 commits. A v7 transition is deferred to a separate workflow-compatibility pass.
 
 ## Private workspace boundaries
 
