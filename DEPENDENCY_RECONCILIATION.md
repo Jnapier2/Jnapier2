@@ -4,7 +4,7 @@ This record identifies how each public repository controls third-party packages 
 
 Last reconciled: **July 26, 2026 at 11:05 AM CDT**
 
-The machine-readable authority is [`.github/dependency-reconciliation.json`](.github/dependency-reconciliation.json). The Portfolio health workflow checks declared files, version markers, installation commands, consistency gates, update-monitoring policy, absence claims, and deferred compatibility decisions.
+The machine-readable authorities are [`.github/dependency-reconciliation.json`](.github/dependency-reconciliation.json) and [`.github/dependabot-policy.json`](.github/dependabot-policy.json). Portfolio health validates dependency files, installation commands, consistency gates, absence claims, each Dependabot ecosystem block’s exact directory/cadence/PR limit, monitored workflows for automatic merge mechanisms, and open Dependabot PRs for enabled auto-merge.
 
 ## Coverage
 
@@ -31,7 +31,7 @@ The machine-readable authority is [`.github/dependency-reconciliation.json`](.gi
 
 ## Monitoring policy applied
 
-Review-only monitors create dependency or GitHub Actions proposals; they do not auto-merge and never replace native install, test, vulnerability, manifest, SBOM, or checksum gates.
+Review-only monitors create dependency or GitHub Actions proposals; they do not auto-merge and never replace native install, test, vulnerability, manifest, SBOM, or checksum gates. This is fail-closed: each ecosystem block is parsed separately, automatic merge commands/actions in monitored workflows are rejected, and any open Dependabot PR with auto-merge enabled fails Portfolio health.
 
 - **MediaTaggerBot:** GitHub Actions monitoring only. Package proposals cannot update the two embedded BAT launcher maps, so runtime changes remain a coordinated release task.
 - **Chicago Food Inspection Outcomes:** monthly grouped minor/patch Python and Action proposals, limited to one open proposal per ecosystem. Matplotlib 3.11.x is ignored until a dedicated figure-compatibility review.
