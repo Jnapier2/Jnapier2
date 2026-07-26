@@ -12,12 +12,12 @@ I turn complex systems into trusted ones. My background spans more than 10 years
 
 ## Selected evidence, with context
 
-Each figure below links to the public project or source ledger that defines its scope.
+Each figure is defined in the public project summaries and source ledger below.
 
 | Evidence | What it means | Why it matters |
 |---|---|---|
-| **[13,333 public inspection records across three Chicago ZIP codes](https://github.com/Jnapier2/chicago-food-inspections-analysis)** | One row is an inspection, not a restaurant; the study covers 2010–2018 | Shows reproducible analysis and careful separation of inspection outcomes from facility-risk classification |
-| **[29 authored cases across five shifts](https://github.com/Jnapier2/inbox-from-hell)** | Every case participates in branching state and a full-campaign acceptance test | Shows product scope, persistent state, accessible interaction, and end-to-end testing |
+| **13,333 public inspection records across three Chicago ZIP codes** | One row is an inspection, not a restaurant; the study covers 2010–2018 | Shows reproducible analysis and careful separation of inspection outcomes from facility-risk classification |
+| **29 authored cases across five shifts** | Every case participates in branching state and a full-campaign acceptance test | Shows product scope, persistent state, accessible interaction, and end-to-end testing |
 | **[17 public projects reconciled to exact GitHub source](RELEASE_RECONCILIATION.md)** | Each ledger entry is tied to the version and reviewed default-branch commit actually present | Shows portfolio-wide version governance and avoids presenting older code as a newer build |
 
 ## Professional focus
