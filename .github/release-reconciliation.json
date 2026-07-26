@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-07-25T23:20:23Z",
+  "generated_utc": "2026-07-26T07:40:38Z",
   "owner": "Jnapier2",
   "rights_notice": "Copyright © 2026 Gateway Information Group LLC. All rights reserved.",
-  "review_scope": "All 17 public project default-branch heads and declared version markers; account-level About links, pins, and rulesets are tracked separately.",
+  "review_scope": "All 17 public project default-branch heads, declared version markers, and the July 26 dependency-integrity update pass; account-level About links, pins, and rulesets are tracked separately.",
   "reviewed_public_project_count": 17,
   "status_definitions": {
     "current": "GitHub represents the latest verified source/build version.",
@@ -44,16 +44,16 @@
         "path": "pyproject.toml",
         "text": "version = \"0.5.7\""
       },
-      "note": "Current GitHub source is verified; the reviewed head adds dependency and CI hardening without changing the product version.",
-      "reviewed_head_sha": "aa55d12ea7b00fe809a38be110cbd45ef4a2d7e4"
+      "note": "Current GitHub source preserves the verified v0.5.7 runtime set and now fails closed on dependency installation, captures bounded diagnostics, and tests launcher/lock/metadata agreement.",
+      "reviewed_head_sha": "a4728e7755411752879be90fc6f6c79f67dfbddc"
     },
     {
       "repository": "chicago-food-inspections-analysis",
       "represented_version": null,
       "latest_verified_version": null,
       "status": "nonversioned_current",
-      "note": "Current reproducible analysis case study.",
-      "reviewed_head_sha": "03a3de390495cd51fcc4f1970ef06bd15b67d8ef"
+      "note": "Current reproducible analysis case study with reviewed Python 3.12 dependency pins inside the existing major-version lines, binary-only installation, pip consistency checking, and unchanged analytical results.",
+      "reviewed_head_sha": "ed7783d83ac2653a8ac07e287ba9d21fa186b6f1"
     },
     {
       "repository": "avalon-q-supervisor",
@@ -95,8 +95,8 @@
         "text": "APP_VERSION = \"1.14.2\""
       },
       "recorded_successor_sha256": "d873bf140713a978375b6693e784726973a5ab6934f529437ede671f90b1fd1a",
-      "note": "The verified five-second no-progress watchdog is merged into the stronger public-security source; the reviewed head adds immutable CI references without changing the product version.",
-      "reviewed_head_sha": "94b0f58349a6fabb14692531c007f5a97e527435"
+      "note": "The verified five-second no-progress watchdog remains current; CI now resolves exact binary dependencies, keys caching to the requirements file, and runs pip consistency validation.",
+      "reviewed_head_sha": "68cf9627a6afa5e429d3e6c554e443b42600ed16"
     },
     {
       "repository": "mp3-downloader",
@@ -107,8 +107,8 @@
         "path": "mp3_downloader.py",
         "text": "APP_VERSION = \"1.0.0\""
       },
-      "note": "The Drive package label adds audio-only/v2.16.6/stable metadata but the public product version remains 1.0.0.",
-      "reviewed_head_sha": "05bda8893b9e48b589d649f898e59d2c2bea6e59"
+      "note": "The public product remains v1.0.0; its exact hash-locked binary environment now receives pip consistency validation before import, compilation, and offline tests.",
+      "reviewed_head_sha": "236dcbb28f70a79a8da6d91a0981452e55a2e0bd"
     },
     {
       "repository": "image-downloader",
@@ -120,8 +120,8 @@
         "text": "APP_VERSION = \"2026.07.19.1\""
       },
       "recorded_successor_sha256": "0b8acc9b4e6cbcfda899186e6a2c5ac9aeee9609a7143013f6015cda8c22b6d6",
-      "note": "The verified five-second per-image network budget is merged into the stronger public destination, content-validation, duplicate-control, visibility, and redaction boundaries; the latest release head is represented.",
-      "reviewed_head_sha": "7fc9b722f41c2646884ca47cf6e79232b4042823"
+      "note": "The verified timeout-budget release remains current; CI now resolves binary dependencies inside the reviewed ranges, keys caching to requirements, and runs pip consistency validation.",
+      "reviewed_head_sha": "9a61d2a67da573ede7012435a037b19acb176d92"
     },
     {
       "repository": "large-text-chunker",
