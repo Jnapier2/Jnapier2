@@ -1,11 +1,13 @@
 {
   "schema_version": 1,
   "project": "Reliable Project Delivery Framework — Public Case Study",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "source_framework_version": "2.17.2",
   "source_package_sha256": "e0615823cfde6ae6eff6d4c028a6f2f1f54d251df90bd64f3cad8a6475b6d1d6",
-  "release_date": "2026-07-25",
-  "generated_utc": "2026-07-25T23:19:01Z",
+  "source_package_role": "Historical checksum-verified validation baseline; not rewritten by the v1.2.0 public policy correction.",
+  "public_policy_revision": "2026-07-26-local-independent-operation",
+  "release_date": "2026-07-26",
+  "generated_utc": "2026-07-26T15:27:00Z",
   "data_classification": "public",
   "source_classification": "sanitized case study; complete internal framework excluded",
   "rights_holder": "Gateway Information Group LLC",
@@ -15,14 +17,14 @@
   "files": [
     {
       "path": "PUBLIC_SCOPE.md",
-      "size_bytes": 1738,
-      "sha256": "75e4481de876cc94f84278ca98b981ead85aa61a279e42cd4a501ed83f45e2ff",
+      "size_bytes": 2045,
+      "sha256": "4d56edd89b2bac4e2d143aa3c9d02eb8af1ebf8fb68c28427c4bb3d60dd347e8",
       "purpose": "Public disclosure boundary"
     },
     {
       "path": "README.md",
-      "size_bytes": 6657,
-      "sha256": "8272f7afad35307e7a29fb1c91c172117cccf9ac6275569646f199e26840843d",
+      "size_bytes": 6974,
+      "sha256": "12619f9f765161d8c493ae7729356d8f8b7acaf65214d850249858d4a079a218",
       "purpose": "Case study and design summary"
     },
     {
@@ -33,8 +35,8 @@
     },
     {
       "path": "VALIDATION_SUMMARY.json",
-      "size_bytes": 1791,
-      "sha256": "53a1affb12afa95d63cb616b9701ac2a562a22a01b6bdd790bef238ab1f64781",
+      "size_bytes": 2664,
+      "sha256": "42d530ced090cec9756eabd1e1be557e05b458d674e4c178688a5fa638f81bee",
       "purpose": "Structured validation results and claim limits"
     }
   ]
