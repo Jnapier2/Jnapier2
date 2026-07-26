@@ -5,6 +5,7 @@ on:
     paths:
       - README.md
       - PROFILE_STRATEGY.md
+      - PUBLIC_CLAIMS.md
       - LICENSE.md
       - SECURITY.md
       - RELEASE_RECONCILIATION.md
@@ -15,10 +16,12 @@ on:
       - .github/release-reconciliation.json
       - .github/dependency-reconciliation.json
       - .github/dependabot-policy.json
+      - .github/public-claims.json
       - .github/public-sanitization-allowlist.json
       - .github/scripts/portfolio_audit.py
       - .github/scripts/portfolio_audit_html.py
       - .github/scripts/profile_strategy_audit.py
+      - .github/scripts/public_claims_audit.py
       - .github/scripts/project_description_audit.py
       - .github/scripts/release_reconciliation_audit.py
       - .github/scripts/dependency_reconciliation_audit.py
@@ -34,6 +37,7 @@ on:
     paths:
       - README.md
       - PROFILE_STRATEGY.md
+      - PUBLIC_CLAIMS.md
       - LICENSE.md
       - SECURITY.md
       - RELEASE_RECONCILIATION.md
@@ -44,10 +48,12 @@ on:
       - .github/release-reconciliation.json
       - .github/dependency-reconciliation.json
       - .github/dependabot-policy.json
+      - .github/public-claims.json
       - .github/public-sanitization-allowlist.json
       - .github/scripts/portfolio_audit.py
       - .github/scripts/portfolio_audit_html.py
       - .github/scripts/profile_strategy_audit.py
+      - .github/scripts/public_claims_audit.py
       - .github/scripts/project_description_audit.py
       - .github/scripts/release_reconciliation_audit.py
       - .github/scripts/dependency_reconciliation_audit.py
@@ -92,6 +98,7 @@ jobs:
           .github/scripts/portfolio_audit.py
           .github/scripts/portfolio_audit_html.py
           .github/scripts/profile_strategy_audit.py
+          .github/scripts/public_claims_audit.py
           .github/scripts/project_description_audit.py
           .github/scripts/release_reconciliation_audit.py
           .github/scripts/dependency_reconciliation_audit.py
@@ -115,6 +122,11 @@ jobs:
 
       - name: Audit benchmarked profile strategy
         run: python .github/scripts/profile_strategy_audit.py
+
+      - name: Audit public project claims and speaking guide
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python .github/scripts/public_claims_audit.py
 
       - name: Audit represented and latest verified project versions
         env:
