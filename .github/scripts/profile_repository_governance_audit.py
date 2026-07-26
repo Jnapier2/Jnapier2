@@ -70,6 +70,28 @@ def main() -> int:
         [
             "Reliable Project Delivery Framework",
             "Public project release reconciliation",
+            "Public dependency reconciliation",
+        ],
+    )
+    require_text(
+        ROOT / "DEPENDENCY_RECONCILIATION.md",
+        [
+            RIGHTS_NOTICE,
+            "All 18 public repositories",
+            ".github/dependency-reconciliation.json",
+            "MediaTaggerBot",
+            "Chicago Food Inspection Outcomes",
+            "Kalshi 15m Sell Preview",
+        ],
+    )
+    require_text(
+        ROOT / ".github" / "dependency-reconciliation.json",
+        [
+            RIGHTS_NOTICE,
+            '"schema_version": 1',
+            '"review_scope": "All 18 public repositories',
+            '"sealed_audited_release"',
+            '"private_workspaces"',
         ],
     )
     verify_shared_profile_contract()
@@ -84,6 +106,8 @@ def main() -> int:
             "security_reporting": "PASS",
             "code_ownership": "PASS",
             "profile_links": "PASS",
+            "release_reconciliation": "PASS",
+            "dependency_reconciliation": "PASS",
             "shared_profile_contract": "PASS",
         },
         "result": "PASS",
