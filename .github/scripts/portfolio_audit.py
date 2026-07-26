@@ -184,7 +184,7 @@ def audit_profile_readme(audit: Audit, manifest: dict[str, Any]) -> None:
         manifest["canonical_portfolio_url"],
         manifest["canonical_linkedin_url"],
         "## Start here",
-        "## Additional portfolio evidence",
+        "## More projects",
         "Additional tools and learning releases",
         "## Working principles",
     ]
