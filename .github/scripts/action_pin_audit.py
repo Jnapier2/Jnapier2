@@ -19,9 +19,9 @@ ROOT = Path(__file__).resolve().parents[2]
 MANIFEST_PATH = ROOT / ".github" / "portfolio-manifest.json"
 OUTPUT_DIR = ROOT / "audit-output"
 RIGHTS_NOTICE = "Copyright © 2026 Gateway Information Group LLC. All rights reserved."
-USER_AGENT = "Gateway-Portfolio-Action-Pin-Audit/1.1"
+USER_AGENT = "Gateway-Portfolio-Action-Pin-Audit/1.2"
 HTTP_TIMEOUT_SECONDS = 20
-HTTP_ATTEMPTS = 3
+HTTP_ATTEMPTS = 4
 MAX_WORKFLOW_BYTES = 2_000_000
 SHA40 = re.compile(r"^[0-9a-fA-F]{40}$")
 USES_LINE = re.compile(r"(?m)^\s*(?:-\s*)?uses:\s*([^#\r\n]+?)(?:\s+#.*)?$")
@@ -36,21 +36,25 @@ def load_manifest() -> dict[str, Any]:
     return data
 
 
-def fetch_workflow(owner: str, repository: str, path: str) -> str:
-    quoted_path = "/".join(urllib.parse.quote(part, safe="") for part in path.split("/"))
-    url = (
-        f"https://api.github.com/repos/{urllib.parse.quote(owner, safe='')}/"
-        f"{urllib.parse.quote(repository, safe='')}/contents/{quoted_path}?ref=main"
-    )
-    headers = {
-        "Accept": "application/vnd.github.raw+json",
-        "User-Agent": USER_AGENT,
-        "X-GitHub-Api-Version": "2022-11-28",
-    }
-    token = os.environ.get("GITHUB_TOKEN", "").strip()
-    if token:
-        headers["Authorization"] = f"Bearer {token}"
+def quoted_path(path: str) -> str:
+    return "/".join(urllib.parse.quote(part, safe="") for part in path.split("/"))
 
+
+def raw_workflow_url(owner: str, repository: str, path: str) -> str:
+    return (
+        f"https://raw.githubusercontent.com/{urllib.parse.quote(owner, safe='')}/"
+        f"{urllib.parse.quote(repository, safe='')}/main/{quoted_path(path)}"
+    )
+
+
+def api_workflow_url(owner: str, repository: str, path: str) -> str:
+    return (
+        f"https://api.github.com/repos/{urllib.parse.quote(owner, safe='')}/"
+        f"{urllib.parse.quote(repository, safe='')}/contents/{quoted_path(path)}?ref=main"
+    )
+
+
+def request_text(url: str, headers: dict[str, str], label: str) -> str:
     last_error: Exception | None = None
     for attempt in range(1, HTTP_ATTEMPTS + 1):
         try:
@@ -59,7 +63,7 @@ def fetch_workflow(owner: str, repository: str, path: str) -> str:
                 data = response.read(MAX_WORKFLOW_BYTES + 1)
             if len(data) > MAX_WORKFLOW_BYTES:
                 raise ValueError(f"workflow exceeds {MAX_WORKFLOW_BYTES} bytes")
-            return data.decode("utf-8")
+            return data.decode("utf-8-sig")
         except (
             urllib.error.HTTPError,
             urllib.error.URLError,
@@ -68,9 +72,46 @@ def fetch_workflow(owner: str, repository: str, path: str) -> str:
             ValueError,
         ) as exc:
             last_error = exc
-            if attempt < HTTP_ATTEMPTS:
-                time.sleep(0.75 * attempt)
-    raise RuntimeError(f"{repository}:{path}: {last_error}")
+            retryable = not isinstance(exc, urllib.error.HTTPError) or exc.code in {
+                403,
+                408,
+                429,
+                500,
+                502,
+                503,
+                504,
+            }
+            if attempt < HTTP_ATTEMPTS and retryable:
+                time.sleep(min(8.0, 0.75 * (2 ** (attempt - 1))))
+                continue
+            break
+    raise RuntimeError(f"{label}: {last_error}")
+
+
+def fetch_workflow(owner: str, repository: str, path: str) -> str:
+    label = f"{repository}:{path}"
+    raw_headers = {
+        "Accept": "text/plain",
+        "User-Agent": USER_AGENT,
+    }
+    raw_error: Exception | None = None
+    try:
+        return request_text(raw_workflow_url(owner, repository, path), raw_headers, label)
+    except Exception as exc:
+        raw_error = exc
+
+    api_headers = {
+        "Accept": "application/vnd.github.raw+json",
+        "User-Agent": USER_AGENT,
+        "X-GitHub-Api-Version": "2022-11-28",
+    }
+    token = os.environ.get("GITHUB_TOKEN", "").strip()
+    if token:
+        api_headers["Authorization"] = f"Bearer {token}"
+    try:
+        return request_text(api_workflow_url(owner, repository, path), api_headers, label)
+    except Exception as api_error:
+        raise RuntimeError(f"{label}: raw fetch failed ({raw_error}); API fallback failed ({api_error})") from api_error
 
 
 def parse_uses_value(raw: str) -> str:
