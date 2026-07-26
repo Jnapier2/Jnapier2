@@ -12,6 +12,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 README_PATH = ROOT / "README.md"
 STRATEGY_PATH = ROOT / "PROFILE_STRATEGY.md"
+CLAIMS_GUIDE_PATH = ROOT / "PUBLIC_CLAIMS.md"
+CLAIMS_REGISTRY_PATH = ROOT / ".github" / "public-claims.json"
 OUTPUT_DIR = ROOT / "audit-output"
 RIGHTS_NOTICE = "Copyright © 2026 Gateway Information Group LLC. All rights reserved."
 
@@ -21,6 +23,8 @@ REQUIRED_README_MARKERS = (
     "These are not popularity metrics. Each figure is publicly traceable",
     "[Definitions, sources, limitations, and plain-language explanations]"
     "(PROFILE_STRATEGY.md#evidence-definitions)",
+    "[Project-by-project claims, evidence, limitations, and interview explanations]"
+    "(PUBLIC_CLAIMS.md)",
     "Uncertain or preservation-sensitive files remain visible for review instead of being forced into a match.",
     "## For hiring teams",
     "I’m open to senior roles in analytics, data governance, information management, and reliable automation.",
@@ -43,6 +47,7 @@ REQUIRED_STRATEGY_MARKERS = (
     "## Benchmark index",
     "## Organic implementation",
     "## Evidence policy",
+    "## All-project claims standard",
     "## Evidence definitions",
     "## Pin strategy",
     "## Maintenance rules",
@@ -50,6 +55,11 @@ REQUIRED_STRATEGY_MARKERS = (
     "A figure belongs on the profile only when all five conditions are met:",
     "Numbers are not included merely because quantified profiles are fashionable.",
     "Private MediaTagger library and outcome totals were removed from the profile",
+    "[`.github/public-claims.json`](.github/public-claims.json)",
+    "[`PUBLIC_CLAIMS.md`](PUBLIC_CLAIMS.md)",
+    "all 18 public repositories",
+    "Quantitative claims are separated into public-dataset measures",
+    "Portfolio health checks this registry against every project README.",
     "### 13,333 public inspection records across three Chicago ZIP codes",
     "### 29 authored cases across five shifts",
     "### 17 public projects reconciled to exact GitHub source",
@@ -122,10 +132,14 @@ def main() -> int:
     try:
         readme = read_text(README_PATH)
         strategy = read_text(STRATEGY_PATH)
-    except (OSError, UnicodeError) as exc:
+        claims_guide = read_text(CLAIMS_GUIDE_PATH)
+        claims_registry = json.loads(read_text(CLAIMS_REGISTRY_PATH))
+    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
         errors.append(f"required profile file is unreadable: {exc}")
         readme = ""
         strategy = ""
+        claims_guide = ""
+        claims_registry = {}
 
     for marker in REQUIRED_README_MARKERS:
         if marker not in readme:
@@ -165,6 +179,14 @@ def main() -> int:
                 f"PROFILE_STRATEGY.md contains a retired private aggregate: {fragment}"
             )
 
+    if claims_guide.count(RIGHTS_NOTICE) != 1:
+        errors.append("PUBLIC_CLAIMS.md must contain the canonical rights notice exactly once")
+    records = claims_registry.get("repositories") if isinstance(claims_registry, dict) else None
+    if not isinstance(records, list) or len(records) != 18:
+        errors.append(".github/public-claims.json must contain exactly 18 public repository records")
+    if claims_registry.get("rights_notice") != RIGHTS_NOTICE:
+        errors.append(".github/public-claims.json rights notice is missing or changed")
+
     positions: list[int] = []
     for marker in REQUIRED_PIN_ORDER:
         position = strategy.find(marker)
@@ -189,6 +211,7 @@ def main() -> int:
         "profile_sections_checked": 2,
         "public_evidence_rows_checked": len(REQUIRED_README_ROWS),
         "evidence_definitions_checked": len(EVIDENCE_DEFINITION_HEADINGS),
+        "all_project_claim_records_checked": len(records) if isinstance(records, list) else 0,
         "benchmark_references_checked": 8,
         "pin_entries_checked": len(REQUIRED_PIN_ORDER),
         "private_aggregate_policy": "excluded from recruiter-facing profile copy",
@@ -210,6 +233,7 @@ def main() -> int:
         "- Public profile sections checked: **2**",
         f"- Contextualized evidence rows checked: **{len(REQUIRED_README_ROWS)}**",
         f"- Evidence definitions checked: **{len(EVIDENCE_DEFINITION_HEADINGS)}**",
+        f"- All-project claim records checked: **{payload['all_project_claim_records_checked']}**",
         "- Benchmark references checked: **8**",
         f"- Pin entries checked: **{len(REQUIRED_PIN_ORDER)}**",
         "- Private aggregate policy: **excluded from recruiter-facing profile copy**",
@@ -220,8 +244,8 @@ def main() -> int:
         lines.extend(f"- {error}" for error in errors)
     else:
         lines.append(
-            "The benchmark index, contextualized public evidence, source definitions, "
-            "recruiter path, pin strategy, and external-widget boundary are intact."
+            "The benchmark index, contextualized public evidence, all-project speaking guide, "
+            "claims registry, recruiter path, pin strategy, and external-widget boundary are intact."
         )
     lines.extend(
         [
