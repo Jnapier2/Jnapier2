@@ -129,17 +129,24 @@ def require_exactly_once(text: str, marker: str, area: str, errors: list[str]) -
 
 def main() -> int:
     errors: list[str] = []
+    claims_registry_raw: object = {}
     try:
         readme = read_text(README_PATH)
         strategy = read_text(STRATEGY_PATH)
         claims_guide = read_text(CLAIMS_GUIDE_PATH)
-        claims_registry = json.loads(read_text(CLAIMS_REGISTRY_PATH))
+        claims_registry_raw = json.loads(read_text(CLAIMS_REGISTRY_PATH))
     except (OSError, UnicodeError, json.JSONDecodeError) as exc:
         errors.append(f"required profile file is unreadable: {exc}")
         readme = ""
         strategy = ""
         claims_guide = ""
-        claims_registry = {}
+        claims_registry_raw = {}
+
+    if not isinstance(claims_registry_raw, dict):
+        errors.append(".github/public-claims.json must contain a top-level JSON object")
+        claims_registry: dict[str, object] = {}
+    else:
+        claims_registry = claims_registry_raw
 
     for marker in REQUIRED_README_MARKERS:
         if marker not in readme:
@@ -181,7 +188,7 @@ def main() -> int:
 
     if claims_guide.count(RIGHTS_NOTICE) != 1:
         errors.append("PUBLIC_CLAIMS.md must contain the canonical rights notice exactly once")
-    records = claims_registry.get("repositories") if isinstance(claims_registry, dict) else None
+    records = claims_registry.get("repositories")
     if not isinstance(records, list) or len(records) != 18:
         errors.append(".github/public-claims.json must contain exactly 18 public repository records")
     if claims_registry.get("rights_notice") != RIGHTS_NOTICE:
