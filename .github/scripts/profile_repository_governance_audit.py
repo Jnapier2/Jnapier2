@@ -8,6 +8,7 @@ from __future__ import annotations
 import json
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Any
 
 import portfolio_audit
 
@@ -25,6 +26,44 @@ def require_text(path: Path, markers: list[str]) -> None:
             raise SystemExit(
                 f"Profile repository governance failure: {path.relative_to(ROOT)} lacks {marker!r}"
             )
+
+
+def require_dependency_ledger(path: Path) -> None:
+    if not path.is_file():
+        raise SystemExit(f"Profile repository governance failure: missing {path.relative_to(ROOT)}")
+    try:
+        payload: Any = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise SystemExit(
+            f"Profile repository governance failure: {path.relative_to(ROOT)} is unreadable: {exc}"
+        ) from exc
+    if not isinstance(payload, dict):
+        raise SystemExit(
+            f"Profile repository governance failure: {path.relative_to(ROOT)} must contain an object"
+        )
+    if payload.get("schema_version") != 1:
+        raise SystemExit("Profile repository governance failure: dependency schema must be 1")
+    if payload.get("rights_notice") != RIGHTS_NOTICE:
+        raise SystemExit("Profile repository governance failure: dependency rights notice changed")
+    review_scope = payload.get("review_scope")
+    if not isinstance(review_scope, str) or not review_scope.startswith("All 18 public repositories"):
+        raise SystemExit("Profile repository governance failure: dependency review scope is incomplete")
+    status_definitions = payload.get("status_definitions")
+    if not isinstance(status_definitions, dict) or not status_definitions.get("sealed_audited_release"):
+        raise SystemExit("Profile repository governance failure: sealed-release dependency state is missing")
+    projects = payload.get("projects")
+    if not isinstance(projects, list) or len(projects) != 18:
+        raise SystemExit("Profile repository governance failure: dependency project coverage must be 18")
+    repositories = [
+        str(item.get("repository") or "")
+        for item in projects
+        if isinstance(item, dict)
+    ]
+    if len(repositories) != 18 or len(set(repositories)) != 18:
+        raise SystemExit("Profile repository governance failure: dependency repository coverage is duplicated")
+    private_workspaces = payload.get("private_workspaces")
+    if not isinstance(private_workspaces, list) or len(private_workspaces) != 2:
+        raise SystemExit("Profile repository governance failure: private workspace boundaries are incomplete")
 
 
 def verify_shared_profile_contract() -> None:
@@ -84,16 +123,7 @@ def main() -> int:
             "Kalshi 15m Sell Preview",
         ],
     )
-    require_text(
-        ROOT / ".github" / "dependency-reconciliation.json",
-        [
-            RIGHTS_NOTICE,
-            '"schema_version": 1',
-            '"review_scope": "All 18 public repositories',
-            '"sealed_audited_release"',
-            '"private_workspaces"',
-        ],
-    )
+    require_dependency_ledger(ROOT / ".github" / "dependency-reconciliation.json")
     verify_shared_profile_contract()
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
