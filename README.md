@@ -10,9 +10,9 @@ I turn complex systems into trusted ones. My background spans more than 10 years
 
 ## Start here
 
-- **[BotOps Manager](https://github.com/Jnapier2/botops-manager)** — Centralizes launcher audits, health evidence, and project-scoped process control for independent Windows automation.
-- **[Digital Asset Governance Audit](https://github.com/Jnapier2/digital-asset-governance-case-study)** — Turns provenance gaps, confidence signals, and duplicate candidates into a prioritized stewardship queue with reason-coded next steps using synthetic data.
-- **[MediaTaggerBot](https://github.com/Jnapier2/media-tagger-bot)** — Uses evidence-based matching, dry-run review, and journaled writes to limit bad-match and partial-write risk. The design is informed by a private 38,171-file audit that verified 838 outcomes and held preservation-sensitive cases closed rather than guessing.
+- **[BotOps Manager](https://github.com/Jnapier2/botops-manager)** — Verifies launchers and process ownership before control, consolidates health evidence, and creates bounded redacted support exports for independent Windows automation.
+- **[Digital Asset Governance Audit](https://github.com/Jnapier2/digital-asset-governance-case-study)** — Turns schema health, provenance coverage, confidence signals, and duplicate candidates into a prioritized stewardship queue with clear reasons and next steps using synthetic data.
+- **[MediaTaggerBot](https://github.com/Jnapier2/media-tagger-bot)** — Uses evidence-based matching, complete-scan gates, dry-run review, recorded changes, result verification, verified renames, and rollback manifests. A private 38,171-file operating audit records 838 verified or already-current outcomes and holds preservation-sensitive cases closed rather than guessing.
 
 ## Featured framework
 
@@ -20,23 +20,24 @@ I turn complex systems into trusted ones. My background spans more than 10 years
 
 ## More projects
 
-- **[Chicago Food Inspection Outcomes, 2010–2018](https://github.com/Jnapier2/chicago-food-inspections-analysis)** — A reproducible analysis of 13,333 public inspection records that separates outcome from facility risk, surfaces decision-relevant follow-up questions, and makes its limitations explicit.
-- **[Avalon Q Supervisor](https://github.com/Jnapier2/avalon-q-supervisor)** — Turns local device telemetry into explicit health states, dry-run-first recovery decisions, bounded recovery budgets, and auditable operator evidence.
-- **[Automation Reliability Case Studies](https://github.com/Jnapier2/automation-reliability-case-studies)** — Three design studies on containing risk when external state is uncertain, using explicit evidence, bounded recovery, and stop conditions.
-- **[Beta Earth](https://github.com/Jnapier2/beta-earth)** — A working browser RPG with verified public source at v0.4.11; a newer verified v0.5.0 final is disclosed and held behind an exact-source checksum gate rather than being falsely represented by the older tree.
+- **[Chicago Food Inspection Outcomes, 2010–2018](https://github.com/Jnapier2/chicago-food-inspections-analysis)** — Reproducibly analyzes 13,333 public inspection records, separates outcome from facility risk, and surfaces decision-relevant follow-up questions without overstating the data.
+- **[Avalon Q Supervisor](https://github.com/Jnapier2/avalon-q-supervisor)** — Turns local device telemetry into clear health states, requires two independent approvals for recovery, enforces durable restart limits, and records privacy-conscious decision evidence.
+- **[Automation Reliability Case Studies](https://github.com/Jnapier2/automation-reliability-case-studies)** — Three documented studies show how outcome checks, identity-bound supervision, integrity verification, limited recovery, and explicit stop conditions contain risk across uncertain system boundaries.
+- **[Beta Earth](https://github.com/Jnapier2/beta-earth)** — A working browser RPG with portable local launchers, resilient saves, bounded validation, and verified public source at v0.4.11. The newer verified v0.5.0 final remains visible behind an exact-source checksum gate instead of being falsely represented by the older tree.
 
 <details>
 <summary><strong>Additional tools and learning releases</strong></summary>
 
-- [Safe Video Downloader](https://github.com/Jnapier2/safe-video-downloader) — Guarded, observable retrieval of authorized media.
-- [MP3 Downloader](https://github.com/Jnapier2/mp3-downloader) — Bounded audio-only downloads with duplicate verification.
-- [Image Downloader](https://github.com/Jnapier2/image-downloader) — Rights-aware retrieval with verified writes and duplicate detection.
-- [Large Text Chunker](https://github.com/Jnapier2/large-text-chunker) — Readable document chunking with traceability and exact reconstruction.
-- [NetLossDoctor](https://github.com/Jnapier2/net-loss-doctor) — Read-first network diagnosis with redacted reports.
-- [LAN Router Comms](https://github.com/Jnapier2/lan-router-comms) — Authenticated local messaging with bounded queues.
-- [Windows Health Audit](https://github.com/Jnapier2/windows-health-audit) — Failure-isolated, privacy-preserving health snapshots.
-- [Inbox From Hell](https://github.com/Jnapier2/inbox-from-hell) — A five-shift browser game with transparent decision feedback, layered progression, accessible controls, resilient saves, and full-campaign acceptance testing.
-- [Market Automation Pair: entry planner](https://github.com/Jnapier2/kalshi-10x1c-public) and [dry-run exit preview](https://github.com/Jnapier2/kalshi-15m-sell-bot-public-preview) — Demonstrate API integration, reconciliation, fail-closed controls, and release verification across a coordinated workflow. The entry edition requires explicit activation; the exit edition blocks all writes.
+- [Safe Video Downloader](https://github.com/Jnapier2/safe-video-downloader) — Retrieves authorized media through shared desktop and command-line planning, public-network checks, duplicate controls, isolated workers, a five-second no-progress watchdog, resumable partials, and verified output.
+- [MP3 Downloader](https://github.com/Jnapier2/mp3-downloader) — Turns one authorized URL into a validated MP3 through metadata preflight, bounded recovery, SHA-256 and SQLite duplicate reconciliation, visible output, and tightly redacted support exports.
+- [Image Downloader](https://github.com/Jnapier2/image-downloader) — Collects permitted images with bounded discovery, five-second per-image network budgets, streamed content validation, resumable state, layered duplicate controls, and atomic finalization.
+- [Large Text Chunker](https://github.com/Jnapier2/large-text-chunker) — Splits local documents at readable boundaries, preserves configurable context, records SHA-256 integrity metadata, and verifies exact reconstruction. Public source remains v1.0.0 while the recorded v1.10.0 final awaits its exact checksum-matched archive.
+- [NetLossDoctor](https://github.com/Jnapier2/net-loss-doctor) — Correlates gateway, route, DNS, TCP, latency, Windows event, and optional trace evidence into time-bounded, redacted support packages without changing network configuration.
+- [LAN Router Comms](https://github.com/Jnapier2/lan-router-comms) — Provides cloud-free authenticated text and resumable file exchange between trusted Windows PCs using durable queues, replay protection, bounded sessions, and verified delivery receipts.
+- [Windows Health Audit](https://github.com/Jnapier2/windows-health-audit) — Creates a read-only, non-elevated Windows health baseline with failure-isolated collectors, privacy-preserving normalization, transparent review thresholds, and no network or system changes.
+- [Inbox From Hell](https://github.com/Jnapier2/inbox-from-hell) — A five-shift workplace-horror browser game with 29 branching support cases, layered office and career progression, accessible controls, resilient local saves, and automated full-campaign acceptance testing.
+- [Kalshi 10×1¢ Public Edition](https://github.com/Jnapier2/kalshi-10x1c-public) — A checksum-controlled educational entry planner demonstrating explicit activation, authenticated API use, duplicate-action prevention, bounded execution, and safe stopping rules.
+- [Kalshi 15-Minute Sell Preview](https://github.com/Jnapier2/kalshi-15m-sell-bot-public-preview) — A checksum-consistent dry-run exit-management preview with live writes blocked, bounded polling, state checks, release verification, and explicit limits on what the public build can do.
 
 </details>
 
