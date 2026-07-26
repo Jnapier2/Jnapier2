@@ -2,7 +2,7 @@
 
 This ledger distinguishes the source actually present on GitHub from newer verified builds that cannot yet be promoted safely. It prevents an older tree from being relabeled as code it does not contain while keeping successor evidence visible.
 
-Last reconciled: **July 26, 2026 at 10:56 AM CDT**
+Last reconciled: **July 26, 2026 at 11:08 AM CDT**
 
 All 17 public project default-branch heads and every declared version marker were checked in this pass. Exact 40-character reviewed heads are retained in [`.github/release-reconciliation.json`](.github/release-reconciliation.json). Dependency and installation controls for all 18 public repositories are recorded in [Dependency Reconciliation](DEPENDENCY_RECONCILIATION.md).
 
