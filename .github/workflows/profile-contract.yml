@@ -20,6 +20,7 @@ on:
       - .github/scripts/portfolio_audit_rate_safe.py
       - .github/scripts/project_description_audit.py
       - .github/scripts/release_reconciliation_audit.py
+      - .github/scripts/release_reconciliation_rate_safe.py
       - .github/scripts/dependency_reconciliation_audit.py
       - .github/scripts/dependabot_policy_audit.py
       - .github/scripts/action_pin_audit.py
@@ -48,6 +49,7 @@ on:
       - .github/scripts/portfolio_audit_rate_safe.py
       - .github/scripts/project_description_audit.py
       - .github/scripts/release_reconciliation_audit.py
+      - .github/scripts/release_reconciliation_rate_safe.py
       - .github/scripts/dependency_reconciliation_audit.py
       - .github/scripts/dependabot_policy_audit.py
       - .github/scripts/action_pin_audit.py
@@ -92,6 +94,7 @@ jobs:
           .github/scripts/portfolio_audit_rate_safe.py
           .github/scripts/project_description_audit.py
           .github/scripts/release_reconciliation_audit.py
+          .github/scripts/release_reconciliation_rate_safe.py
           .github/scripts/dependency_reconciliation_audit.py
           .github/scripts/dependabot_policy_audit.py
           .github/scripts/action_pin_audit.py
@@ -114,7 +117,7 @@ jobs:
       - name: Audit represented and latest verified project versions
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: python .github/scripts/release_reconciliation_audit.py
+        run: python .github/scripts/release_reconciliation_rate_safe.py
 
       - name: Audit dependency and installation contracts
         env:
