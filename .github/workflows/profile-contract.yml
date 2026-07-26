@@ -7,6 +7,7 @@ on:
       - LICENSE.md
       - SECURITY.md
       - RELEASE_RECONCILIATION.md
+      - DEPENDENCY_RECONCILIATION.md
       - case-studies/reliable-project-delivery-framework/**
       - .github/CODEOWNERS
       - .github/portfolio-manifest.json
@@ -31,6 +32,7 @@ on:
       - LICENSE.md
       - SECURITY.md
       - RELEASE_RECONCILIATION.md
+      - DEPENDENCY_RECONCILIATION.md
       - case-studies/reliable-project-delivery-framework/**
       - .github/CODEOWNERS
       - .github/portfolio-manifest.json
