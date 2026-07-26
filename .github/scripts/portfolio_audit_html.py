@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Rendered-text adapter for the read-only portfolio audit.
+"""Rendered-text and low-request adapter for the read-only portfolio audit.
 
 Copyright © 2026 Gateway Information Group LLC. All rights reserved.
 """
@@ -9,10 +9,12 @@ import re
 import time
 import urllib.parse
 from html.parser import HTMLParser
+from typing import Any
 
 import portfolio_audit as core
 
 API_COOLDOWN_SECONDS = 30
+_REPOSITORY_METADATA: dict[str, dict[str, Any]] = {}
 
 
 class PageTextParser(HTMLParser):
@@ -127,6 +129,170 @@ def audit_profile_readme(audit: core.Audit, manifest: dict[str, object]) -> None
         audit.add("error", "profile", "Supporting-work disclosure markup is unbalanced")
 
 
+def audit_public_inventory(audit: core.Audit, manifest: dict[str, Any]) -> None:
+    owner = str(manifest["owner"])
+    url = (
+        f"https://api.github.com/users/{urllib.parse.quote(owner, safe='')}/repos"
+        "?per_page=100&type=owner&sort=full_name"
+    )
+    try:
+        records = core.request_json(url)
+    except Exception as exc:
+        audit.add("error", "inventory", f"Unable to read public repository inventory: {exc}")
+        return
+    if not isinstance(records, list):
+        audit.add("error", "inventory", "Public repository inventory was not a list")
+        return
+
+    _REPOSITORY_METADATA.clear()
+    for record in records:
+        if isinstance(record, dict) and record.get("name"):
+            _REPOSITORY_METADATA[str(record["name"])] = record
+
+    actual = sorted(
+        str(record["name"])
+        for record in records
+        if isinstance(record, dict)
+        and record.get("name")
+        and not record.get("private", False)
+        and not record.get("fork", False)
+    )
+    expected = sorted(str(value) for value in manifest["expected_public_repositories"])
+    missing = sorted(set(expected) - set(actual))
+    unexpected = sorted(set(actual) - set(expected))
+    if missing:
+        audit.add("error", "inventory", f"Expected public repositories are missing: {missing}")
+    if unexpected:
+        audit.add(
+            "error",
+            "inventory",
+            f"Unreviewed public repositories are outside the manifest: {unexpected}",
+        )
+
+
+def audit_repository_from_inventory(
+    owner: str,
+    specification: dict[str, Any],
+    manifest: dict[str, Any],
+) -> core.RepoAuditResult:
+    name = str(specification["name"])
+    result = core.RepoAuditResult(name=name)
+
+    def finding(severity: str, message: str) -> None:
+        result.findings.append(core.Finding(severity, name, message))
+
+    metadata = _REPOSITORY_METADATA.get(name)
+    if metadata is None:
+        finding("error", "Repository metadata is missing from the account inventory response")
+        return result
+
+    result.metadata = metadata
+    if metadata.get("private"):
+        finding("error", "Portfolio repository is not public")
+    if metadata.get("archived"):
+        finding("error", "Portfolio repository is archived")
+    if metadata.get("fork"):
+        finding("error", "Portfolio repository unexpectedly became a fork")
+
+    branch = str(metadata.get("default_branch") or "")
+    if branch != "main":
+        finding("error", f"Default branch is {branch!r}, expected 'main'")
+
+    if not str(metadata.get("description") or "").strip():
+        finding("warning", "Repository description is empty")
+    if not metadata.get("topics"):
+        finding("warning", "Repository topics are empty")
+
+    homepage = str(metadata.get("homepage") or "").strip()
+    expected_homepage = specification.get("expected_homepage")
+    if expected_homepage and homepage.rstrip("/") != str(expected_homepage).rstrip("/"):
+        finding(
+            "warning",
+            f"About website is {homepage or '(empty)'}; expected {expected_homepage}",
+        )
+    lower_homepage = homepage.lower()
+    for fragment in manifest["forbidden_public_link_fragments"]:
+        if str(fragment).lower() in lower_homepage:
+            finding("warning", f"About website still contains retired link: {homepage}")
+
+    required_paths = [
+        "README.md",
+        "LICENSE.md",
+        "SECURITY.md",
+        str(specification["ci_path"]),
+    ]
+    file_text: dict[str, str] = {}
+    for path in required_paths:
+        exists, text = core._fetch_required_file(owner, name, branch, path)
+        if not exists:
+            finding("error", f"Required file is missing or unreadable: {path}")
+        else:
+            file_text[path] = text
+
+    readme = file_text.get("README.md", "")
+    license_text = file_text.get("LICENSE.md", "")
+    workflow = file_text.get(str(specification["ci_path"]), "")
+    lower_readme = readme.lower()
+
+    for fragment in manifest["forbidden_public_link_fragments"]:
+        if str(fragment).lower() in lower_readme:
+            finding("error", f"README contains forbidden public link: {fragment}")
+
+    if specification.get("require_portfolio_backlink"):
+        if str(manifest["canonical_portfolio_url"]) not in readme:
+            finding("error", "README is missing the canonical portfolio backlink")
+
+    combined_rights = f"{readme}\n{license_text}"
+    if specification["rights_mode"] == "all-rights-reserved":
+        if str(manifest["rights_notice"]) not in combined_rights:
+            finding("error", "Canonical Gateway rights notice is missing")
+    elif specification["rights_mode"] == "mit-sealed":
+        if "Gateway Information Group LLC" not in combined_rights:
+            finding("error", "Gateway rights holder is missing from the sealed MIT release")
+        if "MIT License" not in combined_rights:
+            finding("error", "MIT license declaration is missing from the sealed release")
+    else:
+        finding("error", f"Unknown rights mode: {specification['rights_mode']}")
+
+    if workflow:
+        if not re.search(r"(?m)^permissions:\s*\n\s+contents:\s*read\s*$", workflow):
+            finding("warning", "CI does not visibly declare read-only contents permission")
+        if "timeout-minutes:" not in workflow:
+            finding("warning", "CI has no visible job timeout")
+        if "persist-credentials: false" not in workflow:
+            finding("warning", "CI checkout does not visibly disable persisted credentials")
+        if "concurrency:" not in workflow:
+            finding("warning", "CI has no visible superseded-run concurrency control")
+
+    return result
+
+
+def audit_repositories(audit: core.Audit, manifest: dict[str, Any]) -> None:
+    owner = str(manifest["owner"])
+    results = [
+        audit_repository_from_inventory(owner, specification, manifest)
+        for specification in manifest["repositories"]
+    ]
+    for result in sorted(results, key=lambda item: item.name.lower()):
+        audit.findings.extend(result.findings)
+        metadata = result.metadata
+        audit.repository_rows.append(
+            {
+                "repository": result.name,
+                "status": (
+                    "ERROR"
+                    if any(item.severity == "error" for item in result.findings)
+                    else "WARN"
+                    if any(item.severity == "warning" for item in result.findings)
+                    else "PASS"
+                ),
+                "description": "set" if str(metadata.get("description") or "").strip() else "missing",
+                "topics": str(len(metadata.get("topics") or [])),
+                "homepage": str(metadata.get("homepage") or "").strip() or "—",
+            }
+        )
+
+
 def audit_portfolio_site(audit: core.Audit, manifest: dict[str, object]) -> None:
     url = str(manifest["canonical_portfolio_url"])
     try:
@@ -197,27 +363,21 @@ def audit_public_profile_render(audit: core.Audit, manifest: dict[str, object]) 
 
 
 def main() -> int:
-    original_executor = core.ThreadPoolExecutor
     original_attempts = core.HTTP_ATTEMPTS
-
-    def serial_executor(*args: object, **kwargs: object):
-        kwargs["max_workers"] = 1
-        return original_executor(*args, **kwargs)
-
-    core.ThreadPoolExecutor = serial_executor
     core.HTTP_ATTEMPTS = 6
     core.audit_profile_readme = audit_profile_readme
+    core.audit_public_inventory = audit_public_inventory
+    core.audit_repositories = audit_repositories
     core.audit_portfolio_site = audit_portfolio_site
     core.audit_public_profile_render = audit_public_profile_render
     try:
         print(
             f"Cooling down GitHub API requests for {API_COOLDOWN_SECONDS} seconds "
-            "before the serialized portfolio scan."
+            "before the low-request portfolio scan."
         )
         time.sleep(API_COOLDOWN_SECONDS)
         return core.main()
     finally:
-        core.ThreadPoolExecutor = original_executor
         core.HTTP_ATTEMPTS = original_attempts
 
 
