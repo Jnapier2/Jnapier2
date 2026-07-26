@@ -1,13 +1,32 @@
 {
   "schema_version": 1,
   "case_study": "Reliable Project Delivery Framework",
-  "case_study_version": "1.1.0",
+  "case_study_version": "1.2.0",
   "source_framework_version": "2.17.2",
   "source_package_filename": "chatgpt_new_thread_parameters_v2.17.2_fleet_handoff_thread_naming_2026-07-25_14-41-51_CDT.zip",
   "source_package_sha256": "e0615823cfde6ae6eff6d4c028a6f2f1f54d251df90bd64f3cad8a6475b6d1d6",
-  "release_date": "2026-07-25",
-  "generated_utc": "2026-07-25T23:19:01Z",
+  "source_package_role": "Historical checksum-verified validation baseline; not rewritten by the v1.2.0 public policy correction.",
+  "release_date": "2026-07-26",
+  "generated_utc": "2026-07-26T15:27:00Z",
   "data_classification": "public",
+  "public_policy_revision": {
+    "id": "2026-07-26-local-independent-operation",
+    "status": "supersedes fleet ownership and handoff language",
+    "computer_recognition_allowed_for": [
+      "diagnostic labels",
+      "sensible local paths and defaults",
+      "local logs, state, and export organization",
+      "performance guidance"
+    ],
+    "computer_recognition_prohibited_for": [
+      "launch blocking",
+      "cross-computer ownership",
+      "required handoffs",
+      "shared leases or write fences",
+      "feature partitioning by computer",
+      "control of another independently running copy"
+    ]
+  },
   "validation": {
     "release_package_files": 15,
     "zip_integrity": "pass",
@@ -38,8 +57,10 @@
     "project_specific_acceptance_required": true,
     "physical_multi_system_verification_claimed": false,
     "shared_coordinator_deployed": false,
+    "cross_computer_launch_restrictions_included": false,
     "running_processes_modified": false,
-    "executable_included": false
+    "executable_included": false,
+    "historical_metrics_rerun_for_policy_revision": false
   },
   "privacy_exclusions": [
     "raw machine reports",
