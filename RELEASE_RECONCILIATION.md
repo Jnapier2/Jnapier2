@@ -2,9 +2,9 @@
 
 This ledger distinguishes the source actually present on GitHub from newer verified builds that cannot yet be promoted safely. It prevents an older tree from being relabeled as code it does not contain while keeping successor evidence visible.
 
-Last reconciled: **July 26, 2026 at 3:10 PM CDT**
+Last reconciled: **July 26, 2026 at 3:30 PM CDT**
 
-All 17 public project default-branch heads and every declared version marker were checked in this pass. Exact 40-character reviewed heads are retained in [`.github/release-reconciliation.json`](.github/release-reconciliation.json). Dependency and installation controls for all 18 public repositories are recorded in [Dependency Reconciliation](DEPENDENCY_RECONCILIATION.md). Public claims, evidence types, limitations, and interview explanations are recorded in [Public Project Claims and Speaking Guide](PUBLIC_CLAIMS.md).
+All 17 public project default-branch heads and every declared version marker were checked in this pass. Exact 40-character reviewed heads are retained in [`.github/release-reconciliation.json`](.github/release-reconciliation.json). Dependency and installation controls for all 18 public repositories are recorded in [Dependency Reconciliation](DEPENDENCY_RECONCILIATION.md).
 
 The profile case study **Reliable Project Delivery Framework v1.2.0** preserves the historical framework **v2.17.2** validation baseline, including the 26/26 rule-family, 40/40 scenario, and 20/20 negative-safeguard results, while superseding fleet ownership and handoff language with independent local operation.
 
@@ -12,7 +12,7 @@ The profile case study **Reliable Project Delivery Framework v1.2.0** preserves 
 |---|---:|---:|---|---|
 | BotOps Manager | 1.13.0 | 1.13.0 | `58f6925d` | Current; fresh discovery is distinguished from retained registry evidence after incomplete scans |
 | Digital Asset Governance Audit | Current | Current | `05e2513f` | Current; deterministic fixture results are explicitly separated from production KPIs |
-| MediaTaggerBot | 0.5.7 | 0.5.7 | `8e9ebe82` | Current source authority; public claims are limited to reviewable source, tests, and safeguards |
+| MediaTaggerBot | 0.5.7 | 0.5.7 | `8e9ebe82` | Current source authority; public documentation is limited to reviewable source, tests, and safeguards |
 | Chicago Food Inspection Outcomes | Current | Current | `a3ae06d4` | Current analysis; 13,333 is defined as inspection records, not unique restaurants |
 | Avalon Q Supervisor | Current | Current | `621791f9` | GitHub-only source authority; hardware recovery remains fixture-tested rather than physically executed here |
 | Automation Reliability Case Studies | Current | Current | `553719f7` | Current documentation-only studies; no deployment claim |
@@ -44,13 +44,12 @@ The checksum companion for `ChatGPT_Text_Chunker_v1.10.0_20260718_0111_CDT.zip` 
 
 ## Completed reconciliations
 
-- **Explainable public claims:** all 18 public repositories now have a canonical core claim, evidence sources, an interview-ready talk track, an explicit limitation, and classified quantitative claims in `.github/public-claims.json` and `PUBLIC_CLAIMS.md`. Fixture outputs, configuration limits, content scope, historical records, and measured outcomes are not presented as interchangeable.
 - **BotOps Manager 1.13.0:** the README no longer claims universal fresh observation. It explains that incomplete scans preserve earlier registry evidence and that control still requires fresh launcher and process identity checks.
 - **Beta Earth v0.4.11 / recorded v0.5.0:** the historical successor digest remains visible, but the isolated originating test count was removed from the public README because the missing archive prevents rerun or inspection.
 - **Windows Health Audit:** the README now describes the durable immutable Action pin instead of a stale checkout major-version label.
 - **Kalshi 15m Sell Preview 41.22.3:** the unsupported “Three-minute start” promise was replaced with “Quick start.” The README, manifest, and checksum inventory were regenerated together; the security matrix, cross-platform smoke tests, dependency review, and CodeQL passed without runtime or version changes.
 - **Reliable Project Delivery Framework v1.2.0:** the sealed public case-study files require independent local operation. Computer recognition may improve local labels, paths, defaults, diagnostics, log/state/export organization, and performance guidance, but it cannot block another computer, impose cross-computer ownership, require handoff, or create shared leases or write fences. The historical v2.17.2 source archive and its validation totals remain unchanged and are not falsely presented as rerun.
-- **MediaTaggerBot 0.5.7:** the verified runtime set remains unchanged. The public README no longer uses private library or outcome counts as independently verifiable performance evidence; it limits public claims to source, tests, and documented safeguards. CI still separates runtime, local-project, and test-tool installation, fails closed, preserves bounded diagnostics, and tests launcher/lock/metadata agreement. Monthly Actions proposals are review-only and never auto-merge.
+- **MediaTaggerBot 0.5.7:** the verified runtime set remains unchanged. The public README no longer uses private library or outcome counts as independently verifiable performance evidence; it limits public documentation to source, tests, and documented safeguards. CI still separates runtime, local-project, and test-tool installation, fails closed, preserves bounded diagnostics, and tests launcher/lock/metadata agreement. Monthly Actions proposals are review-only and never auto-merge.
 - **Chicago Food Inspection Outcomes:** exact Python 3.12 pins remain inside the validated major-version lines. CI uses binary distributions, checks the resolved environment, runs offline retrieval tests, and executes the unchanged notebook and data snapshot. Monthly pip and Actions proposals are review-only.
 - **Safe Video Downloader 1.14.2:** the exact yt-dlp contract, authorized-use boundary, full offline suite, and five-second watchdog remain authoritative. Monthly pip and Actions proposals are review-only.
 - **MP3 Downloader 1.0.0:** the existing SHA-256-locked binary runtime remains unchanged. CI checks the installed dependency graph before runtime imports, compilation, and offline tests. The dedicated Actions compatibility pass upgraded immutable checkout/setup-python references to v7.0.1/v7.0.0 and passed the Windows Python 3.11 and 3.13 matrix. Monthly grouped proposals are review-only.

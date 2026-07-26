@@ -12,21 +12,17 @@ I turn complex systems into trusted ones. My background spans more than 10 years
 
 ## Selected evidence, with context
 
-These are not popularity metrics. Each figure is publicly traceable and included only when it explains scope, method, or operating discipline.
+Each figure is defined in the public project summaries and source ledger below.
 
 | Evidence | What it means | Why it matters |
 |---|---|---|
 | **13,333 public inspection records across three Chicago ZIP codes** | One row is an inspection, not a restaurant; the study covers 2010–2018 | Shows reproducible analysis and careful separation of inspection outcomes from facility-risk classification |
 | **29 authored cases across five shifts** | Every case participates in branching state and a full-campaign acceptance test | Shows product scope, persistent state, accessible interaction, and end-to-end testing |
-| **17 public projects reconciled to exact GitHub source** | Each ledger entry is tied to the version and reviewed default-branch commit actually present | Shows portfolio-wide version governance and avoids presenting older code as a newer build |
+| **[17 public projects reconciled to exact GitHub source](RELEASE_RECONCILIATION.md)** | Each ledger entry is tied to the version and reviewed default-branch commit actually present | Shows portfolio-wide version governance and avoids presenting older code as a newer build |
 
-[Definitions, sources, limitations, and plain-language explanations](PROFILE_STRATEGY.md#evidence-definitions)
+## Professional focus
 
-[Project-by-project claims, evidence, limitations, and interview explanations](PUBLIC_CLAIMS.md)
-
-## For hiring teams
-
-I’m open to senior roles in analytics, data governance, information management, and reliable automation. For a fast review, use **Start here** for flagship work, **Featured framework** for delivery controls, and **More projects** for applied analytics, product design, supervision, and Windows tooling.
+I’m open to senior roles in analytics, data governance, information management, and reliable automation. My strongest work is grouped below into flagship projects, a delivery framework, and broader applied projects.
 
 ## Start here
 
@@ -43,7 +39,7 @@ I’m open to senior roles in analytics, data governance, information management
 - **[Chicago Food Inspection Outcomes, 2010–2018](https://github.com/Jnapier2/chicago-food-inspections-analysis)** — Reproducibly analyzes 13,333 public inspection records, separates outcome from facility risk, and surfaces decision-relevant follow-up questions without overstating the data.
 - **[Avalon Q Supervisor](https://github.com/Jnapier2/avalon-q-supervisor)** — Turns local device telemetry into clear health states, requires two independent approvals for recovery, enforces durable restart limits, and records privacy-conscious decision evidence.
 - **[Automation Reliability Case Studies](https://github.com/Jnapier2/automation-reliability-case-studies)** — Three documented studies show how outcome checks, identity-bound supervision, integrity verification, limited recovery, and explicit stop conditions contain risk across uncertain system boundaries.
-- **[Beta Earth](https://github.com/Jnapier2/beta-earth)** — A working browser RPG with portable local launchers, resilient saves, bounded validation, and verified public source at v0.4.11. The newer verified v0.5.0 final remains visible behind an exact-source checksum gate instead of being falsely represented by the older tree.
+- **[Beta Earth](https://github.com/Jnapier2/beta-earth)** — A working browser RPG with portable local launchers, resilient saves, bounded validation, and verified public source at v0.4.11. The newer recorded v0.5.0 final remains visible behind an exact-source checksum gate instead of being falsely represented by the older tree.
 
 <details>
 <summary><strong>Additional tools and learning releases</strong></summary>
