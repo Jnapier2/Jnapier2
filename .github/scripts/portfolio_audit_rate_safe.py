@@ -16,7 +16,7 @@ ORIGINAL_REQUEST_BYTES = core.request_bytes
 
 
 def bounded_executor(*args: Any, **kwargs: Any) -> OriginalThreadPoolExecutor:
-    requested = kwargs.get("max_workers")
+    requested = kwargs.pop("max_workers", None)
     if requested is None and args:
         requested = args[0]
         args = args[1:]
