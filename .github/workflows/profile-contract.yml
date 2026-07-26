@@ -24,6 +24,7 @@ on:
       - .github/scripts/dependency_reconciliation_audit.py
       - .github/scripts/dependency_reconciliation_rate_safe.py
       - .github/scripts/dependabot_policy_audit.py
+      - .github/scripts/dependabot_policy_rate_safe.py
       - .github/scripts/action_pin_audit.py
       - .github/scripts/public_sanitization_audit.py
       - .github/scripts/public_sanitization_runner.py
@@ -54,6 +55,7 @@ on:
       - .github/scripts/dependency_reconciliation_audit.py
       - .github/scripts/dependency_reconciliation_rate_safe.py
       - .github/scripts/dependabot_policy_audit.py
+      - .github/scripts/dependabot_policy_rate_safe.py
       - .github/scripts/action_pin_audit.py
       - .github/scripts/public_sanitization_audit.py
       - .github/scripts/public_sanitization_runner.py
@@ -100,6 +102,7 @@ jobs:
           .github/scripts/dependency_reconciliation_audit.py
           .github/scripts/dependency_reconciliation_rate_safe.py
           .github/scripts/dependabot_policy_audit.py
+          .github/scripts/dependabot_policy_rate_safe.py
           .github/scripts/action_pin_audit.py
           .github/scripts/public_sanitization_audit.py
           .github/scripts/public_sanitization_runner.py
@@ -130,7 +133,7 @@ jobs:
       - name: Audit per-ecosystem Dependabot policy and auto-merge prohibition
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: python .github/scripts/dependabot_policy_audit.py
+        run: python .github/scripts/dependabot_policy_rate_safe.py
 
       - name: Audit immutable GitHub Action references
         env:
