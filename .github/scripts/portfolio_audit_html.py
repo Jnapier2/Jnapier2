@@ -6,10 +6,13 @@ Copyright © 2026 Gateway Information Group LLC. All rights reserved.
 from __future__ import annotations
 
 import re
+import time
 import urllib.parse
 from html.parser import HTMLParser
 
 import portfolio_audit as core
+
+API_COOLDOWN_SECONDS = 30
 
 
 class PageTextParser(HTMLParser):
@@ -195,6 +198,7 @@ def audit_public_profile_render(audit: core.Audit, manifest: dict[str, object]) 
 
 def main() -> int:
     original_executor = core.ThreadPoolExecutor
+    original_attempts = core.HTTP_ATTEMPTS
 
     def serial_executor(*args: object, **kwargs: object):
         kwargs["max_workers"] = 1
@@ -205,7 +209,16 @@ def main() -> int:
     core.audit_profile_readme = audit_profile_readme
     core.audit_portfolio_site = audit_portfolio_site
     core.audit_public_profile_render = audit_public_profile_render
-    return core.main()
+    try:
+        print(
+            f"Cooling down GitHub API requests for {API_COOLDOWN_SECONDS} seconds "
+            "before the serialized portfolio scan."
+        )
+        time.sleep(API_COOLDOWN_SECONDS)
+        return core.main()
+    finally:
+        core.ThreadPoolExecutor = original_executor
+        core.HTTP_ATTEMPTS = original_attempts
 
 
 if __name__ == "__main__":
