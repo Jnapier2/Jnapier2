@@ -14,12 +14,15 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
 LEDGER_PATH = ROOT / ".github" / "release-reconciliation.json"
 PORTFOLIO_MANIFEST_PATH = ROOT / ".github" / "portfolio-manifest.json"
+OUTPUT_DIR = ROOT / "audit-output"
+EVIDENCE_PATH = OUTPUT_DIR / "release-reconciliation-audit.json"
 RIGHTS_NOTICE = "Copyright © 2026 Gateway Information Group LLC. All rights reserved."
 ALLOWED_STATUSES = {
     "current",
@@ -50,7 +53,7 @@ def load_json(path: Path) -> dict[str, Any]:
 def github_headers() -> dict[str, str]:
     headers = {
         "Accept": "application/vnd.github+json",
-        "User-Agent": "Gateway-Release-Reconciliation-Audit/1.1",
+        "User-Agent": "Gateway-Release-Reconciliation-Audit/1.2",
         "X-GitHub-Api-Version": "2022-11-28",
     }
     token = os.environ.get("GITHUB_TOKEN", "").strip()
@@ -103,6 +106,30 @@ def workflow_message(level: str, message: str) -> None:
     print(f"::{level}::{message}")
 
 
+def write_evidence(
+    *,
+    result: str,
+    errors: list[str],
+    warnings: list[str],
+    verified_heads: int,
+    project_count: int,
+) -> None:
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    evidence = {
+        "schema_version": 1,
+        "generated_utc": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+        "result": result,
+        "public_project_records": project_count,
+        "exact_reviewed_heads_verified": verified_heads,
+        "structural_or_version_errors": len(errors),
+        "pending_or_blocked_successors": len(warnings),
+        "errors": errors,
+        "warnings": warnings,
+        "rights_notice": RIGHTS_NOTICE,
+    }
+    EVIDENCE_PATH.write_text(json.dumps(evidence, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
 def main() -> int:
     errors: list[str] = []
     warnings: list[str] = []
@@ -112,7 +139,15 @@ def main() -> int:
         ledger = load_json(LEDGER_PATH)
         portfolio = load_json(PORTFOLIO_MANIFEST_PATH)
     except (OSError, ValueError, json.JSONDecodeError) as exc:
-        print(f"Release reconciliation files are unreadable: {exc}", file=sys.stderr)
+        message = f"Release reconciliation files are unreadable: {exc}"
+        write_evidence(
+            result="FAIL",
+            errors=[message],
+            warnings=[],
+            verified_heads=0,
+            project_count=0,
+        )
+        print(message, file=sys.stderr)
         return 1
 
     if ledger.get("schema_version") != 1:
@@ -216,6 +251,15 @@ def main() -> int:
     if summary_path:
         with Path(summary_path).open("a", encoding="utf-8") as handle:
             handle.write("\n".join(summary_lines) + "\n")
+
+    result = "FAIL" if errors else "PASS"
+    write_evidence(
+        result=result,
+        errors=errors,
+        warnings=warnings,
+        verified_heads=verified_heads,
+        project_count=len(projects),
+    )
 
     for message in warnings:
         workflow_message("warning", message)
