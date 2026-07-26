@@ -7,9 +7,9 @@ This case study presents the design, validation results, and professional skills
 - The project problem and operating goals
 - The high-level control model
 - The decision and release flow
-- Cross-computer lock isolation, ownership, and clean-handoff principles
+- Independent local operation and helpful, non-restrictive computer-recognition principles
 - Persistent project and thread naming principles
-- Aggregated validation results
+- Aggregated historical validation results
 - Public limitations and claim boundaries
 - Rights and integrity metadata for this case-study release
 
@@ -27,7 +27,9 @@ This case study presents the design, validation results, and professional skills
 
 ## Claim boundary
 
-The published metrics describe a document-level audit and scenario simulation of the v2.17.2 framework package. They establish coverage and internal consistency within that package. They do not certify every future implementation, prove physical compatibility across every computer, deploy a shared lease coordinator, move a running process, or replace project-specific acceptance testing.
+The published metrics describe a document-level audit and scenario simulation of the historical v2.17.2 framework package. They establish coverage and internal consistency within that package. Public case-study v1.2.0 supersedes fleet ownership and handoff language with independent local operation; it does not rewrite the historical source archive or claim that its original scenarios were rerun.
+
+This release does not certify every future implementation, prove physical compatibility across every computer, deploy a shared coordinator, impose cross-computer ownership or launch restrictions, move a running process, or replace project-specific acceptance testing.
 
 This public release contains no executable code, private data, secrets, or third-party content.
 
