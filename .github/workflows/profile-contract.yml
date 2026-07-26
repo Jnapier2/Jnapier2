@@ -22,6 +22,7 @@ on:
       - .github/scripts/release_reconciliation_audit.py
       - .github/scripts/release_reconciliation_rate_safe.py
       - .github/scripts/dependency_reconciliation_audit.py
+      - .github/scripts/dependency_reconciliation_rate_safe.py
       - .github/scripts/dependabot_policy_audit.py
       - .github/scripts/action_pin_audit.py
       - .github/scripts/public_sanitization_audit.py
@@ -51,6 +52,7 @@ on:
       - .github/scripts/release_reconciliation_audit.py
       - .github/scripts/release_reconciliation_rate_safe.py
       - .github/scripts/dependency_reconciliation_audit.py
+      - .github/scripts/dependency_reconciliation_rate_safe.py
       - .github/scripts/dependabot_policy_audit.py
       - .github/scripts/action_pin_audit.py
       - .github/scripts/public_sanitization_audit.py
@@ -96,6 +98,7 @@ jobs:
           .github/scripts/release_reconciliation_audit.py
           .github/scripts/release_reconciliation_rate_safe.py
           .github/scripts/dependency_reconciliation_audit.py
+          .github/scripts/dependency_reconciliation_rate_safe.py
           .github/scripts/dependabot_policy_audit.py
           .github/scripts/action_pin_audit.py
           .github/scripts/public_sanitization_audit.py
@@ -122,7 +125,7 @@ jobs:
       - name: Audit dependency and installation contracts
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: python .github/scripts/dependency_reconciliation_audit.py
+        run: python .github/scripts/dependency_reconciliation_rate_safe.py
 
       - name: Audit per-ecosystem Dependabot policy and auto-merge prohibition
         env:
