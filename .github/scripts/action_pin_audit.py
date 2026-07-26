@@ -8,6 +8,7 @@ from __future__ import annotations
 import json
 import os
 import re
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -18,15 +19,20 @@ ROOT = Path(__file__).resolve().parents[2]
 MANIFEST_PATH = ROOT / ".github" / "portfolio-manifest.json"
 OUTPUT_DIR = ROOT / "audit-output"
 RIGHTS_NOTICE = "Copyright © 2026 Gateway Information Group LLC. All rights reserved."
-USER_AGENT = "Gateway-Portfolio-Action-Pin-Audit/1.0"
+USER_AGENT = "Gateway-Portfolio-Action-Pin-Audit/1.1"
+HTTP_TIMEOUT_SECONDS = 20
+HTTP_ATTEMPTS = 3
+MAX_WORKFLOW_BYTES = 2_000_000
 SHA40 = re.compile(r"^[0-9a-fA-F]{40}$")
-USES = re.compile(r"(?m)^\s*(?:-\s*)?uses:\s*([^@\s]+)@([^\s#]+)")
+USES_LINE = re.compile(r"(?m)^\s*(?:-\s*)?uses:\s*([^#\r\n]+?)(?:\s+#.*)?$")
 
 
 def load_manifest() -> dict[str, Any]:
     data = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
     if data.get("schema_version") != 1:
         raise SystemExit("Unsupported portfolio manifest schema")
+    if data.get("rights_notice") != RIGHTS_NOTICE:
+        raise SystemExit("Portfolio manifest rights notice is missing or changed")
     return data
 
 
@@ -44,24 +50,60 @@ def fetch_workflow(owner: str, repository: str, path: str) -> str:
     token = os.environ.get("GITHUB_TOKEN", "").strip()
     if token:
         headers["Authorization"] = f"Bearer {token}"
-    request = urllib.request.Request(url, headers=headers)
-    try:
-        with urllib.request.urlopen(request, timeout=20) as response:
-            return response.read(2_000_001).decode("utf-8")
-    except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError, UnicodeError) as exc:
-        raise RuntimeError(f"{repository}:{path}: {exc}") from exc
+
+    last_error: Exception | None = None
+    for attempt in range(1, HTTP_ATTEMPTS + 1):
+        try:
+            request = urllib.request.Request(url, headers=headers)
+            with urllib.request.urlopen(request, timeout=HTTP_TIMEOUT_SECONDS) as response:
+                data = response.read(MAX_WORKFLOW_BYTES + 1)
+            if len(data) > MAX_WORKFLOW_BYTES:
+                raise ValueError(f"workflow exceeds {MAX_WORKFLOW_BYTES} bytes")
+            return data.decode("utf-8")
+        except (
+            urllib.error.HTTPError,
+            urllib.error.URLError,
+            TimeoutError,
+            UnicodeError,
+            ValueError,
+        ) as exc:
+            last_error = exc
+            if attempt < HTTP_ATTEMPTS:
+                time.sleep(0.75 * attempt)
+    raise RuntimeError(f"{repository}:{path}: {last_error}")
+
+
+def parse_uses_value(raw: str) -> str:
+    value = raw.strip()
+    if len(value) >= 2 and value[0] == value[-1] and value[0] in {"'", '"'}:
+        value = value[1:-1].strip()
+    return value
 
 
 def audit_workflow(repository: str, path: str, text: str) -> dict[str, Any]:
     references: list[dict[str, str]] = []
     violations: list[str] = []
-    for action, reference in USES.findall(text):
-        item = {"action": action, "reference": reference}
-        references.append(item)
-        if action.startswith("./") or action.startswith("docker://"):
+
+    for raw_value in USES_LINE.findall(text):
+        value = parse_uses_value(raw_value)
+        if value.startswith("./"):
+            references.append({"action": value, "reference": "local"})
             continue
-        if not SHA40.fullmatch(reference):
-            violations.append(f"{repository}:{path}: {action}@{reference}")
+        if value.startswith("docker://"):
+            references.append({"action": value, "reference": "container"})
+            continue
+        if "@" not in value:
+            references.append({"action": value, "reference": ""})
+            violations.append(f"{repository}:{path}: malformed uses value {value!r}")
+            continue
+
+        action, reference = value.rsplit("@", 1)
+        action = action.strip()
+        reference = reference.strip()
+        references.append({"action": action, "reference": reference})
+        if not action or not SHA40.fullmatch(reference):
+            violations.append(f"{repository}:{path}: {action or '(missing action)'}@{reference}")
+
     if not references:
         violations.append(f"{repository}:{path}: no Action references found")
     return {
@@ -122,9 +164,7 @@ def main() -> int:
     if errors:
         lines.extend(["## Action required", ""] + [f"- `{item}`" for item in errors])
     else:
-        lines.extend([
-            "Every declared external Action reference is pinned to a full 40-character commit SHA.",
-        ])
+        lines.append("Every declared external Action reference is pinned to a full 40-character commit SHA.")
     lines.extend(["", RIGHTS_NOTICE, ""])
     (OUTPUT_DIR / "action-pin-audit.md").write_text("\n".join(lines), encoding="utf-8")
 
