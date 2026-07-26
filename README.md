@@ -22,6 +22,8 @@ These are not popularity metrics. Each figure is publicly traceable and included
 
 [Definitions, sources, limitations, and plain-language explanations](PROFILE_STRATEGY.md#evidence-definitions)
 
+[Project-by-project claims, evidence, limitations, and interview explanations](PUBLIC_CLAIMS.md)
+
 ## For hiring teams
 
 I’m open to senior roles in analytics, data governance, information management, and reliable automation. For a fast review, use **Start here** for flagship work, **Featured framework** for delivery controls, and **More projects** for applied analytics, product design, supervision, and Windows tooling.

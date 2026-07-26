@@ -7,6 +7,7 @@ This document records the public-profile patterns reviewed on July 26, 2026 and 
 - Help recruiters and collaborators understand the work within one short scan.
 - Lead with verified outcomes rather than decorative statistics.
 - Use a number only when Jerry can explain what was counted, where it came from, why it matters, and what limitation applies.
+- Hold every public project—not only the profile headline—to the same source, scope, relevance, limitation, and plain-language standard.
 - Keep the profile recognizably personal without copying another creator’s design or wording.
 - Preserve stable project identities, exact release claims, accessibility, and low-maintenance reliability.
 - Use GitHub’s native profile README and six-item pin surface before introducing external widgets.
@@ -26,12 +27,13 @@ This document records the public-profile patterns reviewed on July 26, 2026 and 
 
 ## Organic implementation
 
-The profile applies the benchmark findings through four restrained changes:
+The profile applies the benchmark findings through five restrained changes:
 
 1. **Current focus** — one sentence explains the unifying direction across information governance, analytics, and local automation.
 2. **Selected evidence, with context** — three public figures show analytical scope, product scope, and portfolio governance. Every row defines the unit and explains why the figure matters.
 3. **Curated review path** — flagship work, the delivery framework, supporting projects, and hiring guidance remain visibly separated.
 4. **Hiring-team guidance** — a short section explains how to review the portfolio by role without repeating repository links or adding internal process language.
+5. **Project-by-project speaking guide** — every public repository has one explainable core claim, public evidence sources, an interview-ready description, and an explicit limitation in [`PUBLIC_CLAIMS.md`](PUBLIC_CLAIMS.md).
 
 The implementation deliberately avoids:
 
@@ -39,6 +41,7 @@ The implementation deliberately avoids:
 - animated banners, copied artwork, or decorative technology icon walls;
 - unverifiable popularity claims, synthetic activity, or release inflation;
 - private operating totals presented as publicly verifiable evidence;
+- configuration limits, fixture results, historical records, or content counts presented as measured business performance;
 - duplicated repository links that weaken the existing one-link-per-project profile contract;
 - automated feeds that can go stale, break externally, or overshadow the work itself.
 
@@ -57,6 +60,23 @@ Numbers are not included merely because quantified profiles are fashionable. One
 Private MediaTagger library and outcome totals were removed from the profile and the project README because the operating records are not public. The private workflow may still inform design decisions, but the public claim is limited to safeguards that can be reviewed in source and tests.
 
 The detailed Reliable Project Delivery Framework scorecard remains in its case study, where the validation categories, historical-package boundary, and non-rerun limitation are explained. It is not used as an isolated headline metric on the profile.
+
+## All-project claims standard
+
+The same scrutiny applies below the profile headline. [`.github/public-claims.json`](.github/public-claims.json) is the machine-readable authority for all 18 public repositories, including the profile repository. [`PUBLIC_CLAIMS.md`](PUBLIC_CLAIMS.md) provides the corresponding human speaking guide.
+
+Every repository record must include:
+
+- one core public claim;
+- a plain-language talk track;
+- public evidence sources or a clearly labeled historical record;
+- at least one limitation;
+- README markers that support the claim and retire unsupported wording; and
+- a classification for every important number.
+
+Quantitative claims are separated into public-dataset measures, synthetic fixtures, content scope, configuration limits, authorization invariants, protocol constraints, historical records, market scope, and portfolio inventory. A five-second timeout is therefore described as a control, not speed. A synthetic eight-record fixture is test coverage, not a production KPI. A retained digest for an unavailable package is lineage evidence, not current public testing. A 10 GiB transfer cap is an admission boundary, not throughput.
+
+Portfolio health checks this registry against every project README. A future public claim must pass the same source, definition, relevance, limitation, and explanation rules before it is accepted.
 
 ## Evidence definitions
 
@@ -100,7 +120,8 @@ Pin changes remain a GitHub account-setting action and are not represented as co
 ## Maintenance rules
 
 - Revisit this strategy after a material flagship release or at least quarterly.
-- Change public evidence only when the supporting repository, manifest, or validation record is available and reviewed.
+- Change public evidence only when the supporting repository, manifest, dataset, test, or historical record is available and reviewed.
+- Add or revise the matching record in `.github/public-claims.json` and `PUBLIC_CLAIMS.md` whenever a public claim changes.
 - Remove or relocate a figure when its source is private, its definition requires too much explanation, or its professional relevance is weak.
 - Keep the opening screen concise; move depth into project READMEs and reconciliation records.
 - Prefer native Markdown and GitHub surfaces over externally rendered widgets.
@@ -114,6 +135,7 @@ The strategy is working when a reviewer can answer these questions without openi
 
 - What professional problems does Jerry solve?
 - What does each headline number count, and why is it relevant?
+- What can Jerry confidently say about every public project?
 - Which three projects should be reviewed first?
 - Where are the analytics, governance, automation, and product examples?
 - What operating principles distinguish the work?
