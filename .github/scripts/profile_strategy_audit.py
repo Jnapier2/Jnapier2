@@ -18,7 +18,8 @@ RIGHTS_NOTICE = "Copyright © 2026 Gateway Information Group LLC. All rights res
 REQUIRED_README_MARKERS = (
     "**Current focus:** Building local-first tools and data systems",
     "## Evidence at a glance",
-    "38,171-file media audit",
+    "**38,171-file media audit** with 838 verified or already-current outcomes",
+    "A private 38,171-file operating audit records 838 verified or already-current outcomes",
     "13,333 public inspection records",
     "26/26 control areas, 40/40 scenario simulations, and 20/20 negative/conflict checks",
     "29 branching support cases across five shifts",
@@ -118,7 +119,8 @@ def main() -> int:
         "generated_utc": generated_utc,
         "result": result,
         "profile_sections_checked": 2,
-        "verified_evidence_markers_checked": 4,
+        "verified_evidence_claims_checked": 4,
+        "media_evidence_locations_checked": 2,
         "benchmark_references_checked": 8,
         "pin_entries_checked": 6,
         "external_widget_policy": "deferred unless owned, bounded, and professionally useful",
@@ -137,7 +139,8 @@ def main() -> int:
         "",
         f"- Result: **{result}**",
         "- Public profile sections checked: **2**",
-        "- Verified evidence markers checked: **4**",
+        "- Verified evidence claims checked: **4**",
+        "- Media evidence locations checked: **2**",
         "- Benchmark references checked: **8**",
         "- Pin entries checked: **6**",
         "",
@@ -147,7 +150,7 @@ def main() -> int:
         lines.extend(f"- {error}" for error in errors)
     else:
         lines.append(
-            "The benchmark index, organic profile implementation, verified evidence, "
+            "The benchmark index, organic profile implementation, complete evidence claims, "
             "recruiter path, pin strategy, and external-widget boundary are intact."
         )
     lines.extend(
