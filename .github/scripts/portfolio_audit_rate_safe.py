@@ -6,6 +6,7 @@ Copyright © 2026 Gateway Information Group LLC. All rights reserved.
 from __future__ import annotations
 
 import time
+import urllib.parse
 from concurrent.futures import ThreadPoolExecutor as OriginalThreadPoolExecutor
 from typing import Any
 
@@ -13,6 +14,8 @@ import portfolio_audit as core
 import portfolio_audit_html as rendered
 
 ORIGINAL_REQUEST_BYTES = core.request_bytes
+ORIGINAL_REQUEST_JSON = core.request_json
+REPOSITORY_METADATA_CACHE: dict[tuple[str, str], dict[str, Any]] = {}
 
 
 def bounded_executor(*args: Any, **kwargs: Any) -> OriginalThreadPoolExecutor:
@@ -40,10 +43,37 @@ def rate_safe_request_bytes(*args: Any, **kwargs: Any) -> tuple[int, str, bytes]
     raise last_error
 
 
+def cached_request_json(
+    url: str,
+    *,
+    method: str = "GET",
+    body: dict[str, Any] | None = None,
+) -> Any:
+    parsed = urllib.parse.urlparse(url)
+    parts = [urllib.parse.unquote(part) for part in parsed.path.split("/") if part]
+
+    if method == "GET" and body is None and len(parts) == 3:
+        if parts[0] == "users" and parts[2] == "repos":
+            payload = ORIGINAL_REQUEST_JSON(url, method=method, body=body)
+            if isinstance(payload, list):
+                owner = parts[1]
+                for record in payload:
+                    if isinstance(record, dict) and record.get("name"):
+                        REPOSITORY_METADATA_CACHE[(owner, str(record["name"]))] = record
+            return payload
+        if parts[0] == "repos":
+            cached = REPOSITORY_METADATA_CACHE.get((parts[1], parts[2]))
+            if cached is not None:
+                return cached
+
+    return ORIGINAL_REQUEST_JSON(url, method=method, body=body)
+
+
 core.HTTP_ATTEMPTS = max(core.HTTP_ATTEMPTS, 5)
 core.HTTP_TIMEOUT_SECONDS = max(core.HTTP_TIMEOUT_SECONDS, 20)
 core.ThreadPoolExecutor = bounded_executor
 core.request_bytes = rate_safe_request_bytes
+core.request_json = cached_request_json
 
 
 if __name__ == "__main__":
