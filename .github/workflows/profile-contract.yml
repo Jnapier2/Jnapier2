@@ -22,6 +22,7 @@ on:
       - .github/scripts/portfolio_audit_html.py
       - .github/scripts/profile_strategy_audit.py
       - .github/scripts/public_claims_audit.py
+      - .github/scripts/public_claims_rate_safe.py
       - .github/scripts/project_description_audit.py
       - .github/scripts/release_reconciliation_audit.py
       - .github/scripts/dependency_reconciliation_audit.py
@@ -54,6 +55,7 @@ on:
       - .github/scripts/portfolio_audit_html.py
       - .github/scripts/profile_strategy_audit.py
       - .github/scripts/public_claims_audit.py
+      - .github/scripts/public_claims_rate_safe.py
       - .github/scripts/project_description_audit.py
       - .github/scripts/release_reconciliation_audit.py
       - .github/scripts/dependency_reconciliation_audit.py
@@ -99,6 +101,7 @@ jobs:
           .github/scripts/portfolio_audit_html.py
           .github/scripts/profile_strategy_audit.py
           .github/scripts/public_claims_audit.py
+          .github/scripts/public_claims_rate_safe.py
           .github/scripts/project_description_audit.py
           .github/scripts/release_reconciliation_audit.py
           .github/scripts/dependency_reconciliation_audit.py
@@ -126,7 +129,7 @@ jobs:
       - name: Audit public project claims and speaking guide
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: python .github/scripts/public_claims_audit.py
+        run: python .github/scripts/public_claims_rate_safe.py
 
       - name: Audit represented and latest verified project versions
         env:
