@@ -10,14 +10,17 @@ I turn complex systems into trusted ones. My background spans more than 10 years
 
 **Current focus:** Building local-first tools and data systems where evidence, rollback, and clear operator control are part of the product.
 
-## Evidence at a glance
+## Selected evidence, with context
 
-| Verified evidence | What it demonstrates |
-|---|---|
-| **38,171-file media audit** with 838 verified or already-current outcomes | Evidence-based matching, review gates, preservation-aware decisions, and rollback-ready operations |
-| **13,333 public inspection records** analyzed reproducibly | Data quality, transparent methodology, careful interpretation, and documented limits |
-| **26/26 control areas, 40/40 scenario simulations, and 20/20 negative/conflict checks** | Systematic validation, explicit claim boundaries, and fail-closed delivery controls |
-| **29 branching support cases across five shifts** with automated full-campaign acceptance testing | Product design, state management, accessible interaction, and testable user journeys |
+These are not popularity metrics. Each figure is publicly traceable and included only when it explains scope, method, or operating discipline.
+
+| Evidence | What it means | Why it matters |
+|---|---|---|
+| **13,333 public inspection records across three Chicago ZIP codes** | One row is an inspection, not a restaurant; the study covers 2010–2018 | Shows reproducible analysis and careful separation of inspection outcomes from facility-risk classification |
+| **29 authored cases across five shifts** | Every case participates in branching state and a full-campaign acceptance test | Shows product scope, persistent state, accessible interaction, and end-to-end testing |
+| **17 public projects reconciled to exact GitHub source** | Each ledger entry is tied to the version and reviewed default-branch commit actually present | Shows portfolio-wide version governance and avoids presenting older code as a newer build |
+
+[Definitions, sources, limitations, and plain-language explanations](PROFILE_STRATEGY.md#evidence-definitions)
 
 ## For hiring teams
 
@@ -27,7 +30,7 @@ I’m open to senior roles in analytics, data governance, information management
 
 - **[BotOps Manager](https://github.com/Jnapier2/botops-manager)** — Verifies launchers and process ownership before control, consolidates health evidence, and creates bounded redacted support exports for independent Windows automation.
 - **[Digital Asset Governance Audit](https://github.com/Jnapier2/digital-asset-governance-case-study)** — Turns schema health, provenance coverage, confidence signals, and duplicate candidates into a prioritized stewardship queue with clear reasons and next steps using synthetic data.
-- **[MediaTaggerBot](https://github.com/Jnapier2/media-tagger-bot)** — Uses evidence-based matching, complete-scan gates, dry-run review, recorded changes, result verification, verified renames, and rollback manifests. A private 38,171-file operating audit records 838 verified or already-current outcomes and holds preservation-sensitive cases closed rather than guessing.
+- **[MediaTaggerBot](https://github.com/Jnapier2/media-tagger-bot)** — Uses evidence-based matching, complete-scan gates, dry-run review, recorded changes, result verification, verified renames, and rollback manifests. Uncertain or preservation-sensitive files remain visible for review instead of being forced into a match.
 
 ## Featured framework
 

@@ -2,7 +2,7 @@
 
 This ledger distinguishes the source actually present on GitHub from newer verified builds that cannot yet be promoted safely. It prevents an older tree from being relabeled as code it does not contain while keeping successor evidence visible.
 
-Last reconciled: **July 26, 2026 at 11:08 AM CDT**
+Last reconciled: **July 26, 2026 at 2:24 PM CDT**
 
 All 17 public project default-branch heads and every declared version marker were checked in this pass. Exact 40-character reviewed heads are retained in [`.github/release-reconciliation.json`](.github/release-reconciliation.json). Dependency and installation controls for all 18 public repositories are recorded in [Dependency Reconciliation](DEPENDENCY_RECONCILIATION.md).
 
@@ -12,7 +12,7 @@ The profile case study **Reliable Project Delivery Framework v1.2.0** preserves 
 |---|---:|---:|---|---|
 | BotOps Manager | 1.13.0 | 1.13.0 | `f5a8c5db` | Current; GitHub retains later public hardening |
 | Digital Asset Governance Audit | Current | Current | `05e2513f` | Current |
-| MediaTaggerBot | 0.5.7 | 0.5.7 | `e825255b` | Current source authority; hash-lock contract retained and Actions monitoring is review-only |
+| MediaTaggerBot | 0.5.7 | 0.5.7 | `8e9ebe82` | Current source authority; public claims are limited to reviewable source, tests, and safeguards |
 | Chicago Food Inspection Outcomes | Current | Current | `a3ae06d4` | Current analysis; compatible Python 3.12 pins retained and monitoring is review-only |
 | Avalon Q Supervisor | Current | Current | `621791f9` | GitHub-only source authority |
 | Automation Reliability Case Studies | Current | Current | `553719f7` | Current |
@@ -45,7 +45,7 @@ The checksum companion for `ChatGPT_Text_Chunker_v1.10.0_20260718_0111_CDT.zip` 
 ## Completed reconciliations
 
 - **Reliable Project Delivery Framework v1.2.0:** the sealed public case-study files now require independent local operation. Computer recognition may improve local labels, paths, defaults, diagnostics, log/state/export organization, and performance guidance, but it cannot block another computer, impose cross-computer ownership, require handoff, or create shared leases or write fences. The historical v2.17.2 source archive and its validation totals remain unchanged and are not falsely presented as rerun.
-- **MediaTaggerBot 0.5.7:** the verified runtime set remains unchanged. CI separates runtime, local-project, and test-tool installation, fails closed, preserves bounded diagnostics, and tests launcher/lock/metadata agreement. Monthly Actions proposals are review-only and never auto-merge.
+- **MediaTaggerBot 0.5.7:** the verified runtime set remains unchanged. The public README no longer uses private library or outcome counts as independently verifiable performance evidence; it limits public claims to source, tests, and documented safeguards. CI still separates runtime, local-project, and test-tool installation, fails closed, preserves bounded diagnostics, and tests launcher/lock/metadata agreement. Monthly Actions proposals are review-only and never auto-merge.
 - **Chicago Food Inspection Outcomes:** exact Python 3.12 pins remain inside the validated major-version lines. CI uses binary distributions, checks the resolved environment, runs offline retrieval tests, and executes the unchanged notebook and data snapshot. Monthly pip and Actions proposals are review-only.
 - **Safe Video Downloader 1.14.2:** the exact yt-dlp contract, authorized-use boundary, full offline suite, and five-second watchdog remain authoritative. Monthly pip and Actions proposals are review-only.
 - **MP3 Downloader 1.0.0:** the existing SHA-256-locked binary runtime remains unchanged. CI checks the installed dependency graph before runtime imports, compilation, and offline tests. The dedicated Actions compatibility pass upgraded immutable checkout/setup-python references to v7.0.1/v7.0.0 and passed the Windows Python 3.11 and 3.13 matrix. Monthly grouped proposals are review-only.

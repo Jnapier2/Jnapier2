@@ -5,11 +5,12 @@
   "canonical_portfolio_url": "https://jerry-napier-portfolio.netlify.app/",
   "canonical_linkedin_url": "https://www.linkedin.com/in/jrnapier",
   "rights_notice": "Copyright © 2026 Gateway Information Group LLC. All rights reserved.",
-  "description_reviewed_on": "2026-07-25",
+  "description_reviewed_on": "2026-07-26",
   "description_policy": {
     "public_copy": "Outcome-focused, recruiter-ready, and limited to capabilities present in the reviewed public source.",
     "stable_identity": "Repository slugs, package names, dependency-sensitive paths, checksummed artifacts, and historical release names remain unchanged.",
     "version_language": "Version numbers appear in public descriptions only when needed to explain a verified source or checksum-gated successor.",
+    "quantitative_claims": "Use only publicly traceable figures that can be defined in plain language, tied to a professional decision, and accompanied by a source or limitation. Private aggregates do not appear in recruiter-facing summaries.",
     "live_metadata_enforcement": "Source-controlled descriptions are canonical; live GitHub About-field drift is reported for manual correction."
   },
   "expected_public_repositories": [
@@ -86,7 +87,7 @@
       "rights_mode": "all-rights-reserved",
       "expected_homepage": "https://jerry-napier-portfolio.netlify.app/#work",
       "expected_description": "Local-first media organizer using evidence-based matching, dry-run review, recorded changes, result verification, and rollback manifests.",
-      "profile_summary": "Uses evidence-based matching, complete-scan gates, dry-run review, recorded changes, result verification, verified renames, and rollback manifests. A private 38,171-file operating audit records 838 verified or already-current outcomes and holds preservation-sensitive cases closed rather than guessing."
+      "profile_summary": "Uses evidence-based matching, complete-scan gates, dry-run review, recorded changes, result verification, verified renames, and rollback manifests. Uncertain or preservation-sensitive files remain visible for review instead of being forced into a match."
     },
     {
       "name": "chicago-food-inspections-analysis",
