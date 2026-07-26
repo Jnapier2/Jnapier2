@@ -194,6 +194,14 @@ def audit_public_profile_render(audit: core.Audit, manifest: dict[str, object]) 
 
 
 def main() -> int:
+    original_executor = core.ThreadPoolExecutor
+
+    def serial_executor(*args: object, **kwargs: object):
+        kwargs["max_workers"] = 1
+        return original_executor(*args, **kwargs)
+
+    core.ThreadPoolExecutor = serial_executor
+    core.HTTP_ATTEMPTS = 6
     core.audit_profile_readme = audit_profile_readme
     core.audit_portfolio_site = audit_portfolio_site
     core.audit_public_profile_render = audit_public_profile_render
