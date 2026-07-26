@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-07-26T20:10:00Z",
+  "generated_utc": "2026-07-26T20:30:00Z",
   "owner": "Jnapier2",
   "rights_notice": "Copyright © 2026 Gateway Information Group LLC. All rights reserved.",
-  "review_scope": "All 17 public project default-branch heads, declared version markers, dependency integrity, explainable-claims corrections, review-only dependency monitoring, the validated Image Downloader Playwright 1.61 dependency floor, the MP3 Actions v7 compatibility pass, and the Reliable Project Delivery Framework v1.2.0 local-independence correction; account-level About links, pins, and rulesets are tracked separately.",
+  "review_scope": "All 17 public project default-branch heads, declared version markers, dependency integrity, public documentation corrections, review-only dependency monitoring, the validated Image Downloader Playwright 1.61 dependency floor, the MP3 Actions v7 compatibility pass, and the Reliable Project Delivery Framework v1.2.0 local-independence correction; account-level About links, pins, and rulesets are tracked separately.",
   "reviewed_public_project_count": 17,
   "status_definitions": {
     "current": "GitHub represents the latest verified source/build version.",
