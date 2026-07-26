@@ -2,9 +2,9 @@
 
 This record identifies how each public repository controls third-party packages and installation behavior. It separates projects that need no application dependencies from exact pins, SHA-256 locks, bounded compatible ranges, and checksum-sealed releases. All 18 public repositories are covered.
 
-Last reconciled: **July 26, 2026 at 10:37 AM CDT**
+Last reconciled: **July 26, 2026 at 11:05 AM CDT**
 
-The machine-readable authority is [`.github/dependency-reconciliation.json`](.github/dependency-reconciliation.json). The Portfolio health workflow checks the declared files, version markers, installation commands, consistency gates, update-monitoring policy, absence claims, and deferred compatibility decisions.
+The machine-readable authority is [`.github/dependency-reconciliation.json`](.github/dependency-reconciliation.json). The Portfolio health workflow checks declared files, version markers, installation commands, consistency gates, update-monitoring policy, absence claims, and deferred compatibility decisions.
 
 ## Coverage
 
@@ -14,13 +14,13 @@ The machine-readable authority is [`.github/dependency-reconciliation.json`](.gi
 | BotOps Manager | No third-party runtime | Python standard library only |
 | Digital Asset Governance Audit | No third-party runtime | Python standard library only |
 | MediaTaggerBot | SHA-256 locked | Verified v0.5.7 runtime; Actions-only monthly monitoring; runtime changes remain synchronized with the BAT launcher |
-| Chicago Food Inspection Outcomes | Exact pins | Python 3.12 pins; binary install, `pip check`, notebook execution, and monthly review proposals |
+| Chicago Food Inspection Outcomes | Exact pins | Python 3.12 pins; binary install, `pip check`, notebook execution, and review-only monitoring |
 | Avalon Q Supervisor | No third-party runtime | Python standard library only |
 | Automation Reliability Case Studies | No third-party runtime | Documentation and standard-library tests only |
 | Beta Earth | No third-party runtime | Public v0.4.11 declares no runtime dependencies; v0.5.0 remains checksum-gated |
 | Safe Video Downloader | Exact pin | `yt-dlp[default]` fixed at 2026.07.04; binary install, `pip check`, and monthly review proposals |
-| MP3 Downloader | SHA-256 locked | Exact Certifi and yt-dlp artifacts; `pip check`, successful native CI, and monthly review proposals |
-| Image Downloader | Bounded ranges | Standard and optional Playwright dependencies receive separate binary install and consistency validation |
+| MP3 Downloader | SHA-256 locked | Certifi 2026.6.17 and yt-dlp 2026.7.4 remain synchronized with the application identity; Actions v7 passed native CI |
+| Image Downloader | Bounded ranges | Standard dependencies plus Playwright 1.61.0 receive separate binary installation and consistency validation |
 | Large Text Chunker | No third-party runtime | Dependency-free public v1.0.0; v1.10.0 remains checksum-gated |
 | NetLossDoctor | No third-party runtime | Windows PowerShell and operating-system tools only |
 | LAN Router Comms | No third-party runtime | Windows PowerShell and operating-system cryptography/networking only |
@@ -33,21 +33,27 @@ The machine-readable authority is [`.github/dependency-reconciliation.json`](.gi
 
 Review-only monitors create dependency or GitHub Actions proposals; they do not auto-merge and never replace native install, test, vulnerability, manifest, SBOM, or checksum gates.
 
-- **MediaTaggerBot:** GitHub Actions monitoring only. Automated review correctly identified that package proposals cannot update the two embedded BAT launcher maps, so runtime changes remain a coordinated release task.
-- **Chicago Food Inspection Outcomes:** monthly grouped minor/patch Python and Action proposals, limited to one open proposal per ecosystem.
+- **MediaTaggerBot:** GitHub Actions monitoring only. Package proposals cannot update the two embedded BAT launcher maps, so runtime changes remain a coordinated release task.
+- **Chicago Food Inspection Outcomes:** monthly grouped minor/patch Python and Action proposals, limited to one open proposal per ecosystem. Matplotlib 3.11.x is ignored until a dedicated figure-compatibility review.
 - **Safe Video Downloader:** monthly grouped minor/patch Python and Action proposals, limited to one open proposal per ecosystem.
-- **MP3 Downloader:** monthly grouped minor/patch Python and Action proposals, limited to one open proposal per ecosystem.
-- **Image Downloader:** monthly grouped minor/patch proposals plus a separate optional-browser CI job that installs `requirements-browser.txt`, runs `pip check`, and imports Playwright without downloading browsers.
+- **MP3 Downloader:** monthly grouped proposals remain behind the exact hash and embedded runtime-identity checks. The portfolio-validated checkout and setup-python v7 revisions passed both Windows jobs.
+- **Image Downloader:** monthly grouped proposals plus a separate optional-browser job that installs `requirements-browser.txt`, runs `pip check`, and imports Playwright without downloading browsers.
 - **Kalshi 10×1¢:** no monitoring file was merged because its sealed inventory rejected the unlisted file. Adding it requires a complete release regeneration.
 - **Kalshi 15m:** the existing weekly monitored queue remains unchanged because a cadence-only edit would require resealing the entire preview.
+
+## Applied and rejected candidates
+
+- **Applied — Image Downloader Playwright 1.61.0:** standard tests and the optional-browser install, consistency, and import job passed; automated review found no remaining issue.
+- **Applied — MP3 GitHub Actions v7:** exact reviewed Action commits passed the Python 3.11/3.13 matrix without changing the application or runtime lock.
+- **Rejected — Chicago Matplotlib 3.11.1:** upstream text/font changes may alter rendered output; the current 3.10.9 line remains until a dedicated notebook and figure-regression pass.
+- **Rejected — MP3 Certifi 2026.7.22:** exact artifacts installed, passed `pip check`, imported, and compiled, but native acceptance failed because the lock drifted from `EXPECTED_RUNTIME_PINS`. The known-good 2026.6.17 runtime remains active.
 
 ## Deliberately deferred compatibility changes
 
 - **MediaTaggerBot runtime packages:** any update must synchronize package metadata, the SHA-256 lock, both BAT launcher maps, tests, and Windows launch evidence.
-- **Chicago major-version lines:** ipykernel 7.x, Matplotlib 3.11.x, and pandas 3.x require a dedicated notebook-compatibility review.
-- **Certifi:** authoritative package listings did not agree on the next release identity. MediaTaggerBot and MP3 Downloader retain the verified SHA-256-locked 2026.6.17 artifact.
+- **Chicago compatibility lines:** Matplotlib 3.11.x and other new major/minor lines require a dedicated notebook and rendered-figure review.
+- **MP3 Certifi:** a future 2026.7.22 transition must update the embedded application identity and release evidence with the hash lock; a lock-only change is not accepted.
 - **Kalshi 15m cryptography 49.x:** the public preview is checksum sealed. A major transition requires regenerated locks, SBOM, manifests, checksums, and the complete security matrix.
-- **MP3 Downloader Action revisions:** immutable v6 checkout/setup-python revisions remain until a separate v7 compatibility pass.
 
 ## Private workspace boundaries
 
@@ -56,7 +62,7 @@ Review-only monitors create dependency or GitHub Actions proposals; they do not 
 
 ## Operating rule
 
-Dependency updates are adopted only when the exact change can be installed and validated within the repository’s existing safety and release boundary. Major-version changes, conflicting upstream records, launcher-coupled updates, and sealed-release mutations remain explicit follow-up work rather than silent upgrades.
+Dependency updates are adopted only when the exact change can be installed and validated within the repository’s existing safety and release boundary. Major-version changes, launcher-coupled updates, application/lock identity mismatches, and sealed-release mutations remain explicit follow-up work rather than silent upgrades.
 
 Copyright © 2026 Gateway Information Group LLC. All rights reserved.
 
