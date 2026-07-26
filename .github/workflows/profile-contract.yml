@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - README.md
+      - PROFILE_STRATEGY.md
       - LICENSE.md
       - SECURITY.md
       - RELEASE_RECONCILIATION.md
@@ -17,6 +18,7 @@ on:
       - .github/public-sanitization-allowlist.json
       - .github/scripts/portfolio_audit.py
       - .github/scripts/portfolio_audit_html.py
+      - .github/scripts/profile_strategy_audit.py
       - .github/scripts/project_description_audit.py
       - .github/scripts/release_reconciliation_audit.py
       - .github/scripts/dependency_reconciliation_audit.py
@@ -31,6 +33,7 @@ on:
   pull_request:
     paths:
       - README.md
+      - PROFILE_STRATEGY.md
       - LICENSE.md
       - SECURITY.md
       - RELEASE_RECONCILIATION.md
@@ -44,6 +47,7 @@ on:
       - .github/public-sanitization-allowlist.json
       - .github/scripts/portfolio_audit.py
       - .github/scripts/portfolio_audit_html.py
+      - .github/scripts/profile_strategy_audit.py
       - .github/scripts/project_description_audit.py
       - .github/scripts/release_reconciliation_audit.py
       - .github/scripts/dependency_reconciliation_audit.py
@@ -87,6 +91,7 @@ jobs:
           python -m py_compile
           .github/scripts/portfolio_audit.py
           .github/scripts/portfolio_audit_html.py
+          .github/scripts/profile_strategy_audit.py
           .github/scripts/project_description_audit.py
           .github/scripts/release_reconciliation_audit.py
           .github/scripts/dependency_reconciliation_audit.py
@@ -107,6 +112,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: python .github/scripts/project_description_audit.py
+
+      - name: Audit benchmarked profile strategy
+        run: python .github/scripts/profile_strategy_audit.py
 
       - name: Audit represented and latest verified project versions
         env:
