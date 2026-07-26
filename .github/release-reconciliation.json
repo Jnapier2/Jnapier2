@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-07-26T16:15:00Z",
+  "generated_utc": "2026-07-26T19:24:00Z",
   "owner": "Jnapier2",
   "rights_notice": "Copyright © 2026 Gateway Information Group LLC. All rights reserved.",
-  "review_scope": "All 17 public project default-branch heads, declared version markers, the July 26 dependency-integrity update pass, five review-only dependency-monitoring heads, the validated Image Downloader Playwright 1.61 dependency floor, the MP3 Actions v7 compatibility pass, and the Reliable Project Delivery Framework v1.2.0 local-independence correction; account-level About links, pins, and rulesets are tracked separately.",
+  "review_scope": "All 17 public project default-branch heads, declared version markers, the July 26 dependency-integrity and evidence-context passes, five review-only dependency-monitoring heads, the validated Image Downloader Playwright 1.61 dependency floor, the MP3 Actions v7 compatibility pass, and the Reliable Project Delivery Framework v1.2.0 local-independence correction; account-level About links, pins, and rulesets are tracked separately.",
   "reviewed_public_project_count": 17,
   "status_definitions": {
     "current": "GitHub represents the latest verified source/build version.",
@@ -44,8 +44,8 @@
         "path": "pyproject.toml",
         "text": "version = \"0.5.7\""
       },
-      "note": "Current GitHub source preserves the verified v0.5.7 runtime and launcher/lock contract; monthly GitHub Actions proposals are review-only and never auto-merge.",
-      "reviewed_head_sha": "e825255b4c95b9aac35faf3d3476e5c7a5742bfe"
+      "note": "Current GitHub source preserves the verified v0.5.7 runtime and launcher/lock contract. Its public README now excludes private aggregate counts and limits claims to behavior reviewable in source, tests, and documented safeguards; monthly GitHub Actions proposals remain review-only and never auto-merge.",
+      "reviewed_head_sha": "8e9ebe825103012984a307d40206f52894d30af8"
     },
     {
       "repository": "chicago-food-inspections-analysis",
