@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-07-26T07:40:38Z",
+  "generated_utc": "2026-07-26T15:27:00Z",
   "owner": "Jnapier2",
   "rights_notice": "Copyright © 2026 Gateway Information Group LLC. All rights reserved.",
-  "review_scope": "All 18 public repositories: declared dependency files, installation controls, consistency checks, sealed-release boundaries, and no-third-party-runtime claims.",
+  "review_scope": "All 18 public repositories: declared dependency files, installation controls, consistency checks, sealed-release boundaries, no-third-party-runtime claims, and the completed MP3 Actions v7 compatibility pass.",
   "policy": {
     "upgrade_rule": "Adopt only source-backed compatible updates that pass the repository's native install, consistency, compilation, test, and release gates.",
     "major_version_rule": "Major-version changes require a dedicated compatibility and release review and are never applied silently.",
@@ -96,10 +96,10 @@
     {
       "repository": "mp3-downloader",
       "status": "hash_locked",
-      "note": "The audio-only runtime is installed from exact hashed artifacts and validated on Python 3.11 and 3.13.",
+      "note": "The audio-only runtime is installed from exact hashed artifacts; the Windows Python 3.11 and 3.13 matrix also validates the portfolio-reviewed immutable checkout/setup-python v7 commits.",
       "text_checks": [
         {"path": "requirements.txt", "contains": ["certifi==2026.6.17", "yt-dlp==2026.7.4", "--hash=sha256:"]},
-        {"path": ".github/workflows/ci.yml", "contains": ["--require-hashes", "python -m pip check", "Validate runtime imports", "cache-dependency-path: requirements.txt"]}
+        {"path": ".github/workflows/ci.yml", "contains": ["--require-hashes", "python -m pip check", "Validate runtime imports", "cache-dependency-path: requirements.txt", "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1", "actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97"]}
       ]
     },
     {
@@ -196,13 +196,6 @@
       "current": "48.0.1",
       "candidate": "49.0.0",
       "reason": "This is a checksum-sealed public preview. A major dependency transition requires regenerated locks, SBOM, manifests, checksums, and the complete security matrix."
-    },
-    {
-      "repository": "mp3-downloader",
-      "dependency": "GitHub Actions",
-      "current": "immutable checkout/setup-python v6 revisions",
-      "candidate": "reviewed v7 revisions",
-      "reason": "The dependency-graph change is independent of the Action major-version transition. The immutable v6 revisions remain until a separate workflow-compatibility pass validates v7."
     }
   ],
   "private_workspaces": [
