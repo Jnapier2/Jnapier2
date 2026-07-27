@@ -26,34 +26,34 @@ I’m open to senior roles in analytics, data governance, information management
 
 ## Start here
 
-- **[BotOps Manager](https://github.com/Jnapier2/botops-manager)** — Verifies launchers and process ownership before control, consolidates health evidence, and creates bounded redacted support exports for independent Windows automation.
+- **[BotOps Manager](https://github.com/Jnapier2/botops-manager)** — Verifies launchers and process ownership before control, consolidates health evidence, and creates limited, redacted support exports for independent Windows automation.
 - **[Digital Asset Governance Audit](https://github.com/Jnapier2/digital-asset-governance-case-study)** — Turns schema health, provenance coverage, confidence signals, and duplicate candidates into a prioritized stewardship queue with clear reasons and next steps using synthetic data.
 - **[MediaTaggerBot](https://github.com/Jnapier2/media-tagger-bot)** — Uses evidence-based matching, complete-scan gates, dry-run review, recorded changes, result verification, verified renames, and rollback manifests. Uncertain or preservation-sensitive files remain visible for review instead of being forced into a match.
 
 ## Featured framework
 
-- **[Reliable Project Delivery Framework](case-studies/reliable-project-delivery-framework/README.md)** — Converts uncertain sources, machine differences, risky changes, and incomplete release evidence into a verified path from baseline selection to rollback. Public case study v1.2.0 preserves the historical v2.17.2 validation baseline while keeping every installation independently launchable and prohibiting cross-computer ownership, handoff, lease, or launch restrictions.
+- **[Reliable Project Delivery Framework](case-studies/reliable-project-delivery-framework/README.md)** — Turns conflicting sources, machine differences, risky changes, and incomplete evidence into a portable release path with clear rollback and independent local operation.
 
 ## More projects
 
 - **[Chicago Food Inspection Outcomes, 2010–2018](https://github.com/Jnapier2/chicago-food-inspections-analysis)** — Reproducibly analyzes 13,333 public inspection records, separates outcome from facility risk, and surfaces decision-relevant follow-up questions without overstating the data.
-- **[Avalon Q Supervisor](https://github.com/Jnapier2/avalon-q-supervisor)** — Turns local device telemetry into clear health states, requires two independent approvals for recovery, enforces durable restart limits, and records privacy-conscious decision evidence.
+- **[Avalon Q Supervisor](https://github.com/Jnapier2/avalon-q-supervisor)** — Turns local device telemetry into clear health states, requires separate configuration and runtime gates before recovery, enforces durable restart limits, and records privacy-conscious decision evidence.
 - **[Automation Reliability Case Studies](https://github.com/Jnapier2/automation-reliability-case-studies)** — Three documented studies show how outcome checks, identity-bound supervision, integrity verification, limited recovery, and explicit stop conditions contain risk across uncertain system boundaries.
-- **[Beta Earth](https://github.com/Jnapier2/beta-earth)** — A working browser RPG with portable local launchers, resilient saves, bounded validation, and verified public source at v0.4.11. The newer recorded v0.5.0 final remains visible behind an exact-source checksum gate instead of being falsely represented by the older tree.
+- **[Beta Earth](https://github.com/Jnapier2/beta-earth)** — A working local-first Python RPG with portable launchers, resilient saves, release validation, and verified public source at v0.4.11. The newer recorded v0.5.0 final remains visible behind an exact-source checksum gate instead of being falsely represented by the older tree.
 
 <details>
 <summary><strong>Additional tools and learning releases</strong></summary>
 
 - [Safe Video Downloader](https://github.com/Jnapier2/safe-video-downloader) — Retrieves authorized media through shared desktop and command-line planning, public-network checks, duplicate controls, isolated workers, a five-second no-progress watchdog, resumable partials, and verified output.
-- [MP3 Downloader](https://github.com/Jnapier2/mp3-downloader) — Turns one authorized URL into a validated MP3 through metadata preflight, bounded recovery, SHA-256 and SQLite duplicate reconciliation, visible output, and tightly redacted support exports.
-- [Image Downloader](https://github.com/Jnapier2/image-downloader) — Collects permitted images with bounded discovery, five-second per-image network budgets, streamed content validation, resumable state, layered duplicate controls, and atomic finalization.
+- [MP3 Downloader](https://github.com/Jnapier2/mp3-downloader) — Turns one authorized URL into a validated MP3 through metadata preflight, retry limits, SHA-256 and SQLite duplicate reconciliation, visible output, and tightly redacted support exports.
+- [Image Downloader](https://github.com/Jnapier2/image-downloader) — Collects permitted images with controlled discovery, time-limited network requests, streamed content validation, resumable state, layered duplicate controls, and atomic finalization.
 - [Large Text Chunker](https://github.com/Jnapier2/large-text-chunker) — Splits local documents at readable boundaries, preserves configurable context, records SHA-256 integrity metadata, and verifies exact reconstruction. Public source remains v1.0.0 while the recorded v1.10.0 final awaits its exact checksum-matched archive.
-- [NetLossDoctor](https://github.com/Jnapier2/net-loss-doctor) — Correlates gateway, route, DNS, TCP, latency, Windows event, and optional trace evidence into time-bounded, redacted support packages without changing network configuration.
-- [LAN Router Comms](https://github.com/Jnapier2/lan-router-comms) — Provides cloud-free authenticated text and resumable file exchange between trusted Windows PCs using durable queues, replay protection, bounded sessions, and verified delivery receipts.
+- [NetLossDoctor](https://github.com/Jnapier2/net-loss-doctor) — Correlates gateway, route, DNS, TCP, latency, Windows event, and optional trace evidence into time-boxed, redacted support packages without changing network configuration.
+- [LAN Router Comms](https://github.com/Jnapier2/lan-router-comms) — Provides cloud-free authenticated text and resumable file exchange between trusted Windows PCs using durable queues, replay protection, session limits, and verified delivery receipts.
 - [Windows Health Audit](https://github.com/Jnapier2/windows-health-audit) — Creates a read-only, non-elevated Windows health baseline with failure-isolated collectors, privacy-preserving normalization, transparent review thresholds, and no network or system changes.
 - [Inbox From Hell](https://github.com/Jnapier2/inbox-from-hell) — A five-shift workplace-horror browser game with 29 branching support cases, layered office and career progression, accessible controls, resilient local saves, and automated full-campaign acceptance testing.
-- [Kalshi 10×1¢ Public Edition](https://github.com/Jnapier2/kalshi-10x1c-public) — A checksum-controlled educational entry planner demonstrating explicit activation, authenticated API use, duplicate-action prevention, bounded execution, and safe stopping rules.
-- [Kalshi 15-Minute Sell Preview](https://github.com/Jnapier2/kalshi-15m-sell-bot-public-preview) — A checksum-consistent dry-run exit-management preview with live writes blocked, bounded polling, state checks, release verification, and explicit limits on what the public build can do.
+- [Kalshi 10×1¢ Public Edition](https://github.com/Jnapier2/kalshi-10x1c-public) — A checksum-controlled educational entry planner demonstrating explicit activation, authenticated API use, duplicate-action prevention, execution caps, and safe stopping rules.
+- [Kalshi 15-Minute Sell Preview](https://github.com/Jnapier2/kalshi-15m-sell-bot-public-preview) — A checksum-consistent dry-run exit-management preview with live writes blocked, polling limits, state checks, release verification, and explicit limits on what the public build can do.
 
 </details>
 

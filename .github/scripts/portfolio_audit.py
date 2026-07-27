@@ -10,6 +10,7 @@ Copyright © 2026 Gateway Information Group LLC. All rights reserved.
 from __future__ import annotations
 
 import json
+import html as html_module
 import os
 import re
 import sys
@@ -113,6 +114,12 @@ def request_bytes(
 def request_text(url: str) -> tuple[int, str, str]:
     status, final_url, data = request_bytes(url)
     return status, final_url, data.decode("utf-8", errors="replace")
+
+
+def normalized_visible_text(source: str) -> str:
+    """Return lowercase, whitespace-normalized text for durable copy checks."""
+    without_tags = re.sub(r"<[^>]+>", " ", source)
+    return " ".join(html_module.unescape(without_tags).split()).lower()
 
 
 def request_json(
@@ -426,7 +433,8 @@ def audit_portfolio_site(audit: Audit, manifest: dict[str, Any]) -> None:
         audit.add("warning", "portfolio-site", f"Portfolio did not finish on HTTPS: {final_url}")
 
     lower_html = html.lower()
-    if "i turn complex systems into trusted ones" not in lower_html:
+    visible_text = normalized_visible_text(html)
+    if "i turn complex systems into trusted ones" not in visible_text:
         audit.add(
             "warning",
             "portfolio-site",
@@ -456,7 +464,8 @@ def audit_public_profile_render(audit: Audit, manifest: dict[str, Any]) -> None:
         return
 
     lower_html = html.lower()
-    if "i turn complex systems into trusted ones" not in lower_html:
+    visible_text = normalized_visible_text(html)
+    if "i turn complex systems into trusted ones" not in visible_text:
         audit.add(
             "warning",
             "profile-render",

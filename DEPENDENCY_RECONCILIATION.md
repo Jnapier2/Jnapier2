@@ -2,7 +2,7 @@
 
 This record identifies how each public repository controls third-party packages and installation behavior. It separates projects that need no application dependencies from exact pins, SHA-256 locks, bounded compatible ranges, and checksum-sealed releases. All 18 public repositories are covered.
 
-Last reconciled: **July 26, 2026 at 10:56 AM CDT**
+Last reconciled: **July 27, 2026 at 3:20 PM CDT**
 
 The machine-readable authority is [`.github/dependency-reconciliation.json`](.github/dependency-reconciliation.json). The Portfolio health workflow checks the declared files, version markers, installation commands, consistency gates, absence claims, and deferred compatibility decisions.
 
@@ -18,7 +18,7 @@ The machine-readable authority is [`.github/dependency-reconciliation.json`](.gi
 | Avalon Q Supervisor | No third-party runtime | Python standard library only |
 | Automation Reliability Case Studies | No third-party runtime | Documentation and standard-library tests only |
 | Beta Earth | No third-party runtime | Public v0.4.11 declares no runtime dependencies; v0.5.0 remains checksum-gated |
-| Safe Video Downloader | Exact pin | `yt-dlp[default]` fixed at 2026.07.04; binary install and `pip check` required |
+| Safe Video Downloader | Exact pin | `yt-dlp[default]` fixed at 2026.07.04; binary install, `pip check`, and Python 3.11–3.13 CI required |
 | MP3 Downloader | SHA-256 locked | Exact Certifi and yt-dlp artifacts; `pip check` required; immutable checkout/setup-python v7 commits verified on Windows |
 | Image Downloader | Bounded ranges | Standard dependencies remain reviewed ranges; optional Playwright is `>=1.61.0,<2` and validated separately without browser downloads |
 | Large Text Chunker | No third-party runtime | Dependency-free public v1.0.0; v1.10.0 remains checksum-gated |
@@ -56,7 +56,7 @@ The dataset, notebook source, calculations, and reported findings did not change
 
 ### Safe Video Downloader, MP3 Downloader, and Image Downloader
 
-The existing primary application dependency versions remain unchanged. Their Windows workflows tie pip caching to the declared requirements and validate the installed dependency graph before compilation and tests. Safe Video Downloader and Image Downloader require binary distributions; MP3 Downloader retains its complete SHA-256 lock.
+The existing primary application dependency versions remain unchanged. Their Windows workflows tie pip caching to the declared requirements and validate the installed dependency graph before compilation and tests. Safe Video Downloader now runs its full offline suite on Python 3.11, 3.12, and 3.13. Safe Video Downloader and Image Downloader require binary distributions; MP3 Downloader retains its complete SHA-256 lock.
 
 The dedicated MP3 Downloader workflow-compatibility pass upgraded immutable `actions/checkout` and `actions/setup-python` references to the portfolio-validated v7.0.1 and v7.0.0 commits. Its Windows Python 3.11 and 3.13 jobs passed exact hash-locked installation, `pip check`, runtime imports, compilation, and offline tests before merge.
 

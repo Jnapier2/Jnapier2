@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-07-26T15:56:00Z",
+  "generated_utc": "2026-07-27T20:20:00Z",
   "owner": "Jnapier2",
   "rights_notice": "Copyright © 2026 Gateway Information Group LLC. All rights reserved.",
-  "review_scope": "All 18 public repositories: declared dependency files, installation controls, consistency checks, sealed-release boundaries, no-third-party-runtime claims, the completed MP3 Actions v7 compatibility pass, review-only dependency monitoring, and the validated Image Downloader Playwright 1.61 lower bound.",
+  "review_scope": "All 18 public repositories: declared dependency files, installation controls, consistency checks, sealed-release boundaries, no-third-party-runtime claims, supported Python matrices, review-only dependency monitoring, and the validated Image Downloader Playwright 1.61 lower bound.",
   "policy": {
     "upgrade_rule": "Adopt only source-backed compatible updates that pass the repository's native install, consistency, compilation, test, and release gates.",
     "major_version_rule": "Major-version changes require a dedicated compatibility and release review and are never applied silently.",
@@ -87,10 +87,10 @@
     {
       "repository": "safe-video-downloader",
       "status": "exact_pins",
-      "note": "The authorized-media downloader pins its direct yt-dlp dependency and validates the complete binary-resolved environment in CI. Monthly proposals are review-only.",
+      "note": "The authorized-media downloader pins its direct yt-dlp dependency and validates the complete binary-resolved environment on Python 3.11, 3.12, and 3.13 in CI. Monthly proposals are review-only.",
       "text_checks": [
         {"path": "requirements.txt", "contains": ["yt-dlp[default]==2026.07.04"]},
-        {"path": ".github/workflows/ci.yml", "contains": ["--only-binary=:all:", "python -m pip check", "cache-dependency-path: requirements.txt"]}
+        {"path": ".github/workflows/ci.yml", "contains": ["--only-binary=:all:", "python -m pip check", "cache-dependency-path: requirements.txt", "\"3.11\", \"3.12\", \"3.13\""]}
       ]
     },
     {

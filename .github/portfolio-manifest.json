@@ -5,7 +5,7 @@
   "canonical_portfolio_url": "https://jerry-napier-portfolio.netlify.app/",
   "canonical_linkedin_url": "https://www.linkedin.com/in/jrnapier",
   "rights_notice": "Copyright © 2026 Gateway Information Group LLC. All rights reserved.",
-  "description_reviewed_on": "2026-07-26",
+  "description_reviewed_on": "2026-07-27",
   "description_policy": {
     "public_copy": "Outcome-focused, recruiter-ready, and limited to capabilities present in the reviewed public source.",
     "stable_identity": "Repository slugs, package names, dependency-sensitive paths, checksummed artifacts, and historical release names remain unchanged.",
@@ -39,14 +39,13 @@
   ],
   "expected_pins": [
     "botops-manager",
-    "digital-asset-governance-case-study",
     "media-tagger-bot",
+    "beta-earth",
     "chicago-food-inspections-analysis",
-    "avalon-q-supervisor",
-    "beta-earth"
+    "digital-asset-governance-case-study",
+    "avalon-q-supervisor"
   ],
   "forbidden_public_link_fragments": [
-    "coral-yucca-521511.framer.app",
     "framer.com/projects/",
     "sites.google.com/view/jerryrnapier/home"
   ],
@@ -63,8 +62,8 @@
       "require_portfolio_backlink": true,
       "rights_mode": "all-rights-reserved",
       "expected_homepage": "https://jerry-napier-portfolio.netlify.app/#work",
-      "expected_description": "Local Windows operations console that verifies launchers and process ownership, tracks health evidence, and creates bounded redacted support exports.",
-      "profile_summary": "Verifies launchers and process ownership before control, consolidates health evidence, and creates bounded redacted support exports for independent Windows automation."
+      "expected_description": "Windows operations console that centralizes launcher risk, health evidence, scoped process control, and redacted support data.",
+      "profile_summary": "Verifies launchers and process ownership before control, consolidates health evidence, and creates limited, redacted support exports for independent Windows automation."
     },
     {
       "name": "digital-asset-governance-case-study",
@@ -73,8 +72,8 @@
       "ci_path": ".github/workflows/ci.yml",
       "require_portfolio_backlink": true,
       "rights_mode": "all-rights-reserved",
-      "expected_homepage": "https://jerry-napier-portfolio.netlify.app/#work",
-      "expected_description": "Read-only catalog audit that turns provenance gaps, confidence signals, and duplicate candidates into a prioritized review queue with clear next steps.",
+      "expected_homepage": "https://coral-yucca-521511.framer.app/work/04",
+      "expected_description": "Read-only catalog audit that turns provenance, coverage, confidence, and duplicate candidates into a prioritized review queue.",
       "profile_summary": "Turns schema health, provenance coverage, confidence signals, and duplicate candidates into a prioritized stewardship queue with clear reasons and next steps using synthetic data."
     },
     {
@@ -84,8 +83,8 @@
       "ci_path": ".github/workflows/ci.yml",
       "require_portfolio_backlink": true,
       "rights_mode": "all-rights-reserved",
-      "expected_homepage": "https://jerry-napier-portfolio.netlify.app/#work",
-      "expected_description": "Local-first media organizer using evidence-based matching, dry-run review, recorded changes, result verification, and rollback manifests.",
+      "expected_homepage": "https://coral-yucca-521511.framer.app/work/03",
+      "expected_description": "Standardizes media libraries with evidence-based matching, dry-run review, journaled writes, and rollback.",
       "profile_summary": "Uses evidence-based matching, complete-scan gates, dry-run review, recorded changes, result verification, verified renames, and rollback manifests. Uncertain or preservation-sensitive files remain visible for review instead of being forced into a match."
     },
     {
@@ -95,7 +94,7 @@
       "ci_path": ".github/workflows/notebook.yml",
       "require_portfolio_backlink": true,
       "rights_mode": "all-rights-reserved",
-      "expected_description": "Reproducible analysis of 13,333 Chicago inspection records that separates outcome from facility risk and documents interpretive limits.",
+      "expected_description": "Reproducible analysis of 13,333 Chicago food-inspection records across three ZIP codes, 2010–2018.",
       "profile_summary": "Reproducibly analyzes 13,333 public inspection records, separates outcome from facility risk, and surfaces decision-relevant follow-up questions without overstating the data."
     },
     {
@@ -105,8 +104,8 @@
       "ci_path": ".github/workflows/test.yml",
       "require_portfolio_backlink": true,
       "rights_mode": "all-rights-reserved",
-      "expected_description": "Local-first Avalon Q supervisor with clear health states, dry-run-first recovery, durable restart limits, and privacy-conscious audit evidence.",
-      "profile_summary": "Turns local device telemetry into clear health states, requires two independent approvals for recovery, enforces durable restart limits, and records privacy-conscious decision evidence."
+      "expected_description": "Local-first Avalon Q supervisor that turns device telemetry into health states, bounded recovery, and auditable operator decisions.",
+      "profile_summary": "Turns local device telemetry into clear health states, requires separate configuration and runtime gates before recovery, enforces durable restart limits, and records privacy-conscious decision evidence."
     },
     {
       "name": "automation-reliability-case-studies",
@@ -115,7 +114,7 @@
       "ci_path": ".github/workflows/ci.yml",
       "require_portfolio_backlink": true,
       "rights_mode": "all-rights-reserved",
-      "expected_description": "Three reliability studies on confirming uncertain outcomes, limiting recovery attempts, and stopping safely when evidence is incomplete.",
+      "expected_description": "Reliability patterns that limit duplicate actions, bound recovery, and preserve decision evidence across automation systems.",
       "profile_summary": "Three documented studies show how outcome checks, identity-bound supervision, integrity verification, limited recovery, and explicit stop conditions contain risk across uncertain system boundaries."
     },
     {
@@ -125,9 +124,8 @@
       "ci_path": ".github/workflows/ci.yml",
       "require_portfolio_backlink": true,
       "rights_mode": "all-rights-reserved",
-      "expected_homepage": "https://jerry-napier-portfolio.netlify.app/#work",
-      "expected_description": "Browser RPG with layered progression, portable local launchers, resilient saves, and verified v0.4.11 source; v0.5.0 awaits exact-source promotion.",
-      "profile_summary": "A working browser RPG with portable local launchers, resilient saves, bounded validation, and verified public source at v0.4.11. The newer recorded v0.5.0 final remains visible behind an exact-source checksum gate instead of being falsely represented by the older tree."
+      "expected_description": "Working local-first Python RPG with layered architecture, validated content, revision-safe saves, and an accessible HUD.",
+      "profile_summary": "A working local-first Python RPG with portable launchers, resilient saves, release validation, and verified public source at v0.4.11. The newer recorded v0.5.0 final remains visible behind an exact-source checksum gate instead of being falsely represented by the older tree."
     },
     {
       "name": "safe-video-downloader",
@@ -136,7 +134,7 @@
       "ci_path": ".github/workflows/ci.yml",
       "require_portfolio_backlink": true,
       "rights_mode": "all-rights-reserved",
-      "expected_description": "Authorized-media downloader with public-network checks, duplicate controls, isolated workers, a no-progress watchdog, resumable partials, and output verification.",
+      "expected_description": "Controlled retrieval of authorized media with rights confirmation, duplicate controls, isolated workers, and verified output.",
       "profile_summary": "Retrieves authorized media through shared desktop and command-line planning, public-network checks, duplicate controls, isolated workers, a five-second no-progress watchdog, resumable partials, and verified output."
     },
     {
@@ -146,8 +144,8 @@
       "ci_path": ".github/workflows/ci.yml",
       "require_portfolio_backlink": true,
       "rights_mode": "all-rights-reserved",
-      "expected_description": "Authorized audio-only downloader with metadata preflight, bounded recovery, duplicate reconciliation, validated MP3 output, and redacted support exports.",
-      "profile_summary": "Turns one authorized URL into a validated MP3 through metadata preflight, bounded recovery, SHA-256 and SQLite duplicate reconciliation, visible output, and tightly redacted support exports."
+      "expected_description": "Controlled conversion of authorized media URLs into validated MP3s with preflight, bounded recovery, and duplicate reconciliation.",
+      "profile_summary": "Turns one authorized URL into a validated MP3 through metadata preflight, retry limits, SHA-256 and SQLite duplicate reconciliation, visible output, and tightly redacted support exports."
     },
     {
       "name": "image-downloader",
@@ -156,8 +154,8 @@
       "ci_path": ".github/workflows/ci.yml",
       "require_portfolio_backlink": true,
       "rights_mode": "all-rights-reserved",
-      "expected_description": "Permissioned image collection with bounded discovery, five-second transfer budgets, content validation, resumable state, duplicate controls, and atomic writes.",
-      "profile_summary": "Collects permitted images with bounded discovery, five-second per-image network budgets, streamed content validation, resumable state, layered duplicate controls, and atomic finalization."
+      "expected_description": "Controlled, permission-aware image collection with bounded discovery, duplicate controls, resumable state, and verified output.",
+      "profile_summary": "Collects permitted images with controlled discovery, time-limited network requests, streamed content validation, resumable state, layered duplicate controls, and atomic finalization."
     },
     {
       "name": "large-text-chunker",
@@ -166,7 +164,7 @@
       "ci_path": ".github/workflows/test.yml",
       "require_portfolio_backlink": true,
       "rights_mode": "all-rights-reserved",
-      "expected_description": "Local text chunking with readable boundaries, context overlap, SHA-256 manifests, and exact reconstruction verification; v1.10.0 remains checksum-gated.",
+      "expected_description": "Prepares oversized documents for downstream workflows with readable chunking, integrity metadata, and exact reconstruction.",
       "profile_summary": "Splits local documents at readable boundaries, preserves configurable context, records SHA-256 integrity metadata, and verifies exact reconstruction. Public source remains v1.0.0 while the recorded v1.10.0 final awaits its exact checksum-matched archive."
     },
     {
@@ -176,8 +174,8 @@
       "ci_path": ".github/workflows/powershell-static.yml",
       "require_portfolio_backlink": true,
       "rights_mode": "all-rights-reserved",
-      "expected_description": "Read-only Windows network diagnostics that correlate gateway, DNS, latency, events, and optional traces into bounded redacted evidence.",
-      "profile_summary": "Correlates gateway, route, DNS, TCP, latency, Windows event, and optional trace evidence into time-bounded, redacted support packages without changing network configuration."
+      "expected_description": "Time-bounded Windows network triage with comparable evidence, redacted handoff, and no configuration changes.",
+      "profile_summary": "Correlates gateway, route, DNS, TCP, latency, Windows event, and optional trace evidence into time-boxed, redacted support packages without changing network configuration."
     },
     {
       "name": "lan-router-comms",
@@ -186,8 +184,8 @@
       "ci_path": ".github/workflows/powershell-static.yml",
       "require_portfolio_backlink": true,
       "rights_mode": "all-rights-reserved",
-      "expected_description": "Cloud-free authenticated text and resumable file exchange between trusted Windows PCs, with durable queues, replay protection, and verified delivery.",
-      "profile_summary": "Provides cloud-free authenticated text and resumable file exchange between trusted Windows PCs using durable queues, replay protection, bounded sessions, and verified delivery receipts."
+      "expected_description": "Cloud-free, authenticated text and resumable file exchange between paired Windows computers on a trusted LAN.",
+      "profile_summary": "Provides cloud-free authenticated text and resumable file exchange between trusted Windows PCs using durable queues, replay protection, session limits, and verified delivery receipts."
     },
     {
       "name": "windows-health-audit",
@@ -196,7 +194,7 @@
       "ci_path": ".github/workflows/powershell-static.yml",
       "require_portfolio_backlink": true,
       "rights_mode": "all-rights-reserved",
-      "expected_description": "Read-only, non-elevated Windows health baseline with failure-isolated collectors, privacy-preserving output, and transparent review thresholds.",
+      "expected_description": "Read-only Windows health baseline for consistent triage, privacy-preserving evidence, and controlled support handoff.",
       "profile_summary": "Creates a read-only, non-elevated Windows health baseline with failure-isolated collectors, privacy-preserving normalization, transparent review thresholds, and no network or system changes."
     },
     {
@@ -207,7 +205,7 @@
       "require_portfolio_backlink": true,
       "rights_mode": "all-rights-reserved",
       "expected_homepage": "https://inbox-from-hell-demo.netlify.app/",
-      "expected_description": "Five-shift workplace-horror browser game with branching support decisions, layered progression, accessible controls, resilient saves, and campaign tests.",
+      "expected_description": "Decision-driven workplace-horror browser game with data-driven outcomes, resilient local saves, accessible controls, and full-playthrough CI.",
       "profile_summary": "A five-shift workplace-horror browser game with 29 branching support cases, layered office and career progression, accessible controls, resilient local saves, and automated full-campaign acceptance testing."
     },
     {
@@ -218,8 +216,8 @@
       "require_portfolio_backlink": false,
       "rights_mode": "mit-sealed",
       "expected_homepage": "https://jerry-napier-portfolio.netlify.app/#gift",
-      "expected_description": "Checksum-controlled educational prediction-market entry planner with explicit activation, duplicate-action prevention, bounded execution, and safe stopping rules.",
-      "profile_summary": "A checksum-controlled educational entry planner demonstrating explicit activation, authenticated API use, duplicate-action prevention, bounded execution, and safe stopping rules."
+      "expected_description": "Verification-led Kalshi order planner with dry-run-first controls and MIT-licensed source",
+      "profile_summary": "A checksum-controlled educational entry planner demonstrating explicit activation, authenticated API use, duplicate-action prevention, execution caps, and safe stopping rules."
     },
     {
       "name": "kalshi-15m-sell-bot-public-preview",
@@ -229,8 +227,8 @@
       "require_portfolio_backlink": false,
       "rights_mode": "mit-sealed",
       "expected_homepage": "https://jerry-napier-portfolio.netlify.app/#gift",
-      "expected_description": "Dry-run-only prediction-market exit preview with live writes blocked, bounded polling, state checks, and release verification.",
-      "profile_summary": "A checksum-consistent dry-run exit-management preview with live writes blocked, bounded polling, state checks, release verification, and explicit limits on what the public build can do."
+      "expected_description": "MIT-licensed, read-only Kalshi planning preview for API integration, reconciliation, and release governance.",
+      "profile_summary": "A checksum-consistent dry-run exit-management preview with live writes blocked, polling limits, state checks, release verification, and explicit limits on what the public build can do."
     }
   ]
 }
