@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-07-26T20:30:00Z",
+  "generated_utc": "2026-07-27T20:20:00Z",
   "owner": "Jnapier2",
   "rights_notice": "Copyright © 2026 Gateway Information Group LLC. All rights reserved.",
-  "review_scope": "All 17 public project default-branch heads, declared version markers, dependency integrity, public documentation corrections, review-only dependency monitoring, the validated Image Downloader Playwright 1.61 dependency floor, the MP3 Actions v7 compatibility pass, and the Reliable Project Delivery Framework v1.2.0 local-independence correction; account-level About links, pins, and rulesets are tracked separately.",
+  "review_scope": "All 17 public project default-branch heads, declared version markers, release and dependency integrity, public documentation, review-only dependency monitoring, Python support claims, timeout defaults, and source-versus-download distinctions; account-level About links, pins, and rulesets are tracked separately.",
   "reviewed_public_project_count": 17,
   "status_definitions": {
     "current": "GitHub represents the latest verified source/build version.",
@@ -45,7 +45,7 @@
         "text": "version = \"0.5.7\""
       },
       "note": "Current GitHub source preserves the verified v0.5.7 runtime and launcher/lock contract. Its public README excludes private aggregate counts and limits claims to behavior reviewable in source, tests, and documented safeguards; monthly GitHub Actions proposals remain review-only and never auto-merge.",
-      "reviewed_head_sha": "8e9ebe825103012984a307d40206f52894d30af8"
+      "reviewed_head_sha": "97a669f5ef09c55cb48a9b13c2625876494cd0c2"
     },
     {
       "repository": "chicago-food-inspections-analysis",
@@ -53,7 +53,7 @@
       "latest_verified_version": null,
       "status": "nonversioned_current",
       "note": "Current reproducible analysis retains the validated Python 3.12 pins, data, notebook, and results; monthly pip and Actions proposals are review-only.",
-      "reviewed_head_sha": "a3ae06d4fdc0bae1daffe945bedf1009f5ab85bc"
+      "reviewed_head_sha": "c1f70f38798262a80472e124aa81696bde59a554"
     },
     {
       "repository": "avalon-q-supervisor",
@@ -95,8 +95,8 @@
         "text": "APP_VERSION = \"1.14.2\""
       },
       "recorded_successor_sha256": "d873bf140713a978375b6693e784726973a5ab6934f529437ede671f90b1fd1a",
-      "note": "The verified v1.14.2 watchdog, exact yt-dlp contract, authorized-use boundary, and offline suite remain current; monthly proposals are review-only.",
-      "reviewed_head_sha": "0f14ac4df9375f0a69367c1c1558b703384c6570"
+      "note": "The verified v1.14.2 watchdog, exact yt-dlp contract, authorized-use boundary, and offline suite remain current. CI validates Python 3.11, 3.12, and 3.13; monthly proposals are review-only.",
+      "reviewed_head_sha": "f2cb9c41142f011703c3ca472d7b42f3e6526d1c"
     },
     {
       "repository": "mp3-downloader",
@@ -120,8 +120,8 @@
         "text": "APP_VERSION = \"2026.07.19.1\""
       },
       "recorded_successor_sha256": "0b8acc9b4e6cbcfda899186e6a2c5ac9aeee9609a7143013f6015cda8c22b6d6",
-      "note": "The verified timeout-budget release remains current; CI validates standard and optional Playwright dependency sets without downloading browsers, the tested optional lower bound is 1.61.0, and monthly proposals are review-only.",
-      "reviewed_head_sha": "94f55744ad052d252fa1bf972acc017a57b9c8b5"
+      "note": "The verified timeout-budget release remains current. The example, default, normalization test, and public copy agree on the 15-second request wall-clock floor; CI validates standard and optional Playwright dependency sets without downloading browsers, and monthly proposals are review-only.",
+      "reviewed_head_sha": "553d40b8810706bd230854c42196733817524dec"
     },
     {
       "repository": "large-text-chunker",
@@ -201,8 +201,8 @@
         "path": "pyproject.toml",
         "text": "version = \"41.22.3\""
       },
-      "note": "Current checksum-consistent public dry-run preview; all mutation paths remain blocked. An unsupported setup-time promise was removed and the source manifest/checksum inventory was deterministically resealed without changing runtime code or version.",
-      "reviewed_head_sha": "62f06391b9aea95578eac5e99f98c6c397fcf29d"
+      "note": "Current checksum-consistent public dry-run source; all mutation paths remain blocked. The README distinguishes the 41.22.3 source tree from the latest downloadable 41.22.2 rev.2 package, and the source manifest/checksum inventory was regenerated and verified.",
+      "reviewed_head_sha": "6c8f21ccb8d1792e4e80d31d7f82eed7039585a5"
     }
   ]
 }

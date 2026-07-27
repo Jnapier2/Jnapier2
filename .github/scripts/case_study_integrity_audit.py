@@ -31,8 +31,21 @@ SEALED_FILES = EXPECTED_FILES - {"SHA256SUMS.txt"}
 MANIFEST_CONTENT_FILES = SEALED_FILES - {"MANIFEST.json"}
 
 
+def canonical_bytes(path: Path) -> bytes:
+    """Return repository-canonical bytes for sealed text files.
+
+    Git may check text files out with CRLF on Windows while storing LF in the
+    repository. The release manifest records the repository bytes, so local
+    verification normalizes that checkout-only difference.
+    """
+    data = path.read_bytes()
+    if path.suffix.lower() in {".json", ".md", ".txt"}:
+        return data.replace(b"\r\n", b"\n")
+    return data
+
+
 def sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    return hashlib.sha256(canonical_bytes(path)).hexdigest()
 
 
 def fail(message: str) -> None:
@@ -74,7 +87,7 @@ def main() -> int:
         fail("manifest content inventory differs")
     for item in records:
         path = CASE_DIR / str(item["path"])
-        if path.stat().st_size != int(item["size_bytes"]):
+        if len(canonical_bytes(path)) != int(item["size_bytes"]):
             fail(f"size mismatch: {path.name}")
         if sha256(path) != str(item["sha256"]):
             fail(f"manifest hash mismatch: {path.name}")
