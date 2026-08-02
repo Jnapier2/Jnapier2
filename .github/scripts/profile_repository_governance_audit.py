@@ -6,6 +6,7 @@ Copyright © 2026 Gateway Information Group LLC. All rights reserved.
 from __future__ import annotations
 
 import json
+import os
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -13,7 +14,7 @@ from typing import Any
 import portfolio_audit
 
 ROOT = Path(__file__).resolve().parents[2]
-OUTPUT_DIR = ROOT / "audit-output"
+OUTPUT_DIR = Path(os.environ.get("PORTFOLIO_AUDIT_OUTPUT_DIR", ROOT / "audit-output"))
 RIGHTS_NOTICE = "Copyright © 2026 Gateway Information Group LLC. All rights reserved."
 
 
@@ -89,10 +90,14 @@ def require_dependency_ledger(path: Path) -> None:
         raise SystemExit(
             "Profile repository governance failure: dependency repository coverage is invalid"
         )
-    private_workspaces = payload.get("private_workspaces")
-    if not isinstance(private_workspaces, list) or len(private_workspaces) != 2:
+    excluded_private_scope = payload.get("excluded_private_scope")
+    if (
+        not isinstance(excluded_private_scope, dict)
+        or excluded_private_scope.get("status") != "not_part_of_public_inventory"
+        or not str(excluded_private_scope.get("note") or "").strip()
+    ):
         raise SystemExit(
-            "Profile repository governance failure: private workspace boundaries are incomplete"
+            "Profile repository governance failure: excluded private scope is not declared"
         )
 
 
@@ -248,7 +253,7 @@ def main() -> int:
             ".github/dependency-reconciliation.json",
             "MediaTaggerBot",
             "Chicago Food Inspection Outcomes",
-            "Kalshi 15m Sell Preview",
+            "Kalshi 15-Minute Sell Preview",
         ],
     )
     require_text(

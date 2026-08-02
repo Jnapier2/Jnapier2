@@ -1,17 +1,16 @@
 {
   "schema_version": 1,
   "case_study": "Reliable Project Delivery Framework",
-  "case_study_version": "1.2.0",
-  "source_framework_version": "2.17.2",
-  "source_package_filename": "chatgpt_new_thread_parameters_v2.17.2_fleet_handoff_thread_naming_2026-07-25_14-41-51_CDT.zip",
-  "source_package_sha256": "e0615823cfde6ae6eff6d4c028a6f2f1f54d251df90bd64f3cad8a6475b6d1d6",
-  "source_package_role": "Historical checksum-verified validation baseline; not rewritten by the v1.2.0 public policy correction.",
-  "release_date": "2026-07-26",
-  "generated_utc": "2026-07-26T15:27:00Z",
+  "case_study_version": "1.3.0",
+  "source_framework_version": "2.17.4",
+  "source_package_sha256": "00066e203063d8ce4d82b936fb7e9c37d91023ecbaba26f7a30da4d40df8f492",
+  "source_package_role": "Private checksum-verified design baseline; the public case study exposes outcomes and boundaries, not internal operating text.",
+  "release_date": "2026-08-01",
+  "generated_utc": "2026-08-02T04:54:15Z",
   "data_classification": "public",
   "public_policy_revision": {
-    "id": "2026-07-26-local-independent-operation",
-    "status": "supersedes fleet ownership and handoff language",
+    "id": "2026-08-01-public-release-governance-sanitization",
+    "status": "current independent-local-operation and public-evidence language",
     "computer_recognition_allowed_for": [
       "diagnostic labels",
       "sensible local paths and defaults",
@@ -21,46 +20,35 @@
     "computer_recognition_prohibited_for": [
       "launch blocking",
       "cross-computer ownership",
-      "required handoffs",
+      "required remote handoffs",
       "shared leases or write fences",
       "feature partitioning by computer",
       "control of another independently running copy"
     ]
   },
   "validation": {
-    "release_package_files": 15,
-    "zip_integrity": "pass",
-    "control_areas": {
-      "passed": 26,
-      "total": 26
-    },
-    "scenario_simulations": {
-      "passed": 40,
-      "total": 40
-    },
-    "negative_conflict_checks": {
-      "passed": 20,
-      "total": 20
-    },
-    "docx_render": {
-      "pages": 11,
-      "visual_review": "pass"
-    },
-    "docx_accessibility": {
-      "high": 0,
-      "medium": 0,
-      "low": 0
-    }
+    "source_package_integrity": "pass",
+    "public_release_integrity": "manifest-and-checksum-verifiable",
+    "control_review": "completed internally; itemized controls are outside public scope",
+    "scenario_review": "completed internally; itemized scenarios are outside public scope",
+    "document_review": "completed internally",
+    "public_metrics": [
+      "published file inventory",
+      "published file sizes",
+      "published SHA-256 checksums"
+    ]
   },
   "claim_boundary": {
-    "document_consistency_validated": true,
+    "document_consistency_reviewed": true,
+    "public_release_integrity_verifiable": true,
+    "internal_control_counts_published": false,
+    "internal_scenario_counts_published": false,
     "project_specific_acceptance_required": true,
     "physical_multi_system_verification_claimed": false,
     "shared_coordinator_deployed": false,
     "cross_computer_launch_restrictions_included": false,
     "running_processes_modified": false,
-    "executable_included": false,
-    "historical_metrics_rerun_for_policy_revision": false
+    "executable_included": false
   },
   "privacy_exclusions": [
     "raw machine reports",

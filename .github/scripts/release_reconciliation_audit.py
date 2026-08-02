@@ -21,7 +21,8 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[2]
 LEDGER_PATH = ROOT / ".github" / "release-reconciliation.json"
 PORTFOLIO_MANIFEST_PATH = ROOT / ".github" / "portfolio-manifest.json"
-OUTPUT_DIR = ROOT / "audit-output"
+HUMAN_LEDGER_PATH = ROOT / "RELEASE_RECONCILIATION.md"
+OUTPUT_DIR = Path(os.environ.get("PORTFOLIO_AUDIT_OUTPUT_DIR", ROOT / "audit-output"))
 EVIDENCE_PATH = OUTPUT_DIR / "release-reconciliation-audit.json"
 RIGHTS_NOTICE = "Copyright © 2026 Gateway Information Group LLC. All rights reserved."
 ALLOWED_STATUSES = {
@@ -138,6 +139,7 @@ def main() -> int:
     try:
         ledger = load_json(LEDGER_PATH)
         portfolio = load_json(PORTFOLIO_MANIFEST_PATH)
+        human_ledger = HUMAN_LEDGER_PATH.read_text(encoding="utf-8")
     except (OSError, ValueError, json.JSONDecodeError) as exc:
         message = f"Release reconciliation files are unreadable: {exc}"
         write_evidence(
@@ -206,6 +208,23 @@ def main() -> int:
         if not SHA40_RE.fullmatch(reviewed_head):
             errors.append(f"{repository}: reviewed head SHA is missing or incomplete")
         else:
+            short_head = reviewed_head[:8]
+            human_rows = [
+                line
+                for line in human_ledger.splitlines()
+                if line.startswith("|") and f"`{short_head}`" in line
+            ]
+            if len(human_rows) != 1:
+                errors.append(
+                    f"{repository}: human release ledger must contain exactly one row for {short_head}"
+                )
+            else:
+                human_row = human_rows[0]
+                for label, version in (("represented", represented), ("latest", latest)):
+                    if version is not None and str(version) not in human_row:
+                        errors.append(
+                            f"{repository}: human release ledger omits the {label} version {version}"
+                        )
             try:
                 current_head = fetch_public_main_head(owner, repository)
             except Exception as exc:

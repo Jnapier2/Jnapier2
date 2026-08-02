@@ -2,7 +2,7 @@
 
 [![Portfolio health](https://github.com/Jnapier2/Jnapier2/actions/workflows/profile-contract.yml/badge.svg)](https://github.com/Jnapier2/Jnapier2/actions/workflows/profile-contract.yml)
 
-A repeatable control framework for moving complex software projects from uncertain inputs to verified, portable releases without sacrificing rollback, privacy, operator control, or independent local operation.
+A repeatable control framework for moving complex software projects from uncertain inputs to verified, portable releases while preserving rollback, privacy, operator control, and independent local operation.
 
 ## Why I built it
 
@@ -14,37 +14,37 @@ Complex projects often fail for ordinary reasons: multiple “final” versions,
 - Keeps one shared package portable across distinct Windows environments.
 - Uses capability detection and optional computer recognition for helpful local labels, paths, defaults, diagnostics, and performance guidance.
 - Keeps every installation independently launchable; local process locks and duplicate protection never block another computer.
-- Preserves one canonical project name and searchable aliases across thread transfers and project branches.
+- Preserves one canonical project name and searchable aliases across releases, handoffs, and project branches.
 - Separates reversible local work from destructive, live-financial, credential, administrator, security, public, and bulk-write actions.
 - Requires critical inputs to be recognized, validated, mapped, exercised, and confirmed.
-- Produces bounded, redacted diagnostic packages that preserve the most useful evidence.
+- Produces bounded, redacted diagnostic packages that retain the most useful evidence.
 - Preserves known-good state, rollback instructions, version history, rights metadata, dependency records, and checksums.
 - Blocks release when source, validation, or recovery evidence is incomplete.
 
-## Validation scorecard
+## Public evidence
 
-| Measure | Result |
-|---|---:|
-| Historical validation package | 15 files; ZIP integrity passed |
-| Rule families represented | **26 / 26** |
-| Representative scenarios passed | **40 / 40** |
-| Negative/conflict safeguards passed | **20 / 20** |
-| Document quality | 11-page DOCX visually reviewed; accessibility audit found 0 high, 0 medium, and 0 low findings |
-| Privacy boundary | Raw machine reports and unique identifiers excluded |
+The public case study favors evidence a reviewer can inspect directly instead of presenting internal aggregate scores as stand-alone proof.
 
-The scorecard records the document-level validation performed on the historical v2.17.2 source package. Public case-study v1.2.0 corrects the active computer-coordination policy without rewriting that checksum-verified historical package or claiming that its original scenario totals were rerun.
+| Evidence | What a reviewer can verify |
+|---|---|
+| Release inventory | Every published case-study file is declared in `MANIFEST.json` |
+| File integrity | Published sizes and SHA-256 values are recorded in `MANIFEST.json` and `SHA256SUMS.txt` |
+| Validation boundary | `VALIDATION_SUMMARY.json` distinguishes reviewed design logic from implementation-specific acceptance testing |
+| Disclosure boundary | `PUBLIC_SCOPE.md` identifies what is included, withheld, and intentionally not claimed |
 
-## Policy correction in public case study v1.2.0
+The private design baseline was reviewed for coverage, conflict handling, and consistency. Its itemized controls and scenario set are outside the public release, so this case study does not present internal totals as independently auditable results.
+
+## Current operating policy
 
 ### Independent local operation across multiple computers
 
-Each installation runs independently. Computer recognition may improve diagnostic labels, choose sensible local paths and defaults, organize local logs, state, and exports, or provide performance guidance. It may not block launch, assign cross-computer ownership, require handoff, create shared leases or write fences, partition features by computer, or control another independently running copy.
+Each installation runs independently. Computer recognition may improve diagnostic labels, choose sensible local paths and defaults, organize local logs, state, and exports, or provide performance guidance. It may not block launch, assign cross-computer ownership, require a remote handoff, create shared leases or write fences, partition features by computer, or control another independently running copy.
 
 Local duplicate protection remains project- and process-scoped on the computer where it runs. A lock or process record created on one computer has no authority over another computer.
 
-### Persistent project and thread identity
+### Persistent project and release identity
 
-Each project keeps one canonical name across successor threads, transfer packages, audits, diagnostics, and release records. Prior names remain searchable aliases, while continuation or branch markers describe the current workstream without fragmenting the project identity. When an interface cannot be renamed, the framework records a truthful suggested title rather than claiming the change occurred.
+Each project keeps one canonical name across successor releases, transfer packages, audits, diagnostics, and release records. Prior names remain searchable aliases, while continuation or branch markers describe the current workstream without fragmenting project identity.
 
 ## Decision flow
 
@@ -99,9 +99,9 @@ A release is not complete until the source, version, documentation, checks, righ
 
 ## Public scope
 
-This case study contains no executable program and does not publish the full operating framework. Machine profiles, raw reports, unique identifiers, credentials, account information, private locations, internal operating instructions, and project-specific live thresholds remain excluded.
+This case study contains no executable program and does not publish the complete implementation playbook. Machine profiles, raw reports, unique identifiers, credentials, account information, private locations, internal operating instructions, and project-specific live thresholds remain excluded.
 
-See [PUBLIC_SCOPE.md](PUBLIC_SCOPE.md) for the disclosure boundary and [VALIDATION_SUMMARY.json](VALIDATION_SUMMARY.json) for the machine-readable scorecard.
+See [PUBLIC_SCOPE.md](PUBLIC_SCOPE.md) for the disclosure boundary and [VALIDATION_SUMMARY.json](VALIDATION_SUMMARY.json) for the machine-readable verification scope.
 
 ## Release files
 
@@ -109,7 +109,7 @@ See [PUBLIC_SCOPE.md](PUBLIC_SCOPE.md) for the disclosure boundary and [VALIDATI
 |---|---|
 | [README.md](README.md) | Case study and design summary |
 | [PUBLIC_SCOPE.md](PUBLIC_SCOPE.md) | Public disclosure boundary |
-| [VALIDATION_SUMMARY.json](VALIDATION_SUMMARY.json) | Structured validation results and limits |
+| [VALIDATION_SUMMARY.json](VALIDATION_SUMMARY.json) | Structured validation scope and limits |
 | [RIGHTS.md](RIGHTS.md) | Rights and reuse terms |
 | [MANIFEST.json](MANIFEST.json) | Canonical release inventory and metadata |
 | [SHA256SUMS.txt](SHA256SUMS.txt) | File-integrity records |

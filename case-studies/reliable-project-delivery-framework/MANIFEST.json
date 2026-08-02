@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "project": "Reliable Project Delivery Framework — Public Case Study",
-  "version": "1.2.0",
-  "source_framework_version": "2.17.2",
-  "source_package_sha256": "e0615823cfde6ae6eff6d4c028a6f2f1f54d251df90bd64f3cad8a6475b6d1d6",
-  "source_package_role": "Historical checksum-verified validation baseline; not rewritten by the v1.2.0 public policy correction.",
-  "public_policy_revision": "2026-07-26-local-independent-operation",
-  "release_date": "2026-07-26",
-  "generated_utc": "2026-07-26T15:27:00Z",
+  "version": "1.3.0",
+  "source_framework_version": "2.17.4",
+  "source_package_sha256": "00066e203063d8ce4d82b936fb7e9c37d91023ecbaba26f7a30da4d40df8f492",
+  "source_package_role": "Private checksum-verified design baseline; the public case study exposes outcomes and boundaries, not internal operating text.",
+  "public_policy_revision": "2026-08-01-public-release-governance-sanitization",
+  "release_date": "2026-08-02",
+  "generated_utc": "2026-08-02T06:04:19Z",
   "data_classification": "public",
   "source_classification": "sanitized case study; complete internal framework excluded",
   "rights_holder": "Gateway Information Group LLC",
@@ -17,14 +17,14 @@
   "files": [
     {
       "path": "PUBLIC_SCOPE.md",
-      "size_bytes": 2045,
-      "sha256": "4d56edd89b2bac4e2d143aa3c9d02eb8af1ebf8fb68c28427c4bb3d60dd347e8",
+      "size_bytes": 2008,
+      "sha256": "a36e3206e46671c49f39936e8a62c21e3df1ee2fe717e3819938ab849d046827",
       "purpose": "Public disclosure boundary"
     },
     {
       "path": "README.md",
-      "size_bytes": 6974,
-      "sha256": "12619f9f765161d8c493ae7729356d8f8b7acaf65214d850249858d4a079a218",
+      "size_bytes": 6993,
+      "sha256": "2d30cc059898db1df78fc895d1a9753fb8353ccd8352aa841ce30651a1b36308",
       "purpose": "Case study and design summary"
     },
     {
@@ -35,9 +35,9 @@
     },
     {
       "path": "VALIDATION_SUMMARY.json",
-      "size_bytes": 2664,
-      "sha256": "42d530ced090cec9756eabd1e1be557e05b458d674e4c178688a5fa638f81bee",
-      "purpose": "Structured validation results and claim limits"
+      "size_bytes": 2703,
+      "sha256": "39b1e67bb604d608fcfdebcc24bedad76e9b94dc788b36a94bb5db9af92fae9a",
+      "purpose": "Structured validation scope and claim limits"
     }
   ]
 }

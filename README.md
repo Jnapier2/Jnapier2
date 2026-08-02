@@ -17,7 +17,7 @@ Each figure is defined in the public project summaries and source ledger below.
 | Evidence | What it means | Why it matters |
 |---|---|---|
 | **13,333 public inspection records across three Chicago ZIP codes** | One row is an inspection, not a restaurant; the study covers 2010–2018 | Shows reproducible analysis and careful separation of inspection outcomes from facility-risk classification |
-| **29 authored cases across five shifts** | Every case participates in branching state and a full-campaign acceptance test | Shows product scope, persistent state, accessible interaction, and end-to-end testing |
+| **36 authored cases across six shifts** | Every case participates in branching state and a full-campaign acceptance test | Shows product scope, persistent state, accessible interaction, and end-to-end testing |
 | **[17 public projects reconciled to exact GitHub source](RELEASE_RECONCILIATION.md)** | Each ledger entry is tied to the version and reviewed default-branch commit actually present | Shows portfolio-wide version governance and avoids presenting older code as a newer build |
 
 ## Professional focus
@@ -44,14 +44,14 @@ I’m open to senior roles in analytics, data governance, information management
 <details>
 <summary><strong>Additional tools and learning releases</strong></summary>
 
-- [Safe Video Downloader](https://github.com/Jnapier2/safe-video-downloader) — Retrieves authorized media through shared desktop and command-line planning, public-network checks, duplicate controls, isolated workers, a five-second no-progress watchdog, resumable partials, and verified output.
+- [Safe Video Downloader](https://github.com/Jnapier2/safe-video-downloader) — Retrieves authorized media through shared desktop and command-line planning, public-network checks, duplicate controls, isolated workers, fallback media-signature validation, accurate status for mixed-result batches, and verified output.
 - [MP3 Downloader](https://github.com/Jnapier2/mp3-downloader) — Turns one authorized URL into a validated MP3 through metadata preflight, retry limits, SHA-256 and SQLite duplicate reconciliation, visible output, and tightly redacted support exports.
-- [Image Downloader](https://github.com/Jnapier2/image-downloader) — Collects permitted images with controlled discovery, time-limited network requests, streamed content validation, resumable state, layered duplicate controls, and atomic finalization.
+- [Image Downloader](https://github.com/Jnapier2/image-downloader) — Collects permitted images with controlled discovery, time-limited network requests, evidence that redacts sensitive URL details, Windows-safe filenames, resumable state, layered duplicate controls, and atomic finalization.
 - [Large Text Chunker](https://github.com/Jnapier2/large-text-chunker) — Splits local documents at readable boundaries, preserves configurable context, records SHA-256 integrity metadata, and verifies exact reconstruction. Public source remains v1.0.0 while the recorded v1.10.0 final awaits its exact checksum-matched archive.
 - [NetLossDoctor](https://github.com/Jnapier2/net-loss-doctor) — Correlates gateway, route, DNS, TCP, latency, Windows event, and optional trace evidence into time-boxed, redacted support packages without changing network configuration.
 - [LAN Router Comms](https://github.com/Jnapier2/lan-router-comms) — Provides cloud-free authenticated text and resumable file exchange between trusted Windows PCs using durable queues, replay protection, session limits, and verified delivery receipts.
 - [Windows Health Audit](https://github.com/Jnapier2/windows-health-audit) — Creates a read-only, non-elevated Windows health baseline with failure-isolated collectors, privacy-preserving normalization, transparent review thresholds, and no network or system changes.
-- [Inbox From Hell](https://github.com/Jnapier2/inbox-from-hell) — A five-shift workplace-horror browser game with 29 branching support cases, layered office and career progression, accessible controls, resilient local saves, and automated full-campaign acceptance testing.
+- [Inbox From Hell](https://github.com/Jnapier2/inbox-from-hell) — A six-shift workplace-horror browser game with 36 branching support cases, permanent department progression, accessible controls, resilient local saves, and automated full-campaign acceptance testing.
 - [Kalshi 10×1¢ Public Edition](https://github.com/Jnapier2/kalshi-10x1c-public) — A checksum-controlled educational entry planner demonstrating explicit activation, authenticated API use, duplicate-action prevention, execution caps, and safe stopping rules.
 - [Kalshi 15-Minute Sell Preview](https://github.com/Jnapier2/kalshi-15m-sell-bot-public-preview) — A checksum-consistent dry-run exit-management preview with live writes blocked, polling limits, state checks, release verification, and explicit limits on what the public build can do.
 
