@@ -2,7 +2,7 @@
 
 This ledger distinguishes the source actually present on GitHub from newer verified builds that cannot yet be promoted safely. It prevents an older tree from being relabeled as code it does not contain while keeping successor evidence visible.
 
-Last reconciled: **August 2, 2026 at 1:04 AM CDT**
+Last reconciled: **August 2, 2026 at 3:20 PM CDT**
 
 All 17 public project default-branch heads and every declared version marker were checked in this pass. Exact 40-character reviewed heads are retained in [`.github/release-reconciliation.json`](.github/release-reconciliation.json). Dependency and installation controls for all 18 public repositories are recorded in [Dependency Reconciliation](DEPENDENCY_RECONCILIATION.md).
 
@@ -20,7 +20,7 @@ The profile case study **Reliable Project Delivery Framework v1.3.0** presents t
 | Safe Video Downloader | 1.14.2 | 1.14.2 | `a98adba5` | Current; media-signature fallback, mixed-batch exit behavior, and the watchdog are verified across Python 3.11, 3.12, and 3.13 |
 | MP3 Downloader | 1.0.0 | 1.0.0 | `d0237b2f` | Current; Certifi 2026.7.22, the hash-locked runtime, and the Windows matrix are verified |
 | Image Downloader | 2026.07.19.1 | 2026.07.19.1 | `8ef7ad1e` | Current; saved evidence redacts sensitive URL details, and Windows-safe filenames and the 15-second request floor are covered by tests |
-| Large Text Chunker | 1.0.0 | 1.10.0 | `7a39f444` | Checksum companion retained; exact successor ZIP unavailable; promotion blocked |
+| Large Text Chunker | 1.0.0 | 1.10.0 | `8b7c286a` | Exact v1.10.0 ZIP recovered and checksum-matched; public source promotion awaits layout, CI, rights, Windows-launcher, and Norton acceptance |
 | NetLossDoctor | 2.10.0 | 2.10.0 | `8252dbb6` | Current; diagnostic bounds and load context are not certified line-speed measurements |
 | LAN Router Comms | 2.3.0 | 2.3.0 | `cb2afe75` | Current; transfer caps and protocol floors are configuration constraints, not throughput or certification |
 | Windows Health Audit | Current | Current | `936271b5` | GitHub-only source authority; stale Action-version wording replaced with the immutable-pin control |
@@ -40,7 +40,13 @@ The v0.5.0 final is recorded with SHA-256 `ea30ceb8a16566f0bcc20035360eba7bdeb8c
 
 ### Large Text Chunker 1.10.0
 
-The checksum companion for the recorded v1.10.0 successor archive is retained and records SHA-256 `20a428ae390b0443ef08acc5bbcc562124f0f748be74be25b6d9e547916d8ebf`, but the exact ZIP is not currently retrievable. [Issue #3](https://github.com/Jnapier2/large-text-chunker/issues/3) is the checksum-gated promotion record. The public 1.0.0 source remains authoritative until those successor bytes are recovered and verified.
+The exact `ChatGPT_Text_Chunker_v1.10.0_20260718_0111_CDT.zip` archive has been recovered from the owner-controlled Drive registry. Its calculated SHA-256 matches the retained sidecar exactly:
+
+`20a428ae390b0443ef08acc5bbcc562124f0f748be74be25b6d9e547916d8ebf`
+
+ZIP integrity, safe archive paths, every non-self manifest hash, Python compilation, preflight, built-in self-test, and estimate-mode dry run passed. The package requires only the standard library by default and identifies `tiktoken==0.13.0` as an optional exact-count dependency that is never installed automatically.
+
+The missing-archive blocker is resolved. [Issue #3](https://github.com/Jnapier2/large-text-chunker/issues/3) remains open for controlled source promotion: import the exact layout, align CI and current rights/third-party notices, test the BAT launcher on Windows with spaces in the path, and complete a Norton-on smoke test against the exact final artifact. Public source remains v1.0.0 until that gate passes.
 
 ## Completed reconciliations
 
@@ -53,11 +59,11 @@ The checksum companion for the recorded v1.10.0 successor archive is retained an
 - **Safe Video Downloader 1.14.2:** fallback media-signature validation prevents an otherwise plausible response from being accepted blindly, while mixed batches now return an exit status that reflects partial failure. The full hosted matrix remains green on Python 3.11, 3.12, and 3.13.
 - **MP3 Downloader 1.0.0:** Certifi 2026.7.22 was added to the existing SHA-256-locked runtime contract. Exact-hash installation, dependency checks, compilation, offline tests, Windows Python 3.11 and 3.13, and CodeQL passed before merge.
 - **Image Downloader 2026.07.19.1:** output naming now handles Windows-reserved and bidirectional-text cases safely, while logs retain useful correlation evidence without exposing URL credentials. Standard and optional-browser dependency jobs remain green.
-- **Large Text Chunker 1.0.0:** public wording now describes the successor archive generically and keeps the checksum-gated promotion boundary clear.
+- **Large Text Chunker 1.0.0 / recovered v1.10.0:** the exact successor ZIP and sidecar now match. Archive safety, manifest reconciliation, compile, preflight, self-test, and estimate dry-run evidence are recorded publicly without prematurely relabeling the v1.0.0 source.
 - **Inbox From Hell 0.9.0:** the public edition now includes 36 authored cases across six shifts, persistent department progression, migration coverage, and accessible interaction states. The same production URL serves the verified v0.9 source.
 - **Kalshi 15-Minute Sell Preview 41.22.3:** visible naming is consistent and the README distinguishes the current 41.22.3 source tree from the latest downloadable 41.22.2 rev.2 release. The source manifest and SHA-256 inventory were regenerated together and passed the release-integrity, security, test, dependency-review, CodeQL, and cross-platform gates.
 
-There are no active public promotion branches after this pass. Two checksum-gated successor records remain blocked until their exact archives are recovered. The machine-readable source authority is [`.github/release-reconciliation.json`](.github/release-reconciliation.json), and the Portfolio health workflow validates its completeness, exact version markers, and reviewed default-branch heads.
+There are no active public promotion branches after this pass. Beta Earth remains blocked because its exact v0.5.0 archive is unavailable. Large Text Chunker has a recovered, checksum-verified successor awaiting a controlled source and acceptance promotion. The machine-readable source authority is [`.github/release-reconciliation.json`](.github/release-reconciliation.json), and the Portfolio health workflow validates its completeness, exact version markers, and reviewed default-branch heads.
 
 Copyright © 2026 Gateway Information Group LLC. All rights reserved.
 

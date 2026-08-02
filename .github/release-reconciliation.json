@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-08-02T06:04:19Z",
+  "generated_utc": "2026-08-02T20:34:00Z",
   "owner": "Jnapier2",
   "rights_notice": "Copyright © 2026 Gateway Information Group LLC. All rights reserved.",
-  "review_scope": "All 17 public project default-branch heads, declared version markers, release and dependency integrity, public documentation, review-only dependency monitoring, Python support claims, timeout defaults, and source-versus-download distinctions; account-level About links, pins, and rulesets are tracked separately.",
+  "review_scope": "All 17 public project default-branch heads, declared version markers, release and dependency integrity, public documentation, review-only dependency monitoring, Python support claims, timeout defaults, source-versus-download distinctions, and exact Drive successor recovery; account-level About links, pins, and rulesets are tracked separately.",
   "reviewed_public_project_count": 17,
   "status_definitions": {
     "current": "GitHub represents the latest verified source/build version.",
@@ -24,7 +24,7 @@
         "path": "bot_manager.py",
         "text": "APP_VERSION = \"1.13.0\""
       },
-      "note": "GitHub retains post-package public hardening. The README now distinguishes fresh discovery from prior registry evidence after incomplete scans; control still requires fresh launcher and process identity checks.",
+      "note": "GitHub retains post-package public hardening. The README distinguishes fresh discovery from prior registry evidence after incomplete scans; control still requires fresh launcher and process identity checks.",
       "reviewed_head_sha": "58f6925db6b339f1e595262c528a497e321a67c6"
     },
     {
@@ -82,7 +82,7 @@
       },
       "recorded_successor_sha256": "ea30ceb8a16566f0bcc20035360eba7bdeb8c8395e044d909ed99a2395e8f97b",
       "tracking_url": "https://github.com/Jnapier2/beta-earth/issues/5",
-      "note": "The repository discloses the v0.5.0 historical final while keeping v0.4.11 as the honest source identity. The README no longer presents originating test counts as current public coverage because the exact successor archive cannot be rerun.",
+      "note": "The repository discloses the v0.5.0 historical final while keeping v0.4.11 as the honest source identity. The README does not present originating test counts as current public coverage because the exact successor archive cannot be rerun.",
       "reviewed_head_sha": "dd0d1c19aeb7c4cd843c10d8f4fcb67ec170fa51"
     },
     {
@@ -127,14 +127,15 @@
       "repository": "large-text-chunker",
       "represented_version": "1.0.0",
       "latest_verified_version": "1.10.0",
-      "status": "verified_successor_unavailable",
+      "status": "verified_successor_under_reconciliation",
       "source_marker": {
         "path": "src/large_text_chunker.py",
         "text": "VERSION = \"1.0.0\""
       },
+      "recorded_successor_sha256": "20a428ae390b0443ef08acc5bbcc562124f0f748be74be25b6d9e547916d8ebf",
       "tracking_url": "https://github.com/Jnapier2/large-text-chunker/issues/3",
-      "note": "A newer historical candidate is cataloged and its checksum companion is retained, but the exact successor source archive is unavailable; no speculative relabeling is permitted.",
-      "reviewed_head_sha": "7a39f4443d8507b86a929f8820a190c8a47e99d1"
+      "note": "The exact v1.10.0 ZIP and checksum companion are recovered and match. ZIP safety, non-self manifest hashes, Python compilation, preflight, built-in self-test, and estimate-mode dry run passed. Public source remains v1.0.0 until exact source import, CI, rights and third-party notices, Windows launcher, and Norton-on acceptance pass.",
+      "reviewed_head_sha": "8b7c286ad46d5a472b32146430e155964d44f021"
     },
     {
       "repository": "net-loss-doctor",
@@ -165,7 +166,7 @@
       "represented_version": null,
       "latest_verified_version": null,
       "status": "github_source_only",
-      "note": "Current read-only GitHub source. The README now describes the durable immutable Action pin rather than a stale checkout major-version label.",
+      "note": "Current read-only GitHub source. The README describes the durable immutable Action pin rather than a stale checkout major-version label.",
       "reviewed_head_sha": "936271b5785f2ef74ac764a08323a7ac495e8246"
     },
     {
@@ -177,7 +178,7 @@
         "path": "package.json",
         "text": "\"version\": \"0.9.0\""
       },
-      "note": "The sanitized v0.9 public source and unchanged Netlify URL now agree. The acceptance suite verifies 36 authored cases across six shifts, career migration, successful and failed department reviews, security configuration, and publication scope.",
+      "note": "The sanitized v0.9 public source and unchanged Netlify URL agree. The acceptance suite verifies 36 authored cases across six shifts, career migration, successful and failed department reviews, security configuration, and publication scope.",
       "reviewed_head_sha": "b71b6a98c057c65bb28af4fd39837e66fa83c80e"
     },
     {
