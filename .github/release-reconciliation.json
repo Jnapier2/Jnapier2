@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-08-02T06:04:19Z",
+  "generated_utc": "2026-08-02T20:20:00Z",
   "owner": "Jnapier2",
   "rights_notice": "Copyright © 2026 Gateway Information Group LLC. All rights reserved.",
-  "review_scope": "All 17 public project default-branch heads, declared version markers, release and dependency integrity, public documentation, review-only dependency monitoring, Python support claims, timeout defaults, and source-versus-download distinctions; account-level About links, pins, and rulesets are tracked separately.",
+  "review_scope": "All 17 public project default-branch heads, declared version markers, release and dependency integrity, public documentation, review-only dependency monitoring, Python support claims, timeout defaults, source-versus-download distinctions, and exact Drive successor recovery; account-level About links, pins, and rulesets are tracked separately.",
   "reviewed_public_project_count": 17,
   "status_definitions": {
     "current": "GitHub represents the latest verified source/build version.",
@@ -12,6 +12,7 @@
     "github_source_only": "GitHub is the only registered source authority and no separate final package is registered.",
     "verified_successor_pending_exact_transfer": "A newer final passed originating checks, but its exact bytes are not available for safe promotion.",
     "verified_successor_under_reconciliation": "A newer checksum-verified package is available and a security-preserving GitHub reconciliation is in progress.",
+    "verified_successor_recovered_pending_promotion": "The exact successor package is recovered and checksum-verified, but public source promotion still requires source-layout, CI, rights, dependency, and machine acceptance.",
     "verified_successor_unavailable": "A newer historical candidate is recorded, but its exact package is unavailable or retired."
   },
   "projects": [
@@ -127,14 +128,15 @@
       "repository": "large-text-chunker",
       "represented_version": "1.0.0",
       "latest_verified_version": "1.10.0",
-      "status": "verified_successor_unavailable",
+      "status": "verified_successor_recovered_pending_promotion",
       "source_marker": {
         "path": "src/large_text_chunker.py",
         "text": "VERSION = \"1.0.0\""
       },
+      "recorded_successor_sha256": "20a428ae390b0443ef08acc5bbcc562124f0f748be74be25b6d9e547916d8ebf",
       "tracking_url": "https://github.com/Jnapier2/large-text-chunker/issues/3",
-      "note": "A newer historical candidate is cataloged and its checksum companion is retained, but the exact successor source archive is unavailable; no speculative relabeling is permitted.",
-      "reviewed_head_sha": "7a39f4443d8507b86a929f8820a190c8a47e99d1"
+      "note": "The exact v1.10.0 ZIP and checksum companion are recovered and match. ZIP safety, non-self manifest hashes, Python compilation, preflight, built-in self-test, and estimate-mode dry run passed. Public source remains v1.0.0 until exact source import, CI, rights and third-party notices, Windows launcher, and Norton-on acceptance pass.",
+      "reviewed_head_sha": "8b7c286ad46d5a472b32146430e155964d44f021"
     },
     {
       "repository": "net-loss-doctor",
