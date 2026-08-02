@@ -2,7 +2,7 @@
 
 This record identifies how each public repository controls third-party packages and installation behavior. It separates projects that need no application dependencies from exact pins, SHA-256 locks, bounded compatible ranges, and checksum-sealed releases. All 18 public repositories are covered.
 
-Last reconciled: **August 2, 2026 at 1:04 AM CDT**
+Last reconciled: **August 2, 2026 at 3:20 PM CDT**
 
 The machine-readable authority is [`.github/dependency-reconciliation.json`](.github/dependency-reconciliation.json). The Portfolio health workflow checks the declared files, version markers, installation commands, consistency gates, absence claims, and deferred compatibility decisions.
 
@@ -20,8 +20,8 @@ The machine-readable authority is [`.github/dependency-reconciliation.json`](.gi
 | Beta Earth | No third-party runtime | Public v0.4.11 declares no runtime dependencies; v0.5.0 remains checksum-gated |
 | Safe Video Downloader | Exact pin | `yt-dlp[default]` fixed at 2026.07.04; binary install, `pip check`, and Python 3.11–3.13 CI required |
 | MP3 Downloader | SHA-256 locked | Certifi 2026.7.22 and yt-dlp remain exact, hashed artifacts; `pip check` and the Windows Python matrix passed |
-| Image Downloader | Bounded ranges | Beautiful Soup now starts at reviewed 4.15.0; optional Playwright remains `>=1.61.0,<2` and is validated separately without browser downloads |
-| Large Text Chunker | No third-party runtime | Dependency-free public v1.0.0; v1.10.0 remains checksum-gated |
+| Image Downloader | Bounded ranges | Beautiful Soup starts at reviewed 4.15.0; optional Playwright remains `>=1.61.0,<2` and is validated separately without browser downloads |
+| Large Text Chunker | No third-party runtime | Public v1.0.0 remains dependency-free; recovered v1.10.0 also requires only the standard library by default and offers optional `tiktoken==0.13.0` exact counting without automatic installation |
 | NetLossDoctor | No third-party runtime | Windows PowerShell and operating-system tools only |
 | LAN Router Comms | No third-party runtime | Windows PowerShell and operating-system cryptography/networking only |
 | Windows Health Audit | No third-party runtime | Read-only Windows PowerShell with no package installation |
@@ -45,7 +45,7 @@ Monthly GitHub Actions proposals are review-only and never auto-merge. Runtime-p
 
 ### Chicago Food Inspection Outcomes
 
-The Python 3.12 environment moved to compatible releases inside the existing major lines:
+The Python 3.12 environment uses compatible releases inside the reviewed major lines:
 
 - `ipykernel==6.31.0`
 - `matplotlib==3.11.1`
@@ -64,11 +64,29 @@ Image Downloader advanced its Beautiful Soup range to `beautifulsoup4>=4.15.0,<5
 
 Monthly dependency and Actions proposals in these repositories are review-only and never auto-merge.
 
+### Large Text Chunker recovered v1.10.0
+
+The exact Drive successor package and retained checksum companion match SHA-256:
+
+`20a428ae390b0443ef08acc5bbcc562124f0f748be74be25b6d9e547916d8ebf`
+
+The recovered package declares:
+
+- Python 3.13-compatible standard-library runtime required;
+- no required third-party packages;
+- optional `tiktoken==0.13.0` for exact `o200k_base` token counting;
+- estimate mode as the offline default;
+- no automatic dependency installation; and
+- a possible one-time official encoding-cache retrieval only when exact mode is initialized.
+
+Python 3.13.5 compilation, preflight, built-in self-test, and estimate-mode dry run passed from a clean extraction. This does not change the dependency contract of the current v1.0.0 GitHub source. The optional package becomes part of the public source contract only after exact v1.10.0 source import, CI, rights/notice reconciliation, Windows launcher validation, and Norton-on release acceptance.
+
 ## Deliberately deferred compatibility changes
 
 - **MediaTaggerBot Requests 2.34.2:** requires one synchronized launcher, package-metadata, lock, test, and Windows launch pass. The known-good 2.33.0 contract remains active.
 - **Chicago major-version lines:** ipykernel 7.x and pandas 3.x require a dedicated notebook-compatibility review. They were not mixed into the Matplotlib maintenance update.
 - **MediaTaggerBot Certifi:** the verified SHA-256-locked 2026.6.17 artifact remains active. A transition to 2026.7.22 requires synchronized lock, installation, runtime, launcher, and Windows acceptance evidence.
+- **Large Text Chunker optional exact mode:** `tiktoken==0.13.0` is verified as package metadata and optional functionality, but it is not yet adopted by the public source. Promotion requires source import, dependency notices, exact/fallback tests, hosted CI, Windows path and launcher testing, and Norton-on acceptance.
 - **Kalshi 15-Minute Sell Preview cryptography 49.x:** the public preview is checksum sealed. A major dependency transition requires regenerated locks, SBOM, manifests, checksums, and the complete security matrix.
 
 ## Excluded private scope
@@ -77,7 +95,7 @@ Private, commercial, operational, and rights-sensitive workspaces are intentiona
 
 ## Operating rule
 
-Dependency updates are adopted only when the exact change can be installed and validated within the repository’s existing safety and release boundary. Major-version changes, conflicting upstream records, and sealed-release mutations remain explicit follow-up work rather than silent upgrades.
+Dependency updates are adopted only when the exact change can be installed and validated within the repository’s existing safety and release boundary. Major-version changes, conflicting upstream records, optional successor dependencies, and sealed-release mutations remain explicit follow-up work rather than silent upgrades.
 
 Copyright © 2026 Gateway Information Group LLC. All rights reserved.
 
