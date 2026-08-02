@@ -165,7 +165,7 @@
       "require_portfolio_backlink": true,
       "rights_mode": "all-rights-reserved",
       "expected_description": "Prepares oversized documents for downstream workflows with readable chunking, integrity metadata, and exact reconstruction.",
-      "profile_summary": "Splits local documents at readable boundaries, preserves configurable context, records SHA-256 integrity metadata, and verifies exact reconstruction. Public source remains v1.0.0 while the recorded v1.10.0 final awaits its exact checksum-matched archive."
+      "profile_summary": "Splits local documents at readable boundaries, preserves configurable context, records SHA-256 integrity metadata, and verifies exact reconstruction. Public source remains v1.0.0; the exact checksum-matched v1.10.0 archive is recovered and awaiting controlled source promotion."
     },
     {
       "name": "net-loss-doctor",
