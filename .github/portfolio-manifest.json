@@ -134,7 +134,7 @@
       "ci_path": ".github/workflows/ci.yml",
       "require_portfolio_backlink": true,
       "rights_mode": "all-rights-reserved",
-      "expected_description": "Controlled retrieval of authorized media with rights confirmation, duplicate controls, isolated workers, and verified output.",
+      "expected_description": "Authorized-media retrieval with isolated workers, duplicate controls, fallback signature validation, and accurate mixed-batch results.",
       "profile_summary": "Retrieves authorized media through shared desktop and command-line planning, public-network checks, duplicate controls, isolated workers, fallback media-signature validation, accurate status for mixed-result batches, and verified output."
     },
     {
@@ -154,7 +154,7 @@
       "ci_path": ".github/workflows/ci.yml",
       "require_portfolio_backlink": true,
       "rights_mode": "all-rights-reserved",
-      "expected_description": "Controlled, permission-aware image collection with bounded discovery, duplicate controls, resumable state, and verified output.",
+      "expected_description": "Permission-aware image collection with bounded discovery, credential-safe evidence, Windows-safe filenames, resumable state, and verified output.",
       "profile_summary": "Collects permitted images with controlled discovery, time-limited network requests, evidence that redacts sensitive URL details, Windows-safe filenames, resumable state, layered duplicate controls, and atomic finalization."
     },
     {
@@ -205,7 +205,7 @@
       "require_portfolio_backlink": true,
       "rights_mode": "all-rights-reserved",
       "expected_homepage": "https://inbox-from-hell-demo.netlify.app/",
-      "expected_description": "Decision-driven workplace-horror browser game with data-driven outcomes, resilient local saves, accessible controls, and full-playthrough CI.",
+      "expected_description": "Six-shift workplace-horror browser game with 36 branching cases, department progression, resilient saves, accessible controls, and full-playthrough CI.",
       "profile_summary": "A six-shift workplace-horror browser game with 36 branching support cases, permanent department progression, accessible controls, resilient local saves, and automated full-campaign acceptance testing."
     },
     {
