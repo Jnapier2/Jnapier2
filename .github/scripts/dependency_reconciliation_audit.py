@@ -21,7 +21,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[2]
 PORTFOLIO_MANIFEST_PATH = ROOT / ".github" / "portfolio-manifest.json"
 DEPENDENCY_LEDGER_PATH = ROOT / ".github" / "dependency-reconciliation.json"
-OUTPUT_DIR = ROOT / "audit-output"
+OUTPUT_DIR = Path(os.environ.get("PORTFOLIO_AUDIT_OUTPUT_DIR", ROOT / "audit-output"))
 RIGHTS_NOTICE = "Copyright © 2026 Gateway Information Group LLC. All rights reserved."
 USER_AGENT = "Gateway-Dependency-Reconciliation-Audit/1.0"
 HTTP_TIMEOUT_SECONDS = 20
@@ -293,7 +293,7 @@ def write_reports(
         "files_checked": sum(item.files_checked for item in results),
         "absent_paths_checked": sum(item.absent_paths_checked for item in results),
         "deferred_reviews": ledger.get("deferred_reviews", []),
-        "private_workspaces": ledger.get("private_workspaces", []),
+        "excluded_private_scope": ledger.get("excluded_private_scope", {}),
         "error_count": len(errors),
         "warning_count": len(warnings),
         "projects": [
@@ -354,7 +354,7 @@ def write_reports(
         for item in deferred:
             lines.append(
                 f"- **{item.get('repository')}: {item.get('dependency')}** — "
-                f"{item.get('current')} → {item.get('candidate')}. {item.get('reason')}"
+                f"{item.get('current')} -> {item.get('candidate')}. {item.get('reason')}"
             )
 
     lines.extend(

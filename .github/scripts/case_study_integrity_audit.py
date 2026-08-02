@@ -7,18 +7,23 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import re
 from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 CASE_DIR = ROOT / "case-studies" / "reliable-project-delivery-framework"
-OUTPUT_DIR = ROOT / "audit-output"
+OUTPUT_DIR = Path(os.environ.get("PORTFOLIO_AUDIT_OUTPUT_DIR", ROOT / "audit-output"))
 RIGHTS_NOTICE = "Copyright © 2026 Gateway Information Group LLC. All rights reserved."
-CASE_STUDY_VERSION = "1.2.0"
-SOURCE_FRAMEWORK_VERSION = "2.17.2"
-SOURCE_PACKAGE_SHA256 = "e0615823cfde6ae6eff6d4c028a6f2f1f54d251df90bd64f3cad8a6475b6d1d6"
-PUBLIC_POLICY_REVISION = "2026-07-26-local-independent-operation"
+CASE_STUDY_VERSION = "1.3.0"
+SOURCE_FRAMEWORK_VERSION = "2.17.4"
+SOURCE_PACKAGE_SHA256 = "00066e203063d8ce4d82b936fb7e9c37d91023ecbaba26f7a30da4d40df8f492"
+PUBLIC_POLICY_REVISION = "2026-08-01-public-release-governance-sanitization"
+SOURCE_PACKAGE_ROLE = (
+    "Private checksum-verified design baseline; the public case study exposes outcomes and boundaries, "
+    "not internal operating text."
+)
 EXPECTED_FILES = {
     "MANIFEST.json",
     "PUBLIC_SCOPE.md",
@@ -66,9 +71,7 @@ def main() -> int:
         fail("source framework version is invalid")
     if manifest.get("source_package_sha256") != SOURCE_PACKAGE_SHA256:
         fail("source package SHA-256 is invalid")
-    if manifest.get("source_package_role") != (
-        "Historical checksum-verified validation baseline; not rewritten by the v1.2.0 public policy correction."
-    ):
+    if manifest.get("source_package_role") != SOURCE_PACKAGE_ROLE:
         fail("source package role is invalid")
     if manifest.get("public_policy_revision") != PUBLIC_POLICY_REVISION:
         fail("public policy revision is invalid")
@@ -117,17 +120,20 @@ def main() -> int:
     revision = summary.get("public_policy_revision", {})
     if revision.get("id") != PUBLIC_POLICY_REVISION:
         fail("validation summary policy revision changed")
-    if revision.get("status") != "supersedes fleet ownership and handoff language":
+    if revision.get("status") != "current independent-local-operation and public-evidence language":
         fail("validation summary policy status changed")
     validation = summary.get("validation", {})
     expected_metrics = {
-        "release_package_files": 15,
-        "zip_integrity": "pass",
-        "control_areas": {"passed": 26, "total": 26},
-        "scenario_simulations": {"passed": 40, "total": 40},
-        "negative_conflict_checks": {"passed": 20, "total": 20},
-        "docx_render": {"pages": 11, "visual_review": "pass"},
-        "docx_accessibility": {"high": 0, "medium": 0, "low": 0},
+        "source_package_integrity": "pass",
+        "public_release_integrity": "manifest-and-checksum-verifiable",
+        "control_review": "completed internally; itemized controls are outside public scope",
+        "scenario_review": "completed internally; itemized scenarios are outside public scope",
+        "document_review": "completed internally",
+        "public_metrics": [
+            "published file inventory",
+            "published file sizes",
+            "published SHA-256 checksums",
+        ],
     }
     if validation != expected_metrics:
         fail("validation scorecard changed")
@@ -142,8 +148,12 @@ def main() -> int:
         fail("running-process modification is being overclaimed")
     if boundary.get("executable_included") is not False:
         fail("executable-content boundary changed")
-    if boundary.get("historical_metrics_rerun_for_policy_revision") is not False:
-        fail("historical validation metrics are being misrepresented as rerun")
+    if boundary.get("public_release_integrity_verifiable") is not True:
+        fail("public release integrity is not declared verifiable")
+    if boundary.get("internal_control_counts_published") is not False:
+        fail("internal control totals are being presented as public evidence")
+    if boundary.get("internal_scenario_counts_published") is not False:
+        fail("internal scenario totals are being presented as public evidence")
     if summary.get("rights_notice") != RIGHTS_NOTICE:
         fail("validation summary rights notice changed")
 
@@ -152,6 +162,7 @@ def main() -> int:
         "every installation independently launchable",
         "may not block launch",
         "Multi-computer portability without cross-computer restrictions",
+        "does not present internal totals as independently auditable results",
     ]
     for marker in required_policy_markers:
         if marker not in readme:
@@ -159,6 +170,12 @@ def main() -> int:
     forbidden_policy_markers = [
         "single active writer across the fleet",
         "cross-computer ownership and clean-handoff design",
+        "chatgpt_new_thread_parameters",
+        "successor threads",
+        "interface cannot be renamed",
+        "26 / 26",
+        "40 / 40",
+        "20 / 20",
     ]
     for marker in forbidden_policy_markers:
         if marker in readme:
@@ -179,7 +196,7 @@ def main() -> int:
         "public_policy_revision": PUBLIC_POLICY_REVISION,
         "files_verified": len(SEALED_FILES),
         "manifest_records_verified": len(records),
-        "validation_scorecard": expected_metrics,
+        "validation_scope": expected_metrics,
         "result": "PASS",
         "rights_notice": RIGHTS_NOTICE,
     }

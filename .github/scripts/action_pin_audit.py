@@ -17,7 +17,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
 MANIFEST_PATH = ROOT / ".github" / "portfolio-manifest.json"
-OUTPUT_DIR = ROOT / "audit-output"
+OUTPUT_DIR = Path(os.environ.get("PORTFOLIO_AUDIT_OUTPUT_DIR", ROOT / "audit-output"))
 RIGHTS_NOTICE = "Copyright © 2026 Gateway Information Group LLC. All rights reserved."
 USER_AGENT = "Gateway-Portfolio-Action-Pin-Audit/1.3"
 HTTP_TIMEOUT_SECONDS = 20

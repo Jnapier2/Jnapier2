@@ -27,7 +27,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[2]
 MANIFEST_PATH = ROOT / ".github" / "portfolio-manifest.json"
 PROFILE_README_PATH = ROOT / "README.md"
-OUTPUT_DIR = ROOT / "audit-output"
+OUTPUT_DIR = Path(os.environ.get("PORTFOLIO_AUDIT_OUTPUT_DIR", ROOT / "audit-output"))
 HTTP_TIMEOUT_SECONDS = 15
 HTTP_ATTEMPTS = 3
 MAX_TEXT_BYTES = 2_000_000
