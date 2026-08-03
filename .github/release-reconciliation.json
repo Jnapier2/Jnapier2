@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-08-03T04:50:00Z",
+  "generated_utc": "2026-08-03T08:13:04Z",
   "owner": "Jnapier2",
   "rights_notice": "Copyright © 2026 Gateway Information Group LLC. All rights reserved.",
   "review_scope": "All 17 public project default-branch heads, declared version markers, release and dependency integrity, public documentation, review-only dependency monitoring, Python support claims, timeout defaults, source-versus-download distinctions, and recovered-package provenance; account-level About links, pins, and rulesets are tracked separately.",
@@ -135,8 +135,8 @@
       "provenance_package_sha256": "20a428ae390b0443ef08acc5bbcc562124f0f748be74be25b6d9e547916d8ebf",
       "release_url": "https://github.com/Jnapier2/large-text-chunker/releases/tag/v1.10.0",
       "tracking_url": "https://github.com/Jnapier2/large-text-chunker/issues/3",
-      "note": "The current stable source adds estimate, optional exact, and automatic-fallback token modes, token evidence, a dated upload advisory, and v1.0 manifest compatibility. Local tests and the recovered BAT acceptance passed; Windows and Ubuntu source tests, real tiktoken exact smoke tests, and CodeQL passed at the reviewed head. The checksum-matched recovered ZIP remains immutable provenance and is not attached to the GitHub release.",
-      "reviewed_head_sha": "d2ecd25f4cd8277fd9ce824f6cedc944a1e1d464"
+      "note": "The current stable source adds estimate, optional exact, and automatic-fallback token modes, token evidence, a dated upload advisory, and v1.0 manifest compatibility. Local tests and the recovered BAT acceptance passed; Windows and Ubuntu source tests, real tiktoken exact smoke tests, and CodeQL passed at the reviewed head. A documentation-only follow-up clarified the platform and tokenizer guidance without changing runtime behavior, dependencies, version, or release identity. The checksum-matched recovered ZIP remains immutable provenance and is not attached to the GitHub release.",
+      "reviewed_head_sha": "d68c091d19ceea63700135c564ac9cae4da78e7b"
     },
     {
       "repository": "net-loss-doctor",
