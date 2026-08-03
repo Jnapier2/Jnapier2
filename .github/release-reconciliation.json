@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-08-02T20:34:00Z",
+  "generated_utc": "2026-08-03T04:50:00Z",
   "owner": "Jnapier2",
   "rights_notice": "Copyright © 2026 Gateway Information Group LLC. All rights reserved.",
-  "review_scope": "All 17 public project default-branch heads, declared version markers, release and dependency integrity, public documentation, review-only dependency monitoring, Python support claims, timeout defaults, source-versus-download distinctions, and exact Drive successor recovery; account-level About links, pins, and rulesets are tracked separately.",
+  "review_scope": "All 17 public project default-branch heads, declared version markers, release and dependency integrity, public documentation, review-only dependency monitoring, Python support claims, timeout defaults, source-versus-download distinctions, and recovered-package provenance; account-level About links, pins, and rulesets are tracked separately.",
   "reviewed_public_project_count": 17,
   "status_definitions": {
     "current": "GitHub represents the latest verified source/build version.",
@@ -112,30 +112,31 @@
     },
     {
       "repository": "image-downloader",
-      "represented_version": "2026.07.19.1",
-      "latest_verified_version": "2026.07.19.1",
+      "represented_version": "2026.08.02.1",
+      "latest_verified_version": "2026.08.02.1",
       "status": "current",
       "source_marker": {
         "path": "image_downloader.py",
-        "text": "APP_VERSION = \"2026.07.19.1\""
+        "text": "APP_VERSION = \"2026.08.02.1\""
       },
-      "recorded_successor_sha256": "0b8acc9b4e6cbcfda899186e6a2c5ac9aeee9609a7143013f6015cda8c22b6d6",
-      "note": "The verified timeout-budget release remains current. Credential-safe evidence, Windows reserved-name and bidirectional-text hardening, and the 15-second request wall-clock floor are covered by tests; CI validates standard and optional Playwright dependency sets without downloading browsers.",
-      "reviewed_head_sha": "8ef7ad1ec8f9ac122cc2477494310271c754f085"
+      "release_url": "https://github.com/Jnapier2/image-downloader/releases/tag/v2026.08.02.1",
+      "note": "The public source and stable release align at 2026.08.02.1. Credential-safe persisted evidence, Windows reserved-name and bidirectional-text hardening, and the five-second per-image network budget are covered by tests; CI validates standard and optional Playwright dependency sets without downloading browsers, and CI plus CodeQL passed at the reviewed head.",
+      "reviewed_head_sha": "2745b0c33d5dde7820d2a20ba4fb962af91b172f"
     },
     {
       "repository": "large-text-chunker",
-      "represented_version": "1.0.0",
+      "represented_version": "1.10.0",
       "latest_verified_version": "1.10.0",
-      "status": "verified_successor_under_reconciliation",
+      "status": "current",
       "source_marker": {
         "path": "src/large_text_chunker.py",
-        "text": "VERSION = \"1.0.0\""
+        "text": "VERSION = \"1.10.0\""
       },
-      "recorded_successor_sha256": "20a428ae390b0443ef08acc5bbcc562124f0f748be74be25b6d9e547916d8ebf",
+      "provenance_package_sha256": "20a428ae390b0443ef08acc5bbcc562124f0f748be74be25b6d9e547916d8ebf",
+      "release_url": "https://github.com/Jnapier2/large-text-chunker/releases/tag/v1.10.0",
       "tracking_url": "https://github.com/Jnapier2/large-text-chunker/issues/3",
-      "note": "The exact v1.10.0 ZIP and checksum companion are recovered and match. ZIP safety, non-self manifest hashes, Python compilation, preflight, built-in self-test, and estimate-mode dry run passed. Public source remains v1.0.0 until exact source import, CI, rights and third-party notices, Windows launcher, and Norton-on acceptance pass.",
-      "reviewed_head_sha": "8b7c286ad46d5a472b32146430e155964d44f021"
+      "note": "The current stable source adds estimate, optional exact, and automatic-fallback token modes, token evidence, a dated upload advisory, and v1.0 manifest compatibility. Local tests and the recovered BAT acceptance passed; Windows and Ubuntu source tests, real tiktoken exact smoke tests, and CodeQL passed at the reviewed head. The checksum-matched recovered ZIP remains immutable provenance and is not attached to the GitHub release.",
+      "reviewed_head_sha": "d2ecd25f4cd8277fd9ce824f6cedc944a1e1d464"
     },
     {
       "repository": "net-loss-doctor",
@@ -202,8 +203,9 @@
         "path": "pyproject.toml",
         "text": "version = \"41.22.3\""
       },
-      "note": "Current checksum-consistent public dry-run source; all mutation paths remain blocked. The README distinguishes the 41.22.3 source tree from the latest downloadable 41.22.2 rev.2 package, and the source manifest/checksum inventory was regenerated and verified.",
-      "reviewed_head_sha": "d2ed74f7b570f4ee5dde3879f5655d3ebf377c17"
+      "release_url": "https://github.com/Jnapier2/kalshi-15m-sell-bot-public-preview/releases/tag/v41.22.3-public-preview",
+      "note": "Current checksum-consistent public dry-run source; all mutation paths remain blocked. The downloadable v41.22.3 prerelease now matches the source version, and security and test automation plus CodeQL passed at the reviewed head.",
+      "reviewed_head_sha": "caa58711a3300f80dd80a112cd712bc7da55f284"
     }
   ]
 }
