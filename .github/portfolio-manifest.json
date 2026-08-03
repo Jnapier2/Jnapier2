@@ -155,7 +155,7 @@
       "require_portfolio_backlink": true,
       "rights_mode": "all-rights-reserved",
       "expected_description": "Permission-aware image collection with bounded discovery, credential-safe evidence, Windows-safe filenames, resumable state, and verified output.",
-      "profile_summary": "Collects permitted images with controlled discovery, time-limited network requests, evidence that redacts sensitive URL details, Windows-safe filenames, resumable state, layered duplicate controls, and atomic finalization."
+      "profile_summary": "The 2026.08.02.1 release collects permitted images with controlled discovery, a five-second per-image network budget, credential-safe evidence, Windows-safe filenames, resumable state, duplicate controls, and atomic finalization."
     },
     {
       "name": "large-text-chunker",
@@ -165,7 +165,7 @@
       "require_portfolio_backlink": true,
       "rights_mode": "all-rights-reserved",
       "expected_description": "Prepares oversized documents for downstream workflows with readable chunking, integrity metadata, and exact reconstruction.",
-      "profile_summary": "Splits local documents at readable boundaries, preserves configurable context, records SHA-256 integrity metadata, and verifies exact reconstruction. Public source remains v1.0.0; the exact checksum-matched v1.10.0 archive is recovered and awaiting controlled source promotion."
+      "profile_summary": "Splits local documents at readable boundaries, verifies exact reconstruction, and records SHA-256 and token evidence. Version 1.10 adds offline estimate, optional exact, and automatic fallback modes plus a dated upload-cap advisory."
     },
     {
       "name": "net-loss-doctor",
@@ -228,7 +228,7 @@
       "rights_mode": "mit-sealed",
       "expected_homepage": "https://jerry-napier-portfolio.netlify.app/#gift",
       "expected_description": "MIT-licensed, read-only Kalshi planning preview for API integration, reconciliation, and release governance.",
-      "profile_summary": "A checksum-consistent dry-run exit-management preview with live writes blocked, polling limits, state checks, release verification, and explicit limits on what the public build can do."
+      "profile_summary": "The downloadable v41.22.3 public preview is a checksum-consistent dry-run exit planner with live writes blocked, bounded polling, state reconciliation, release verification, and clear limits on what the build can do."
     }
   ]
 }

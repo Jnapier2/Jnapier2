@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-08-02T20:20:00Z",
+  "generated_utc": "2026-08-03T04:50:00Z",
   "owner": "Jnapier2",
   "rights_notice": "Copyright © 2026 Gateway Information Group LLC. All rights reserved.",
-  "review_scope": "All 18 public repositories: declared dependency files, installation controls, consistency checks, sealed-release boundaries, no-third-party-runtime claims, supported Python matrices, review-only dependency monitoring, reviewed August dependency updates, and the recovered Large Text Chunker successor dependency boundary.",
+  "review_scope": "All 18 public repositories: declared dependency files, installation controls, consistency checks, sealed-release boundaries, no-third-party-runtime claims, supported Python matrices, review-only dependency monitoring, reviewed August dependency updates, and the promoted Large Text Chunker 1.10 optional-dependency boundary.",
   "policy": {
     "upgrade_rule": "Adopt only source-backed compatible updates that pass the repository's native install, consistency, compilation, test, and release gates.",
     "major_version_rule": "Major-version changes require a dedicated compatibility and release review and are never applied silently.",
@@ -115,15 +115,28 @@
     {
       "repository": "large-text-chunker",
       "status": "no_third_party_runtime",
-      "note": "The v1.0.0 public source is dependency-free and local-only. The recovered v1.10.0 successor also requires only the standard library in default estimate mode and identifies optional tiktoken 0.13.0 for exact counts without automatic installation; promotion remains pending.",
-      "text_checks": [{"path": "README.md", "contains": ["The current v1.0.0 source is local-only and needs no account, API key, package installation, or network connection."]}],
+      "note": "The v1.10.0 public source requires only the Python standard library in default estimate mode. Exact counting uses separately installed tiktoken 0.13.0; the tool never installs it automatically, and hosted Windows and Ubuntu jobs validate both the default source and real exact-token round trips.",
+      "text_checks": [
+        {"path": "README.md", "contains": ["The default path is offline and uses only the Python standard library.", "python -m pip install tiktoken==0.13.0", "The tool never installs it automatically."]},
+        {"path": "THIRD_PARTY_NOTICES.md", "contains": ["No third-party code is bundled in this repository.", "version `0.13.0`"]},
+        {"path": ".github/workflows/test.yml", "contains": ["os: [ubuntu-latest, windows-latest]", "tiktoken==0.13.0", "test_exact_tiktoken_integration.py"]}
+      ],
       "absent_paths": ["requirements.txt", "requirements.lock.txt", "pyproject.toml", "package.json"],
-      "recorded_successor": {
+      "optional_components": [{
+        "name": "tiktoken",
+        "version": "0.13.0",
+        "scope": "optional exact token counting",
+        "bundled": false,
+        "automatic_install": false,
+        "license": "MIT",
+        "source": "https://github.com/openai/tiktoken"
+      }],
+      "provenance_package": {
         "version": "1.10.0",
         "sha256": "20a428ae390b0443ef08acc5bbcc562124f0f748be74be25b6d9e547916d8ebf",
         "required_third_party_packages": [],
         "optional_third_party_packages": [{"name": "tiktoken", "version": "0.13.0", "automatic_install": false}],
-        "status": "checksum_verified_pending_source_promotion"
+        "status": "checksum_verified_immutable_not_attached"
       }
     },
     {
@@ -196,13 +209,6 @@
       "current": "2026.6.17",
       "candidate": "2026.7.22",
       "reason": "MediaTaggerBot retains its verified SHA-256 lock. A transition requires synchronized lock, installation, runtime, launcher, and Windows acceptance evidence."
-    },
-    {
-      "repository": "large-text-chunker",
-      "dependency": "tiktoken",
-      "current": "not part of the v1.0.0 public source contract",
-      "candidate": "0.13.0 optional exact-count mode in recovered v1.10.0",
-      "reason": "Adoption requires exact source import, dependency notices, exact/fallback tests, hosted CI, Windows path and launcher testing, and Norton-on acceptance."
     },
     {
       "repository": "kalshi-15m-sell-bot-public-preview",
