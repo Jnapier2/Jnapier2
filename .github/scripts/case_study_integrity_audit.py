@@ -16,12 +16,13 @@ ROOT = Path(__file__).resolve().parents[2]
 CASE_DIR = ROOT / "case-studies" / "reliable-project-delivery-framework"
 OUTPUT_DIR = Path(os.environ.get("PORTFOLIO_AUDIT_OUTPUT_DIR", ROOT / "audit-output"))
 RIGHTS_NOTICE = "Copyright © 2026 Gateway Information Group LLC. All rights reserved."
-CASE_STUDY_VERSION = "1.3.0"
-SOURCE_FRAMEWORK_VERSION = "2.17.4"
-SOURCE_PACKAGE_SHA256 = "00066e203063d8ce4d82b936fb7e9c37d91023ecbaba26f7a30da4d40df8f492"
-PUBLIC_POLICY_REVISION = "2026-08-01-public-release-governance-sanitization"
+CASE_STUDY_VERSION = "1.4.0"
+SOURCE_FRAMEWORK_VERSION = "2.17.5"
+SOURCE_PACKAGE_SHA256 = "655564a81adeff17ddad1e33b1453ae64bde0f405a41e740e3b3a7f65934d2e0"
+PUBLIC_POLICY_REVISION = "2026-08-07-runtime-release-identity-integrity"
 SOURCE_PACKAGE_ROLE = (
-    "Private checksum-verified design baseline; the public case study exposes outcomes and boundaries, "
+    "Private exact-source design baseline; ZIP CRC and all 15 internal manifest file size/hash checks "
+    "passed, and the package SHA-256 is recorded. The public case study exposes outcomes and boundaries, "
     "not internal operating text."
 )
 EXPECTED_FILES = {
@@ -75,6 +76,8 @@ def main() -> int:
         fail("source package role is invalid")
     if manifest.get("public_policy_revision") != PUBLIC_POLICY_REVISION:
         fail("public policy revision is invalid")
+    if manifest.get("runtime_identity_gate_status") != "not_applicable-documentation-only":
+        fail("documentation-only runtime identity status is invalid")
     if manifest.get("rights_notice") != RIGHTS_NOTICE:
         fail("canonical rights notice is missing from the manifest")
     if manifest.get("data_classification") != "public":
@@ -117,11 +120,40 @@ def main() -> int:
         fail("validation summary source version changed")
     if summary.get("source_package_sha256") != SOURCE_PACKAGE_SHA256:
         fail("validation summary source package hash changed")
+    if summary.get("source_package_role") != SOURCE_PACKAGE_ROLE:
+        fail("validation summary source package role changed")
+
     revision = summary.get("public_policy_revision", {})
     if revision.get("id") != PUBLIC_POLICY_REVISION:
         fail("validation summary policy revision changed")
-    if revision.get("status") != "current independent-local-operation and public-evidence language":
+    if revision.get("status") != (
+        "current independent-local-operation, public-evidence, and runtime-identity language"
+    ):
         fail("validation summary policy status changed")
+
+    runtime_identity = summary.get("runtime_release_identity", {})
+    if runtime_identity.get("source_policy_status") != "current":
+        fail("runtime identity policy is not current")
+    if runtime_identity.get("case_study_status") != "not_applicable-documentation-only":
+        fail("documentation-only runtime identity boundary changed")
+    if runtime_identity.get("control_files") != [
+        "VERSION.txt",
+        "MANIFEST.json",
+        "PACKAGE_METADATA.json",
+    ]:
+        fail("runtime identity control-file contract changed")
+    required_outcomes = runtime_identity.get("required_outcomes")
+    if not isinstance(required_outcomes, list) or (
+        "every package-managed immutable file is present and SHA-256 verified"
+        not in required_outcomes
+    ):
+        fail("managed-file integrity outcome is missing")
+    if (
+        "same-version mixed or unsafe packages block authenticated/live startup"
+        not in required_outcomes
+    ):
+        fail("mixed-release block outcome is missing")
+
     validation = summary.get("validation", {})
     expected_metrics = {
         "source_package_integrity": "pass",
@@ -137,23 +169,24 @@ def main() -> int:
     }
     if validation != expected_metrics:
         fail("validation scorecard changed")
+
     boundary = summary.get("claim_boundary", {})
-    if boundary.get("physical_multi_system_verification_claimed") is not False:
-        fail("physical verification is being overclaimed")
-    if boundary.get("shared_coordinator_deployed") is not False:
-        fail("shared-coordinator deployment is being overclaimed")
-    if boundary.get("cross_computer_launch_restrictions_included") is not False:
-        fail("cross-computer launch restrictions are being introduced")
-    if boundary.get("running_processes_modified") is not False:
-        fail("running-process modification is being overclaimed")
-    if boundary.get("executable_included") is not False:
-        fail("executable-content boundary changed")
-    if boundary.get("public_release_integrity_verifiable") is not True:
-        fail("public release integrity is not declared verifiable")
-    if boundary.get("internal_control_counts_published") is not False:
-        fail("internal control totals are being presented as public evidence")
-    if boundary.get("internal_scenario_counts_published") is not False:
-        fail("internal scenario totals are being presented as public evidence")
+    expected_boundary_values = {
+        "physical_multi_system_verification_claimed": False,
+        "shared_coordinator_deployed": False,
+        "cross_computer_launch_restrictions_included": False,
+        "running_processes_modified": False,
+        "executable_included": False,
+        "public_release_integrity_verifiable": True,
+        "internal_control_counts_published": False,
+        "internal_scenario_counts_published": False,
+        "runtime_identity_gate_documented": True,
+        "runtime_identity_gate_applies_to_case_study": False,
+        "software_control_placeholders_added": False,
+    }
+    for key, expected in expected_boundary_values.items():
+        if boundary.get(key) is not expected:
+            fail(f"claim boundary changed: {key}")
     if summary.get("rights_notice") != RIGHTS_NOTICE:
         fail("validation summary rights notice changed")
 
@@ -163,10 +196,13 @@ def main() -> int:
         "may not block launch",
         "Multi-computer portability without cross-computer restrictions",
         "does not present internal totals as independently auditable results",
+        "before credentials or authenticated startup",
+        "same-version mixed package fails closed",
+        "not applicable rather than adding empty software control files",
     ]
     for marker in required_policy_markers:
         if marker not in readme:
-            fail(f"README does not contain the local-independence marker: {marker}")
+            fail(f"README does not contain the required policy marker: {marker}")
     forbidden_policy_markers = [
         "single active writer across the fleet",
         "cross-computer ownership and clean-handoff design",
@@ -179,7 +215,7 @@ def main() -> int:
     ]
     for marker in forbidden_policy_markers:
         if marker in readme:
-            fail(f"README retains retired fleet restriction language: {marker}")
+            fail(f"README retains retired or private policy language: {marker}")
 
     for name in EXPECTED_FILES:
         if name != "SHA256SUMS.txt" and name not in readme:
@@ -194,6 +230,7 @@ def main() -> int:
         "source_framework_version": SOURCE_FRAMEWORK_VERSION,
         "source_package_sha256": SOURCE_PACKAGE_SHA256,
         "public_policy_revision": PUBLIC_POLICY_REVISION,
+        "runtime_identity_gate_status": "not_applicable-documentation-only",
         "files_verified": len(SEALED_FILES),
         "manifest_records_verified": len(records),
         "validation_scope": expected_metrics,
@@ -206,7 +243,8 @@ def main() -> int:
     )
     print(
         "Reliable Project Delivery Framework integrity: PASS "
-        f"({len(SEALED_FILES)} sealed files, {len(records)} manifest records)"
+        f"({len(SEALED_FILES)} sealed files, {len(records)} manifest records, "
+        "runtime identity N/A for documentation-only release)"
     )
     return 0
 
