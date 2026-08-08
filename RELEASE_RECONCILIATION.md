@@ -2,11 +2,12 @@
 
 This ledger ties every public project to the source, release, and default-branch commit actually present on GitHub. It keeps promotion evidence visible without relabeling an older tree as code it does not contain.
 
-Last reconciled: **August 2, 2026 at 11:50 PM CDT**
+Project heads last reconciled: **August 3, 2026 at 3:13 AM CDT**  
+Framework policy alignment reviewed: **August 7, 2026 at 7:10 PM CDT**
 
-All 17 public project default-branch heads and every declared version marker were checked in this pass. Exact 40-character reviewed heads are retained in [`.github/release-reconciliation.json`](.github/release-reconciliation.json). Dependency and installation controls for all 18 public repositories are recorded in [Dependency Reconciliation](DEPENDENCY_RECONCILIATION.md).
+All 17 public project default-branch heads and every declared version marker were checked in the recorded project-head pass. Exact 40-character reviewed heads are retained in [`.github/release-reconciliation.json`](.github/release-reconciliation.json). Dependency and installation controls for all 18 public repositories are recorded in [Dependency Reconciliation](DEPENDENCY_RECONCILIATION.md).
 
-The profile case study **Reliable Project Delivery Framework v1.3.0** presents the current **v2.17.4** operating baseline as a concise, inspectable example of release discipline. Its public evidence emphasizes the controls, acceptance gates, and decision boundaries that can be reviewed directly.
+The profile case study **Reliable Project Delivery Framework v1.4.0** presents the current **v2.17.5** operating baseline as a concise, inspectable example of release discipline. The v2.17.5 alignment adds a fail-closed runtime release-identity and managed-file integrity boundary before authenticated startup for released software. The documentation-only case study records that boundary as not applicable to itself instead of adding empty software control files.
 
 | Repository | GitHub represents | Latest verified | Reviewed head | State |
 |---|---:|---:|---|---|
@@ -32,6 +33,8 @@ The profile case study **Reliable Project Delivery Framework v1.3.0** presents t
 
 A newer build is promoted only when the exact source or release bytes are available and can be matched to the recorded identity. The promotion pass must validate archive safety, manifests, rights and license metadata, third-party notices, secrets, dependencies, tests, launch behavior, diagnostics and export boundaries, and any relevant machine acceptance. Summaries or similarly named archives are not substitutes for source.
 
+For released software that may load credentials or perform authenticated/live startup, the v2.17.5 policy adds a project-specific runtime identity gate: running version/build and package metadata must agree, every immutable package-managed file must be present and SHA-256 correct, unsafe managed paths are rejected, and a same-version mixed package fails closed before authenticated activity. This framework alignment does **not** claim that the existing project runtimes already implement that new gate; each project requires its own source, package-control, startup-order, negative-path, and support-evidence implementation and acceptance pass.
+
 ## Current blockers
 
 ### Beta Earth 0.5.0
@@ -43,7 +46,7 @@ The v0.5.0 final is recorded with SHA-256 `ea30ceb8a16566f0bcc20035360eba7bdeb8c
 - **BotOps Manager 1.13.0:** the README no longer claims universal fresh observation. It explains that incomplete scans preserve earlier registry evidence and that control still requires fresh launcher and process identity checks.
 - **Beta Earth v0.4.11 / recorded v0.5.0:** the historical successor digest remains visible, but the isolated originating test count was removed from the public README because the missing archive prevents rerun or inspection.
 - **Windows Health Audit:** the README now describes the durable immutable Action pin instead of a stale checkout major-version label.
-- **Reliable Project Delivery Framework v1.3.0:** the sealed public case study now reflects the v2.17.4 operating baseline. It shows how source authority, bounded risk, portable Windows releases, evidence-led acceptance, and independent local operation fit together without exposing private working material.
+- **Reliable Project Delivery Framework v1.4.0:** the sealed public case study now reflects the v2.17.5 operating baseline and exact uploaded parameter-package digest. It documents the runtime release-identity/managed-file gate, preserves independent local operation and non-restrictive computer recognition, and explicitly marks the runtime gate not applicable to this documentation-only release. No executable, credential path, or empty `VERSION.txt`/`PACKAGE_METADATA.json` placeholder was added.
 - **MediaTaggerBot 0.5.7:** the verified runtime set remains unchanged. The public README no longer uses private library or outcome counts as independently verifiable performance evidence; it limits public documentation to source, tests, and documented safeguards. CI still separates runtime, local-project, and test-tool installation, fails closed, preserves bounded diagnostics, and tests launcher/lock/metadata agreement. Monthly Actions proposals are review-only and never auto-merge.
 - **Chicago Food Inspection Outcomes:** Matplotlib 3.11.1 passed binary installation, dependency checks, offline retrieval tests, and complete execution of the unchanged notebook and data snapshot on Python 3.12.
 - **Safe Video Downloader 1.14.2:** fallback media-signature validation prevents an otherwise plausible response from being accepted blindly, while mixed batches now return an exit status that reflects partial failure. The full hosted matrix remains green on Python 3.11, 3.12, and 3.13.
@@ -53,7 +56,7 @@ The v0.5.0 final is recorded with SHA-256 `ea30ceb8a16566f0bcc20035360eba7bdeb8c
 - **Inbox From Hell 0.9.0:** the public edition now includes 36 authored cases across six shifts, persistent department progression, migration coverage, and accessible interaction states. The same production URL serves the verified v0.9 source.
 - **Kalshi 15-Minute Sell Preview 41.22.3:** the checksum-sealed v41.22.3 public prerelease is now the current download, matching the reviewed source version and retaining the immutable write block. Security and test automation plus CodeQL passed at the reconciled head.
 
-There are no active public promotion branches after this pass. Beta Earth remains blocked because its exact v0.5.0 archive is unavailable; [Large Text Chunker issue #3](https://github.com/Jnapier2/large-text-chunker/issues/3) is now the record for closing the completed cross-repository reconciliation, not a source-promotion blocker. The machine-readable source authority is [`.github/release-reconciliation.json`](.github/release-reconciliation.json), and the Portfolio health workflow validates its completeness, exact version markers, and reviewed default-branch heads.
+There are no active public source-promotion branches after the recorded project-head pass. Beta Earth remains blocked because its exact v0.5.0 archive is unavailable; [Large Text Chunker issue #3](https://github.com/Jnapier2/large-text-chunker/issues/3) is now the record for closing the completed cross-repository reconciliation, not a source-promotion blocker. The machine-readable source authority is [`.github/release-reconciliation.json`](.github/release-reconciliation.json), and the Portfolio health workflow validates its completeness, exact version markers, and reviewed default-branch heads.
 
 Copyright © 2026 Gateway Information Group LLC. All rights reserved.
 
