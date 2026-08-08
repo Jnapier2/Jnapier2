@@ -6,7 +6,7 @@ A repeatable control framework for moving complex software projects from uncerta
 
 ## Why I built it
 
-Complex projects often fail for ordinary reasons: multiple “final” versions, machine-specific paths, fragile launchers, missing rollback evidence, unbounded diagnostics, unclear responsibility, and changes that cannot be proven safe. I designed this framework to turn those risks into explicit decisions, tests, and release evidence.
+Complex projects often fail for ordinary reasons: multiple “final” versions, machine-specific paths, fragile launchers, mixed-release folders, missing rollback evidence, unbounded diagnostics, unclear responsibility, and changes that cannot be proven safe. I designed this framework to turn those risks into explicit decisions, tests, and release evidence.
 
 ## What it does
 
@@ -17,9 +17,11 @@ Complex projects often fail for ordinary reasons: multiple “final” versions,
 - Preserves one canonical project name and searchable aliases across releases, handoffs, and project branches.
 - Separates reversible local work from destructive, live-financial, credential, administrator, security, public, and bulk-write actions.
 - Requires critical inputs to be recognized, validated, mapped, exercised, and confirmed.
+- For released software, verifies running release identity and immutable package-managed files before credentials or authenticated startup; a same-version mixed package fails closed.
+- Keeps local status, repair guidance, and bounded support evidence available after an identity block without silently rewriting release files.
 - Produces bounded, redacted diagnostic packages that retain the most useful evidence.
 - Preserves known-good state, rollback instructions, version history, rights metadata, dependency records, and checksums.
-- Blocks release when source, validation, or recovery evidence is incomplete.
+- Blocks release when source, validation, identity, or recovery evidence is incomplete.
 
 ## Public evidence
 
@@ -27,9 +29,10 @@ The public case study favors evidence a reviewer can inspect directly instead of
 
 | Evidence | What a reviewer can verify |
 |---|---|
+| Source baseline | `MANIFEST.json` and `VALIDATION_SUMMARY.json` identify the reviewed source-framework version and exact package SHA-256 |
 | Release inventory | Every published case-study file is declared in `MANIFEST.json` |
 | File integrity | Published sizes and SHA-256 values are recorded in `MANIFEST.json` and `SHA256SUMS.txt` |
-| Validation boundary | `VALIDATION_SUMMARY.json` distinguishes reviewed design logic from implementation-specific acceptance testing |
+| Runtime-identity boundary | `VALIDATION_SUMMARY.json` records the software-release gate and marks this documentation-only release not applicable |
 | Disclosure boundary | `PUBLIC_SCOPE.md` identifies what is included, withheld, and intentionally not claimed |
 
 The private design baseline was reviewed for coverage, conflict handling, and consistency. Its itemized controls and scenario set are outside the public release, so this case study does not present internal totals as independently auditable results.
@@ -45,6 +48,12 @@ Local duplicate protection remains project- and process-scoped on the computer w
 ### Persistent project and release identity
 
 Each project keeps one canonical name across successor releases, transfer packages, audits, diagnostics, and release records. Prior names remain searchable aliases, while continuation or branch markers describe the current workstream without fragmenting project identity.
+
+### Runtime release identity before authenticated startup
+
+Released software establishes its local root and logging first, then performs a read-only identity check before credentials or authenticated startup. The running version and build must agree with the package control metadata, and every immutable file declared as package-managed must be present and SHA-256 correct. Duplicate, absolute, escaping, out-of-root, missing, size-mismatched, or hash-mismatched managed paths block authenticated or live startup even when the visible version labels match.
+
+Mutable configuration, secrets, logs, state, caches, exports, and user data remain outside the immutable release set. A blocked package may still expose local status, repair guidance, and redacted support evidence, but verification does not silently repair or rewrite the package. Documentation-only releases such as this case study mark the runtime gate not applicable rather than adding empty software control files.
 
 ## Decision flow
 
@@ -83,13 +92,14 @@ The framework favors bounded retries, backoff, atomic writes, graceful shutdown,
 
 ### Verifiable releases
 
-A release is not complete until the source, version, documentation, checks, rights, dependencies, diagnostics, rollback path, and final artifact agree.
+A release is not complete until the source, running/package identity when applicable, version, documentation, checks, rights, dependencies, diagnostics, rollback path, and final artifact agree. For authenticated software, managed-file verification is part of startup trust rather than only a packaging-time check.
 
 ## Skills demonstrated
 
 - Information governance and source reconciliation
 - Systems analysis and risk classification
 - Release engineering and configuration management
+- Runtime identity and mixed-release integrity control
 - Quality assurance and scenario-based testing
 - Windows portability and environment-aware design
 - Multi-computer portability without cross-computer restrictions
@@ -99,7 +109,7 @@ A release is not complete until the source, version, documentation, checks, righ
 
 ## Public scope
 
-This case study contains no executable program and does not publish the complete implementation playbook. Machine profiles, raw reports, unique identifiers, credentials, account information, private locations, internal operating instructions, and project-specific live thresholds remain excluded.
+This case study contains no executable program and does not publish the complete implementation playbook. Machine profiles, raw reports, unique identifiers, credentials, account information, private locations, internal operating instructions, project-specific authenticated endpoints, and live thresholds remain excluded.
 
 See [PUBLIC_SCOPE.md](PUBLIC_SCOPE.md) for the disclosure boundary and [VALIDATION_SUMMARY.json](VALIDATION_SUMMARY.json) for the machine-readable verification scope.
 
