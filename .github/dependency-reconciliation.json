@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-08-03T04:50:00Z",
+  "generated_utc": "2026-08-09T03:09:00Z",
   "owner": "Jnapier2",
   "rights_notice": "Copyright © 2026 Gateway Information Group LLC. All rights reserved.",
   "review_scope": "All 18 public repositories: declared dependency files, installation controls, consistency checks, sealed-release boundaries, no-third-party-runtime claims, supported Python matrices, review-only dependency monitoring, reviewed August dependency updates, and the promoted Large Text Chunker 1.10 optional-dependency boundary.",
@@ -48,10 +48,10 @@
       "status": "hash_locked",
       "note": "Runtime artifacts are SHA-256 locked; CI installs fail closed, runs pip check, and verifies the lock against the primary BAT launcher. Monthly GitHub Actions proposals are review-only.",
       "text_checks": [
-        {"path": "pyproject.toml", "contains": ["requests==2.33.0", "mutagen==1.47.0", "pytest==9.1.1"]},
+        {"path": "pyproject.toml", "contains": ["requests==2.33.0", "mutagen==1.47.0", "pytest==9.0.3", "setuptools==83.0.0"]},
         {"path": "requirements.lock.txt", "contains": ["requests==2.33.0", "mutagen==1.47.0", "urllib3==2.7.0", "--hash=sha256:"]},
         {"path": ".github/workflows/ci.yml", "contains": ["--require-hashes", "python -m pip check", "runtime-install-python-${{ matrix.python-version }}"]},
-        {"path": "tests/test_dependency_contract.py", "contains": ["launcher dependency checks drifted", "launcher and runtime lock disagree", "runtime lock entry has no SHA-256 artifact hash"]}
+        {"path": "tests/test_bat_menu_static.py", "contains": ["requirements.lock.txt", "--require-hashes", "public_source_does_not_bundle_third_party_wheels"]}
       ]
     },
     {
@@ -194,7 +194,7 @@
       "dependency": "requests",
       "current": "2.33.0",
       "candidate": "2.34.2",
-      "reason": "The verified BAT launcher, package metadata, and hash lock currently agree on 2.33.0. A version transition requires one synchronized launcher, lock, test, and Windows launch pass."
+      "reason": "The verified BAT launcher, package metadata, and SHA-256 lock currently agree on 2.33.0. A further transition requires one synchronized launcher, lock, test, and Windows launch pass."
     },
     {
       "repository": "chicago-food-inspections-analysis",
