@@ -1,16 +1,18 @@
 {
   "schema_version": 1,
   "project": "Reliable Project Delivery Framework — Public Case Study",
-  "version": "1.4.0",
-  "source_framework_version": "2.17.5",
-  "source_package_sha256": "655564a81adeff17ddad1e33b1453ae64bde0f405a41e740e3b3a7f65934d2e0",
-  "source_package_role": "Private exact-source design baseline; ZIP CRC and all 15 internal manifest file size/hash checks passed, and the package SHA-256 is recorded. The public case study exposes outcomes and boundaries, not internal operating text.",
-  "public_policy_revision": "2026-08-07-runtime-release-identity-integrity",
-  "release_date": "2026-08-07",
-  "generated_utc": "2026-08-08T00:10:00Z",
+  "version": "1.5.0",
+  "source_framework_version": "2.17.6",
+  "source_package_sha256": "5dd39656afa5e8bcd0159e5ffa163d4de92a9ad4cb05c26aa63acf424ffe371f",
+  "source_package_role": "Private exact-source design baseline; ZIP CRC passed, 13 direct manifest file hashes matched, the two documented manifest self-reference sentinels were present as designed, and the package SHA-256 is recorded. The public case study exposes outcomes and boundaries, not internal operating text.",
+  "public_policy_revision": "2026-08-09-canonical-entrypoints-project-local-outputs",
+  "release_date": "2026-08-09",
+  "generated_utc": "2026-08-09T20:50:30+00:00",
   "data_classification": "public",
   "source_classification": "sanitized case study; complete internal framework excluded",
   "runtime_identity_gate_status": "not_applicable-documentation-only",
+  "canonical_entrypoint_policy_status": "not_applicable-documentation-only",
+  "project_local_output_policy_status": "not_applicable-documentation-only",
   "rights_holder": "Gateway Information Group LLC",
   "rights_notice": "Copyright © 2026 Gateway Information Group LLC. All rights reserved.",
   "license_status": "All rights reserved; no software license granted.",
@@ -18,14 +20,14 @@
   "files": [
     {
       "path": "PUBLIC_SCOPE.md",
-      "size_bytes": 2693,
-      "sha256": "b097390596620180c696f96eabbddf1a9d8e16387e212554d6d9f463a48b545a",
+      "size_bytes": 3408,
+      "sha256": "5d02e832bf143f5edfa3468aeee3d7de9394a1f4fded92b500ce29090727dc5d",
       "purpose": "Public disclosure boundary"
     },
     {
       "path": "README.md",
-      "size_bytes": 8728,
-      "sha256": "fb09b8ea43d4ebec6be6e90e3b7f26208173993328e9ebd1951e71a922bf132b",
+      "size_bytes": 12109,
+      "sha256": "ad32ef675f8d9b069ee6e7a4ef38e0a9aa893642bb22143a428b6765e807b848",
       "purpose": "Case study and design summary"
     },
     {
@@ -36,9 +38,9 @@
     },
     {
       "path": "VALIDATION_SUMMARY.json",
-      "size_bytes": 3703,
-      "sha256": "6d0bc779b6280728f56c16bfcbb8a06830095ce56c8aec094cdb73a879efec2c",
-      "purpose": "Structured validation scope and claim limits"
+      "size_bytes": 6093,
+      "sha256": "e3a68e30242d520a6b495a312bb59c7a1716dbc1564cc4f7ac91a4cf092eb7fe",
+      "purpose": "Structured validation scope and limits"
     }
   ]
 }
