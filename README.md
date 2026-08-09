@@ -32,7 +32,7 @@ I’m open to roles in analytics, data governance, information management, and r
 
 ## Featured framework
 
-- **[Reliable Project Delivery Framework](case-studies/reliable-project-delivery-framework/README.md)** — Turns conflicting sources, machine differences, risky changes, and incomplete evidence into a portable release path with clear rollback and independent local operation, including fail-closed release-identity checks before authenticated startup.
+- **[Reliable Project Delivery Framework](case-studies/reliable-project-delivery-framework/README.md)** — Turns conflicting sources, machine differences, risky changes, and incomplete evidence into a portable release path with stable project-qualified launchers, project-local outputs, clear rollback, independent local operation, and fail-closed release-identity checks before authenticated startup.
 
 ## More projects
 
