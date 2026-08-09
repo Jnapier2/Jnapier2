@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
   "case_study": "Reliable Project Delivery Framework",
-  "case_study_version": "1.4.0",
-  "source_framework_version": "2.17.5",
-  "source_package_sha256": "655564a81adeff17ddad1e33b1453ae64bde0f405a41e740e3b3a7f65934d2e0",
-  "source_package_role": "Private exact-source design baseline; ZIP CRC and all 15 internal manifest file size/hash checks passed, and the package SHA-256 is recorded. The public case study exposes outcomes and boundaries, not internal operating text.",
-  "release_date": "2026-08-07",
-  "generated_utc": "2026-08-08T00:10:00Z",
+  "case_study_version": "1.5.0",
+  "source_framework_version": "2.17.6",
+  "source_package_sha256": "5dd39656afa5e8bcd0159e5ffa163d4de92a9ad4cb05c26aa63acf424ffe371f",
+  "source_package_role": "Private exact-source design baseline; ZIP CRC passed, 13 direct manifest file hashes matched, the two documented manifest self-reference sentinels were present as designed, and the package SHA-256 is recorded. The public case study exposes outcomes and boundaries, not internal operating text.",
+  "release_date": "2026-08-09",
+  "generated_utc": "2026-08-09T20:50:28+00:00",
   "data_classification": "public",
   "public_policy_revision": {
-    "id": "2026-08-07-runtime-release-identity-integrity",
-    "status": "current independent-local-operation, public-evidence, and runtime-identity language",
+    "id": "2026-08-09-canonical-entrypoints-project-local-outputs",
+    "status": "current independent-local-operation, public-evidence, runtime-identity, canonical-entrypoint, and project-local-output language",
     "computer_recognition_allowed_for": [
       "diagnostic labels",
       "sensible local paths and defaults",
@@ -25,6 +25,32 @@
       "feature partitioning by computer",
       "control of another independently running copy"
     ]
+  },
+  "canonical_execution": {
+    "source_policy_status": "current",
+    "software_trigger": "first-party software with launchers, helpers, automation entrypoints, or a required fixed backend filename",
+    "required_outcomes": [
+      "one short ASCII Windows-safe execution namespace is unique case-insensitively",
+      "one stable unversioned project-qualified canonical entrypoint serves people and automation",
+      "first-party helpers are namespaced and generic unqualified launcher names are avoided",
+      "required fixed legacy or upstream backend names remain behind a thin canonical wrapper",
+      "a deliberate rename has migration mapping, an approved alias or forwarding shim when safe, a removal version, and no duplicated logic",
+      "version, build, and date remain in metadata and release archives rather than the normal canonical entrypoint"
+    ],
+    "case_study_status": "not_applicable-documentation-only"
+  },
+  "project_local_output": {
+    "source_policy_status": "current",
+    "software_trigger": "software that creates configuration, logs, state, temporary data, exports, diagnostics, reports, downloads, backups, releases, or support packages",
+    "required_outcomes": [
+      "project root is derived from the canonical launcher or script location rather than caller working directory",
+      "generated files stay under project-owned roots by default",
+      "temporary work uses same-volume project-local staging, verification, and atomic finalization",
+      "Desktop, Documents, Downloads, caller working directory, system temp, drive root, and another project are prohibited as silent fallbacks",
+      "external output is explicitly selected or configured, normalized, validated, displayed, and recorded",
+      "existing external legacy data is reported and mapped rather than silently moved or deleted"
+    ],
+    "case_study_status": "not_applicable-documentation-only"
   },
   "runtime_release_identity": {
     "source_policy_status": "current",
@@ -67,6 +93,10 @@
     "executable_included": false,
     "runtime_identity_gate_documented": true,
     "runtime_identity_gate_applies_to_case_study": false,
+    "canonical_entrypoint_policy_documented": true,
+    "canonical_entrypoint_policy_applies_to_case_study": false,
+    "project_local_output_policy_documented": true,
+    "project_local_output_policy_applies_to_case_study": false,
     "software_control_placeholders_added": false
   },
   "privacy_exclusions": [
@@ -75,7 +105,8 @@
     "usernames and private paths",
     "credentials and account information",
     "private document identifiers and permissions",
-    "runtime logs, diagnostics, state, and temporary files",
+    "project-specific execution namespaces, aliases, backends, and output-root mappings",
+    "runtime logs, diagnostics, state, temporary files, exports, and user output",
     "complete internal operating instructions"
   ],
   "rights_notice": "Copyright © 2026 Gateway Information Group LLC. All rights reserved.",
