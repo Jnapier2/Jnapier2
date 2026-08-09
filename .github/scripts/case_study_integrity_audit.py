@@ -16,14 +16,14 @@ ROOT = Path(__file__).resolve().parents[2]
 CASE_DIR = ROOT / "case-studies" / "reliable-project-delivery-framework"
 OUTPUT_DIR = Path(os.environ.get("PORTFOLIO_AUDIT_OUTPUT_DIR", ROOT / "audit-output"))
 RIGHTS_NOTICE = "Copyright © 2026 Gateway Information Group LLC. All rights reserved."
-CASE_STUDY_VERSION = "1.4.0"
-SOURCE_FRAMEWORK_VERSION = "2.17.5"
-SOURCE_PACKAGE_SHA256 = "655564a81adeff17ddad1e33b1453ae64bde0f405a41e740e3b3a7f65934d2e0"
-PUBLIC_POLICY_REVISION = "2026-08-07-runtime-release-identity-integrity"
+CASE_STUDY_VERSION = "1.5.0"
+SOURCE_FRAMEWORK_VERSION = "2.17.6"
+SOURCE_PACKAGE_SHA256 = "5dd39656afa5e8bcd0159e5ffa163d4de92a9ad4cb05c26aa63acf424ffe371f"
+PUBLIC_POLICY_REVISION = "2026-08-09-canonical-entrypoints-project-local-outputs"
 SOURCE_PACKAGE_ROLE = (
-    "Private exact-source design baseline; ZIP CRC and all 15 internal manifest file size/hash checks "
-    "passed, and the package SHA-256 is recorded. The public case study exposes outcomes and boundaries, "
-    "not internal operating text."
+    "Private exact-source design baseline; ZIP CRC passed, 13 direct manifest file hashes matched, "
+    "the two documented manifest self-reference sentinels were present as designed, and the package "
+    "SHA-256 is recorded. The public case study exposes outcomes and boundaries, not internal operating text."
 )
 EXPECTED_FILES = {
     "MANIFEST.json",
@@ -38,12 +38,6 @@ MANIFEST_CONTENT_FILES = SEALED_FILES - {"MANIFEST.json"}
 
 
 def canonical_bytes(path: Path) -> bytes:
-    """Return repository-canonical bytes for sealed text files.
-
-    Git may check text files out with CRLF on Windows while storing LF in the
-    repository. The release manifest records the repository bytes, so local
-    verification normalizes that checkout-only difference.
-    """
     data = path.read_bytes()
     if path.suffix.lower() in {".json", ".md", ".txt"}:
         return data.replace(b"\r\n", b"\n")
@@ -58,32 +52,32 @@ def fail(message: str) -> None:
     raise SystemExit(f"Reliable Project Delivery Framework integrity failure: {message}")
 
 
+def require_exact(mapping: dict, key: str, expected: object, context: str) -> None:
+    if mapping.get(key) != expected:
+        fail(f"{context} changed: {key}")
+
+
 def main() -> int:
     if not CASE_DIR.is_dir():
         fail("case-study directory is missing")
+
     actual_files = {path.name for path in CASE_DIR.iterdir() if path.is_file()}
     if actual_files != EXPECTED_FILES:
         fail(f"release inventory differs: {sorted(actual_files ^ EXPECTED_FILES)}")
 
     manifest = json.loads((CASE_DIR / "MANIFEST.json").read_text(encoding="utf-8"))
-    if manifest.get("schema_version") != 1 or manifest.get("version") != CASE_STUDY_VERSION:
-        fail("manifest identity is invalid")
-    if manifest.get("source_framework_version") != SOURCE_FRAMEWORK_VERSION:
-        fail("source framework version is invalid")
-    if manifest.get("source_package_sha256") != SOURCE_PACKAGE_SHA256:
-        fail("source package SHA-256 is invalid")
-    if manifest.get("source_package_role") != SOURCE_PACKAGE_ROLE:
-        fail("source package role is invalid")
-    if manifest.get("public_policy_revision") != PUBLIC_POLICY_REVISION:
-        fail("public policy revision is invalid")
-    if manifest.get("runtime_identity_gate_status") != "not_applicable-documentation-only":
-        fail("documentation-only runtime identity status is invalid")
-    if manifest.get("rights_notice") != RIGHTS_NOTICE:
-        fail("canonical rights notice is missing from the manifest")
-    if manifest.get("data_classification") != "public":
-        fail("manifest data classification is not public")
-    if manifest.get("third_party_content") != "none included":
-        fail("third-party content declaration changed")
+    require_exact(manifest, "schema_version", 1, "manifest")
+    require_exact(manifest, "version", CASE_STUDY_VERSION, "manifest")
+    require_exact(manifest, "source_framework_version", SOURCE_FRAMEWORK_VERSION, "manifest")
+    require_exact(manifest, "source_package_sha256", SOURCE_PACKAGE_SHA256, "manifest")
+    require_exact(manifest, "source_package_role", SOURCE_PACKAGE_ROLE, "manifest")
+    require_exact(manifest, "public_policy_revision", PUBLIC_POLICY_REVISION, "manifest")
+    require_exact(manifest, "runtime_identity_gate_status", "not_applicable-documentation-only", "manifest")
+    require_exact(manifest, "canonical_entrypoint_policy_status", "not_applicable-documentation-only", "manifest")
+    require_exact(manifest, "project_local_output_policy_status", "not_applicable-documentation-only", "manifest")
+    require_exact(manifest, "rights_notice", RIGHTS_NOTICE, "manifest")
+    require_exact(manifest, "data_classification", "public", "manifest")
+    require_exact(manifest, "third_party_content", "none included", "manifest")
 
     records = manifest.get("files")
     if not isinstance(records, list):
@@ -114,45 +108,71 @@ def main() -> int:
             fail(f"checksum mismatch: {name}")
 
     summary = json.loads((CASE_DIR / "VALIDATION_SUMMARY.json").read_text(encoding="utf-8"))
-    if summary.get("case_study_version") != CASE_STUDY_VERSION:
-        fail("validation summary case-study version changed")
-    if summary.get("source_framework_version") != SOURCE_FRAMEWORK_VERSION:
-        fail("validation summary source version changed")
-    if summary.get("source_package_sha256") != SOURCE_PACKAGE_SHA256:
-        fail("validation summary source package hash changed")
-    if summary.get("source_package_role") != SOURCE_PACKAGE_ROLE:
-        fail("validation summary source package role changed")
+    require_exact(summary, "case_study_version", CASE_STUDY_VERSION, "validation summary")
+    require_exact(summary, "source_framework_version", SOURCE_FRAMEWORK_VERSION, "validation summary")
+    require_exact(summary, "source_package_sha256", SOURCE_PACKAGE_SHA256, "validation summary")
+    require_exact(summary, "source_package_role", SOURCE_PACKAGE_ROLE, "validation summary")
+    require_exact(summary, "rights_notice", RIGHTS_NOTICE, "validation summary")
 
     revision = summary.get("public_policy_revision", {})
-    if revision.get("id") != PUBLIC_POLICY_REVISION:
-        fail("validation summary policy revision changed")
-    if revision.get("status") != (
-        "current independent-local-operation, public-evidence, and runtime-identity language"
-    ):
-        fail("validation summary policy status changed")
+    require_exact(revision, "id", PUBLIC_POLICY_REVISION, "public policy revision")
+    require_exact(
+        revision,
+        "status",
+        "current independent-local-operation, public-evidence, runtime-identity, canonical-entrypoint, and project-local-output language",
+        "public policy revision",
+    )
+
+    canonical = summary.get("canonical_execution", {})
+    require_exact(canonical, "source_policy_status", "current", "canonical execution")
+    require_exact(canonical, "case_study_status", "not_applicable-documentation-only", "canonical execution")
+    canonical_outcomes = canonical.get("required_outcomes")
+    if not isinstance(canonical_outcomes, list):
+        fail("canonical execution outcomes are invalid")
+    for required in [
+        "one short ASCII Windows-safe execution namespace is unique case-insensitively",
+        "one stable unversioned project-qualified canonical entrypoint serves people and automation",
+        "required fixed legacy or upstream backend names remain behind a thin canonical wrapper",
+        "version, build, and date remain in metadata and release archives rather than the normal canonical entrypoint",
+    ]:
+        if required not in canonical_outcomes:
+            fail(f"canonical execution outcome is missing: {required}")
+
+    output = summary.get("project_local_output", {})
+    require_exact(output, "source_policy_status", "current", "project-local output")
+    require_exact(output, "case_study_status", "not_applicable-documentation-only", "project-local output")
+    output_outcomes = output.get("required_outcomes")
+    if not isinstance(output_outcomes, list):
+        fail("project-local output outcomes are invalid")
+    for required in [
+        "project root is derived from the canonical launcher or script location rather than caller working directory",
+        "generated files stay under project-owned roots by default",
+        "temporary work uses same-volume project-local staging, verification, and atomic finalization",
+        "Desktop, Documents, Downloads, caller working directory, system temp, drive root, and another project are prohibited as silent fallbacks",
+        "external output is explicitly selected or configured, normalized, validated, displayed, and recorded",
+        "existing external legacy data is reported and mapped rather than silently moved or deleted",
+    ]:
+        if required not in output_outcomes:
+            fail(f"project-local output outcome is missing: {required}")
 
     runtime_identity = summary.get("runtime_release_identity", {})
-    if runtime_identity.get("source_policy_status") != "current":
-        fail("runtime identity policy is not current")
-    if runtime_identity.get("case_study_status") != "not_applicable-documentation-only":
-        fail("documentation-only runtime identity boundary changed")
-    if runtime_identity.get("control_files") != [
-        "VERSION.txt",
-        "MANIFEST.json",
-        "PACKAGE_METADATA.json",
+    require_exact(runtime_identity, "source_policy_status", "current", "runtime identity")
+    require_exact(runtime_identity, "case_study_status", "not_applicable-documentation-only", "runtime identity")
+    require_exact(
+        runtime_identity,
+        "control_files",
+        ["VERSION.txt", "MANIFEST.json", "PACKAGE_METADATA.json"],
+        "runtime identity",
+    )
+    identity_outcomes = runtime_identity.get("required_outcomes")
+    if not isinstance(identity_outcomes, list):
+        fail("runtime identity outcomes are invalid")
+    for required in [
+        "every package-managed immutable file is present and SHA-256 verified",
+        "same-version mixed or unsafe packages block authenticated/live startup",
     ]:
-        fail("runtime identity control-file contract changed")
-    required_outcomes = runtime_identity.get("required_outcomes")
-    if not isinstance(required_outcomes, list) or (
-        "every package-managed immutable file is present and SHA-256 verified"
-        not in required_outcomes
-    ):
-        fail("managed-file integrity outcome is missing")
-    if (
-        "same-version mixed or unsafe packages block authenticated/live startup"
-        not in required_outcomes
-    ):
-        fail("mixed-release block outcome is missing")
+        if required not in identity_outcomes:
+            fail(f"runtime identity outcome is missing: {required}")
 
     validation = summary.get("validation", {})
     expected_metrics = {
@@ -182,13 +202,15 @@ def main() -> int:
         "internal_scenario_counts_published": False,
         "runtime_identity_gate_documented": True,
         "runtime_identity_gate_applies_to_case_study": False,
+        "canonical_entrypoint_policy_documented": True,
+        "canonical_entrypoint_policy_applies_to_case_study": False,
+        "project_local_output_policy_documented": True,
+        "project_local_output_policy_applies_to_case_study": False,
         "software_control_placeholders_added": False,
     }
     for key, expected in expected_boundary_values.items():
         if boundary.get(key) is not expected:
             fail(f"claim boundary changed: {key}")
-    if summary.get("rights_notice") != RIGHTS_NOTICE:
-        fail("validation summary rights notice changed")
 
     readme = (CASE_DIR / "README.md").read_text(encoding="utf-8")
     required_policy_markers = [
@@ -199,10 +221,16 @@ def main() -> int:
         "before credentials or authenticated startup",
         "same-version mixed package fails closed",
         "not applicable rather than adding empty software control files",
+        "one stable, unversioned, project-qualified entrypoint",
+        "version, build, and date belong in metadata and release archives",
+        "launcher-derived project root",
+        "no silent fallback to Desktop, Documents, Downloads, the caller's working directory, system temp, a drive root, or another project",
+        "External output is explicit, validated, visible, and recorded",
     ]
     for marker in required_policy_markers:
         if marker not in readme:
             fail(f"README does not contain the required policy marker: {marker}")
+
     forbidden_policy_markers = [
         "single active writer across the fleet",
         "cross-computer ownership and clean-handoff design",
@@ -221,6 +249,16 @@ def main() -> int:
         if name != "SHA256SUMS.txt" and name not in readme:
             fail(f"README does not reference {name}")
 
+    public_scope = (CASE_DIR / "PUBLIC_SCOPE.md").read_text(encoding="utf-8")
+    for marker in [
+        "Project-specific execution namespaces, entrypoint aliases, backend targets, output-root maps, and migration shims",
+        "empty `VERSION.txt`, `PACKAGE_METADATA.json`, launcher, or output-folder placeholders are intentionally not added",
+        "rename a working backend",
+        "move legacy data",
+    ]:
+        if marker not in public_scope:
+            fail(f"PUBLIC_SCOPE does not contain the required boundary: {marker}")
+
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     evidence = {
         "schema_version": 1,
@@ -231,6 +269,8 @@ def main() -> int:
         "source_package_sha256": SOURCE_PACKAGE_SHA256,
         "public_policy_revision": PUBLIC_POLICY_REVISION,
         "runtime_identity_gate_status": "not_applicable-documentation-only",
+        "canonical_entrypoint_policy_status": "not_applicable-documentation-only",
+        "project_local_output_policy_status": "not_applicable-documentation-only",
         "files_verified": len(SEALED_FILES),
         "manifest_records_verified": len(records),
         "validation_scope": expected_metrics,
@@ -244,7 +284,7 @@ def main() -> int:
     print(
         "Reliable Project Delivery Framework integrity: PASS "
         f"({len(SEALED_FILES)} sealed files, {len(records)} manifest records, "
-        "runtime identity N/A for documentation-only release)"
+        "runtime identity, canonical entrypoint, and project-local output N/A for documentation-only release)"
     )
     return 0
 
