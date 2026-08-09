@@ -22,7 +22,7 @@ Each figure is defined in the public project summaries and source ledger below.
 
 ## Professional focus
 
-I’m open to senior roles in analytics, data governance, information management, and reliable automation. My strongest work is grouped below into flagship projects, a delivery framework, and broader applied projects.
+I’m open to roles in analytics, data governance, information management, and reliable automation. My strongest work is grouped below into flagship projects, a delivery framework, and broader applied projects.
 
 ## Start here
 
