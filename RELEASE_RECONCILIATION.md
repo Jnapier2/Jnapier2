@@ -2,7 +2,7 @@
 
 This ledger ties every public project to the source, release, and default-branch commit actually present on GitHub. It keeps promotion evidence visible without relabeling an older tree as code it does not contain.
 
-Project heads last reconciled: **August 8, 2026 at 10:09 PM CDT**
+Project heads last reconciled: **August 9, 2026 at 4:31 PM CDT**
 Framework policy alignment reviewed: **August 9, 2026 at 3:50 PM CDT**
 
 All 17 public project default-branch heads and every declared version marker were checked in the recorded project-head pass. Exact 40-character reviewed heads are retained in [`.github/release-reconciliation.json`](.github/release-reconciliation.json). Dependency and installation controls for all 18 public repositories are recorded in [Dependency Reconciliation](DEPENDENCY_RECONCILIATION.md).
@@ -13,7 +13,7 @@ The profile case study **Reliable Project Delivery Framework v1.5.0** presents t
 |---|---:|---:|---|---|
 | BotOps Manager | 1.13.0 | 1.13.0 | `58f6925d` | Current; fresh discovery is distinguished from retained registry evidence after incomplete scans |
 | Digital Asset Governance Audit | Current | Current | `05e2513f` | Current; deterministic fixture results are explicitly separated from production KPIs |
-| MediaTaggerBot | 0.5.9 | 0.5.9 | `46d11751` | Current sanitized source; security pins, release notes, review gates, runtime identity, tests, and hosted security analysis passed |
+| MediaTaggerBot | 0.5.9 | 0.5.9 | `79e95bff` | Current v2.17.6-aligned source; stable entrypoint, launcher-derived root, project-local outputs, 108-file identity gate, and Python 3.11/3.13 matrices verified |
 | Chicago Food Inspection Outcomes | Current | Current | `5cce90d6` | Current analysis; 13,333 is defined as inspection records, not unique restaurants; Matplotlib 3.11.1 passed the complete notebook workflow |
 | Avalon Q Supervisor | Current | Current | `621791f9` | GitHub-only source authority; hardware recovery remains fixture-tested rather than physically executed here |
 | Automation Reliability Case Studies | Current | Current | `553719f7` | Current documentation-only studies; no deployment claim |
@@ -47,7 +47,7 @@ The v0.5.0 final is recorded with SHA-256 `ea30ceb8a16566f0bcc20035360eba7bdeb8c
 - **Beta Earth v0.4.11 / recorded v0.5.0:** the historical successor digest remains visible, but the isolated originating test count was removed from the public README because the missing archive prevents rerun or inspection.
 - **Windows Health Audit:** the README now describes the durable immutable Action pin instead of a stale checkout major-version label.
 - **Reliable Project Delivery Framework v1.5.0:** the sealed public case study now reflects the exact v2.17.6 parameter package and preserves the v2.17.5 package as rollback. It documents unique execution namespaces, stable unversioned canonical entrypoints, launcher-derived project roots, project-local output containment, cross-working-directory acceptance, and the existing runtime release-identity/managed-file gate. It explicitly marks executable implementation project-specific and the runtime gate not applicable to this documentation-only release. No executable, credential path, or empty software-control placeholder was added.
-- **MediaTaggerBot 0.5.9:** the sanitized public source now matches the current verified build. Its reviewed dependency set, pre-auth integrity gate for all 84 managed files, clean-clone suite with 192 passing tests and one environment-dependent skip, Windows matrix, and CodeQL passed before merge. Credential presence remains confined to redacted evidence, uncertain matches remain review-only, and private library counts are not presented as public performance claims.
+- **MediaTaggerBot 0.5.9:** the v2.17.6 repair removed the caller-CWD project-root fallback while preserving `Start_MediaTaggerBot.bat` as the stable canonical launcher and keeping all runtime-owned outputs beneath the launcher-derived project root. Package metadata now records the execution namespace, backend target, output roots, explicit external media-root boundary, historical-launcher treatment, and cross-working-directory acceptance. The release manifests were regenerated and then corrected to hash Git-normalized LF bytes; the clean-checkout runtime identity gate verifies 108/108 managed files with zero mismatches. The final PR matrix passed 197 tests on both Python 3.11 and 3.13. User-facing version and media-processing behavior remain v0.5.9.
 - **Chicago Food Inspection Outcomes:** Matplotlib 3.11.1 passed binary installation, dependency checks, offline retrieval tests, and complete execution of the unchanged notebook and data snapshot on Python 3.12.
 - **Safe Video Downloader 1.14.2:** fallback media-signature validation prevents an otherwise plausible response from being accepted blindly, while mixed batches now return an exit status that reflects partial failure. The full hosted matrix remains green on Python 3.11, 3.12, and 3.13.
 - **MP3 Downloader 1.0.0:** Certifi 2026.7.22 was added to the existing SHA-256-locked runtime contract. Exact-hash installation, dependency checks, compilation, offline tests, Windows Python 3.11 and 3.13, and CodeQL passed before merge.
