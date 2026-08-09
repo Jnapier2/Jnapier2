@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-08-03T08:13:04Z",
+  "generated_utc": "2026-08-09T03:09:00Z",
   "owner": "Jnapier2",
   "rights_notice": "Copyright © 2026 Gateway Information Group LLC. All rights reserved.",
   "review_scope": "All 17 public project default-branch heads, declared version markers, release and dependency integrity, public documentation, review-only dependency monitoring, Python support claims, timeout defaults, source-versus-download distinctions, and recovered-package provenance; account-level About links, pins, and rulesets are tracked separately.",
@@ -37,15 +37,15 @@
     },
     {
       "repository": "media-tagger-bot",
-      "represented_version": "0.5.7",
-      "latest_verified_version": "0.5.7",
-      "status": "github_source_authority",
+      "represented_version": "0.5.9",
+      "latest_verified_version": "0.5.9",
+      "status": "current",
       "source_marker": {
         "path": "pyproject.toml",
-        "text": "version = \"0.5.7\""
+        "text": "version = \"0.5.9\""
       },
-      "note": "Current GitHub source preserves the verified v0.5.7 runtime and launcher/lock contract. Its public README excludes private aggregate counts and limits claims to behavior reviewable in source, tests, and documented safeguards; monthly GitHub Actions proposals remain review-only and never auto-merge.",
-      "reviewed_head_sha": "97a669f5ef09c55cb48a9b13c2625876494cd0c2"
+      "note": "The sanitized v0.5.9 source matches the verified build. Its reviewed security pins, 84-file pre-auth integrity gate, 192-test clean-clone suite, Windows matrix, and CodeQL passed; public claims remain limited to behavior reviewable in source, tests, and documented safeguards.",
+      "reviewed_head_sha": "46d117514bf4e8a529127549b23d37a0eb0fcf12"
     },
     {
       "repository": "chicago-food-inspections-analysis",
@@ -112,16 +112,15 @@
     },
     {
       "repository": "image-downloader",
-      "represented_version": "2026.08.02.1",
-      "latest_verified_version": "2026.08.02.1",
+      "represented_version": "2026.08.08.1",
+      "latest_verified_version": "2026.08.08.1",
       "status": "current",
       "source_marker": {
         "path": "image_downloader.py",
-        "text": "APP_VERSION = \"2026.08.02.1\""
+        "text": "APP_VERSION = \"2026.08.08.1\""
       },
-      "release_url": "https://github.com/Jnapier2/image-downloader/releases/tag/v2026.08.02.1",
-      "note": "The public source and stable release align at 2026.08.02.1. Credential-safe persisted evidence, Windows reserved-name and bidirectional-text hardening, and the five-second per-image network budget are covered by tests; CI validates standard and optional Playwright dependency sets without downloading browsers, and CI plus CodeQL passed at the reviewed head.",
-      "reviewed_head_sha": "2745b0c33d5dde7820d2a20ba4fb962af91b172f"
+      "note": "The sanitized 2026.08.08.1 source adds a recoverable 100-item queue, a three-transfer ceiling, and session ledgers while retaining credential-safe evidence and atomic finalization. The 13-file integrity gate, clean-clone tests, built-in self-test, dependency jobs, and CodeQL passed.",
+      "reviewed_head_sha": "d8ee507082a124a82ac06af05b32591ea4eaeb04"
     },
     {
       "repository": "large-text-chunker",

@@ -155,7 +155,7 @@
       "require_portfolio_backlink": true,
       "rights_mode": "all-rights-reserved",
       "expected_description": "Permission-aware image collection with bounded discovery, credential-safe evidence, Windows-safe filenames, resumable state, and verified output.",
-      "profile_summary": "The 2026.08.02.1 release collects permitted images with controlled discovery, a five-second per-image network budget, credential-safe evidence, Windows-safe filenames, resumable state, duplicate controls, and atomic finalization."
+      "profile_summary": "The 2026.08.08.1 release collects permitted images with controlled discovery, a recoverable 100-item queue, a three-transfer ceiling, credential-safe evidence, session ledgers, Windows-safe filenames, duplicate controls, and atomic finalization."
     },
     {
       "name": "large-text-chunker",

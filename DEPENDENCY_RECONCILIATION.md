@@ -2,7 +2,7 @@
 
 This record identifies how each public repository controls third-party packages and installation behavior. It separates projects that need no application dependencies from exact pins, SHA-256 locks, bounded compatible ranges, and checksum-sealed releases. All 18 public repositories are covered.
 
-Last reconciled: **August 2, 2026 at 11:50 PM CDT**
+Last reconciled: **August 8, 2026 at 10:09 PM CDT**
 
 The machine-readable authority is [`.github/dependency-reconciliation.json`](.github/dependency-reconciliation.json). The Portfolio health workflow checks the declared files, version markers, installation commands, consistency gates, absence claims, and deferred compatibility decisions.
 
@@ -13,7 +13,7 @@ The machine-readable authority is [`.github/dependency-reconciliation.json`](.gi
 | Jnapier2 profile | No third-party runtime | Standard-library audits; external Actions pinned to reviewed commit SHAs |
 | BotOps Manager | No third-party runtime | Python standard library only |
 | Digital Asset Governance Audit | No third-party runtime | Python standard library only |
-| MediaTaggerBot | SHA-256 locked | Verified v0.5.7 runtime retained; fail-closed installation and launcher/lock agreement test added |
+| MediaTaggerBot | SHA-256 locked | Verified v0.5.9 runtime retained; fail-closed installation, identity, and launcher/lock agreement checks passed |
 | Chicago Food Inspection Outcomes | Exact pins | Matplotlib 3.11.1 passed binary installation, dependency checks, and complete notebook execution on Python 3.12 |
 | Avalon Q Supervisor | No third-party runtime | Python standard library only |
 | Automation Reliability Case Studies | No third-party runtime | Documentation and standard-library tests only |
@@ -33,7 +33,7 @@ The machine-readable authority is [`.github/dependency-reconciliation.json`](.gi
 
 ### MediaTaggerBot
 
-The verified Requests 2.33.0 runtime was retained because the package metadata, SHA-256 lock, and primary BAT launcher already agreed on that version. CI now:
+The verified v0.5.9 runtime uses Requests 2.33.0, pytest 9.0.3, and setuptools 83.0.0. Package metadata, the SHA-256 runtime lock, the dependency SBOM, and the primary BAT launcher agree on the reviewed set. CI:
 
 - separates runtime, local-project, and test-tool installation;
 - exits on the first failed stage rather than allowing a later command to mask it;
