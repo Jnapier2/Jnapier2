@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-08-09T03:09:00Z",
+  "generated_utc": "2026-08-09T21:31:00Z",
   "owner": "Jnapier2",
   "rights_notice": "Copyright © 2026 Gateway Information Group LLC. All rights reserved.",
-  "review_scope": "All 17 public project default-branch heads, declared version markers, release and dependency integrity, public documentation, review-only dependency monitoring, Python support claims, timeout defaults, source-versus-download distinctions, and recovered-package provenance; account-level About links, pins, and rulesets are tracked separately.",
+  "review_scope": "All 17 public project default-branch heads, declared version markers, release and dependency integrity, public documentation, review-only dependency monitoring, Python support claims, timeout defaults, source-versus-download distinctions, recovered-package provenance, and the MediaTaggerBot v2.17.6 canonical-entrypoint/project-local-output repair; account-level About links, pins, and rulesets are tracked separately.",
   "reviewed_public_project_count": 17,
   "status_definitions": {
     "current": "GitHub represents the latest verified source/build version.",
@@ -44,8 +44,8 @@
         "path": "pyproject.toml",
         "text": "version = \"0.5.9\""
       },
-      "note": "The sanitized v0.5.9 source matches the verified build. Its reviewed security pins, 84-file pre-auth integrity gate, 192-test clean-clone suite, Windows matrix, and CodeQL passed; public claims remain limited to behavior reviewable in source, tests, and documented safeguards.",
-      "reviewed_head_sha": "46d117514bf4e8a529127549b23d37a0eb0fcf12"
+      "note": "The sanitized v0.5.9 source now implements the v2.17.6 execution/output boundary without changing user-facing behavior: `Start_MediaTaggerBot.bat` remains the stable project-qualified entrypoint, caller CWD is no longer project-root authority, runtime-owned outputs are declared project-local, external media roots remain explicit user bindings, and the clean-checkout identity gate verifies 108/108 managed files. The complete Python 3.11 and 3.13 PR matrix passed after Git-normalized manifest evidence was repaired.",
+      "reviewed_head_sha": "79e95bffce4a18cefd1b91b6b709f67dc45ca22c"
     },
     {
       "repository": "chicago-food-inspections-analysis",
