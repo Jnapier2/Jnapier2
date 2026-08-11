@@ -1,6 +1,6 @@
 # Reliable Project Delivery Framework
 
-This is the public principles document used across my software, automation, analytics, and game projects. It describes the shared operating boundaries without publishing private implementation playbooks, internal audit records, credentials, machine profiles, project-specific thresholds, or raw diagnostics.
+This is the public principles document used across my software, automation, analytics, and game projects. It describes the shared operating boundaries without publishing project-specific implementation details.
 
 ## 1. One clear project identity
 
@@ -62,7 +62,7 @@ A release is not described as complete when important launch, recovery, output, 
 
 ## Public boundary
 
-This framework is intentionally outcome-focused. Private checklists, internal scoring systems, release ledgers, repository-wide audit machinery, credentials, raw support exports, unique machine identifiers, private paths, and project-specific operating thresholds remain outside the public repository.
+This framework is intentionally outcome-focused. Project-specific operating details and private data remain outside the public repository.
 
 Copyright © 2026 Gateway Information Group LLC. All rights reserved.
 
