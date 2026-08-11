@@ -49,7 +49,7 @@ jobs:
           PORTFOLIO_AUDIT_OUTPUT_DIR: ${{ runner.temp }}/deep-scan-local-verification
         run: |
           python .github/scripts/case_study_integrity_audit.py
-          python .github/scripts/repo_governance_audit.py
+          python .github/scripts/profile_repository_governance_audit.py
           git diff --check
 
       - name: Write bounded reconciliation receipt
