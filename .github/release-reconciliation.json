@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-08-09T21:31:00Z",
+  "generated_utc": "2026-08-11T03:58:00Z",
   "owner": "Jnapier2",
   "rights_notice": "Copyright © 2026 Gateway Information Group LLC. All rights reserved.",
-  "review_scope": "All 17 public project default-branch heads, declared version markers, release and dependency integrity, public documentation, review-only dependency monitoring, Python support claims, timeout defaults, source-versus-download distinctions, recovered-package provenance, and the MediaTaggerBot v2.17.6 canonical-entrypoint/project-local-output repair; account-level About links, pins, and rulesets are tracked separately.",
+  "review_scope": "All 17 public project default-branch heads, declared version markers, release and dependency integrity, public documentation, review-only dependency monitoring, Python support claims, timeout defaults, source-versus-download distinctions, recovered-package provenance, the MediaTaggerBot v2.17.6 metadata repair, the NetLossDoctor collector/comparison project-local-output repairs, and a bounded 18-repository source-signal scan; account-level About links, pins, rulesets, and Drive permissions are tracked separately.",
   "reviewed_public_project_count": 17,
   "status_definitions": {
     "current": "GitHub represents the latest verified source/build version.",
@@ -44,8 +44,8 @@
         "path": "pyproject.toml",
         "text": "version = \"0.5.9\""
       },
-      "note": "The sanitized v0.5.9 source now implements the v2.17.6 execution/output boundary without changing user-facing behavior: `Start_MediaTaggerBot.bat` remains the stable project-qualified entrypoint, caller CWD is no longer project-root authority, runtime-owned outputs are declared project-local, external media roots remain explicit user bindings, and the clean-checkout identity gate verifies 108/108 managed files. The complete Python 3.11 and 3.13 PR matrix passed after Git-normalized manifest evidence was repaired.",
-      "reviewed_head_sha": "79e95bffce4a18cefd1b91b6b709f67dc45ca22c"
+      "note": "The sanitized v0.5.9 source implements the v2.17.6 execution/output boundary without changing user-facing behavior. `Start_MediaTaggerBot.bat` remains the stable project-qualified entrypoint, caller CWD is not project-root authority, runtime-owned outputs are project-local, and external media roots remain explicit user bindings. The metadata repair now labels the source baseline as a Git SHA-1 commit instead of SHA-256. The clean-checkout identity gate verifies 92/92 managed files with zero mismatches, and the complete 197-test Python 3.11/3.13 PR matrix passed.",
+      "reviewed_head_sha": "22fd78f6aa89e91c17cca3699af6602751d32b32"
     },
     {
       "repository": "chicago-food-inspections-analysis",
@@ -146,8 +146,8 @@
         "path": "NetLossDoctor.ps1",
         "text": "$Script:Version = '2.10.0'"
       },
-      "note": "GitHub already contains the cataloged final version; the reviewed head adds immutable CI references only.",
-      "reviewed_head_sha": "8252dbb6ea3dac5c83db8b8a5d5102bcc43703ce"
+      "note": "The v2.10.0 public source now uses `Start-NetLossDoctor.cmd` as the stable entrypoint, resolves collector and comparison roots from validated NLD_HOME or their own script locations, rebases relative report paths under the project, and fails closed rather than using caller CWD, Desktop, or OS temp as final output authority. Windows PowerShell 5.1 safety contracts and both cross-working-directory tests passed. PUBLIC_SOURCE_METADATA.json explicitly records that the older public source has not yet implemented the v2.17.5 managed-file runtime identity gate.",
+      "reviewed_head_sha": "7008d3c5c65638d39ccc39569ece6b1b0d15df44"
     },
     {
       "repository": "lan-router-comms",
