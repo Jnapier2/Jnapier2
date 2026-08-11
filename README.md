@@ -53,6 +53,6 @@ I am interested in analytics, data governance, information management, operation
 
 ## Public repository boundary
 
-This profile repository is intentionally limited to project and tool summaries plus the shared public framework. Each linked project owns its own documentation and project-specific details. Private operating notes, internal audit ledgers, machine profiles, credentials, raw diagnostics, and implementation playbooks are not published here.
+This profile repository is intentionally limited to project and tool summaries plus the shared public framework. Project-specific operating records and private implementation details are not published here.
 
 Copyright © 2026 Gateway Information Group LLC. All rights reserved.
