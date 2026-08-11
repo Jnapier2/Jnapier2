@@ -4,21 +4,15 @@ Copyright © 2026 Gateway Information Group LLC. All rights reserved.
 
 ## Scope
 
-This policy covers the profile README, public case studies, manifests, validation records, and audit code stored in this repository. Security issues in a linked project should be reported through that project's own `SECURITY.md`.
+This policy covers the profile README and the public project framework stored in this repository. Security issues in a linked project should be reported through that project's own `SECURITY.md` or private reporting channel.
 
 ## Reporting a sensitive issue
 
-Use GitHub's private vulnerability reporting feature when it is available for this repository.
+Use GitHub's private vulnerability reporting feature when it is available for the affected repository.
 
 If private reporting is unavailable, open a public issue containing only a request for a private reporting channel. Do not include vulnerability details, credentials, tokens, private keys, account identifiers, personal information, private links, internal paths, or unredacted logs in a public issue, pull request, discussion, or comment.
 
-A private report should include:
-
-- The affected file and exact commit or release
-- The observed impact and operating conditions
-- Minimal reproduction steps
-- Sanitized evidence
-- Any safe workaround already identified
+A private report should include the affected file or project, the observed impact, minimal reproduction steps, sanitized evidence, and any safe workaround already identified.
 
 ## Response boundary
 
