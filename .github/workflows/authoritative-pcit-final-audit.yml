@@ -1,0 +1,241 @@
+name: Authoritative PC Improvement Tools final audit
+
+on:
+  push:
+    branches:
+      - agent/audit-pcit-publication-20260813
+    paths:
+      - .github/workflows/authoritative-pcit-final-audit.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: authoritative-pcit-final-audit
+  cancel-in-progress: false
+
+jobs:
+  verify-final-artifacts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+
+      - name: Poll and audit live repositories and downloaded releases
+        id: audit
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path, PurePosixPath
+          import base64, hashlib, io, json, os, re, time, urllib.error, urllib.request, zipfile
+
+          specs=[
+            dict(repository='Jnapier2/safe-video-downloader',version='1.21.2',source='safe_media_downloader.py',marker='APP_VERSION = "1.21.2"',tag='v1.21.2',asset='SafeVideoDownloader_v1.21.2_Public_Source.zip'),
+            dict(repository='Jnapier2/lan-router-comms',version='2.10.9',source='LAN_Router_Comms.ps1',marker='2.10.9',tag='v2.10.9',asset='Gateway_LAN_Link_v2.10.9_Public_Source.zip'),
+            dict(repository='Jnapier2/net-loss-doctor',version='2.16.3',source='NetLossDoctor.ps1',marker='2.16.3',tag='v2.16.3',asset='NetLossDoctor_v2.16.3_Public_Source.zip'),
+            dict(repository='Jnapier2/botops-manager',version='1.23.3',source='bot_manager.py',marker='1.23.3',tag='v1.23.3',asset='BotOps_Manager_v1.23.3_Public_Source.zip'),
+          ]
+          token=os.environ['GH_TOKEN']
+          base_headers={'Authorization':f'Bearer {token}','Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','User-Agent':'PCIT-Authoritative-Audit'}
+
+          def request(url, *, accept=None, binary=False):
+              headers=dict(base_headers)
+              if accept: headers['Accept']=accept
+              req=urllib.request.Request(url if url.startswith('http') else 'https://api.github.com'+url,headers=headers)
+              try:
+                  with urllib.request.urlopen(req,timeout=60) as response:
+                      raw=response.read()
+                      return raw if binary else json.loads(raw.decode('utf-8'))
+              except urllib.error.HTTPError as exc:
+                  return {'_error':exc.code,'_body':exc.read().decode('utf-8','replace')[:1000]}
+
+          def dereference_tag(repo, tag):
+              ref=request(f'/repos/{repo}/git/ref/tags/{tag}')
+              if ref.get('_error'): return None
+              obj=ref.get('object') or {}
+              if obj.get('type')=='commit': return obj.get('sha')
+              if obj.get('type')=='tag':
+                  annotated=request(f'/repos/{repo}/git/tags/{obj.get("sha")}')
+                  target=annotated.get('object') or {}
+                  return target.get('sha') if target.get('type')=='commit' else None
+              return None
+
+          forbidden_name_tokens=('staging/','.import/','new_thread','handoff','chatgpt','support_export','latest_support','logs/','state/','diagnostics/','downloads/','evidence/','runtime/')
+          forbidden_suffixes=('.exe','.dll','.pfx','.pem','.key','.bin','.pyc','.pyo','.log','.part','.ytdl')
+          secret_patterns={
+            'openai_key':re.compile(rb'\bsk-(?:proj-)?[A-Za-z0-9_-]{20,}\b'),
+            'private_key':re.compile(rb'-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----'),
+            'windows_user_path':re.compile(rb'[A-Za-z]:\\Users\\(?!<user>)[^\\\r\n]+',re.I),
+            'unix_user_path':re.compile(rb'/(?:home|Users)/(?!<user>)[^/\s]+',re.I),
+            'private_label':re.compile(rb'(?:UPLOAD_THIS_TO_CHATGPT|ChatGPT_Project_Vault|NEW_THREAD_TRANSFER|cross-computer lease|write fence)',re.I),
+          }
+
+          def audit_one(spec):
+              repo=spec['repository'];problems=[];pending=[]
+              meta=request(f'/repos/{repo}')
+              commit=request(f'/repos/{repo}/commits/main')
+              main_sha=commit.get('sha')
+              if meta.get('visibility')!='public' or meta.get('archived'): problems.append('repository is not active public')
+              source=request(f'/repos/{repo}/contents/{spec["source"]}?ref=main')
+              text=base64.b64decode(source.get('content','')).decode('utf-8-sig','replace') if source.get('content') else ''
+              if spec['marker'] not in text: problems.append('live main version/source marker missing')
+              checks=request(f'/repos/{repo}/commits/{main_sha}/check-runs?per_page=100') if main_sha else {'check_runs':[]}
+              runs=checks.get('check_runs',[]) if isinstance(checks,dict) else []
+              if not runs: pending.append('no main-commit check runs observed yet')
+              else:
+                  incomplete=[r for r in runs if r.get('status')!='completed']
+                  failed=[r for r in runs if r.get('status')=='completed' and r.get('conclusion') not in ('success','neutral','skipped')]
+                  if incomplete: pending.append('main-commit checks still running')
+                  if failed: problems.append('main-commit checks failed: '+', '.join(sorted({str(r.get('name')) for r in failed})))
+              release=request(f'/repos/{repo}/releases/tags/{spec["tag"]}')
+              if release.get('_error'):
+                  pending.append('GitHub Release not present yet')
+                  assets=[]
+              else:
+                  assets=release.get('assets',[])
+                  if release.get('draft') or release.get('prerelease'): problems.append('release is draft or prerelease')
+                  tag_sha=dereference_tag(repo,spec['tag'])
+                  if tag_sha != main_sha: problems.append(f'release tag target {tag_sha} does not equal live main {main_sha}')
+              amap={a.get('name'):a for a in assets}
+              zip_asset=amap.get(spec['asset']);side_asset=amap.get(spec['asset']+'.sha256.txt')
+              if release.get('_error'):
+                  pass
+              elif not zip_asset or not side_asset:
+                  pending.append('release ZIP or SHA-256 sidecar missing')
+              asset_result={}
+              if zip_asset and side_asset:
+                  zip_bytes=request(zip_asset['url'],accept='application/octet-stream',binary=True)
+                  side_bytes=request(side_asset['url'],accept='application/octet-stream',binary=True)
+                  if isinstance(zip_bytes,dict) or isinstance(side_bytes,dict):
+                      pending.append('release assets could not be downloaded')
+                  else:
+                      digest=hashlib.sha256(zip_bytes).hexdigest()
+                      side_text=side_bytes.decode('utf-8-sig','replace')
+                      match=re.search(r'(?i)\b([0-9a-f]{64})\b',side_text)
+                      if not match or match.group(1).lower()!=digest: problems.append('release SHA-256 sidecar mismatch')
+                      findings=[];copyright_seen=False;entry_count=0
+                      try:
+                          with zipfile.ZipFile(io.BytesIO(zip_bytes)) as archive:
+                              bad=archive.testzip()
+                              if bad: problems.append(f'release ZIP CRC failure at {bad}')
+                              for info in archive.infolist():
+                                  if info.is_dir(): continue
+                                  entry_count+=1
+                                  name=info.filename.replace('\\','/');lower=name.lower();parts=PurePosixPath(name).parts
+                                  if name.startswith('/') or '..' in parts: findings.append({'file':name,'kind':'unsafe_path'})
+                                  if any(token in lower for token in forbidden_name_tokens): findings.append({'file':name,'kind':'forbidden_name'})
+                                  if lower.endswith(forbidden_suffixes): findings.append({'file':name,'kind':'forbidden_suffix'})
+                                  if info.file_size<=5*1024*1024 and lower.endswith(('.py','.ps1','.psm1','.psd1','.bat','.cmd','.md','.txt','.json','.yml','.yaml','.toml','.ini','.cfg','.csv')):
+                                      data=archive.read(info)
+                                      if b'Copyright' in data and b'2026 Gateway Information Group LLC' in data: copyright_seen=True
+                                      for label,pattern in secret_patterns.items():
+                                          if pattern.search(data): findings.append({'file':name,'kind':label})
+                          if findings: problems.append('release sanitization findings: '+json.dumps(findings[:12],sort_keys=True))
+                          if not copyright_seen: problems.append('required copyright notice not found in release text')
+                      except zipfile.BadZipFile: problems.append('release asset is not a valid ZIP')
+                      asset_result={'sha256':digest,'bytes':len(zip_bytes),'entries':entry_count,'sidecar_verified':bool(match and match.group(1).lower()==digest)}
+              pulls=request(f'/repos/{repo}/pulls?state=open&per_page=100')
+              branches=request(f'/repos/{repo}/branches?per_page=100')
+              return {
+                  **spec,'main_sha':main_sha,'release_url':release.get('html_url'),'checks':[{'name':r.get('name'),'status':r.get('status'),'conclusion':r.get('conclusion')} for r in runs],
+                  'asset_verification':asset_result,'open_pulls':[] if isinstance(pulls,dict) else [{'number':p['number'],'head':p['head']['ref'],'title':p['title']} for p in pulls],
+                  'branches':[] if isinstance(branches,dict) else [b['name'] for b in branches],'pending':pending,'problems':problems,
+                  'status':'PASS' if not pending and not problems else ('BLOCKED' if problems else 'PENDING'),
+              }
+
+          deadline=time.time()+25*60
+          rows=[]
+          while True:
+              rows=[audit_one(spec) for spec in specs]
+              if all(row['status']=='PASS' for row in rows): break
+              if any(row['status']=='BLOCKED' for row in rows): break
+              if time.time()>=deadline: break
+              time.sleep(30)
+
+          complete=all(row['status']=='PASS' for row in rows)
+          audit={'schema_version':2,'complete':complete,'projects':rows,'verification_boundary':{'downloaded_release_assets':True,'tag_equals_main':True,'main_commit_checks':True,'zip_crc':True,'sha256_sidecar':True,'sanitization_scan':True,'norton_on_exact_artifact':False},'copyright':'Copyright © 2026 Gateway Information Group LLC. All rights reserved.'}
+          Path('PCIT_AUTHORITATIVE_FINAL_AUDIT.json').write_text(json.dumps(audit,indent=2)+'\n',encoding='utf-8')
+          lines=['# PC Improvement Tools — Authoritative Final Audit','',f"Overall: **{'PASS' if complete else 'BLOCKED'}**",'', '| Repository | Version | Status | Main SHA | Release asset SHA-256 |','|---|---:|---|---|---|']
+          for row in rows:
+              lines.append(f"| `{row['repository']}` | {row['version']} | **{row['status']}** | `{row.get('main_sha')}` | `{row.get('asset_verification',{}).get('sha256','')}` |")
+              for item in row['pending']: lines.append(f"\n- `{row['repository']}` pending: {item}")
+              for item in row['problems']: lines.append(f"\n- `{row['repository']}` blocker: {item}")
+          lines += ['', 'The published ZIPs were downloaded back from GitHub and checked for SHA-256 sidecar agreement, CRC, safe entry paths, blocked artifacts, credentials/private paths, and the required copyright notice.', '', 'Exact-artifact Norton-on testing was not available in the Linux audit runner and is not claimed.', '', 'Copyright © 2026 Gateway Information Group LLC. All rights reserved.']
+          Path('PCIT_AUTHORITATIVE_FINAL_AUDIT.md').write_text('\n'.join(lines)+'\n',encoding='utf-8')
+          with open(os.environ['GITHUB_OUTPUT'],'a',encoding='utf-8') as handle: handle.write(f'complete={str(complete).lower()}\n')
+          PY
+
+      - name: Commit authoritative audit evidence
+        shell: bash
+        run: |
+          git config user.name "Jerry R. Napier"
+          git config user.email "41520658+Jnapier2@users.noreply.github.com"
+          git add PCIT_AUTHORITATIVE_FINAL_AUDIT.json PCIT_AUTHORITATIVE_FINAL_AUDIT.md
+          git diff --cached --check
+          if ! git diff --cached --quiet; then
+            git commit -m "Record authoritative PC Improvement Tools final audit"
+            git push origin HEAD:agent/audit-pcit-publication-20260813
+          fi
+
+      - name: Publish audit and verified release index to profile
+        if: steps.audit.outputs.complete == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          publish="$RUNNER_TEMP/profile-final"
+          git worktree add --force "$publish" origin/main
+          cp PCIT_AUTHORITATIVE_FINAL_AUDIT.json PCIT_AUTHORITATIVE_FINAL_AUDIT.md "$publish/"
+          cd "$publish"
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          path=Path('README.md');text=path.read_text(encoding='utf-8');start='<!-- PCIT_PUBLIC_RELEASES_START -->';end='<!-- PCIT_PUBLIC_RELEASES_END -->'
+          block='''<!-- PCIT_PUBLIC_RELEASES_START -->
+          ## Current Public Releases
+
+          | Project | Version | Outcome |
+          |---|---:|---|
+          | [Safe Video Downloader](https://github.com/Jnapier2/safe-video-downloader) | **1.21.2** | Authorized media retrieval with public-URL validation, isolated workers, resumable queues, duplicate controls, bounded recovery, and verified output. |
+          | [Gateway LAN Link](https://github.com/Jnapier2/lan-router-comms) | **2.10.9** | HMAC-authenticated local communications with root-relative configuration, project-local state, bounded recovery, and advisory-only computer awareness. |
+          | [NetLossDoctor](https://github.com/Jnapier2/net-loss-doctor) | **2.16.3** | Read-only Windows network diagnostics and report comparison with project-local outputs and PowerShell safety checks. |
+          | [BotOps Manager](https://github.com/Jnapier2/botops-manager) | **1.23.3** | Local Windows automation orchestration with project-local state, bounded process control, recovery, and reproducible support evidence. |
+
+          [View the independent final publication audit](PCIT_AUTHORITATIVE_FINAL_AUDIT.md).
+          <!-- PCIT_PUBLIC_RELEASES_END -->'''
+          pattern=re.compile(re.escape(start)+r'.*?'+re.escape(end),re.S)
+          new=pattern.sub(block,text) if pattern.search(text) else text.rstrip()+'\n\n'+block+'\n'
+          path.write_text(new,encoding='utf-8')
+          PY
+          git config user.name "Jerry R. Napier"
+          git config user.email "41520658+Jnapier2@users.noreply.github.com"
+          git checkout -B agent/publish-authoritative-pcit-audit
+          git add README.md PCIT_AUTHORITATIVE_FINAL_AUDIT.json PCIT_AUTHORITATIVE_FINAL_AUDIT.md
+          git diff --cached --check
+          git commit -m "Publish verified PC Improvement Tools release audit"
+          head=$(git rev-parse HEAD)
+          git push --force-with-lease origin HEAD:agent/publish-authoritative-pcit-audit
+          number=$(gh pr list --head agent/publish-authoritative-pcit-audit --base main --state open --json number --jq '.[0].number')
+          if [ -z "$number" ]; then gh pr create --base main --head agent/publish-authoritative-pcit-audit --title "Publish verified PC Improvement Tools release audit" --body "Publishes the independent cross-repository audit only after all four live main branches, main-commit checks, release tags, downloaded ZIPs, SHA-256 sidecars, CRC checks, and sanitization scans pass."; number=$(gh pr list --head agent/publish-authoritative-pcit-audit --base main --state open --json number --jq '.[0].number'); fi
+          current=$(gh pr view "$number" --json headRefOid --jq .headRefOid);test "$current" = "$head";gh pr merge "$number" --squash --delete-branch --match-head-commit "$head"
+
+      - name: Open or update exact blocker issue
+        if: steps.audit.outputs.complete != 'true'
+        shell: bash
+        run: |
+          title="PC Improvement Tools authoritative publication blockers"
+          number=$(gh issue list --state open --search "$title in:title" --json number,title --jq '.[] | select(.title=="'"$title"'") | .number' | head -1)
+          if [ -n "$number" ]; then gh issue edit "$number" --body-file PCIT_AUTHORITATIVE_FINAL_AUDIT.md; else gh issue create --title "$title" --body-file PCIT_AUTHORITATIVE_FINAL_AUDIT.md; fi
+
+# Copyright © 2026 Gateway Information Group LLC. All rights reserved.
