@@ -1,0 +1,130 @@
+name: Re-audit PC Improvement Tools publication
+
+on:
+  push:
+    branches:
+      - agent/audit-pcit-publication-20260813
+    paths:
+      - .github/workflows/audit-pcit-publication-retry.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  live-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+
+      - name: Verify live source and releases
+        id: audit
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import base64,json,os,urllib.request,urllib.error
+          specs=[
+            ('Jnapier2/safe-video-downloader','1.21.2','safe_media_downloader.py','APP_VERSION = "1.21.2"','v1.21.2','SafeVideoDownloader_v1.21.2_Public_Source.zip'),
+            ('Jnapier2/lan-router-comms','2.10.9','LAN_Router_Comms.ps1','2.10.9','v2.10.9','Gateway_LAN_Link_v2.10.9_Public_Source.zip'),
+            ('Jnapier2/net-loss-doctor','2.16.3','NetLossDoctor.ps1','2.16.3','v2.16.3','NetLossDoctor_v2.16.3_Public_Source.zip'),
+            ('Jnapier2/botops-manager','1.23.3','bot_manager.py','1.23.3','v1.23.3','BotOps_Manager_v1.23.3_Public_Source.zip'),
+          ]
+          token=os.environ['GH_TOKEN']
+          def api(path):
+            req=urllib.request.Request('https://api.github.com'+path,headers={'Authorization':f'Bearer {token}','Accept':'application/vnd.github+json','User-Agent':'PCIT-Reaudit'})
+            try:
+              with urllib.request.urlopen(req,timeout=45) as r:return json.load(r)
+            except urllib.error.HTTPError as e:return {'_error':e.code}
+          rows=[]
+          for repo,version,source,marker,tag,asset in specs:
+            commit=api(f'/repos/{repo}/commits/main');content=api(f'/repos/{repo}/contents/{source}?ref=main');release=api(f'/repos/{repo}/releases/tags/{tag}');pulls=api(f'/repos/{repo}/pulls?state=open&per_page=100');branches=api(f'/repos/{repo}/branches?per_page=100')
+            text=base64.b64decode(content.get('content','')).decode('utf-8-sig','replace') if content.get('content') else ''
+            assets=[] if release.get('_error') else [x.get('name') for x in release.get('assets',[])]
+            problems=[]
+            if marker not in text:problems.append('live main marker missing')
+            if release.get('_error'):problems.append('release missing')
+            if asset not in assets:problems.append('source ZIP missing')
+            if asset+'.sha256.txt' not in assets:problems.append('SHA-256 sidecar missing')
+            rows.append({'repository':repo,'version':version,'main_sha':commit.get('sha'),'release_url':release.get('html_url'),'assets':assets,'open_pulls':[] if isinstance(pulls,dict) else [{'number':p['number'],'head':p['head']['ref'],'title':p['title']} for p in pulls],'branches':[] if isinstance(branches,dict) else [b['name'] for b in branches],'problems':problems,'status':'PASS' if not problems else 'BLOCKED'})
+          complete=all(r['status']=='PASS' for r in rows)
+          data={'complete':complete,'projects':rows,'copyright':'Copyright © 2026 Gateway Information Group LLC. All rights reserved.'}
+          Path('PCIT_PUBLICATION_REAUDIT.json').write_text(json.dumps(data,indent=2)+'\n',encoding='utf-8')
+          lines=['# PC Improvement Tools — Live Publication Re-audit','',f"Overall: **{'PASS' if complete else 'BLOCKED'}**",'','| Repository | Version | Status | Main SHA | Release |','|---|---:|---|---|---|']
+          for r in rows:
+            lines.append(f"| `{r['repository']}` | {r['version']} | **{r['status']}** | `{r.get('main_sha')}` | {r.get('release_url') or 'missing'} |")
+            for p in r['problems']:lines.append(f"\n- `{r['repository']}`: {p}")
+          lines+=['','Copyright © 2026 Gateway Information Group LLC. All rights reserved.']
+          Path('PCIT_PUBLICATION_REAUDIT.md').write_text('\n'.join(lines)+'\n',encoding='utf-8')
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write(f'complete={str(complete).lower()}\n')
+          PY
+
+      - name: Commit re-audit evidence
+        shell: bash
+        run: |
+          git config user.name "Jerry R. Napier"
+          git config user.email "41520658+Jnapier2@users.noreply.github.com"
+          git add PCIT_PUBLICATION_REAUDIT.json PCIT_PUBLICATION_REAUDIT.md
+          git diff --cached --check
+          if ! git diff --cached --quiet; then
+            git commit -m "Record live PC Improvement Tools publication re-audit"
+            git push origin HEAD:agent/audit-pcit-publication-20260813
+          fi
+
+      - name: Update verified profile release block
+        if: steps.audit.outputs.complete == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          publish="$RUNNER_TEMP/profile-publish"
+          git worktree add --force "$publish" origin/main
+          cd "$publish"
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('README.md');text=p.read_text(encoding='utf-8');start='<!-- PCIT_PUBLIC_RELEASES_START -->';end='<!-- PCIT_PUBLIC_RELEASES_END -->'
+          block='''<!-- PCIT_PUBLIC_RELEASES_START -->
+          ## Current Public Releases
+
+          | Project | Version | Outcome |
+          |---|---:|---|
+          | [Safe Video Downloader](https://github.com/Jnapier2/safe-video-downloader) | **1.21.2** | Authorized media retrieval with public-URL validation, isolated workers, resumable queues, duplicate controls, bounded recovery, and verified output. |
+          | [Gateway LAN Link](https://github.com/Jnapier2/lan-router-comms) | **2.10.9** | HMAC-authenticated local communications with root-relative configuration, project-local state, bounded recovery, and advisory-only computer awareness. |
+          | [NetLossDoctor](https://github.com/Jnapier2/net-loss-doctor) | **2.16.3** | Read-only Windows network diagnostics and report comparison with project-local outputs and PowerShell safety checks. |
+          | [BotOps Manager](https://github.com/Jnapier2/botops-manager) | **1.23.3** | Local Windows automation orchestration with project-local state, bounded process control, recovery, and reproducible support evidence. |
+
+          <!-- PCIT_PUBLIC_RELEASES_END -->'''
+          pat=re.compile(re.escape(start)+r'.*?'+re.escape(end),re.S);new=pat.sub(block,text) if pat.search(text) else text.rstrip()+'\n\n'+block+'\n';p.write_text(new,encoding='utf-8')
+          PY
+          git config user.name "Jerry R. Napier"
+          git config user.email "41520658+Jnapier2@users.noreply.github.com"
+          git checkout -B agent/update-profile-verified-pcit-releases
+          git add README.md
+          git diff --cached --check
+          if ! git diff --cached --quiet; then git commit -m "Update profile with verified PC Improvement Tools releases"; fi
+          head=$(git rev-parse HEAD)
+          git push --force-with-lease origin HEAD:agent/update-profile-verified-pcit-releases
+          number=$(gh pr list --head agent/update-profile-verified-pcit-releases --base main --state open --json number --jq '.[0].number')
+          if [ -z "$number" ]; then gh pr create --base main --head agent/update-profile-verified-pcit-releases --title "Update profile with verified PC Improvement Tools releases" --body "Adds only releases independently verified by the live publication re-audit."; number=$(gh pr list --head agent/update-profile-verified-pcit-releases --base main --state open --json number --jq '.[0].number'); fi
+          current=$(gh pr view "$number" --json headRefOid --jq .headRefOid);test "$current" = "$head";gh pr merge "$number" --squash --delete-branch --match-head-commit "$head"
+
+      - name: Refresh consolidated blocker issue
+        if: steps.audit.outputs.complete != 'true'
+        shell: bash
+        run: |
+          title="PC Improvement Tools public publication blockers"
+          number=$(gh issue list --state open --search "$title in:title" --json number,title --jq '.[] | select(.title=="'"$title"'") | .number' | head -1)
+          if [ -n "$number" ]; then gh issue edit "$number" --body-file PCIT_PUBLICATION_REAUDIT.md; else gh issue create --title "$title" --body-file PCIT_PUBLICATION_REAUDIT.md; fi
+
+# Copyright © 2026 Gateway Information Group LLC. All rights reserved.
