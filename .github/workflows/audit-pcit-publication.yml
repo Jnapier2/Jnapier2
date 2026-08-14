@@ -1,0 +1,195 @@
+name: Audit PC Improvement Tools publication
+
+on:
+  push:
+    branches:
+      - agent/audit-pcit-publication-20260813
+    paths:
+      - .github/workflows/audit-pcit-publication.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  audit-and-update-profile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+
+      - name: Build independent live-state audit
+        id: audit
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import base64, json, os, urllib.request, urllib.error
+          specs = [
+              {
+                  'repository':'Jnapier2/safe-video-downloader',
+                  'version':'1.21.2',
+                  'source':'safe_media_downloader.py',
+                  'marker':'APP_VERSION = "1.21.2"',
+                  'tag':'v1.21.2',
+                  'zip':'SafeVideoDownloader_v1.21.2_Public_Source.zip',
+              },
+              {
+                  'repository':'Jnapier2/lan-router-comms',
+                  'version':'2.10.9',
+                  'source':'LAN_Router_Comms.ps1',
+                  'marker':'2.10.9',
+                  'tag':'v2.10.9',
+                  'zip':'Gateway_LAN_Link_v2.10.9_Public_Source.zip',
+              },
+              {
+                  'repository':'Jnapier2/net-loss-doctor',
+                  'version':'2.16.3',
+                  'source':'NetLossDoctor.ps1',
+                  'marker':'2.16.3',
+                  'tag':'v2.16.3',
+                  'zip':'NetLossDoctor_v2.16.3_Public_Source.zip',
+              },
+              {
+                  'repository':'Jnapier2/botops-manager',
+                  'version':'1.23.3',
+                  'source':'bot_manager.py',
+                  'marker':'1.23.3',
+                  'tag':'v1.23.3',
+                  'zip':'BotOps_Manager_v1.23.3_Public_Source.zip',
+              },
+          ]
+          token=os.environ.get('GH_TOKEN','')
+          def api(path):
+              req=urllib.request.Request('https://api.github.com'+path,headers={'Accept':'application/vnd.github+json','User-Agent':'PCIT-Publication-Audit','Authorization':f'Bearer {token}'})
+              try:
+                  with urllib.request.urlopen(req,timeout=45) as r:return json.load(r)
+              except urllib.error.HTTPError as e:
+                  return {'_error':e.code,'_body':e.read().decode('utf-8','replace')[:500]}
+          rows=[]
+          for spec in specs:
+              repo=spec['repository']
+              meta=api(f'/repos/{repo}')
+              commit=api(f'/repos/{repo}/commits/main')
+              source=api(f'/repos/{repo}/contents/{spec["source"]}?ref=main')
+              text=''
+              if isinstance(source,dict) and source.get('content'):
+                  text=base64.b64decode(source['content']).decode('utf-8-sig','replace')
+              release=api(f'/repos/{repo}/releases/tags/{spec["tag"]}')
+              assets=[] if release.get('_error') else [a.get('name') for a in release.get('assets',[])]
+              pulls=api(f'/repos/{repo}/pulls?state=open&per_page=100')
+              branches=api(f'/repos/{repo}/branches?per_page=100')
+              open_pulls=[] if isinstance(pulls,dict) else [{'number':p['number'],'title':p['title'],'head':p['head']['ref']} for p in pulls]
+              branch_names=[] if isinstance(branches,dict) else [b['name'] for b in branches]
+              problems=[]
+              if meta.get('visibility')!='public' or meta.get('archived'):problems.append('repository is not active public')
+              if spec['marker'] not in text:problems.append('live main version/source marker missing')
+              if release.get('_error'):problems.append('GitHub Release missing')
+              if spec['zip'] not in assets:problems.append('release source ZIP missing')
+              if spec['zip']+'.sha256.txt' not in assets:problems.append('release SHA-256 sidecar missing')
+              rows.append({
+                  **spec,
+                  'main_sha':commit.get('sha'),
+                  'release_url':release.get('html_url'),
+                  'assets':assets,
+                  'open_pulls':open_pulls,
+                  'branches':branch_names,
+                  'problems':problems,
+                  'status':'PASS' if not problems else 'BLOCKED',
+              })
+          complete=all(row['status']=='PASS' for row in rows)
+          audit={'schema_version':1,'complete':complete,'projects':rows,'copyright':'Copyright © 2026 Gateway Information Group LLC. All rights reserved.'}
+          Path('PCIT_PUBLICATION_AUDIT.json').write_text(json.dumps(audit,indent=2)+'\n',encoding='utf-8')
+          lines=['# PC Improvement Tools — Live Publication Audit','',f"Overall: **{'PASS' if complete else 'BLOCKED'}**",'', '| Repository | Target | Status | Main SHA | Release |','|---|---:|---|---|---|']
+          for row in rows:
+              lines.append(f"| `{row['repository']}` | {row['version']} | **{row['status']}** | `{row.get('main_sha')}` | {row.get('release_url') or 'missing'} |")
+              for problem in row['problems']:lines.append(f"\n- `{row['repository']}`: {problem}")
+          lines += ['', 'Copyright © 2026 Gateway Information Group LLC. All rights reserved.']
+          Path('PCIT_PUBLICATION_AUDIT.md').write_text('\n'.join(lines)+'\n',encoding='utf-8')
+          with open(os.environ['GITHUB_OUTPUT'],'a',encoding='utf-8') as f:f.write(f'complete={str(complete).lower()}\n')
+          PY
+
+      - name: Commit audit evidence to the audit branch
+        shell: bash
+        run: |
+          git config user.name "Jerry R. Napier"
+          git config user.email "41520658+Jnapier2@users.noreply.github.com"
+          git add PCIT_PUBLICATION_AUDIT.json PCIT_PUBLICATION_AUDIT.md
+          git diff --cached --check
+          if ! git diff --cached --quiet; then
+            git commit -m "Record live PC Improvement Tools publication audit"
+            git push origin HEAD:agent/audit-pcit-publication-20260813
+          fi
+
+      - name: Update GitHub profile when every release passes
+        if: steps.audit.outputs.complete == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          publish="$RUNNER_TEMP/profile-publish"
+          git worktree add --force "$publish" origin/main
+          cd "$publish"
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          path=Path('README.md');text=path.read_text(encoding='utf-8')
+          start='<!-- PCIT_PUBLIC_RELEASES_START -->';end='<!-- PCIT_PUBLIC_RELEASES_END -->'
+          block='''<!-- PCIT_PUBLIC_RELEASES_START -->
+          ## Current Public Releases
+
+          | Project | Version | Outcome |
+          |---|---:|---|
+          | [Safe Video Downloader](https://github.com/Jnapier2/safe-video-downloader) | **1.21.2** | Authorized media retrieval with public-URL validation, isolated workers, resumable queues, duplicate controls, bounded recovery, and verified output. |
+          | [Gateway LAN Link](https://github.com/Jnapier2/lan-router-comms) | **2.10.9** | HMAC-authenticated local communications with root-relative configuration, project-local state, bounded recovery, and advisory-only computer awareness. |
+          | [NetLossDoctor](https://github.com/Jnapier2/net-loss-doctor) | **2.16.3** | Read-only Windows network diagnostics and report comparison with project-local outputs and PowerShell safety checks. |
+          | [BotOps Manager](https://github.com/Jnapier2/botops-manager) | **1.23.3** | Local Windows automation orchestration with project-local state, bounded process control, recovery, and reproducible support evidence. |
+
+          <!-- PCIT_PUBLIC_RELEASES_END -->'''
+          pattern=re.compile(re.escape(start)+r'.*?'+re.escape(end),re.S)
+          new=pattern.sub(block,text) if pattern.search(text) else text.rstrip()+'\n\n'+block+'\n'
+          path.write_text(new,encoding='utf-8')
+          PY
+          git config user.name "Jerry R. Napier"
+          git config user.email "41520658+Jnapier2@users.noreply.github.com"
+          git checkout -B agent/update-profile-verified-pcit-releases
+          git add README.md
+          git diff --cached --check
+          git commit -m "Update profile with verified PC Improvement Tools releases"
+          head=$(git rev-parse HEAD)
+          git push --force-with-lease origin HEAD:agent/update-profile-verified-pcit-releases
+          pr=$(gh pr list --head agent/update-profile-verified-pcit-releases --base main --state open --json number --jq '.[0].number')
+          if [ -z "$pr" ]; then
+            pr=$(gh pr create --base main --head agent/update-profile-verified-pcit-releases --title "Update profile with verified PC Improvement Tools releases" --body "Adds only releases independently verified by the live cross-repository publication audit." | sed 's#.*/##')
+          fi
+          number=$(gh pr list --head agent/update-profile-verified-pcit-releases --base main --state open --json number --jq '.[0].number')
+          current=$(gh pr view "$number" --json headRefOid --jq .headRefOid)
+          test "$current" = "$head"
+          gh pr merge "$number" --squash --delete-branch --match-head-commit "$head"
+
+      - name: Open or update one consolidated blocker issue
+        if: steps.audit.outputs.complete != 'true'
+        shell: bash
+        run: |
+          title="PC Improvement Tools public publication blockers"
+          body=$(cat PCIT_PUBLICATION_AUDIT.md)
+          number=$(gh issue list --state open --search "$title in:title" --json number,title --jq '.[] | select(.title=="'"$title"'") | .number' | head -1)
+          if [ -n "$number" ]; then
+            printf '%s\n' "$body" > "$RUNNER_TEMP/issue.md"
+            gh issue edit "$number" --body-file "$RUNNER_TEMP/issue.md"
+          else
+            printf '%s\n' "$body" > "$RUNNER_TEMP/issue.md"
+            gh issue create --title "$title" --body-file "$RUNNER_TEMP/issue.md"
+          fi
+
+# Copyright © 2026 Gateway Information Group LLC. All rights reserved.
