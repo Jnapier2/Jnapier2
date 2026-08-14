@@ -1,0 +1,125 @@
+{
+  "complete": false,
+  "projects": [
+    {
+      "repository": "Jnapier2/safe-video-downloader",
+      "version": "1.21.2",
+      "main_sha": "a98adba588679d9c0888ddb5c43d2d64daab31be",
+      "release_url": null,
+      "assets": [],
+      "open_pulls": [],
+      "branches": [
+        "agent/final-safety-backup-safe-video-a81eedc2",
+        "agent/finalize-safe-video-1.21.2-public",
+        "agent/one-time-backup-safe-video-a81eedc2",
+        "agent/orchestrate-safe-video-1.21.2",
+        "agent/publication-safety-backup-safe-video-a81eedc2",
+        "agent/publication-work-safe-video-1.21.2",
+        "agent/recover-safe-video-1.21.2-public",
+        "agent/recovery-backup-safe-video-review-a81eedc2",
+        "agent/recovery-workflow-safe-video",
+        "main",
+        "release/safe-video-downloader-1.21.2-public",
+        "release/safe-video-downloader-1.21.2-public-review"
+      ],
+      "problems": [
+        "live main marker missing",
+        "release missing",
+        "source ZIP missing",
+        "SHA-256 sidecar missing"
+      ],
+      "status": "BLOCKED"
+    },
+    {
+      "repository": "Jnapier2/lan-router-comms",
+      "version": "2.10.9",
+      "main_sha": "cb2afe752cf5c639db20d7f13b0c42a78e280c6e",
+      "release_url": null,
+      "assets": [],
+      "open_pulls": [],
+      "branches": [
+        "agent/final-safety-backup-lan-ffcd84c2",
+        "agent/finalize-lan-link-2.10.9-public",
+        "agent/one-time-backup-lan-ffcd84c2",
+        "agent/orchestrate-lan-link-2.10.9",
+        "agent/publication-safety-backup-lan-ffcd84c2",
+        "agent/publication-work-lan-link-2.10.9",
+        "agent/publish-lan-link-2.10.9-public-20260812",
+        "agent/recover-lan-link-2.10.9-public",
+        "agent/recovery-backup-lan-ffcd84c2",
+        "agent/recovery-workflow-lan",
+        "agent/temp-release-test",
+        "main"
+      ],
+      "problems": [
+        "live main marker missing",
+        "release missing",
+        "source ZIP missing",
+        "SHA-256 sidecar missing"
+      ],
+      "status": "BLOCKED"
+    },
+    {
+      "repository": "Jnapier2/net-loss-doctor",
+      "version": "2.16.3",
+      "main_sha": "7008d3c5c65638d39ccc39569ece6b1b0d15df44",
+      "release_url": null,
+      "assets": [],
+      "open_pulls": [],
+      "branches": [
+        "agent/final-safety-backup-netloss-dd61add2",
+        "agent/finalize-netlossdoctor-2.16.3-public",
+        "agent/one-time-backup-netloss-dd61add2",
+        "agent/orchestrate-netlossdoctor-2.16.3",
+        "agent/publication-safety-backup-netloss-dd61add2",
+        "agent/publication-work-netlossdoctor-2.16.3",
+        "agent/publish-netlossdoctor-2.16.3-public-20260812",
+        "agent/recover-netlossdoctor-2.16.3-public",
+        "agent/recovery-backup-netloss-dd61add2",
+        "agent/recovery-workflow-netlossdoctor",
+        "agent/temp-release-test",
+        "main"
+      ],
+      "problems": [
+        "live main marker missing",
+        "release missing",
+        "source ZIP missing",
+        "SHA-256 sidecar missing"
+      ],
+      "status": "BLOCKED"
+    },
+    {
+      "repository": "Jnapier2/botops-manager",
+      "version": "1.23.3",
+      "main_sha": "58f6925db6b339f1e595262c528a497e321a67c6",
+      "release_url": null,
+      "assets": [],
+      "open_pulls": [],
+      "branches": [
+        "agent/final-safety-backup-botops-f0b485ed",
+        "agent/finalize-botops-1.23.3-public",
+        "agent/one-time-backup-botops-f0b485ed",
+        "agent/orchestrate-botops-1.23.3",
+        "agent/publication-safety-backup-botops-f0b485ed",
+        "agent/publication-work-botops-1.23.3",
+        "agent/publish-botops-1.23.3-final-20260812",
+        "agent/publish-botops-1.23.3-public-20260812",
+        "agent/recover-botops-1.23.3-public",
+        "agent/recovery-backup-botops-f0b485ed",
+        "agent/recovery-workflow-botops",
+        "agent/release-tool-probe",
+        "agent/temp-release-test",
+        "agent/temp-release-test-2",
+        "main"
+      ],
+      "problems": [
+        "live main marker missing",
+        "release missing",
+        "source ZIP missing",
+        "SHA-256 sidecar missing"
+      ],
+      "status": "BLOCKED"
+    }
+  ],
+  "copyright": "Copyright \u00a9 2026 Gateway Information Group LLC. All rights reserved."
+}
