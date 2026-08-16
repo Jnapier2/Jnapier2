@@ -35,7 +35,7 @@ I build practical tools that turn complex information and operating problems int
 
 ## Games and interactive projects
 
-- **[Beta Earth](https://github.com/Jnapier2/beta-earth)** — A local-first Python role-playing game with portable launchers and resilient saves.
+- **[Beta Earth](https://github.com/Jnapier2/beta-earth)** — A local-first browser RPG with a shared battlefield clock, faction and civic systems, resilient SQLite saves, and an accessible tactical HUD.
 - **[Inbox From Hell](https://github.com/Jnapier2/inbox-from-hell)** — A workplace-horror browser game built around branching support cases, persistent progression, and accessible controls.
 
 ## Financial learning tools
