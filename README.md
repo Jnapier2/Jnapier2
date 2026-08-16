@@ -23,7 +23,7 @@ I build practical tools that turn complex information and operating problems int
 
 - **[Avalon Q Supervisor](https://github.com/Jnapier2/avalon-q-supervisor)** — Converts local device telemetry into understandable health states and bounded recovery actions.
 - **[NetLossDoctor](https://github.com/Jnapier2/net-loss-doctor)** — Correlates gateway, route, DNS, TCP, latency, Windows event, and optional trace evidence without changing network configuration.
-- **[LAN Router Comms](https://github.com/Jnapier2/lan-router-comms)** — Provides cloud-free authenticated text and resumable file exchange between trusted Windows computers.
+- **[Gateway LAN Link](https://github.com/Jnapier2/lan-router-comms)** — Provides cloud-free authenticated text and resumable file exchange between trusted Windows computers. The repository slug preserves its historical LAN Router Comms alias.
 - **[Windows Health Audit](https://github.com/Jnapier2/windows-health-audit)** — Creates a read-only Windows health baseline with privacy-conscious normalization and failure-isolated collectors.
 
 ## Media and utility tools
