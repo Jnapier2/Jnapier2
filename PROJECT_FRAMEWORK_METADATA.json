@@ -1,0 +1,33 @@
+{
+  "asset_id": "GIG-RPDF-PUBLIC",
+  "canonical_name": "Reliable Project Delivery Framework",
+  "public_version": "1.6.0",
+  "source_baseline": "ChatGPT New Thread Project Parameters v2.17.9",
+  "status": "current",
+  "classification": "public",
+  "artifact_type": "documentation-framework",
+  "runtime_dependencies": [],
+  "files": [
+    "PROJECT_FRAMEWORK.md",
+    "PROJECT_FRAMEWORK_CHECKLIST.md",
+    "PROJECT_FRAMEWORK_CHANGELOG.md",
+    "PROJECT_FRAMEWORK_METADATA.json"
+  ],
+  "public_boundary": [
+    "No private custom instructions or account prompts",
+    "No Drive topology, file identifiers, or internal project identifiers",
+    "No computer profiles, credentials, live settings, or operational strategies",
+    "No private package contents or project-specific acceptance evidence"
+  ],
+  "rights": {
+    "holder": "Gateway Information Group LLC",
+    "notice": "Copyright © 2026 Gateway Information Group LLC. All rights reserved.",
+    "license_file": "LICENSE.md",
+    "third_party_notices": "Preserve third-party rights and licenses in linked projects."
+  },
+  "verification": {
+    "method": "Repository CI validates UTF-8, local links, version consistency, required public contracts, metadata, rights notices, and sensitive-residue exclusions.",
+    "package_claim": false,
+    "runtime_claim": false
+  }
+}

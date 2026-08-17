@@ -10,6 +10,7 @@ I build practical tools that turn complex information and operating problems int
 
 ## Featured projects
 
+- **[Reliable Project Delivery Framework v1.6.0](PROJECT_FRAMEWORK.md)** — My public operating framework for evidence-first planning, lean project inventories, portable Windows delivery, critical-input assurance, release integrity, bounded recovery, privacy-conscious diagnostics, and truthful completion reporting.
 - **[BotOps Manager](https://github.com/Jnapier2/botops-manager)** — A local Windows operations console for launching, monitoring, stopping, and reviewing independent automation projects.
 - **[Digital Asset Governance Audit](https://github.com/Jnapier2/digital-asset-governance-case-study)** — A synthetic-data case study that turns metadata quality, provenance, confidence, and duplicate signals into a prioritized stewardship queue.
 - **[MediaTaggerBot](https://github.com/Jnapier2/media-tagger-bot)** — Organizes media libraries through evidence-based matching, reviewable changes, verified renames, and rollback records.
@@ -43,9 +44,14 @@ I build practical tools that turn complex information and operating problems int
 - **[Kalshi 10×1¢ Public Edition](https://github.com/Jnapier2/kalshi-10x1c-public)** — An educational entry-planning tool with explicit activation, caps, and duplicate-action protection.
 - **[Kalshi 15-Minute Sell Preview](https://github.com/Jnapier2/kalshi-15m-sell-bot-public-preview)** — A dry-run exit-planning preview with live writes disabled.
 
-## Shared project framework
+## Framework resources
 
-- **[Reliable Project Delivery Framework](PROJECT_FRAMEWORK.md)** — The public principles used across these projects for stable project identity, local portability, reversible changes, clear safety boundaries, recovery, and operator control.
+- [Public framework](PROJECT_FRAMEWORK.md)
+- [Implementation checklist](PROJECT_FRAMEWORK_CHECKLIST.md)
+- [Version history](PROJECT_FRAMEWORK_CHANGELOG.md)
+- [Machine-readable metadata](PROJECT_FRAMEWORK_METADATA.json)
+
+The public framework is separately versioned from the private parameter package. It exposes reusable delivery principles without publishing private prompts, storage structure, machine profiles, credentials, or project-specific operating data.
 
 ## Professional focus
 
