@@ -51,7 +51,7 @@ I build practical tools that turn complex information and operating problems int
 - [Version history](PROJECT_FRAMEWORK_CHANGELOG.md)
 - [Machine-readable metadata](PROJECT_FRAMEWORK_METADATA.json)
 
-The public framework is separately versioned from the private parameter package. It exposes reusable delivery principles without publishing private prompts, storage structure, machine profiles, credentials, or project-specific operating data.
+The framework presents reusable delivery principles while project-specific operating records, credentials, and private implementation details remain outside the public portfolio.
 
 ## Professional focus
 
