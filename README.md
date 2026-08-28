@@ -10,9 +10,9 @@ I build practical tools that turn complex information and operating problems int
 
 ## Professional portfolio programs
 
-- **[Data Contract Monitor](professional-portfolio/data-contract-monitor.md)** — Turns readable data expectations into executable checks for schema, completeness, uniqueness, validity, freshness, drift, and privacy review, with evidence for people and automated workflows.
-- **[Data Governance & Lineage Portal](professional-portfolio/data-governance-lineage-portal.md)** — Connects definitions, owners, stewards, technical fields, quality evidence, lineage, impact, certification, and controlled change in one governed catalog.
-- **[Professional Portfolio Program Index](professional-portfolio/README.md)** — Evidence status, publication boundaries, and related governance work.
+- **[Data Contract Monitor](professional-portfolio/data-contract-monitor.md)** — Stops broken schemas, stale records, duplicate keys, invalid values, and unreviewed sensitive fields before unreliable data reaches reports, models, or operating workflows.
+- **[Data Governance & Lineage Portal](professional-portfolio/data-governance-lineage-portal.md)** — Helps teams understand what data means, who owns it, why it can be trusted, and what changes will affect downstream reports and processes.
+- **[Professional Portfolio Program Index](professional-portfolio/README.md)** — Current evidence status, programs in development, publication boundaries, and related governance work.
 
 ## Featured projects
 

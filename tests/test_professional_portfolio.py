@@ -13,6 +13,7 @@ PUBLIC_FILES = (
     PORTFOLIO / "data-contract-monitor.md",
     PORTFOLIO / "data-governance-lineage-portal.md",
     PORTFOLIO / "SHOWCASE_METADATA.json",
+    PORTFOLIO / "evidence" / "data-contract-monitor-benchmark-review.json",
     PORTFOLIO / "assets" / "data-contract-monitor-architecture.svg",
 )
 MARKDOWN_LINK = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
@@ -23,6 +24,8 @@ SENSITIVE_PATTERNS = {
     "internal_project_id": re.compile(r"\bg-p-[a-f0-9]{12,}\b", re.IGNORECASE),
     "openai_key": re.compile(r"\bsk-(?:proj-)?[A-Za-z0-9_-]{16,}\b"),
     "github_token": re.compile(r"\bgh[pousr]_[A-Za-z0-9_]{20,}\b"),
+    "aws_access_key": re.compile(r"\bAKIA[0-9A-Z]{16}\b"),
+    "slack_token": re.compile(r"\bxox[baprs]-[A-Za-z0-9-]{10,}\b"),
     "private_key_header": re.compile(
         r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"
     ),
@@ -62,12 +65,21 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         )
         self.assertEqual(metadata["classification"], "public")
         self.assertEqual(len(metadata["projects"]), 2)
+        self.assertEqual(len(metadata["development_programs"]), 4)
         by_id = {item["id"]: item for item in metadata["projects"]}
 
         contract = by_id["data-contract-monitor"]
         self.assertEqual(contract["version"], "0.1.2")
         self.assertEqual(contract["verification"]["managed_files"], 115)
         self.assertEqual(contract["verification"]["automated_tests"], 44)
+        self.assertEqual(
+            contract["verification"]["synthetic_benchmark"]["packaged_median_seconds"],
+            0.474686,
+        )
+        self.assertEqual(
+            contract["verification"]["synthetic_benchmark"]["fresh_review_median_seconds"],
+            0.588982,
+        )
         self.assertIn("Windows working save state", contract["evidence_class"])
 
         governance = by_id["data-governance-lineage-portal"]
@@ -75,8 +87,16 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         self.assertEqual(governance["verification"]["managed_files"], 126)
         self.assertEqual(governance["verification"]["automated_tests"], 53)
         self.assertEqual(
+            governance["verification"]["exact_artifact_startup"],
+            "pass in the independent review environment",
+        )
+        self.assertIn(
+            "not included",
+            governance["verification"]["frontend_toolchain_lock"],
+        )
+        self.assertEqual(
             governance["verification"]["version_0_2_1_windows_bat_execution"],
-            "not performed in the independent review environment",
+            "not performed through Windows cmd.exe in the independent review environment",
         )
 
     def test_case_studies_preserve_evidence_boundaries(self) -> None:
@@ -90,6 +110,8 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         for marker in (
             "User-confirmed Windows working save state",
             "44 automated tests passed",
+            "0.475-second packaged median",
+            "0.589-second median",
             "## Public boundary",
             "## Limitations",
         ):
@@ -97,12 +119,31 @@ class ProfessionalPortfolioTests(unittest.TestCase):
 
         for marker in (
             "Version 0.2.0 remains the field-confirmed Windows rollback baseline",
-            "version 0.2.1 BAT was not physically executed",
+            "exact v0.2.1 artifact reached a healthy state",
+            "does not include a package lock",
             "53 automated tests",
             "## Public boundary",
             "## Limitations",
         ):
             self.assertIn(marker, governance)
+
+    def test_public_marketing_leads_with_outcomes(self) -> None:
+        overview = (PORTFOLIO / "README.md").read_text(encoding="utf-8")
+        opening = overview[:700].lower()
+        self.assertIn("practical tools", opening)
+        self.assertNotIn("chatgpt", opening)
+        self.assertNotIn("prompt", opening)
+        self.assertNotIn("backend strategy", opening)
+        self.assertNotIn("tool orchestration", opening)
+
+    def test_standalone_credential_formats_are_detected(self) -> None:
+        fixtures = {
+            "aws_access_key": "AKIA" + "ABCDEFGHIJKLMNOP",
+            "slack_token": "xoxb-" + "1234567890-ABCDEFGHIJK",
+        }
+        for label, value in fixtures.items():
+            with self.subTest(pattern=label):
+                self.assertIsNotNone(SENSITIVE_PATTERNS[label].search(value))
 
     def test_public_files_contain_no_sensitive_residue(self) -> None:
         for path in PUBLIC_FILES:
