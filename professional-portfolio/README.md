@@ -6,7 +6,7 @@ These programs turn data quality and governance work into practical tools people
 
 | Program | Business outcome | Evidence status | Public material |
 | --- | --- | --- | --- |
-| [Data Contract Monitor](data-contract-monitor.md) | Converts data expectations into executable checks before unreliable files reach reports, models, or operating workflows | Public alpha v0.1.4; 68 tests and complete release-file integrity passed | [Runnable source](https://github.com/Jnapier2/data-contract-monitor), [release download](https://github.com/Jnapier2/data-contract-monitor/releases/tag/v0.1.4), synthetic demos, architecture, and verification evidence |
+| [Data Contract Monitor](data-contract-monitor.md) | Converts data expectations into executable checks before unreliable files reach reports, models, or operating workflows | Public alpha v0.1.5; 75 tests and complete release-file integrity passed | [Runnable source](https://github.com/Jnapier2/data-contract-monitor), [release download](https://github.com/Jnapier2/data-contract-monitor/releases/tag/v0.1.5), synthetic demos, architecture, and verification evidence |
 | [Data Governance & Lineage Portal](data-governance-lineage-portal.md) | Connects definitions, ownership, quality evidence, technical fields, lineage, impact, and controlled change in one governed catalog | Version 0.2.1 is the verified maintenance baseline; version 0.2.0 remains the field-confirmed Windows rollback | Product case study, architecture, verification summary, and deployment boundary |
 
 ## Programs in development
