@@ -8,6 +8,12 @@ I build practical tools that turn complex information and operating problems int
 
 [Portfolio](https://jerry-napier-portfolio.netlify.app/) · [LinkedIn](https://www.linkedin.com/in/jrnapier)
 
+## Professional portfolio programs
+
+- **[Data Contract Monitor](professional-portfolio/data-contract-monitor.md)** — Turns readable data expectations into executable checks for schema, completeness, uniqueness, validity, freshness, drift, and privacy review, with evidence for people and automated workflows.
+- **[Data Governance & Lineage Portal](professional-portfolio/data-governance-lineage-portal.md)** — Connects definitions, owners, stewards, technical fields, quality evidence, lineage, impact, certification, and controlled change in one governed catalog.
+- **[Professional Portfolio Program Index](professional-portfolio/README.md)** — Evidence status, publication boundaries, and related governance work.
+
 ## Featured projects
 
 - **[Reliable Project Delivery Framework v1.6.0](PROJECT_FRAMEWORK.md)** — My public operating framework for evidence-first planning, lean project inventories, portable Windows delivery, critical-input assurance, release integrity, bounded recovery, privacy-conscious diagnostics, and truthful completion reporting.
@@ -59,6 +65,6 @@ I am interested in analytics, data governance, information management, operation
 
 ## Public repository boundary
 
-This profile repository is intentionally limited to project and tool summaries plus the shared public framework. Project-specific operating records and private implementation details are not published here.
+This profile repository is intentionally limited to project summaries, evidence-backed public case studies, and the shared public framework. Private release packages, operating records, support evidence, credentials, production datasets, and proprietary implementation details are not published here.
 
 Copyright © 2026 Gateway Information Group LLC. All rights reserved.
