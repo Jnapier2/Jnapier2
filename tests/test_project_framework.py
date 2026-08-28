@@ -5,6 +5,11 @@ import re
 import unittest
 from pathlib import Path
 
+try:
+    from tests.public_sanitization_patterns import SENSITIVE_PATTERNS
+except ModuleNotFoundError:
+    from public_sanitization_patterns import SENSITIVE_PATTERNS
+
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC_VERSION = "1.6.0"
@@ -16,22 +21,6 @@ PUBLIC_FILES = (
     ROOT / "PROJECT_FRAMEWORK_METADATA.json",
 )
 MARKDOWN_LINK = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
-SENSITIVE_PATTERNS = {
-    "personal_windows_path": re.compile(r"[A-Za-z]:\\Users\\", re.IGNORECASE),
-    "openai_key": re.compile(r"\bsk-(?:proj-)?[A-Za-z0-9_-]{16,}\b"),
-    "github_token": re.compile(r"\bgh[pousr]_[A-Za-z0-9_]{20,}\b"),
-    "aws_access_key": re.compile(r"\bAKIA[0-9A-Z]{16}\b"),
-    "slack_token": re.compile(r"\bxox[baprs]-[A-Za-z0-9-]{10,}\b"),
-    "private_key_header": re.compile(
-        r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"
-    ),
-    "internal_vault": re.compile(r"ChatGPT_Project_Vault", re.IGNORECASE),
-    "private_prompt_file": re.compile(
-        r"(?:GLOBAL_CUSTOM_INSTRUCTIONS|PASTE_THIS_IN_NEW_THREAD|PASTE_THIS_DURING_THREAD_UPGRADE)",
-        re.IGNORECASE,
-    ),
-    "internal_project_id": re.compile(r"\bg-p-[a-f0-9]{12,}\b", re.IGNORECASE),
-}
 
 
 class ProjectFrameworkTests(unittest.TestCase):

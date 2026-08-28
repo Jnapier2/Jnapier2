@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "classification": "public",
   "collection": "Professional Portfolio Programs",
   "publisher": "Gateway Information Group LLC",
@@ -14,7 +14,8 @@
       "public_material": [
         "product case study",
         "architecture diagram",
-        "verification summary"
+        "verification summary",
+        "sanitized benchmark evidence"
       ],
       "source_rights": "Apache-2.0 in the canonical project",
       "verification": {
@@ -25,10 +26,11 @@
         "synthetic_benchmark": {
           "rows": 100000,
           "columns": 6,
-          "trials": 3,
-          "median_seconds": 0.747436,
-          "environment": "independent Linux review with Python 3.13.5",
-          "classification": "bounded local regression measurement"
+          "trials_per_run": 3,
+          "packaged_median_seconds": 0.474686,
+          "fresh_review_median_seconds": 0.588982,
+          "fresh_review_environment": "independent Linux review with Python 3.13.5",
+          "classification": "bounded local regression measurements; not a production service-level promise"
         }
       },
       "excluded_claims": [
@@ -42,7 +44,7 @@
       "display_name": "Data Governance & Lineage Portal",
       "version": "0.2.1",
       "build": "DGPLP-0.2.1-20260828-FIELDHARDEN1",
-      "evidence_class": "verified maintenance baseline with version 0.2.0 retained as field-confirmed Windows rollback",
+      "evidence_class": "verified maintenance baseline with exact-artifact startup evidence and version 0.2.0 retained as field-confirmed Windows rollback",
       "public_material": [
         "product case study",
         "architecture summary",
@@ -54,16 +56,43 @@
         "managed_files": 126,
         "automated_tests": 53,
         "python_compile": "pass",
-        "typescript_strict_build": "pass",
-        "version_0_2_1_windows_bat_execution": "not performed in the independent review environment",
+        "typescript_strict_build": "pass with TypeScript 5.8.3 in the reviewed environment",
+        "exact_artifact_startup": "pass in the independent review environment",
+        "doctor": "pass on a clean extraction",
+        "benchmark_10000_assets": "pass within documented regression budgets",
+        "frontend_toolchain_lock": "not included in v0.2.1; successor-release task",
+        "version_0_2_1_windows_bat_execution": "not performed through Windows cmd.exe in the independent review environment",
         "version_0_2_0_windows_field_evidence": "pass"
       },
       "excluded_claims": [
         "production deployment",
         "enterprise authentication",
         "live PostgreSQL certification",
-        "high-availability worker architecture"
+        "high-availability worker architecture",
+        "direct Windows BAT acceptance for version 0.2.1"
       ]
+    }
+  ],
+  "development_programs": [
+    {
+      "display_name": "Workflow and Case Management Platform",
+      "status": "deferred",
+      "required_gate": "accepted Doctor and launcher result plus exact Windows release evidence"
+    },
+    {
+      "display_name": "Policy and Procedure Navigator",
+      "status": "deferred",
+      "required_gate": "accepted working baseline and public-safe evaluation evidence"
+    },
+    {
+      "display_name": "PC Reliability & Incident Intelligence Suite",
+      "status": "deferred",
+      "required_gate": "accepted Windows evidence, redaction, performance, and recovery baseline"
+    },
+    {
+      "display_name": "Operations Intelligence & Automation Platform",
+      "status": "deferred",
+      "required_gate": "verified runnable source authority, representative synthetic data, and release acceptance"
     }
   ],
   "sanitization": {

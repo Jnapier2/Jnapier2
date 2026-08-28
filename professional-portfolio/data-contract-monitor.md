@@ -12,10 +12,10 @@ Data Contract Monitor catches broken schemas, stale records, invalid values, dup
 | Build | `DCM-0.1.2-B20260828-LAUNCHISOLATION1` |
 | Acceptance class | User-confirmed Windows working save state |
 | Independent revalidation | Release identity passed across 115 managed files; 44 automated tests passed under Python 3.13.5 |
-| Bounded performance check | A 100,000-row, six-column synthetic CSV completed three validation trials with a 0.747-second median in the independent Linux review environment |
+| Bounded performance check | A 100,000-row, six-column synthetic CSV completed three trials with a 0.475-second packaged median; a fresh independent rerun completed with a 0.589-second median |
 | Source rights | Apache-2.0 in the canonical project |
 
-The benchmark is a local synthetic regression measurement, not a production service-level promise. Hardware, storage, file format, rule complexity, and data distribution affect results.
+Both measurements are local synthetic regression evidence, not production service-level promises. Hardware, storage, file format, rule complexity, and data distribution affect results. The fresh result is recorded in [sanitized benchmark evidence](evidence/data-contract-monitor-benchmark-review.json).
 
 ## The problem
 

@@ -16,9 +16,10 @@ The experience brings business definitions, owners, stewards, field metadata, cl
 | --- | --- |
 | Maintenance version | 0.2.1 |
 | Build | `DGPLP-0.2.1-20260828-FIELDHARDEN1` |
-| Current evidence class | Verified maintenance baseline with 53 automated tests, strict TypeScript build, Python compilation, and release identity across 126 managed files |
+| Current evidence class | Verified maintenance baseline with 53 automated tests, Python compilation, a strict TypeScript 5.8.3 production build, exact-artifact startup evidence, and release identity across 126 managed files |
 | Field rollback | Version 0.2.0 remains the field-confirmed Windows rollback baseline |
-| Windows boundary | The version 0.2.1 BAT was not physically executed in the independent review environment; direct Windows field evidence applies to version 0.2.0 |
+| Windows boundary | The exact v0.2.1 artifact reached a healthy state in the independent review environment, but its BAT was not physically executed through Windows `cmd.exe`; direct Windows field evidence remains version 0.2.0 |
+| Frontend reproducibility boundary | The reviewed v0.2.1 package does not include a package lock or direct TypeScript development dependency; locking that toolchain remains a successor-release task |
 | Source rights | Proprietary first-party source; public case study only |
 
 ## The product
@@ -86,12 +87,15 @@ The maintenance source passed:
 
 - 53 automated tests.
 - Python compilation.
-- Strict TypeScript type checking and production build.
+- Strict TypeScript 5.8.3 type checking and production build in the reviewed environment.
 - Release identity verification across 126 managed files.
 - Schema-preserving reset and ingestion-worker coordination checks.
 - Exact extracted-instance launch identity and same-root cross-release writer protection.
 - Runtime lock-version and managed-runtime integrity contracts.
 - Deterministic synthetic sample and static-demo generation.
+- Doctor with no advisories on a clean extraction.
+- A 10,000-asset benchmark within every documented regression budget.
+- Exact-artifact startup to a healthy v0.2.1 service on a fallback loopback port, with release identity, migration, search, and seeded-catalog evidence.
 
 The retained Windows field baseline confirmed healthy release identity, database integrity, schema migration state, expected synthetic catalog counts, and safe fallback-port selection for version 0.2.0. Version 0.2.1 preserves that catalog foundation while strengthening launch attribution, runtime verification, reset safety, and recovery diagnostics.
 
@@ -101,7 +105,7 @@ The retained Windows field baseline confirmed healthy release identity, database
 - Designing a shared model for definitions, accountability, quality, lineage, and change.
 - Building conflict-safe writes, recoverable ingestion, explicit migrations, and reviewable recovery evidence.
 - Explaining enterprise architecture through an accessible local product and synthetic scenario.
-- Maintaining a precise distinction between verified source behavior, field-confirmed rollback evidence, and untested deployment boundaries.
+- Maintaining a precise distinction between verified source behavior, exact-artifact startup evidence, field-confirmed rollback evidence, and untested deployment boundaries.
 
 ## Public boundary
 
@@ -113,6 +117,7 @@ This case study contains no proprietary source code, private release archive, su
 - The local single-worker design is not a highly available queue architecture.
 - PostgreSQL uses the shared model and migration path but was not certified against a live server in the reviewed environment.
 - The optional managed Windows runtime binary was not built in the independent review environment.
+- The v0.2.1 frontend build depends on TypeScript 5.8.3 available in the reviewed environment; the package does not yet include a package lock or direct TypeScript development dependency.
 - Enterprise identity, managed secrets, immutable audit retention, centralized observability, platform-native database backup, and organization-specific policy enforcement remain deployment responsibilities.
 - Direct Windows BAT acceptance for version 0.2.1 remains separate from the field-confirmed version 0.2.0 rollback evidence.
 
