@@ -57,9 +57,13 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         by_id = {item["id"]: item for item in metadata["projects"]}
 
         contract = by_id["data-contract-monitor"]
-        self.assertEqual(contract["version"], "0.1.2")
-        self.assertEqual(contract["verification"]["managed_files"], 115)
-        self.assertEqual(contract["verification"]["automated_tests"], 44)
+        self.assertEqual(contract["version"], "0.1.5")
+        self.assertEqual(contract["build"], "DCM-0.1.5-B20260828-ACTION2")
+        self.assertEqual(contract["verification"]["managed_files"], 124)
+        self.assertEqual(contract["verification"]["automated_tests"], 75)
+        self.assertEqual(contract["repository_url"], "https://github.com/Jnapier2/data-contract-monitor")
+        self.assertTrue(contract["release_url"].endswith("/releases/tag/v0.1.5"))
+        self.assertEqual(contract["verification"]["synthetic_benchmark"]["source_version"], "0.1.2")
         self.assertEqual(
             contract["verification"]["synthetic_benchmark"]["packaged_median_seconds"],
             0.474686,
@@ -68,7 +72,7 @@ class ProfessionalPortfolioTests(unittest.TestCase):
             contract["verification"]["synthetic_benchmark"]["fresh_review_median_seconds"],
             0.588982,
         )
-        self.assertIn("Windows working save state", contract["evidence_class"])
+        self.assertIn("public alpha", contract["evidence_class"])
 
         governance = by_id["data-governance-lineage-portal"]
         self.assertEqual(governance["version"], "0.2.1")
@@ -96,10 +100,11 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         ).read_text(encoding="utf-8")
 
         for marker in (
-            "User-confirmed Windows working save state",
-            "44 automated tests passed",
+            "0.1.5 — public alpha",
+            "75 automated tests passed",
             "0.475-second packaged median",
-            "0.589-second median",
+            "0.589-second independent rerun median",
+            "historical local measurements, not v0.1.5 performance claims",
             "## Public boundary",
             "## Limitations",
         ):

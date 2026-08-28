@@ -10,7 +10,7 @@ I build practical tools that turn complex information and operating problems int
 
 ## Professional portfolio programs
 
-- **[Data Contract Monitor](professional-portfolio/data-contract-monitor.md)** — Stops broken schemas, stale records, duplicate keys, invalid values, and unreviewed sensitive fields before unreliable data reaches reports, models, or operating workflows.
+- **[Data Contract Monitor](professional-portfolio/data-contract-monitor.md)** — Catches broken schemas, stale records, duplicate keys, invalid values, and unreviewed sensitive fields so teams can address unreliable data before using it. [Source and runnable demos](https://github.com/Jnapier2/data-contract-monitor).
 - **[Data Governance & Lineage Portal](professional-portfolio/data-governance-lineage-portal.md)** — Helps teams understand what data means, who owns it, why it can be trusted, and what changes will affect downstream reports and processes.
 - **[Professional Portfolio Program Index](professional-portfolio/README.md)** — Current evidence status, programs in development, publication boundaries, and related governance work.
 
