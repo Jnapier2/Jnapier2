@@ -24,8 +24,8 @@ SENSITIVE_PATTERNS = {
     "internal_project_id": re.compile(r"\bg-p-[a-f0-9]{12,}\b", re.IGNORECASE),
     "openai_key": re.compile(r"\bsk-(?:proj-)?[A-Za-z0-9_-]{16,}\b"),
     "github_token": re.compile(r"\bgh[pousr]_[A-Za-z0-9_]{20,}\b"),
-    "aws_access_key": re.compile(r"\bAKIA[0-9A-Z]{16}\b"),
-    "slack_token": re.compile(r"\bxox[baprs]-[A-Za-z0-9-]{10,}\b"),
+    "aws_access_key": re.compile(r"\b(?:AKIA|ASIA)[0-9A-Z]{16}\b"),
+    "slack_token": re.compile(r"\b(?:xox[a-z]|xapp)-[A-Za-z0-9-]{10,}\b"),
     "private_key_header": re.compile(
         r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"
     ),
@@ -138,12 +138,20 @@ class ProfessionalPortfolioTests(unittest.TestCase):
 
     def test_standalone_credential_formats_are_detected(self) -> None:
         fixtures = {
-            "aws_access_key": "AKIA" + "ABCDEFGHIJKLMNOP",
-            "slack_token": "xoxb-" + "1234567890-ABCDEFGHIJK",
+            "aws_access_key": (
+                "AKIA" + "ABCDEFGHIJKLMNOP",
+                "ASIA" + "QRSTUVWXYZABCDEF",
+            ),
+            "slack_token": (
+                "xoxb-" + "1234567890-ABCDEFGHIJK",
+                "xapp-" + "1-ABCDEFGHIJK-1234567890",
+                "xoxe-" + "1-ABCDEFGHIJK-1234567890",
+            ),
         }
-        for label, value in fixtures.items():
-            with self.subTest(pattern=label):
-                self.assertIsNotNone(SENSITIVE_PATTERNS[label].search(value))
+        for label, values in fixtures.items():
+            for value in values:
+                with self.subTest(pattern=label, value_prefix=value.split("-", 1)[0][:4]):
+                    self.assertIsNotNone(SENSITIVE_PATTERNS[label].search(value))
 
     def test_public_files_contain_no_sensitive_residue(self) -> None:
         for path in PUBLIC_FILES:
