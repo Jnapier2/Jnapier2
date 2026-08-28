@@ -5,6 +5,11 @@ import re
 import unittest
 from pathlib import Path
 
+try:
+    from tests.public_sanitization_patterns import SENSITIVE_PATTERNS
+except ModuleNotFoundError:
+    from public_sanitization_patterns import SENSITIVE_PATTERNS
+
 
 ROOT = Path(__file__).resolve().parents[1]
 PORTFOLIO = ROOT / "professional-portfolio"
@@ -17,23 +22,6 @@ PUBLIC_FILES = (
     PORTFOLIO / "assets" / "data-contract-monitor-architecture.svg",
 )
 MARKDOWN_LINK = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
-SENSITIVE_PATTERNS = {
-    "personal_windows_path": re.compile(r"[A-Za-z]:\\Users\\", re.IGNORECASE),
-    "unix_home_path": re.compile(r"/home/[A-Za-z0-9._-]+", re.IGNORECASE),
-    "private_drive_url": re.compile(r"https://(?:drive|docs)\.google\.com/", re.IGNORECASE),
-    "internal_project_id": re.compile(r"\bg-p-[a-f0-9]{12,}\b", re.IGNORECASE),
-    "openai_key": re.compile(r"\bsk-(?:proj-)?[A-Za-z0-9_-]{16,}\b"),
-    "github_token": re.compile(r"\bgh[pousr]_[A-Za-z0-9_]{20,}\b"),
-    "aws_access_key": re.compile(r"\b(?:AKIA|ASIA)[0-9A-Z]{16}\b"),
-    "slack_token": re.compile(r"\b(?:xox[a-z]|xapp)-[A-Za-z0-9-]{10,}\b"),
-    "private_key_header": re.compile(
-        r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"
-    ),
-    "private_digest": re.compile(r"\b[a-fA-F0-9]{64}\b"),
-    "operational_secret_assignment": re.compile(
-        r"(?i)\b(?:api[_ -]?key|api[_ -]?secret|private[_ -]?key|wallet|password|token)\b\s*[:=]\s*\S+"
-    ),
-}
 
 
 class ProfessionalPortfolioTests(unittest.TestCase):
@@ -135,23 +123,6 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         self.assertNotIn("prompt", opening)
         self.assertNotIn("backend strategy", opening)
         self.assertNotIn("tool orchestration", opening)
-
-    def test_standalone_credential_formats_are_detected(self) -> None:
-        fixtures = {
-            "aws_access_key": (
-                "AKIA" + "ABCDEFGHIJKLMNOP",
-                "ASIA" + "QRSTUVWXYZABCDEF",
-            ),
-            "slack_token": (
-                "xoxb-" + "1234567890-ABCDEFGHIJK",
-                "xapp-" + "1-ABCDEFGHIJK-1234567890",
-                "xoxe-" + "1-ABCDEFGHIJK-1234567890",
-            ),
-        }
-        for label, values in fixtures.items():
-            for value in values:
-                with self.subTest(pattern=label, value_prefix=value.split("-", 1)[0][:4]):
-                    self.assertIsNotNone(SENSITIVE_PATTERNS[label].search(value))
 
     def test_public_files_contain_no_sensitive_residue(self) -> None:
         for path in PUBLIC_FILES:
