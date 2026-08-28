@@ -6,7 +6,7 @@ These programs turn data quality and governance work into practical tools people
 
 | Program | Business outcome | Evidence status | Public material |
 | --- | --- | --- | --- |
-| [Data Contract Monitor](data-contract-monitor.md) | Converts data expectations into executable checks before unreliable files reach reports, models, or operating workflows | Version 0.1.2 is a user-confirmed Windows working save state; release identity and 44 automated tests were independently revalidated | Product case study, architecture, and bounded performance evidence |
+| [Data Contract Monitor](data-contract-monitor.md) | Converts data expectations into executable checks before unreliable files reach reports, models, or operating workflows | Public alpha v0.1.4; 68 tests and complete release-file integrity passed | [Runnable source](https://github.com/Jnapier2/data-contract-monitor), [release download](https://github.com/Jnapier2/data-contract-monitor/releases/tag/v0.1.4), synthetic demos, architecture, and verification evidence |
 | [Data Governance & Lineage Portal](data-governance-lineage-portal.md) | Connects definitions, ownership, quality evidence, technical fields, lineage, impact, and controlled change in one governed catalog | Version 0.2.1 is the verified maintenance baseline; version 0.2.0 remains the field-confirmed Windows rollback | Product case study, architecture, verification summary, and deployment boundary |
 
 ## Programs in development
@@ -32,7 +32,7 @@ These development programs are listed for portfolio continuity, but they are not
 
 The public portfolio contains product descriptions, architecture, synthetic examples, and verification summaries. It does not contain private release archives, support exports, user or machine identifiers, local filesystem paths, account information, credentials, private package digests, or production datasets.
 
-The Data Contract Monitor source is governed by Apache-2.0 in its canonical project. The Data Governance & Lineage Portal source remains proprietary; this repository publishes its case study rather than its implementation.
+The Data Contract Monitor source and release are available in its [Apache-2.0 repository](https://github.com/Jnapier2/data-contract-monitor). The Data Governance & Lineage Portal source remains proprietary; this repository publishes its case study rather than its implementation.
 
 ## Related work
 

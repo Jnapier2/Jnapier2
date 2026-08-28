@@ -8,10 +8,13 @@
     {
       "id": "data-contract-monitor",
       "display_name": "Data Contract Monitor",
-      "version": "0.1.2",
-      "build": "DCM-0.1.2-B20260828-LAUNCHISOLATION1",
-      "evidence_class": "user-confirmed Windows working save state plus independent source revalidation",
+      "version": "0.1.4",
+      "build": "DCM-0.1.4-B20260828-PUBLIC1",
+      "evidence_class": "public alpha with exact-package tests, native Windows review, and Windows/Ubuntu CI",
+      "repository_url": "https://github.com/Jnapier2/data-contract-monitor",
+      "release_url": "https://github.com/Jnapier2/data-contract-monitor/releases/tag/v0.1.4",
       "public_material": [
+        "runnable source and release download",
         "product case study",
         "architecture diagram",
         "verification summary",
@@ -20,17 +23,18 @@
       "source_rights": "Apache-2.0 in the canonical project",
       "verification": {
         "release_identity": "pass",
-        "managed_files": 115,
-        "automated_tests": 44,
+        "managed_files": 120,
+        "automated_tests": 68,
         "python_compile": "pass",
         "synthetic_benchmark": {
+          "source_version": "0.1.2",
           "rows": 100000,
           "columns": 6,
           "trials_per_run": 3,
           "packaged_median_seconds": 0.474686,
           "fresh_review_median_seconds": 0.588982,
           "fresh_review_environment": "independent Linux review with Python 3.13.5",
-          "classification": "bounded local regression measurements; not a production service-level promise"
+          "classification": "historical v0.1.2 local regression measurements; not a v0.1.4 performance claim or production service-level promise"
         }
       },
       "excluded_claims": [

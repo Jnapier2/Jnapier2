@@ -4,18 +4,21 @@
 
 Data Contract Monitor catches broken schemas, stale records, invalid values, duplicate keys, and unreviewed sensitive fields before unreliable data reaches a report, model, or operational process. It turns readable YAML expectations into evidence that people can review and automated workflows can enforce.
 
+[Explore the source](https://github.com/Jnapier2/data-contract-monitor) · [Download v0.1.4](https://github.com/Jnapier2/data-contract-monitor/releases/tag/v0.1.4) · [Try the included demos](https://github.com/Jnapier2/data-contract-monitor#try-the-included-demos)
+
+The passing and failing demos use synthetic data and need no credentials. On Windows, extract the release ZIP and open `START_DATA_CONTRACT_MONITOR.bat`. Standard 64-bit Python 3.11–3.14 is required; the first launch needs internet access to install dependencies.
+
 ## Product status
 
 | Item | Publicly supported statement |
 | --- | --- |
-| Program version | 0.1.2 |
-| Build | `DCM-0.1.2-B20260828-LAUNCHISOLATION1` |
-| Acceptance class | User-confirmed Windows working save state |
-| Independent revalidation | Release identity passed across 115 managed files; 44 automated tests passed under Python 3.13.5 |
-| Bounded performance check | A 100,000-row, six-column synthetic CSV completed three trials with a 0.475-second packaged median; a fresh independent rerun completed with a 0.589-second median |
-| Source rights | Apache-2.0 in the canonical project |
+| Program version | 0.1.4 — public alpha |
+| Build | `DCM-0.1.4-B20260828-PUBLIC1` |
+| Verification | 68 automated tests passed from a fresh release extraction; all 120 managed-file hashes matched |
+| Review experience | Local dashboard, passing and failing demos, severity filters, and downloadable evidence |
+| Source rights | Apache-2.0; source and release download are public |
 
-Both measurements are local synthetic regression evidence, not production service-level promises. Hardware, storage, file format, rule complexity, and data distribution affect results. The fresh result is recorded in [sanitized benchmark evidence](evidence/data-contract-monitor-benchmark-review.json).
+The release includes exact-artifact verification receipts and known limitations. Earlier v0.1.2 synthetic benchmark evidence remains available separately: a 100,000-row, six-column CSV completed with a 0.475-second packaged median and a 0.589-second independent rerun median. These are historical local measurements, not v0.1.4 performance claims or production service-level promises. Hardware, storage, format, and rule complexity affect results. See [the benchmark evidence](evidence/data-contract-monitor-benchmark-review.json).
 
 ## The problem
 
@@ -82,6 +85,6 @@ This case study contains no private release archive, support export, user path, 
 - Privacy detection is heuristic and requires human review.
 - Optional formats require their corresponding dependencies.
 - First-run dependency installation may contact the configured package index.
-- The public page is a product case study, not a substitute for the canonical release package or its acceptance evidence.
+- This is alpha software, not a production service guarantee. Review the [release evidence and limitations](https://github.com/Jnapier2/data-contract-monitor/releases/tag/v0.1.4) before using important data.
 
 Copyright © 2026 Gateway Information Group LLC. All rights reserved.
