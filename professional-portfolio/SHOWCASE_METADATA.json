@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "classification": "public",
+  "collection": "Professional Portfolio Programs",
+  "publisher": "Gateway Information Group LLC",
+  "published_date": "2026-08-28",
+  "projects": [
+    {
+      "id": "data-contract-monitor",
+      "display_name": "Data Contract Monitor",
+      "version": "0.1.2",
+      "build": "DCM-0.1.2-B20260828-LAUNCHISOLATION1",
+      "evidence_class": "user-confirmed Windows working save state plus independent source revalidation",
+      "public_material": [
+        "product case study",
+        "architecture diagram",
+        "verification summary"
+      ],
+      "source_rights": "Apache-2.0 in the canonical project",
+      "verification": {
+        "release_identity": "pass",
+        "managed_files": 115,
+        "automated_tests": 44,
+        "python_compile": "pass",
+        "synthetic_benchmark": {
+          "rows": 100000,
+          "columns": 6,
+          "trials": 3,
+          "median_seconds": 0.747436,
+          "environment": "independent Linux review with Python 3.13.5",
+          "classification": "bounded local regression measurement"
+        }
+      },
+      "excluded_claims": [
+        "production service-level guarantee",
+        "distributed or streaming validation",
+        "data-loss-prevention certification"
+      ]
+    },
+    {
+      "id": "data-governance-lineage-portal",
+      "display_name": "Data Governance & Lineage Portal",
+      "version": "0.2.1",
+      "build": "DGPLP-0.2.1-20260828-FIELDHARDEN1",
+      "evidence_class": "verified maintenance baseline with version 0.2.0 retained as field-confirmed Windows rollback",
+      "public_material": [
+        "product case study",
+        "architecture summary",
+        "verification and deployment boundary"
+      ],
+      "source_rights": "proprietary first-party source; public case study only",
+      "verification": {
+        "release_identity": "pass",
+        "managed_files": 126,
+        "automated_tests": 53,
+        "python_compile": "pass",
+        "typescript_strict_build": "pass",
+        "version_0_2_1_windows_bat_execution": "not performed in the independent review environment",
+        "version_0_2_0_windows_field_evidence": "pass"
+      },
+      "excluded_claims": [
+        "production deployment",
+        "enterprise authentication",
+        "live PostgreSQL certification",
+        "high-availability worker architecture"
+      ]
+    }
+  ],
+  "sanitization": {
+    "private_release_archives": false,
+    "support_exports": false,
+    "credentials": false,
+    "user_or_machine_identifiers": false,
+    "local_paths": false,
+    "private_package_digests": false,
+    "drive_references": false,
+    "production_datasets": false
+  },
+  "copyright": "Copyright © 2026 Gateway Information Group LLC. All rights reserved."
+}
