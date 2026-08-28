@@ -13,7 +13,7 @@ The passing and failing demos use synthetic data and need no credentials. On Win
 | Item | Publicly supported statement |
 | --- | --- |
 | Program version | 0.1.5 — public alpha |
-| Build | `DCM-0.1.5-B20260828-ACTION1` |
+| Build | `DCM-0.1.5-B20260828-ACTION2` |
 | Verification | 75 automated tests passed from a fresh release extraction; all 124 managed-file hashes matched |
 | Review experience | Local dashboard, passing and failing demos, severity filters, and downloadable evidence |
 | Source rights | Apache-2.0; source and release download are public |

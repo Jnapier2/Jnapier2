@@ -58,7 +58,7 @@ class ProfessionalPortfolioTests(unittest.TestCase):
 
         contract = by_id["data-contract-monitor"]
         self.assertEqual(contract["version"], "0.1.5")
-        self.assertEqual(contract["build"], "DCM-0.1.5-B20260828-ACTION1")
+        self.assertEqual(contract["build"], "DCM-0.1.5-B20260828-ACTION2")
         self.assertEqual(contract["verification"]["managed_files"], 124)
         self.assertEqual(contract["verification"]["automated_tests"], 75)
         self.assertEqual(contract["repository_url"], "https://github.com/Jnapier2/data-contract-monitor")

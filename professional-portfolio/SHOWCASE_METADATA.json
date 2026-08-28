@@ -9,7 +9,7 @@
       "id": "data-contract-monitor",
       "display_name": "Data Contract Monitor",
       "version": "0.1.5",
-      "build": "DCM-0.1.5-B20260828-ACTION1",
+      "build": "DCM-0.1.5-B20260828-ACTION2",
       "evidence_class": "public alpha with exact-package tests, native Windows review, and Windows/Ubuntu CI",
       "repository_url": "https://github.com/Jnapier2/data-contract-monitor",
       "release_url": "https://github.com/Jnapier2/data-contract-monitor/releases/tag/v0.1.5",
