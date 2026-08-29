@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "project": "Data Contract Monitor",
+  "version": "0.1.2",
+  "classification": "public sanitized synthetic benchmark evidence",
+  "dataset": {
+    "rows": 100000,
+    "columns": 6,
+    "format": "CSV",
+    "data": "synthetic"
+  },
+  "packaged_evidence": {
+    "trials": 3,
+    "durations_seconds": [
+      0.474686,
+      0.470189,
+      0.496843
+    ],
+    "median_seconds": 0.474686
+  },
+  "fresh_review": {
+    "captured_at": "2026-08-28T20:17:47.747807+00:00",
+    "python": "3.13.5",
+    "platform": "Linux",
+    "trials": 3,
+    "durations_seconds": [
+      0.665788,
+      0.588982,
+      0.569167
+    ],
+    "median_seconds": 0.588982
+  },
+  "scope": "CSV read, aggregate profile, privacy sample, contract checks, SHA-256 hashes, and result construction; report serialization excluded.",
+  "limitations": "Local regression evidence only; not a production service-level promise.",
+  "copyright": "Copyright © 2026 Gateway Information Group LLC. All rights reserved."
+}

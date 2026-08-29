@@ -2,7 +2,7 @@
 
 Copyright © 2026 Gateway Information Group LLC. All rights reserved.
 
-This repository contains Jerry R. Napier's professional portfolio, public project summaries, and the Reliable Project Delivery Framework.
+This repository contains Jerry R. Napier's professional portfolio, public project summaries, evidence-backed case studies, and the Reliable Project Delivery Framework.
 
 Unless a file or linked repository provides separate terms, no permission is granted to copy, modify, redistribute, sublicense, sell, host, or incorporate this repository's contents into another work without written authorization from Gateway Information Group LLC.
 
