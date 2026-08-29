@@ -1,3 +1,18 @@
+# Jerry R. Napier
+
+**Information management · Data governance · Analytics · Reliable automation**
+
+I build practical tools that turn complex information and operating problems into clear, dependable workflows. My background spans production operations, database operations, digital asset management, reporting, metadata, taxonomy, analytics, and process improvement.
+
+**M.S. in Information Management · Certificate in Digital Curation · Dominican University**
+
+[Portfolio](https://jerry-napier-portfolio.netlify.app/) · [LinkedIn](https://www.linkedin.com/in/jrnapier)
+
+## Professional portfolio programs
+
+- **[Data Contract Monitor](professional-portfolio/data-contract-monitor.md)** — Catches broken schemas, stale records, duplicate keys, invalid values, and unreviewed sensitive fields so teams can address unreliable data before using it. [Source and runnable demos](https://github.com/Jnapier2/data-contract-monitor).
+- **[Data Governance & Lineage Portal](professional-portfolio/data-governance-lineage-portal.md)** — Helps teams understand what data means, who owns it, why it can be trusted, and what changes will affect downstream reports and processes.
+- **[Professional Portfolio Program Index](professional-portfolio/README.md)** — Current evidence status, programs in development, publication boundaries, and related governance work.
 
 ## Featured projects
 
@@ -11,3 +26,46 @@
 
 - **[Chicago Food Inspection Outcomes](https://github.com/Jnapier2/chicago-food-inspections-analysis)** — Reproducible analysis of public inspection records, with careful separation of inspection outcomes and facility-risk categories.
 - **[Automation Reliability Case Studies](https://github.com/Jnapier2/automation-reliability-case-studies)** — Thirteen sanitized engineering studies covering Data Contract Monitor, governance and lineage, Vdownloader queue recovery, PC Improve repair governance, GPU-mining readiness, Kraken/Coinbase/Binance spread-bot reconciliation, Kalshi data quality, save-state truth and structural parity, fail-closed game-release acceptance, network-guard evidence, and process supervision.
+
+## Automation and diagnostics
+
+- **[Avalon Q Supervisor](https://github.com/Jnapier2/avalon-q-supervisor)** — Converts local device telemetry into understandable health states and bounded recovery actions.
+- **[NetLossDoctor](https://github.com/Jnapier2/net-loss-doctor)** — Correlates gateway, route, DNS, TCP, latency, Windows event, and optional trace evidence without changing network configuration.
+- **[Gateway LAN Link](https://github.com/Jnapier2/lan-router-comms)** — Provides cloud-free authenticated text and resumable file exchange between trusted Windows computers. The repository slug preserves its historical LAN Router Comms alias.
+- **[Windows Health Audit](https://github.com/Jnapier2/windows-health-audit)** — Creates a read-only Windows health baseline with privacy-conscious normalization and failure-isolated collectors.
+
+## Media and utility tools
+
+- **[Safe Video Downloader](https://github.com/Jnapier2/safe-video-downloader)** — Retrieves authorized media with reviewable planning, duplicate controls, bounded workers, and verified output.
+- **[MP3 Downloader](https://github.com/Jnapier2/mp3-downloader)** — Converts an authorized source into a validated MP3 with metadata review, retry limits, and duplicate reconciliation.
+- **[Image Downloader](https://github.com/Jnapier2/image-downloader)** — Collects permitted images with controlled discovery, a recoverable queue, bounded concurrency, safe filenames, and session records.
+- **[Large Text Chunker](https://github.com/Jnapier2/large-text-chunker)** — Splits local documents at readable boundaries and verifies exact reconstruction.
+
+## Games and interactive projects
+
+- **[Beta Earth](https://github.com/Jnapier2/beta-earth)** — A local-first browser RPG with a shared battlefield clock, faction and civic systems, resilient SQLite saves, and an accessible tactical HUD.
+- **[Inbox From Hell](https://github.com/Jnapier2/inbox-from-hell)** — A workplace-horror browser game built around branching support cases, persistent progression, and accessible controls.
+
+## Financial learning tools
+
+- **[Kalshi 10×1¢ Public Edition](https://github.com/Jnapier2/kalshi-10x1c-public)** — An educational entry-planning tool with explicit activation, caps, and duplicate-action protection.
+- **[Kalshi 15-Minute Sell Preview](https://github.com/Jnapier2/kalshi-15m-sell-bot-public-preview)** — A dry-run exit-planning preview with live writes disabled.
+
+## Framework resources
+
+- [Public framework](PROJECT_FRAMEWORK.md)
+- [Implementation checklist](PROJECT_FRAMEWORK_CHECKLIST.md)
+- [Version history](PROJECT_FRAMEWORK_CHANGELOG.md)
+- [Machine-readable metadata](PROJECT_FRAMEWORK_METADATA.json)
+
+The framework presents reusable delivery principles while project-specific operating records, credentials, and private implementation details remain outside the public portfolio.
+
+## Professional focus
+
+I am interested in analytics, data governance, information management, operations, and reliable automation work where complex systems need clearer evidence, stronger controls, and more usable workflows.
+
+## Public repository boundary
+
+This profile repository is intentionally limited to project summaries, evidence-backed public case studies, and the shared public framework. Private release packages, operating records, support evidence, credentials, production datasets, and proprietary implementation details are not published here.
+
+Copyright © 2026 Gateway Information Group LLC. All rights reserved.
