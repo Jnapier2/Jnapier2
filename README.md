@@ -48,7 +48,7 @@ I build practical tools that turn complex information and operating problems int
 
 ## Financial learning tools
 
-- **[Kalshi 10×1¢ Public Edition](https://github.com/Jnapier2/kalshi-10x1c-public)** — An educational entry-planning tool with explicit activation, caps, and duplicate-action protection.
+- **[Kalshi 10×1¢ Public Edition](https://github.com/Jnapier2/kalshi-10x1c-public)** — An offline educational planner that rejects stale or contradictory snapshots and prevents duplicate intents without credentials, network access, or order authority.
 - **[Kalshi 15-Minute Sell Preview](https://github.com/Jnapier2/kalshi-15m-sell-bot-public-preview)** — A dry-run exit-planning preview with live writes disabled.
 
 ## Framework resources
