@@ -43,7 +43,8 @@ I build practical tools that turn complex information and operating problems int
 ## Games and interactive projects
 
 - **[Beta Earth](https://github.com/Jnapier2/beta-earth)** — A local-first browser RPG with a shared battlefield clock, faction and civic systems, resilient SQLite saves, and an accessible tactical HUD.
-- **[Inbox From Hell](https://github.com/Jnapier2/inbox-from-hell)** — A workplace-horror browser game built around branching support cases, persistent progression, and accessible controls.
+- **[QuipKite](https://github.com/Jnapier2/quipkite)** — Turns small reactive word choices into short stories, keepsakes, and reviewable progress in a clearly labeled simulated Solo preview; proprietary source remains private.
+- **[Inbox From Hell](https://zappytap.itch.io/inbox-from-hell)** — A workplace-horror browser game built around branching support cases, persistent progression, and accessible controls. Its playable release remains available while the source repository is private.
 
 ## Financial learning tools
 
