@@ -57,12 +57,12 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         by_id = {item["id"]: item for item in metadata["projects"]}
 
         contract = by_id["data-contract-monitor"]
-        self.assertEqual(contract["version"], "0.1.5")
-        self.assertEqual(contract["build"], "DCM-0.1.5-B20260828-ACTION2")
-        self.assertEqual(contract["verification"]["managed_files"], 124)
-        self.assertEqual(contract["verification"]["automated_tests"], 75)
+        self.assertEqual(contract["version"], "0.2.2")
+        self.assertEqual(contract["build"], "DCM-0.2.2-B20260829-WINDOWS1")
+        self.assertEqual(contract["verification"]["managed_files"], 132)
+        self.assertEqual(contract["verification"]["automated_tests"], 72)
         self.assertEqual(contract["repository_url"], "https://github.com/Jnapier2/data-contract-monitor")
-        self.assertTrue(contract["release_url"].endswith("/releases/tag/v0.1.5"))
+        self.assertTrue(contract["release_url"].endswith("/releases/tag/v0.2.2"))
         self.assertEqual(contract["verification"]["synthetic_benchmark"]["source_version"], "0.1.2")
         self.assertEqual(
             contract["verification"]["synthetic_benchmark"]["packaged_median_seconds"],
@@ -100,11 +100,11 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         ).read_text(encoding="utf-8")
 
         for marker in (
-            "0.1.5 — public alpha",
-            "75 automated tests passed",
+            "0.2.2 — public alpha prerelease",
+            "72 automated tests passed",
             "0.475-second packaged median",
             "0.589-second independent rerun median",
-            "historical local measurements, not v0.1.5 performance claims",
+            "historical local measurements, not v0.2.2 performance claims",
             "## Public boundary",
             "## Limitations",
         ):

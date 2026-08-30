@@ -3,16 +3,16 @@
   "classification": "public",
   "collection": "Professional Portfolio Programs",
   "publisher": "Gateway Information Group LLC",
-  "published_date": "2026-08-28",
+  "published_date": "2026-08-30",
   "projects": [
     {
       "id": "data-contract-monitor",
       "display_name": "Data Contract Monitor",
-      "version": "0.1.5",
-      "build": "DCM-0.1.5-B20260828-ACTION2",
-      "evidence_class": "public alpha with exact-package tests, native Windows review, and Windows/Ubuntu CI",
+      "version": "0.2.2",
+      "build": "DCM-0.2.2-B20260829-WINDOWS1",
+      "evidence_class": "public alpha prerelease with exact-package tests, native Windows qualification, and Windows/Ubuntu CI",
       "repository_url": "https://github.com/Jnapier2/data-contract-monitor",
-      "release_url": "https://github.com/Jnapier2/data-contract-monitor/releases/tag/v0.1.5",
+      "release_url": "https://github.com/Jnapier2/data-contract-monitor/releases/tag/v0.2.2",
       "public_material": [
         "runnable source and release download",
         "product case study",
@@ -23,9 +23,12 @@
       "source_rights": "Apache-2.0 in the canonical project",
       "verification": {
         "release_identity": "pass",
-        "managed_files": 124,
-        "automated_tests": 75,
+        "managed_files": 132,
+        "automated_tests": 72,
         "python_compile": "pass",
+        "native_windows_release_doctor": "pass with Python 3.13.15",
+        "continuous_integration": "pass on Windows and Ubuntu with Python 3.11 and 3.13",
+        "code_scanning": "pass for Python, JavaScript/TypeScript, and GitHub Actions",
         "synthetic_benchmark": {
           "source_version": "0.1.2",
           "rows": 100000,
@@ -34,7 +37,7 @@
           "packaged_median_seconds": 0.474686,
           "fresh_review_median_seconds": 0.588982,
           "fresh_review_environment": "independent Linux review with Python 3.13.5",
-          "classification": "historical v0.1.2 local regression measurements; not a v0.1.5 performance claim or production service-level promise"
+          "classification": "historical v0.1.2 local regression measurements; not a v0.2.2 performance claim or production service-level promise"
         }
       },
       "excluded_claims": [

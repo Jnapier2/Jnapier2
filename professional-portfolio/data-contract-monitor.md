@@ -4,7 +4,7 @@
 
 Data Contract Monitor catches broken schemas, stale records, invalid values, duplicate keys, and unreviewed sensitive fields before unreliable data reaches a report, model, or operational process. It turns readable YAML expectations into evidence that people can review and automated workflows can enforce.
 
-[Explore the source](https://github.com/Jnapier2/data-contract-monitor) · [Download v0.1.5](https://github.com/Jnapier2/data-contract-monitor/releases/tag/v0.1.5) · [Try the included demos](https://github.com/Jnapier2/data-contract-monitor#try-the-included-demos)
+[Explore the source](https://github.com/Jnapier2/data-contract-monitor) · [Download v0.2.2](https://github.com/Jnapier2/data-contract-monitor/releases/tag/v0.2.2) · [Try the included demos](https://github.com/Jnapier2/data-contract-monitor#try-the-included-demos)
 
 The passing and failing demos use synthetic data and need no credentials. On Windows, extract the release ZIP and open `START_DATA_CONTRACT_MONITOR.bat`. Standard 64-bit Python 3.11–3.14 is required; the first launch needs internet access to install dependencies.
 
@@ -12,13 +12,13 @@ The passing and failing demos use synthetic data and need no credentials. On Win
 
 | Item | Publicly supported statement |
 | --- | --- |
-| Program version | 0.1.5 — public alpha |
-| Build | `DCM-0.1.5-B20260828-ACTION2` |
-| Verification | 75 automated tests passed from a fresh release extraction; all 124 managed-file hashes matched |
+| Program version | 0.2.2 — public alpha prerelease |
+| Build | `DCM-0.2.2-B20260829-WINDOWS1` |
+| Verification | 72 automated tests passed from the exact Windows release; all 132 managed-file hashes matched; Windows and Ubuntu CI passed on Python 3.11 and 3.13 |
 | Review experience | Local dashboard, passing and failing demos, severity filters, and downloadable evidence |
 | Source rights | Apache-2.0; source and release download are public |
 
-The release includes exact-artifact verification receipts and known limitations. Earlier v0.1.2 synthetic benchmark evidence remains available separately: a 100,000-row, six-column CSV completed with a 0.475-second packaged median and a 0.589-second independent rerun median. These are historical local measurements, not v0.1.5 performance claims or production service-level promises. Hardware, storage, format, and rule complexity affect results. See [the benchmark evidence](evidence/data-contract-monitor-benchmark-review.json).
+The release includes exact-artifact verification receipts and known limitations. Earlier v0.1.2 synthetic benchmark evidence remains available separately: a 100,000-row, six-column CSV completed with a 0.475-second packaged median and a 0.589-second independent rerun median. These are historical local measurements, not v0.2.2 performance claims or production service-level promises. Hardware, storage, format, and rule complexity affect results. See [the benchmark evidence](evidence/data-contract-monitor-benchmark-review.json).
 
 ## The problem
 
@@ -51,6 +51,9 @@ One validation engine and one typed result model serve every interface. This pre
 | Privacy review | Heuristic field-name and bounded sample-pattern signals guide human review without claiming to be a data-loss-prevention product |
 | Multiple evidence formats | Accessible HTML, JSON, JUnit XML, and SARIF support business review, automation, and code-scanning workflows |
 | Shared interfaces | The command line, local API, dashboard, Python package, and composite action use the same validation semantics |
+| Durable run evidence | Completed report sets are hashed, published atomically, and retained with SQLite-backed history so reviewers can return to a stable result |
+| Controlled execution | Bounded background jobs, progress, cooperative cancellation, and explicit input budgets keep local review responsive and predictable |
+| Aggregate reconciliation | Cross-column totals can be checked safely without forcing reviewers to inspect raw records manually |
 | Local-first operation | Temporary uploads are removed after each request; reports contain aggregate evidence rather than raw dataset values |
 
 ## Reliability design
@@ -60,6 +63,9 @@ One validation engine and one typed result model serve every interface. This pre
 - A preferred-port collision selects another reserved loopback endpoint instead of opening an unrelated local service.
 - The browser opens only after the health response proves the exact service, version, build, and per-launch identity.
 - Data-quality failure uses a different exit code from execution failure, allowing automation to distinguish bad data from a broken tool.
+- The dashboard queues bounded validation jobs instead of holding an HTTP request open for long-running work; progress and cancellation remain reviewable.
+- A completed run becomes “latest” only after its full report set is hashed and atomically published, avoiding half-written evidence.
+- Modifying dashboard requests use a random per-launch local session cookie plus loopback Origin and Host checks.
 - Critical failures produce bounded, redacted local evidence rather than recursively copying the project.
 - Recovery starts from a clean extraction of the known package instead of mixing managed files from different versions.
 
@@ -77,7 +83,7 @@ The synthetic customer-order example includes a passing dataset and a deliberate
 
 ## Public boundary
 
-This case study contains no private release archive, support export, user path, machine identifier, private package digest, account information, credential, or production dataset. It does not expose raw evidence from the private Windows acceptance run.
+This case study contains no private release archive, support export, user path, machine identifier, account information, credential, or production dataset. Public receipts contain the release hash, test scope, and platform results without exposing raw user data or local filesystem details.
 
 ## Limitations
 
@@ -85,6 +91,6 @@ This case study contains no private release archive, support export, user path, 
 - Privacy detection is heuristic and requires human review.
 - Optional formats require their corresponding dependencies.
 - First-run dependency installation may contact the configured package index.
-- This is alpha software, not a production service guarantee. Review the [release evidence and limitations](https://github.com/Jnapier2/data-contract-monitor/releases/tag/v0.1.5) before using important data.
+- This is alpha software, not a production service guarantee. Review the [release evidence and limitations](https://github.com/Jnapier2/data-contract-monitor/releases/tag/v0.2.2) before using important data.
 
 Copyright © 2026 Gateway Information Group LLC. All rights reserved.
