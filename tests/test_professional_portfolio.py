@@ -13,10 +13,35 @@ except ModuleNotFoundError:
 
 ROOT = Path(__file__).resolve().parents[1]
 PORTFOLIO = ROOT / "professional-portfolio"
+DEVELOPMENT_PAGES = (
+    PORTFOLIO / "workflow-case-management-platform.md",
+    PORTFOLIO / "policy-procedure-navigator.md",
+    PORTFOLIO / "pc-reliability-incident-intelligence-suite.md",
+    PORTFOLIO / "operations-intelligence-automation-platform.md",
+)
+DEVELOPMENT_PROFILE_LINKS = (
+    (
+        "Workflow and Case Management Platform",
+        "professional-portfolio/workflow-case-management-platform.md",
+    ),
+    (
+        "Policy and Procedure Navigator",
+        "professional-portfolio/policy-procedure-navigator.md",
+    ),
+    (
+        "PC Reliability & Incident Intelligence Suite",
+        "professional-portfolio/pc-reliability-incident-intelligence-suite.md",
+    ),
+    (
+        "Operations Intelligence & Automation Platform",
+        "professional-portfolio/operations-intelligence-automation-platform.md",
+    ),
+)
 PUBLIC_FILES = (
     PORTFOLIO / "README.md",
     PORTFOLIO / "data-contract-monitor.md",
     PORTFOLIO / "data-governance-lineage-portal.md",
+    *DEVELOPMENT_PAGES,
     PORTFOLIO / "SHOWCASE_METADATA.json",
     PORTFOLIO / "evidence" / "data-contract-monitor-benchmark-review.json",
     PORTFOLIO / "assets" / "data-contract-monitor-architecture.svg",
@@ -61,15 +86,25 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         self.assertEqual(contract["build"], "DCM-0.2.2-B20260829-WINDOWS1")
         self.assertEqual(contract["verification"]["managed_files"], 132)
         self.assertEqual(contract["verification"]["automated_tests"], 72)
-        self.assertEqual(contract["repository_url"], "https://github.com/Jnapier2/data-contract-monitor")
-        self.assertTrue(contract["release_url"].endswith("/releases/tag/v0.2.2"))
-        self.assertEqual(contract["verification"]["synthetic_benchmark"]["source_version"], "0.1.2")
         self.assertEqual(
-            contract["verification"]["synthetic_benchmark"]["packaged_median_seconds"],
+            contract["repository_url"],
+            "https://github.com/Jnapier2/data-contract-monitor",
+        )
+        self.assertTrue(contract["release_url"].endswith("/releases/tag/v0.2.2"))
+        self.assertEqual(
+            contract["verification"]["synthetic_benchmark"]["source_version"],
+            "0.1.2",
+        )
+        self.assertEqual(
+            contract["verification"]["synthetic_benchmark"][
+                "packaged_median_seconds"
+            ],
             0.474686,
         )
         self.assertEqual(
-            contract["verification"]["synthetic_benchmark"]["fresh_review_median_seconds"],
+            contract["verification"]["synthetic_benchmark"][
+                "fresh_review_median_seconds"
+            ],
             0.588982,
         )
         self.assertIn("public alpha", contract["evidence_class"])
@@ -90,6 +125,43 @@ class ProfessionalPortfolioTests(unittest.TestCase):
             governance["verification"]["version_0_2_1_windows_bat_execution"],
             "not performed through Windows cmd.exe in the independent review environment",
         )
+
+        development = {
+            item["id"]: item for item in metadata["development_programs"]
+        }
+        self.assertEqual(
+            set(development),
+            {
+                "workflow-case-management-platform",
+                "policy-procedure-navigator",
+                "pc-reliability-incident-intelligence-suite",
+                "operations-intelligence-automation-platform",
+            },
+        )
+        for item in development.values():
+            self.assertEqual(item["status"], "development-case-study")
+            self.assertTrue((ROOT / item["case_study_path"]).is_file())
+            self.assertTrue(item["required_gate"])
+
+        operations = development["operations-intelligence-automation-platform"]
+        self.assertEqual(operations["version"], "0.2.0")
+        self.assertEqual(
+            operations["build"], "OIAP-0.2.0-20260829-ENTERPRISEFOUNDATION1"
+        )
+        self.assertEqual(
+            operations["artifact_evidence"]["portfolio_foundation_entries"], 96
+        )
+        self.assertEqual(
+            operations["artifact_evidence"]["static_site_entries"], 23
+        )
+        self.assertEqual(
+            operations["artifact_evidence"]["portfolio_foundation_zip_integrity"],
+            "pass",
+        )
+        self.assertEqual(
+            operations["artifact_evidence"]["static_site_zip_integrity"], "pass"
+        )
+        self.assertIn("no accepted runnable", operations["evidence_class"])
 
     def test_case_studies_preserve_evidence_boundaries(self) -> None:
         contract = (PORTFOLIO / "data-contract-monitor.md").read_text(
@@ -120,6 +192,41 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         ):
             self.assertIn(marker, governance)
 
+    def test_development_pages_are_truthfully_labeled(self) -> None:
+        for path in DEVELOPMENT_PAGES:
+            text = path.read_text(encoding="utf-8")
+            lower = text.lower()
+            with self.subTest(path=path.relative_to(ROOT)):
+                self.assertIn("development case study", lower)
+                self.assertIn("operational source", lower)
+                self.assertIn("not published", lower)
+                self.assertIn("## current evidence status", lower)
+                self.assertIn("## public boundary", lower)
+                self.assertIn("## limitations", lower)
+                self.assertRegex(lower, r"\bcannot\b")
+                self.assertNotIn("production ready", lower)
+                self.assertNotIn("fully verified release", lower)
+
+        operations = (
+            PORTFOLIO / "operations-intelligence-automation-platform.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn(
+            "96-entry package has recorded passing ZIP integrity", operations
+        )
+        self.assertIn(
+            "23-entry package has recorded passing ZIP integrity", operations
+        )
+        self.assertIn("ZIP integrity alone does not establish", operations)
+
+    def test_profile_labels_every_development_program(self) -> None:
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        for display_name, target in DEVELOPMENT_PROFILE_LINKS:
+            marker = (
+                f"**[{display_name}]({target})** — **Development case study:**"
+            )
+            with self.subTest(program=display_name):
+                self.assertIn(marker, readme)
+
     def test_public_marketing_leads_with_outcomes(self) -> None:
         overview = (PORTFOLIO / "README.md").read_text(encoding="utf-8")
         opening = overview[:700].lower()
@@ -137,7 +244,9 @@ class ProfessionalPortfolioTests(unittest.TestCase):
                     self.assertIsNone(pattern.search(text))
 
     def test_rights_notice_is_present(self) -> None:
-        notice = "Copyright © 2026 Gateway Information Group LLC. All rights reserved."
+        notice = (
+            "Copyright © 2026 Gateway Information Group LLC. All rights reserved."
+        )
         for path in PUBLIC_FILES[:-1]:
             with self.subTest(path=path.relative_to(ROOT)):
                 self.assertIn(notice, path.read_text(encoding="utf-8"))

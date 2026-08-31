@@ -1,9 +1,9 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "classification": "public",
   "collection": "Professional Portfolio Programs",
   "publisher": "Gateway Information Group LLC",
-  "published_date": "2026-08-30",
+  "published_date": "2026-08-31",
   "projects": [
     {
       "id": "data-contract-monitor",
@@ -82,24 +82,52 @@
   ],
   "development_programs": [
     {
+      "id": "workflow-case-management-platform",
       "display_name": "Workflow and Case Management Platform",
-      "status": "deferred",
-      "required_gate": "accepted Doctor and launcher result plus exact Windows release evidence"
+      "aliases": [
+        "Workflow & Case Management Platform"
+      ],
+      "status": "development-case-study",
+      "evidence_class": "version 0.3.1 repair candidate with version 0.1.0 retained as Windows-proven rollback",
+      "case_study_path": "professional-portfolio/workflow-case-management-platform.md",
+      "required_gate": "verify the exact candidate package, run Doctor and the canonical launcher on Windows, preserve a clean support export, and complete normal-protection acceptance"
     },
     {
+      "id": "policy-procedure-navigator",
       "display_name": "Policy and Procedure Navigator",
-      "status": "deferred",
-      "required_gate": "accepted working baseline and public-safe evaluation evidence"
+      "aliases": [
+        "Governed AI Knowledge & Workflow Assistant"
+      ],
+      "status": "development-case-study",
+      "evidence_class": "no accepted working or save-state release baseline registered",
+      "case_study_path": "professional-portfolio/policy-procedure-navigator.md",
+      "required_gate": "establish an accepted working package, verify grounded-answer behavior with synthetic evidence, remove private policy content, and complete release acceptance"
     },
     {
+      "id": "pc-reliability-incident-intelligence-suite",
       "display_name": "PC Reliability & Incident Intelligence Suite",
-      "status": "deferred",
-      "required_gate": "accepted Windows evidence, redaction, performance, and recovery baseline"
+      "aliases": [],
+      "status": "development-case-study",
+      "evidence_class": "no accepted Windows known-good release baseline registered",
+      "case_study_path": "professional-portfolio/pc-reliability-incident-intelligence-suite.md",
+      "required_gate": "establish an accepted Windows collection baseline, validate redaction and bounded export behavior, measure overhead, and verify collector-failure recovery"
     },
     {
+      "id": "operations-intelligence-automation-platform",
       "display_name": "Operations Intelligence & Automation Platform",
-      "status": "deferred",
-      "required_gate": "verified runnable source authority, representative synthetic data, and release acceptance"
+      "aliases": [],
+      "status": "development-case-study",
+      "version": "0.2.0",
+      "build": "OIAP-0.2.0-20260829-ENTERPRISEFOUNDATION1",
+      "evidence_class": "portfolio-foundation and static-site packages with recorded passing ZIP integrity; no accepted runnable known-good release registered",
+      "artifact_evidence": {
+        "portfolio_foundation_entries": 96,
+        "portfolio_foundation_zip_integrity": "pass",
+        "static_site_entries": 23,
+        "static_site_zip_integrity": "pass"
+      },
+      "case_study_path": "professional-portfolio/operations-intelligence-automation-platform.md",
+      "required_gate": "retrieve and verify the exact artifacts, establish canonical source authority, run the complete test and launcher paths, validate the synthetic dataset and governed measures, and complete native release acceptance"
     }
   ],
   "sanitization": {
