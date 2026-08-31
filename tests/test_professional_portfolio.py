@@ -13,10 +13,17 @@ except ModuleNotFoundError:
 
 ROOT = Path(__file__).resolve().parents[1]
 PORTFOLIO = ROOT / "professional-portfolio"
+DEVELOPMENT_PAGES = (
+    PORTFOLIO / "workflow-case-management-platform.md",
+    PORTFOLIO / "policy-procedure-navigator.md",
+    PORTFOLIO / "pc-reliability-incident-intelligence-suite.md",
+    PORTFOLIO / "operations-intelligence-automation-platform.md",
+)
 PUBLIC_FILES = (
     PORTFOLIO / "README.md",
     PORTFOLIO / "data-contract-monitor.md",
     PORTFOLIO / "data-governance-lineage-portal.md",
+    *DEVELOPMENT_PAGES,
     PORTFOLIO / "SHOWCASE_METADATA.json",
     PORTFOLIO / "evidence" / "data-contract-monitor-benchmark-review.json",
     PORTFOLIO / "assets" / "data-contract-monitor-architecture.svg",
@@ -91,6 +98,18 @@ class ProfessionalPortfolioTests(unittest.TestCase):
             "not performed through Windows cmd.exe in the independent review environment",
         )
 
+        development = {item["id"]: item for item in metadata["development_programs"]}
+        self.assertEqual(set(development), {
+            "workflow-case-management-platform",
+            "policy-procedure-navigator",
+            "pc-reliability-incident-intelligence-suite",
+            "operations-intelligence-automation-platform",
+        })
+        for item in development.values():
+            self.assertEqual(item["status"], "development-case-study")
+            self.assertTrue((ROOT / item["case_study_path"]).is_file())
+            self.assertTrue(item["required_gate"])
+
     def test_case_studies_preserve_evidence_boundaries(self) -> None:
         contract = (PORTFOLIO / "data-contract-monitor.md").read_text(
             encoding="utf-8"
@@ -119,6 +138,21 @@ class ProfessionalPortfolioTests(unittest.TestCase):
             "## Limitations",
         ):
             self.assertIn(marker, governance)
+
+    def test_development_pages_are_truthfully_labeled(self) -> None:
+        for path in DEVELOPMENT_PAGES:
+            text = path.read_text(encoding="utf-8")
+            lower = text.lower()
+            with self.subTest(path=path.relative_to(ROOT)):
+                self.assertIn("development case study", lower)
+                self.assertIn("operational source", lower)
+                self.assertIn("not published", lower)
+                self.assertIn("## current evidence status", lower)
+                self.assertIn("## public boundary", lower)
+                self.assertIn("## limitations", lower)
+                self.assertRegex(lower, r"\bcannot\b")
+                self.assertNotIn("production ready", lower)
+                self.assertNotIn("fully verified release", lower)
 
     def test_public_marketing_leads_with_outcomes(self) -> None:
         overview = (PORTFOLIO / "README.md").read_text(encoding="utf-8")
