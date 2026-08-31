@@ -110,6 +110,15 @@ class ProfessionalPortfolioTests(unittest.TestCase):
             self.assertTrue((ROOT / item["case_study_path"]).is_file())
             self.assertTrue(item["required_gate"])
 
+        operations = development["operations-intelligence-automation-platform"]
+        self.assertEqual(operations["version"], "0.2.0")
+        self.assertEqual(operations["build"], "OIAP-0.2.0-20260829-ENTERPRISEFOUNDATION1")
+        self.assertEqual(operations["artifact_evidence"]["portfolio_foundation_entries"], 96)
+        self.assertEqual(operations["artifact_evidence"]["static_site_entries"], 23)
+        self.assertEqual(operations["artifact_evidence"]["portfolio_foundation_zip_integrity"], "pass")
+        self.assertEqual(operations["artifact_evidence"]["static_site_zip_integrity"], "pass")
+        self.assertIn("no accepted runnable", operations["evidence_class"])
+
     def test_case_studies_preserve_evidence_boundaries(self) -> None:
         contract = (PORTFOLIO / "data-contract-monitor.md").read_text(
             encoding="utf-8"
@@ -153,6 +162,13 @@ class ProfessionalPortfolioTests(unittest.TestCase):
                 self.assertRegex(lower, r"\bcannot\b")
                 self.assertNotIn("production ready", lower)
                 self.assertNotIn("fully verified release", lower)
+
+        operations = (PORTFOLIO / "operations-intelligence-automation-platform.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("96-entry package has recorded passing ZIP integrity", operations)
+        self.assertIn("23-entry package has recorded passing ZIP integrity", operations)
+        self.assertIn("ZIP integrity alone does not establish", operations)
 
     def test_public_marketing_leads_with_outcomes(self) -> None:
         overview = (PORTFOLIO / "README.md").read_text(encoding="utf-8")

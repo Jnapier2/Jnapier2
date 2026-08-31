@@ -16,7 +16,7 @@ These programs turn data quality, governance, workflow, reliability, and operati
 | Workflow and Case Management Platform | Turns requests into assigned, time-bound, reviewable business cases | Version 0.3.1 remains a repair candidate; version 0.1.0 remains the Windows-proven rollback until exact package and native acceptance gates pass | [Case study](workflow-case-management-platform.md) |
 | Policy and Procedure Navigator | Delivers evidence-grounded policy answers and controlled workflow handoff | No accepted working or save-state release baseline is registered | [Case study](policy-procedure-navigator.md) |
 | PC Reliability & Incident Intelligence Suite | Correlates system evidence into understandable incident timelines and support packages | No accepted Windows known-good release baseline is registered | [Case study](pc-reliability-incident-intelligence-suite.md) |
-| Operations Intelligence & Automation Platform | Converts operational data into validated measures, alerts, recommendations, cases, and executive reporting | No accepted runnable release authority is registered | [Case study](operations-intelligence-automation-platform.md) |
+| Operations Intelligence & Automation Platform | Converts operational data into validated measures, alerts, recommendations, cases, and executive reporting | Version 0.2.0 portfolio-foundation and static-site artifacts have recorded passing ZIP integrity, but no accepted runnable known-good release is registered | [Case study](operations-intelligence-automation-platform.md) |
 
 These four pages describe product direction, reliability design, and synthetic scenarios. They do not present the programs as completed releases or publish their private implementation.
 

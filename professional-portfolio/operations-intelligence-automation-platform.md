@@ -41,13 +41,18 @@ A synthetic service-operations dataset shows a sudden rise in delayed cases. Val
 | Item | Status |
 | --- | --- |
 | Public classification | Development case study |
+| Current artifact lineage | Version 0.2.0 / `OIAP-0.2.0-20260829-ENTERPRISEFOUNDATION1` |
+| Portfolio-foundation evidence | A 96-entry package has recorded passing ZIP integrity |
+| Static-site evidence | A 23-entry package has recorded passing ZIP integrity |
 | Accepted runnable baseline | Not registered |
 | Operational source | Not published |
-| Promotion gate | Establish exact runnable source authority, add a representative synthetic dataset, verify data contracts and governed measures, run automated tests, and complete release acceptance |
+| Promotion gate | Retrieve and verify the exact artifacts, establish canonical source authority, run the complete test and launcher paths, validate the synthetic dataset and governed measures, and complete native release acceptance |
+
+The artifact records show meaningful packaging progress, but ZIP integrity alone does not establish that the application is a known-good public release.
 
 ## Public boundary
 
-This page contains no production dataset, customer or employee record, metric result, private rule, alert, recommendation, workflow case, credential, source archive, support export, internal path, or organization identifier. It cannot ingest or act on a real operational system.
+This page contains no production dataset, customer or employee record, metric result, private rule, alert, recommendation, workflow case, credential, source archive, support export, internal path, package digest, or organization identifier. It cannot ingest or act on a real operational system.
 
 ## What this demonstrates
 
@@ -55,6 +60,7 @@ This page contains no production dataset, customer or employee record, metric re
 - Preserving metric definitions and evidence from source through executive reporting.
 - Designing anomaly and recommendation systems that expose uncertainty.
 - Turning analytical output into governed workflow rather than disconnected advice.
+- Keeping package-integrity evidence separate from application-acceptance claims.
 
 ## Limitations
 

@@ -117,9 +117,17 @@
       "display_name": "Operations Intelligence & Automation Platform",
       "aliases": [],
       "status": "development-case-study",
-      "evidence_class": "no accepted runnable release authority registered",
+      "version": "0.2.0",
+      "build": "OIAP-0.2.0-20260829-ENTERPRISEFOUNDATION1",
+      "evidence_class": "portfolio-foundation and static-site packages with recorded passing ZIP integrity; no accepted runnable known-good release registered",
+      "artifact_evidence": {
+        "portfolio_foundation_entries": 96,
+        "portfolio_foundation_zip_integrity": "pass",
+        "static_site_entries": 23,
+        "static_site_zip_integrity": "pass"
+      },
       "case_study_path": "professional-portfolio/operations-intelligence-automation-platform.md",
-      "required_gate": "establish exact runnable source authority, add a representative synthetic dataset, verify data contracts and governed measures, run tests, and complete release acceptance"
+      "required_gate": "retrieve and verify the exact artifacts, establish canonical source authority, run the complete test and launcher paths, validate the synthetic dataset and governed measures, and complete native release acceptance"
     }
   ],
   "sanitization": {
