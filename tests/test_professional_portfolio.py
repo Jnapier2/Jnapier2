@@ -87,6 +87,11 @@ class ProfessionalPortfolioTests(unittest.TestCase):
             "10/10 pass with no advisories",
         )
         self.assertEqual(governance["verification"]["database_quick_check"], "pass")
+        self.assertEqual(
+            governance["verification"]["governance_migration"],
+            "current migration pass",
+        )
+        self.assertNotIn("migration_head", governance["verification"])
         self.assertEqual(governance["verification"]["immediate_rollback"], "0.2.2")
 
         workflow = by_id["workflow-case-management-platform"]
@@ -156,7 +161,7 @@ class ProfessionalPortfolioTests(unittest.TestCase):
             "## Current verified save state",
             "Version | 0.3.0",
             "Windows-working known-good save state",
-            "84/84 tests",
+            "84/84 source tests",
             "140/140 managed files",
             "Doctor 10/10",
             "Immediate rollback | Version 0.2.2",
@@ -164,6 +169,10 @@ class ProfessionalPortfolioTests(unittest.TestCase):
             "## Evidence boundary",
         ):
             self.assertIn(marker, governance)
+        self.assertNotIn("0003_governance", governance)
+
+        overview = (PORTFOLIO / "README.md").read_text(encoding="utf-8")
+        self.assertIn("84/84 source tests", overview)
 
         self.assertIn("68 automated tests", workflow)
         self.assertIn("123/123 managed files", workflow)
