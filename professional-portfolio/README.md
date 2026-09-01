@@ -1,43 +1,36 @@
 # Professional Portfolio Programs
 
-These programs turn data quality, governance, workflow, reliability, knowledge, and operations work into practical tools people can use. The collection distinguishes verified public software from package-qualified candidates and development case studies so each claim remains tied to the evidence that supports it.
+These projects turn data quality, governance, knowledge, and operations challenges into practical tools. Each public entry separates demonstrated behavior from future production work and links claims to runnable source or a documented verification boundary.
 
-## Verified and published programs
+## Featured programs
 
-| Program | Business outcome | Evidence status | Public material |
+| Program | Outcome | Current evidence | Public material |
 | --- | --- | --- | --- |
-| [Data Contract Monitor](data-contract-monitor.md) | Converts data expectations into executable checks before unreliable files reach reports, models, or operating workflows | Public alpha v0.2.2; exact Windows release and 132 managed files verified; Windows and Ubuntu CI passed | [Runnable source](https://github.com/Jnapier2/data-contract-monitor), [release download](https://github.com/Jnapier2/data-contract-monitor/releases/tag/v0.2.2), synthetic demos, architecture, and verification evidence |
-| [Data Governance & Lineage Portal](data-governance-lineage-portal.md) | Connects definitions, ownership, quality evidence, technical fields, lineage, impact, and controlled change in one governed catalog | Version 0.2.1 is the verified maintenance baseline; version 0.2.0 remains the field-confirmed Windows rollback | Product case study, architecture, verification summary, and deployment boundary |
+| [Data Contract Monitor](data-contract-monitor.md) | Catches broken schemas, invalid values, duplicate keys, stale records, and unreviewed sensitive fields before unreliable data reaches downstream work | v0.3.3; 69 automated tests and 144/144 managed repository files passed locally on Windows | [Runnable source](https://github.com/Jnapier2/data-contract-monitor) and [verified release](https://github.com/Jnapier2/data-contract-monitor/releases/tag/v0.3.3) |
+| [Data Governance & Lineage Portal](data-governance-lineage-portal.md) | Connects definitions, ownership, quality evidence, technical fields, lineage, impact, and controlled change in one governed catalog | v0.3.0; 84 source tests and 140/140 managed files passed in the qualified release candidate | Public case study; implementation remains proprietary |
+| [Workflow & Case Management Platform](workflow-case-management-platform.md) | Turns requests into assigned, time-bound, auditable workflows with controlled automation | v0.5.2; 68 automated tests and 122/122 managed files passed; fresh public clone verified | [Runnable source](https://github.com/Jnapier2/workflow-case-management-platform) and synthetic walkthrough data |
+| [Policy and Procedure Navigator](policy-procedure-navigator.md) | Delivers evidence-grounded policy answers with permissions, citations, abstention, and controlled follow-up | v0.3.2; 67 test cases collected, one environment-dependent skip, and 82/82 managed files verified; fresh public clone passed | [Runnable source](https://github.com/Jnapier2/policy-procedure-navigator) and synthetic policy set |
+| [Operations Intelligence & Automation Platform](operations-intelligence-automation-platform.md) | Converts service operations data into trusted measures, explainable analysis, bounded automation, and measured follow-through | v0.3.1; 33/33 application, 32/32 platform, 5/5 launcher, 40/40 HTTP, and 46/46 release checks passed; fresh public clone verified | [Runnable source](https://github.com/Jnapier2/operations-intelligence-platform) and synthetic operations data |
 
-## Package-qualified development case studies
+## Further qualification
 
-| Program | Intended outcome | Current evidence boundary | Public case study |
-| --- | --- | --- | --- |
-| Workflow and Case Management Platform | Turns requests into assigned, time-bound, reviewable business cases | Version 0.4.1 / WCM-B006 is the current build-host-qualified candidate; version 0.3.1 / WCM-B004 remains the Windows-working rollback/save state | [Case study](workflow-case-management-platform.md) |
-| Policy and Procedure Navigator | Delivers evidence-grounded policy answers and controlled workflow handoff | Version 0.3.2 is exact-package qualified with managed identity, automated tests, synthetic evaluations, Doctor readiness, export, and live HTTP evidence; physical Windows/Norton acceptance remains open | [Case study](policy-procedure-navigator.md) |
-| PC Reliability & Incident Intelligence Suite | Correlates system evidence into understandable incident timelines and support packages | Version 0.2.2 is a package-qualified save-state candidate with one launcher, clean runtime identity, automated tests, database checks, a bounded manual export, and a simulated bounded Critical export; field acceptance remains open | [Case study](pc-reliability-incident-intelligence-suite.md) |
-| Operations Intelligence & Automation Platform | Converts operational data into validated measures, alerts, recommendations, cases, and executive reporting | Version 0.2.1 is an exact-archive-qualified candidate with application, security, platform, static-site, and support-export evidence; Windows/Norton acceptance remains open | [Case study](operations-intelligence-automation-platform.md) |
+[PC Reliability & Incident Intelligence Suite](pc-reliability-incident-intelligence-suite.md) v0.3.1 has a complete local release candidate and 104 passing automated tests. It remains off the public source portfolio while physical-Windows collector evidence, product overlap, and presentation scope are resolved. This avoids publishing a second tool that could confuse the clearer NetLossDoctor and Windows Health Audit stories.
 
-These four pages describe implemented product foundations and the evidence available for their current candidates. They do not present the candidates as completed production releases or publish their private implementation.
-
-## Portfolio collection package
-
-The combined Professional Portfolio v0.3.0 archive is retained as an exact-archive-qualified candidate rather than a field-confirmed release. Its build-host review records one active launcher, successful Doctor/browser/HTTP-readiness checks, 112 archive entries, seven intentional duplicate-content groups with documented roles, and no unresolved duplicate implementation group. Version 0.2.1 remains the collection rollback until the exact v0.3.0 package completes Windows and normal-protection acceptance.
+The combined Professional Portfolio v0.3.0 archive remains an exact-archive-qualified candidate rather than a field-confirmed release. Its build-host review found one active launcher and no unresolved duplicate implementation group; exact Windows and normal-protection acceptance remain open.
 
 ## What these projects demonstrate
 
-- Turning business rules and governance expectations into usable software.
-- Designing one authoritative model behind dashboards, APIs, command-line tools, and automation.
-- Preserving evidence, rollback, and release identity instead of treating a successful screen load as proof.
-- Building local-first demonstrations with synthetic data and clear production boundaries.
-- Making complex systems understandable to business users, analysts, stewards, owners, and technical reviewers.
-- Removing duplicate launch and implementation authority while preserving intentional fixtures, rights files, and rollback evidence.
+- Translating business rules and governance expectations into usable software.
+- Maintaining one authoritative model across interfaces, reports, and automation.
+- Making evidence, rollback, and release identity part of delivery rather than an afterthought.
+- Using synthetic data and explicit boundaries so demonstrations remain useful without exposing private information.
+- Explaining complex systems to business users, analysts, stewards, owners, and technical reviewers.
 
-## Evidence and publication boundary
+## Publication boundary
 
-The public portfolio contains product descriptions, architecture, synthetic examples, and verification summaries. It does not contain private release archives, support exports, user or machine identifiers, local filesystem paths, account information, credentials, private package digests, production datasets, private policy content, or proprietary implementation.
+The portfolio contains public source where rights and product strategy permit it, plus case studies where the implementation remains proprietary. It does not publish private release archives, support exports, user or machine identifiers, local paths, credentials, production datasets, private policy content, or private operating records.
 
-The Data Contract Monitor source and release are available in its [Apache-2.0 repository](https://github.com/Jnapier2/data-contract-monitor). The Data Governance & Lineage Portal source remains proprietary; this repository publishes its case study rather than its implementation. The four development programs remain private and unpromoted until their stated acceptance gates are complete.
+Data Contract Monitor is available under Apache-2.0. The three supporting source repositories use first-party portfolio review licenses. Data Governance & Lineage Portal and PC Reliability & Incident Intelligence Suite remain public case studies rather than source releases.
 
 ## Related work
 

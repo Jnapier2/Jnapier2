@@ -12,11 +12,11 @@ I build practical tools that turn complex information and operating problems int
 
 - **[Data Contract Monitor](professional-portfolio/data-contract-monitor.md)** — Catches broken schemas, stale records, duplicate keys, invalid values, and unreviewed sensitive fields so teams can address unreliable data before using it. [Source and runnable demos](https://github.com/Jnapier2/data-contract-monitor).
 - **[Data Governance & Lineage Portal](professional-portfolio/data-governance-lineage-portal.md)** — Helps teams understand what data means, who owns it, why it can be trusted, and what changes will affect downstream reports and processes.
-- **[Workflow and Case Management Platform](professional-portfolio/workflow-case-management-platform.md)** — **Development case study:** explores how requests can become owned, time-bound cases with validation, routing, approvals, escalation, and a durable audit history.
-- **[Policy and Procedure Navigator](professional-portfolio/policy-procedure-navigator.md)** — **Development case study:** explores evidence-grounded policy answers, effective-date awareness, source citations, and controlled handoff when the available evidence is incomplete.
-- **[PC Reliability & Incident Intelligence Suite](professional-portfolio/pc-reliability-incident-intelligence-suite.md)** — **Development case study:** shows how read-only Windows evidence could be correlated into understandable incident timelines without overstating causality.
-- **[Operations Intelligence & Automation Platform](professional-portfolio/operations-intelligence-automation-platform.md)** — **Development case study:** connects validated operational data, governed measures, anomaly evidence, recommendations, cases, and executive reporting as an intended product model.
-- **[Professional Portfolio Program Index](professional-portfolio/README.md)** — Current evidence status, publication boundaries, and completion gates for the full program collection.
+- **[Workflow & Case Management Platform](professional-portfolio/workflow-case-management-platform.md)** — Turns requests into assigned, time-bound, auditable workflows with business-calendar service targets and controlled automation.
+- **[Policy and Procedure Navigator](professional-portfolio/policy-procedure-navigator.md)** — Delivers permission-aware, evidence-grounded answers with citations, abstention, and structured follow-up.
+- **[Operations Intelligence & Automation Platform](professional-portfolio/operations-intelligence-automation-platform.md)** — Converts service operations data into trusted measures, explainable findings, and measured follow-through.
+- **[PC Reliability & Incident Intelligence Suite](professional-portfolio/pc-reliability-incident-intelligence-suite.md)** — A package-qualified reliability case study held for physical-Windows collector evidence and final portfolio positioning.
+- **[Professional Portfolio Program Index](professional-portfolio/README.md)** — Current verification status, publication boundaries, and related governance work.
 
 ## Featured projects
 
