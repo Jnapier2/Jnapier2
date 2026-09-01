@@ -28,7 +28,7 @@ I build practical tools that turn complex information and operating problems int
 ## Data and analysis
 
 - **[Chicago Food Inspection Outcomes](https://github.com/Jnapier2/chicago-food-inspections-analysis)** — Reproducible analysis of public inspection records, with careful separation of inspection outcomes and facility-risk categories.
-- **[Automation Reliability Case Studies](https://github.com/Jnapier2/automation-reliability-case-studies)** — Eleven sanitized engineering studies covering Vdownloader queue recovery, PC Improve repair governance, GPU-mining readiness, Kraken/Coinbase/Binance spread-bot reconciliation, Kalshi data quality, save-state truth and structural parity, fail-closed game-release acceptance, network-guard evidence, and process supervision.
+- **[Automation Reliability Case Studies](https://github.com/Jnapier2/automation-reliability-case-studies)** — Thirteen sanitized engineering studies covering Vdownloader queue recovery, MediaTaggerBot launcher consolidation, PC Improve repair governance, Gateway Intelligence Core local-first evidence and manual external-action boundaries, GPU-mining readiness, Kraken/Coinbase/Binance spread-bot reconciliation, Kalshi data quality, save-state truth and structural parity, fail-closed game-release acceptance, network-guard evidence, and process supervision.
 
 ## Automation and diagnostics
 
