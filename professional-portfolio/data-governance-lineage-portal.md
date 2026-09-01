@@ -9,10 +9,10 @@ Data Governance & Lineage Portal helps people understand what data means, who ow
 | Version | 0.3.0 |
 | Build | `DGPLP-0.3.0-20260831-TRUSTOPS1` |
 | Windows status | Field-confirmed Windows-working known-good save state |
-| Automated suite | 84/84 tests passed across deterministic shards |
+| Automated suite | 84/84 source tests passed across deterministic shards |
 | Release identity | 140/140 managed files verified before and after testing |
 | Launcher and Doctor | Exactly one BAT/CMD launcher; Doctor 10/10 passed with no advisories |
-| Runtime evidence | Healthy Windows launch, project-local environment reuse, SQLite quick check, and current governance migration passed |
+| Runtime evidence | Healthy Windows launch, project-local environment reuse, database quick check, and current governance migration passed |
 | Publication model | Public case study; proprietary implementation |
 | Immediate rollback | Version 0.2.2 remains the preserved rollback |
 
@@ -31,7 +31,7 @@ Governance often fails when definitions, technical systems, quality evidence, an
 
 ## Evidence boundary
 
-The exact v0.3.0 release was requalified from a fresh extraction and then matched to a healthy Windows field installation through managed release identity and core control-file comparison. The field evidence recorded a healthy launch, one active launcher, Doctor 10/10, database integrity, and the current governance migration. The public page does not include the private archive, checksum, support export, paths, machine identifiers, or catalog records.
+The exact v0.3.0 release was requalified from a fresh extraction and then matched to a healthy Windows field installation through managed release identity and core control-file comparison. The field evidence recorded a healthy launch, one active launcher, Doctor 10/10, database integrity, and a current governance migration. The public page does not include the private archive, checksum, support export, paths, machine identifiers, migration identifier, or catalog records.
 
 This case study does not claim a production deployment, enterprise single sign-on, live PostgreSQL certification, high-availability worker architecture, or public source availability. The proprietary implementation remains private while the public case study documents the design and verified behavior.
 
