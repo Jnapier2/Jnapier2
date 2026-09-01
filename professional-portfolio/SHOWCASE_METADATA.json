@@ -119,6 +119,7 @@
         "managed_identity": "80/80 pass",
         "automated_tests": "67/67 pass",
         "synthetic_golden_evaluations": "5/5 pass",
+        "doctor": "ready",
         "database": "SQLite schema 3 and quick check pass",
         "audit_chain": "pass",
         "manual_export_items": 19,
