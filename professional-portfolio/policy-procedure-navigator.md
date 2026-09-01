@@ -44,6 +44,7 @@ A synthetic employee asks whether an approval is required for a type of request.
 | Current exact-package candidate | Version 0.3.2 / `PP-GKWA-0.3.2-B20260831-EXPORTENTRY1` |
 | Preserved rollback | Version 0.3.1 |
 | Package qualification | 92 distribution files; 80/80 managed identity checks; 67/67 automated tests; 5/5 synthetic golden evaluations |
+| Doctor | Ready in the reviewed package |
 | Data and audit health | SQLite schema 3, database quick check, and audit-chain validation passed in the reviewed package |
 | Runtime evidence | Governed export dispatch, a 19-item manual support export, HTTP liveness/readiness/status checks, and deterministic rebuild verification passed |
 | Consolidation evidence | Zero unresolved exact duplicate groups, case-colliding paths, symlinks, nested archives, or packaged bytecode in the reviewed candidate |
