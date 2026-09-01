@@ -8,16 +8,16 @@
     {
       "id": "data-contract-monitor",
       "display_name": "Data Contract Monitor",
-      "version": "0.3.3",
-      "build": "DCM-0.3.3-B20260831-WINDOWSFRESHNESS1",
+      "version": "0.3.4",
+      "build": "DCM-0.3.4-B20260901-SECURITY1",
       "repository_url": "https://github.com/Jnapier2/data-contract-monitor",
-      "release_url": "https://github.com/Jnapier2/data-contract-monitor/releases/tag/v0.3.3",
+      "release_url": "https://github.com/Jnapier2/data-contract-monitor/releases/tag/v0.3.4",
       "case_study_path": "professional-portfolio/data-contract-monitor.md",
       "source_rights": "Apache-2.0",
       "evidence_class": "public alpha prerelease with a rebuilt release archive and Windows source-tree verification",
       "verification": {
-        "automated_tests_passed": 69,
-        "managed_files_verified": 144,
+        "automated_tests_passed": 71,
+        "managed_files_verified": 145,
         "fresh_source_release_gate": "pass",
         "release_archive_checksum": "published with the release sidecar"
       },
@@ -60,7 +60,7 @@
       "evidence_class": "public source demonstration with synthetic examples and fresh-clone release verification",
       "verification": {
         "automated_tests_passed": 68,
-        "managed_files_verified": 122,
+        "managed_files_verified": 123,
         "fresh_public_clone": "pass",
         "vulnerable_dependency_pins_upgraded": true
       },
@@ -83,7 +83,7 @@
         "test_cases_collected": 67,
         "tests_passed": 66,
         "environment_dependent_tests_skipped": 1,
-        "managed_files_verified": 82,
+        "managed_files_verified": 83,
         "fresh_public_clone": "pass",
         "vulnerable_dependency_pins_upgraded": true
       },

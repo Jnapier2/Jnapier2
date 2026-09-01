@@ -65,15 +65,15 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         by_id = {item["id"]: item for item in metadata["projects"]}
 
         contract = by_id["data-contract-monitor"]
-        self.assertEqual(contract["version"], "0.3.3")
-        self.assertEqual(contract["build"], "DCM-0.3.3-B20260831-WINDOWSFRESHNESS1")
-        self.assertEqual(contract["verification"]["managed_files_verified"], 144)
-        self.assertEqual(contract["verification"]["automated_tests_passed"], 69)
+        self.assertEqual(contract["version"], "0.3.4")
+        self.assertEqual(contract["build"], "DCM-0.3.4-B20260901-SECURITY1")
+        self.assertEqual(contract["verification"]["managed_files_verified"], 145)
+        self.assertEqual(contract["verification"]["automated_tests_passed"], 71)
         self.assertEqual(
             contract["repository_url"],
             "https://github.com/Jnapier2/data-contract-monitor",
         )
-        self.assertTrue(contract["release_url"].endswith("/releases/tag/v0.3.3"))
+        self.assertTrue(contract["release_url"].endswith("/releases/tag/v0.3.4"))
 
         governance = by_id["data-governance-lineage-portal"]
         self.assertEqual(governance["version"], "0.3.0")
@@ -84,7 +84,7 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         workflow = by_id["workflow-case-management-platform"]
         self.assertEqual(workflow["version"], "0.5.2")
         self.assertEqual(workflow["verification"]["automated_tests_passed"], 68)
-        self.assertEqual(workflow["verification"]["managed_files_verified"], 122)
+        self.assertEqual(workflow["verification"]["managed_files_verified"], 123)
 
         policy = by_id["policy-procedure-navigator"]
         self.assertEqual(policy["version"], "0.3.2")
@@ -128,11 +128,18 @@ class ProfessionalPortfolioTests(unittest.TestCase):
             PORTFOLIO / "pc-reliability-incident-intelligence-suite.md"
         ).read_text(encoding="utf-8")
 
+        for path in PORTFOLIO.glob("*.md"):
+            with self.subTest(path=path.name):
+                self.assertFalse(
+                    any(line.startswith("+") for line in path.read_text(encoding="utf-8").splitlines()),
+                    "Public Markdown must not contain leading patch markers.",
+                )
+
         for marker in (
-            "0.3.3 public alpha prerelease",
-            "69 tests passed",
+            "0.3.4 public alpha prerelease",
+            "71 tests passed",
             "Historical v0.1.2 synthetic measurements",
-            "not presented as v0.3.3 throughput",
+            "not presented as v0.3.4 throughput",
             "## Evidence boundary",
         ):
             self.assertIn(marker, contract)
@@ -147,7 +154,7 @@ class ProfessionalPortfolioTests(unittest.TestCase):
             self.assertIn(marker, governance)
 
         self.assertIn("68 automated tests", workflow)
-        self.assertIn("122/122 managed files", workflow)
+        self.assertIn("123/123 managed files", workflow)
         self.assertIn("one environment-dependent symbolic-link check skipped", policy)
         self.assertIn("40/40 HTTP smoke checks", operations)
         self.assertIn("104 tests passed", reliability)
