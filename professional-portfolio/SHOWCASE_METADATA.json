@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.2",
+  "schema_version": "1.3",
   "classification": "public",
   "collection": "Professional Portfolio Programs",
   "publisher": "Gateway Information Group LLC",
@@ -88,9 +88,21 @@
         "Workflow & Case Management Platform"
       ],
       "status": "development-case-study",
-      "evidence_class": "version 0.3.1 repair candidate with version 0.1.0 retained as Windows-proven rollback",
+      "version": "0.4.1",
+      "build": "WCM-B006",
+      "evidence_class": "build-host-qualified release candidate with version 0.3.1 / WCM-B004 retained as Windows-working rollback and save state",
+      "verification": {
+        "active_bat_cmd_launchers": 1,
+        "canonical_entrypoint": "LAUNCH_WORKFLOW_PLATFORM.bat",
+        "recovery_doctor": "pass",
+        "live_http_surfaces": "dashboard, health, ready, OpenAPI, operations API, and operations page passed",
+        "soak_fault_cases": 120,
+        "soak_fault_workers": 8,
+        "sqlite_contention": "pass",
+        "stale_job_recovery": "pass"
+      },
       "case_study_path": "professional-portfolio/workflow-case-management-platform.md",
-      "required_gate": "verify the exact candidate package, run Doctor and the canonical launcher on Windows, preserve a clean support export, and complete normal-protection acceptance"
+      "required_gate": "run the exact 0.4.1 canonical BAT on Windows, complete Norton/SmartScreen and optional live PostgreSQL acceptance, and retain fresh field evidence before promotion"
     },
     {
       "id": "policy-procedure-navigator",
@@ -99,37 +111,88 @@
         "Governed AI Knowledge & Workflow Assistant"
       ],
       "status": "development-case-study",
-      "evidence_class": "no accepted working or save-state release baseline registered",
+      "version": "0.3.2",
+      "build": "PP-GKWA-0.3.2-B20260831-EXPORTENTRY1",
+      "evidence_class": "exact-package-qualified release candidate with version 0.3.1 retained as rollback; physical Windows and endpoint-protection acceptance remain open",
+      "verification": {
+        "distribution_files": 92,
+        "managed_identity": "80/80 pass",
+        "automated_tests": "67/67 pass",
+        "synthetic_golden_evaluations": "5/5 pass",
+        "doctor": "ready",
+        "database": "SQLite schema 3 and quick check pass",
+        "audit_chain": "pass",
+        "manual_export_items": 19,
+        "live_http": "liveness, readiness, status, root, and application asset pass",
+        "deterministic_rebuild": "pass",
+        "unresolved_exact_duplicate_groups": 0,
+        "case_collisions": 0,
+        "symlinks": 0,
+        "nested_archives": 0,
+        "packaged_bytecode": 0
+      },
       "case_study_path": "professional-portfolio/policy-procedure-navigator.md",
-      "required_gate": "establish an accepted working package, verify grounded-answer behavior with synthetic evidence, remove private policy content, and complete release acceptance"
+      "required_gate": "complete physical Windows launcher, Norton/SmartScreen, and exact-final-artifact acceptance before promoting version 0.3.2 over the preserved rollback"
     },
     {
       "id": "pc-reliability-incident-intelligence-suite",
       "display_name": "PC Reliability & Incident Intelligence Suite",
       "aliases": [],
       "status": "development-case-study",
-      "evidence_class": "no accepted Windows known-good release baseline registered",
+      "version": "0.2.2",
+      "build": "PCRIIS-0.2.2-B20260831-01",
+      "evidence_class": "package-qualified save-state candidate with version 0.2.1 retained as rollback; native Windows and endpoint-protection acceptance remain open",
+      "verification": {
+        "automated_tests": "83/83 pass",
+        "managed_runtime_identity": "94/94 pass",
+        "archive_entries": 95,
+        "active_bat_cmd_launchers": 1,
+        "unresolved_exact_duplicate_groups": 0,
+        "unsafe_paths": 0,
+        "case_collisions": 0,
+        "sqlite_schema": 3,
+        "sqlite_quick_check": "pass",
+        "manual_export_items": 19,
+        "simulated_critical_export_items": 20
+      },
       "case_study_path": "professional-portfolio/pc-reliability-incident-intelligence-suite.md",
-      "required_gate": "establish an accepted Windows collection baseline, validate redaction and bounded export behavior, measure overhead, and verify collector-failure recovery"
+      "required_gate": "complete exact Windows launcher, representative incident collection, Norton/SmartScreen, performance-overhead, and field-redaction acceptance before promotion"
     },
     {
       "id": "operations-intelligence-automation-platform",
       "display_name": "Operations Intelligence & Automation Platform",
       "aliases": [],
       "status": "development-case-study",
-      "version": "0.2.0",
-      "build": "OIAP-0.2.0-20260829-ENTERPRISEFOUNDATION1",
-      "evidence_class": "portfolio-foundation and static-site packages with recorded passing ZIP integrity; no accepted runnable known-good release registered",
-      "artifact_evidence": {
-        "portfolio_foundation_entries": 96,
-        "portfolio_foundation_zip_integrity": "pass",
+      "version": "0.2.1",
+      "build": "OIAP-0.2.1-20260831-FIELDEVIDENCE1",
+      "evidence_class": "exact-archive-qualified release candidate with application, security, platform, static-site, and support-export evidence; Windows and endpoint-protection acceptance remain open",
+      "verification": {
+        "archive_entries": 97,
+        "indexed_source_files": 93,
         "static_site_entries": 23,
-        "static_site_zip_integrity": "pass"
+        "application_security_tests": "26/26 pass",
+        "platform_tests": "24/24 pass",
+        "manual_export_items": 19,
+        "archive_integrity": "pass",
+        "static_site_integrity": "pass",
+        "support_export_integrity": "pass"
       },
       "case_study_path": "professional-portfolio/operations-intelligence-automation-platform.md",
-      "required_gate": "retrieve and verify the exact artifacts, establish canonical source authority, run the complete test and launcher paths, validate the synthetic dataset and governed measures, and complete native release acceptance"
+      "required_gate": "complete exact Windows launcher and dashboard acceptance, Norton/SmartScreen review, representative synthetic-data review, and field verification before promotion"
     }
   ],
+  "collection_package": {
+    "version": "0.3.0",
+    "classification": "exact-archive-qualified candidate",
+    "rollback": "0.2.1",
+    "archive_entries": 112,
+    "active_launchers": 1,
+    "intentional_duplicate_groups": 7,
+    "unresolved_duplicate_implementation_groups": 0,
+    "doctor": "pass in build-host review",
+    "browser_and_http_readiness": "pass in build-host review",
+    "remaining_gate": "exact Windows and normal-protection acceptance"
+  },
   "sanitization": {
     "private_release_archives": false,
     "support_exports": false,
@@ -138,7 +201,9 @@
     "local_paths": false,
     "private_package_digests": false,
     "drive_references": false,
-    "production_datasets": false
+    "production_datasets": false,
+    "private_policy_content": false,
+    "proprietary_implementation": false
   },
   "copyright": "Copyright © 2026 Gateway Information Group LLC. All rights reserved."
 }

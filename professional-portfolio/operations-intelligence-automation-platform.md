@@ -41,18 +41,19 @@ A synthetic service-operations dataset shows a sudden rise in delayed cases. Val
 | Item | Status |
 | --- | --- |
 | Public classification | Development case study |
-| Current artifact lineage | Version 0.2.0 / `OIAP-0.2.0-20260829-ENTERPRISEFOUNDATION1` |
-| Portfolio-foundation evidence | A 96-entry package has recorded passing ZIP integrity |
-| Static-site evidence | A 23-entry package has recorded passing ZIP integrity |
-| Accepted runnable baseline | Not registered |
+| Current exact-archive-qualified candidate | Version 0.2.1 / `OIAP-0.2.1-20260831-FIELDEVIDENCE1` |
+| Prior foundation | Version 0.2.0 retained as earlier package evidence |
+| Package inventory | 97 archive entries representing 93 indexed source files; separate static-site package with 23 entries |
+| Automated qualification | 26/26 application and security tests plus 24/24 platform tests passed in the reviewed candidate |
+| Support evidence | Exact-extracted manual support export completed with 19 items and passed archive integrity checks |
 | Operational source | Not published |
-| Promotion gate | Retrieve and verify the exact artifacts, establish canonical source authority, run the complete test and launcher paths, validate the synthetic dataset and governed measures, and complete native release acceptance |
+| Remaining promotion gate | Complete exact Windows launcher and dashboard acceptance, Norton/SmartScreen review, representative synthetic-data review, and field verification before promoting the candidate as known-good |
 
-The artifact records show meaningful packaging progress, but ZIP integrity alone does not establish that the application is a known-good public release.
+The candidate now has materially stronger archive, test, and support-export evidence than the earlier 0.2.0 foundation. It remains an exact-archive-qualified release candidate rather than a Windows/Norton-confirmed public release.
 
 ## Public boundary
 
-This page contains no production dataset, customer or employee record, metric result, private rule, alert, recommendation, workflow case, credential, source archive, support export, internal path, package digest, or organization identifier. It cannot ingest or act on a real operational system.
+This page contains no production dataset, customer or employee record, metric result, private rule, alert, recommendation, workflow case, credential, source archive, support export, internal path, private package digest, or organization identifier. It cannot ingest or act on a real operational system.
 
 ## What this demonstrates
 
@@ -60,10 +61,10 @@ This page contains no production dataset, customer or employee record, metric re
 - Preserving metric definitions and evidence from source through executive reporting.
 - Designing anomaly and recommendation systems that expose uncertainty.
 - Turning analytical output into governed workflow rather than disconnected advice.
-- Keeping package-integrity evidence separate from application-acceptance claims.
+- Keeping package-integrity evidence separate from Windows and production-acceptance claims.
 
 ## Limitations
 
-This is a product and reliability case study, not a deployed analytics platform. Data connectors, scale, model selection, threshold governance, workflow integration, access control, alerting, performance, and production acceptance require separate implementation evidence.
+This is a product and reliability case study, not a deployed analytics platform. Data connectors, scale, model selection, threshold governance, workflow integration, access control, alerting, performance, Windows behavior, endpoint-protection acceptance, and production deployment require separate implementation evidence.
 
 Copyright © 2026 Gateway Information Group LLC. All rights reserved.

@@ -2,7 +2,7 @@
 
 **Development case study — operational source not published.**
 
-Policy and Procedure Navigator is designed to help people find the controlling policy, understand the applicable procedure, and route unresolved questions to the right owner. The product direction emphasizes evidence-grounded answers, source citations, effective dates, version history, access boundaries, and controlled workflow handoff.
+Policy and Procedure Navigator is designed to help people find the controlling policy, understand the applicable procedure, and route unresolved questions to the right owner. The product direction emphasizes evidence-grounded answers, source citations, effective dates, version history, access boundaries, auditability, and controlled workflow handoff.
 
 ## Business problem
 
@@ -30,6 +30,7 @@ The intended navigator makes the evidence behind an answer visible and treats in
 - Low-confidence or incomplete evidence creates a clarification or escalation path.
 - Source changes can identify previously issued answers that require review.
 - Workflow handoff is durable and separate from answer generation.
+- One governed launcher owns the supported Windows entry path; support export is a distinct action rather than a duplicate launcher implementation.
 
 ## Synthetic scenario
 
@@ -40,23 +41,32 @@ A synthetic employee asks whether an approval is required for a type of request.
 | Item | Status |
 | --- | --- |
 | Public classification | Development case study |
-| Accepted working baseline | Not registered |
+| Current exact-package candidate | Version 0.3.2 / `PP-GKWA-0.3.2-B20260831-EXPORTENTRY1` |
+| Preserved rollback | Version 0.3.1 |
+| Package qualification | 92 distribution files; 80/80 managed identity checks; 67/67 automated tests; 5/5 synthetic golden evaluations |
+| Doctor | Ready in the reviewed package |
+| Data and audit health | SQLite schema 3, database quick check, and audit-chain validation passed in the reviewed package |
+| Runtime evidence | Governed export dispatch, a 19-item manual support export, HTTP liveness/readiness/status checks, and deterministic rebuild verification passed |
+| Consolidation evidence | Zero unresolved exact duplicate groups, case-colliding paths, symlinks, nested archives, or packaged bytecode in the reviewed candidate |
 | Operational source | Not published |
-| Promotion gate | Establish an accepted working or save-state package, verify grounded-answer behavior against a synthetic evaluation set, remove private policy content, and complete release acceptance |
+| Remaining promotion gate | Complete physical Windows launcher, Norton/SmartScreen, and exact-final-artifact acceptance before promoting 0.3.2 over the preserved rollback |
+
+The current candidate has substantially stronger package, evaluation, and export evidence than the earlier public description. It remains a candidate rather than a field-confirmed public release.
 
 ## Public boundary
 
-This page contains no private policy, procedure, employee question, access rule, credential, source archive, retrieval index, support export, internal path, or organization identifier. It cannot answer a real policy question or access a protected document collection.
+This page contains no private policy, procedure, employee question, access rule, credential, source archive, retrieval index, support export, internal path, organization identifier, private package digest, or operational implementation. It cannot answer a real policy question or access a protected document collection.
 
 ## What this demonstrates
 
 - Designing evidence-first knowledge retrieval rather than answer-only search.
 - Preserving version, authority, effective-date, and ownership context.
-- Treating uncertainty and conflict as workflow states rather than hidden model behavior.
+- Treating uncertainty and conflict as workflow states rather than hidden behavior.
 - Connecting governed knowledge to accountable review and exception handling.
+- Using deterministic evaluation, audit evidence, and package identity to qualify a candidate without overstating deployment status.
 
 ## Limitations
 
-This is a product and reliability case study, not a deployed knowledge assistant. Search quality, access control, citation accuracy, document parsing, evaluation coverage, privacy, retention, and organization-specific policy governance require separate implementation and acceptance evidence.
+This is a product and reliability case study, not a deployed knowledge assistant. Search quality, access control, citation accuracy, document parsing, evaluation coverage, privacy, retention, organization-specific policy governance, physical Windows behavior, and endpoint-protection acceptance require separate implementation and field evidence.
 
 Copyright © 2026 Gateway Information Group LLC. All rights reserved.

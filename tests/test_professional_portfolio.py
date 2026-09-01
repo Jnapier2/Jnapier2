@@ -76,6 +76,7 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         metadata = json.loads(
             (PORTFOLIO / "SHOWCASE_METADATA.json").read_text(encoding="utf-8")
         )
+        self.assertEqual(metadata["schema_version"], "1.3")
         self.assertEqual(metadata["classification"], "public")
         self.assertEqual(len(metadata["projects"]), 2)
         self.assertEqual(len(metadata["development_programs"]), 4)
@@ -121,10 +122,6 @@ class ProfessionalPortfolioTests(unittest.TestCase):
             "not included",
             governance["verification"]["frontend_toolchain_lock"],
         )
-        self.assertEqual(
-            governance["verification"]["version_0_2_1_windows_bat_execution"],
-            "not performed through Windows cmd.exe in the independent review environment",
-        )
 
         development = {
             item["id"]: item for item in metadata["development_programs"]
@@ -143,25 +140,69 @@ class ProfessionalPortfolioTests(unittest.TestCase):
             self.assertTrue((ROOT / item["case_study_path"]).is_file())
             self.assertTrue(item["required_gate"])
 
+        workflow = development["workflow-case-management-platform"]
+        self.assertEqual(workflow["version"], "0.4.1")
+        self.assertEqual(workflow["build"], "WCM-B006")
+        self.assertEqual(workflow["verification"]["active_bat_cmd_launchers"], 1)
+        self.assertEqual(workflow["verification"]["soak_fault_cases"], 120)
+        self.assertEqual(workflow["verification"]["soak_fault_workers"], 8)
+
+        policy = development["policy-procedure-navigator"]
+        self.assertEqual(policy["version"], "0.3.2")
+        self.assertEqual(
+            policy["build"], "PP-GKWA-0.3.2-B20260831-EXPORTENTRY1"
+        )
+        self.assertEqual(policy["verification"]["distribution_files"], 92)
+        self.assertEqual(policy["verification"]["managed_identity"], "80/80 pass")
+        self.assertEqual(policy["verification"]["automated_tests"], "67/67 pass")
+        self.assertEqual(
+            policy["verification"]["synthetic_golden_evaluations"], "5/5 pass"
+        )
+        self.assertEqual(policy["verification"]["doctor"], "ready")
+        self.assertEqual(
+            policy["verification"]["unresolved_exact_duplicate_groups"], 0
+        )
+
+        reliability = development[
+            "pc-reliability-incident-intelligence-suite"
+        ]
+        self.assertEqual(reliability["version"], "0.2.2")
+        self.assertEqual(reliability["build"], "PCRIIS-0.2.2-B20260831-01")
+        self.assertEqual(reliability["verification"]["automated_tests"], "83/83 pass")
+        self.assertEqual(
+            reliability["verification"]["managed_runtime_identity"], "94/94 pass"
+        )
+        self.assertEqual(reliability["verification"]["active_bat_cmd_launchers"], 1)
+        self.assertEqual(
+            reliability["verification"]["unresolved_exact_duplicate_groups"], 0
+        )
+        self.assertEqual(
+            reliability["verification"]["simulated_critical_export_items"], 20
+        )
+
         operations = development["operations-intelligence-automation-platform"]
-        self.assertEqual(operations["version"], "0.2.0")
+        self.assertEqual(operations["version"], "0.2.1")
         self.assertEqual(
-            operations["build"], "OIAP-0.2.0-20260829-ENTERPRISEFOUNDATION1"
+            operations["build"], "OIAP-0.2.1-20260831-FIELDEVIDENCE1"
+        )
+        self.assertEqual(operations["verification"]["archive_entries"], 97)
+        self.assertEqual(operations["verification"]["indexed_source_files"], 93)
+        self.assertEqual(operations["verification"]["static_site_entries"], 23)
+        self.assertEqual(
+            operations["verification"]["application_security_tests"], "26/26 pass"
         )
         self.assertEqual(
-            operations["artifact_evidence"]["portfolio_foundation_entries"], 96
+            operations["verification"]["platform_tests"], "24/24 pass"
         )
+
+        collection = metadata["collection_package"]
+        self.assertEqual(collection["version"], "0.3.0")
+        self.assertEqual(collection["archive_entries"], 112)
+        self.assertEqual(collection["active_launchers"], 1)
+        self.assertEqual(collection["intentional_duplicate_groups"], 7)
         self.assertEqual(
-            operations["artifact_evidence"]["static_site_entries"], 23
+            collection["unresolved_duplicate_implementation_groups"], 0
         )
-        self.assertEqual(
-            operations["artifact_evidence"]["portfolio_foundation_zip_integrity"],
-            "pass",
-        )
-        self.assertEqual(
-            operations["artifact_evidence"]["static_site_zip_integrity"], "pass"
-        )
-        self.assertIn("no accepted runnable", operations["evidence_class"])
 
     def test_case_studies_preserve_evidence_boundaries(self) -> None:
         contract = (PORTFOLIO / "data-contract-monitor.md").read_text(
@@ -192,7 +233,7 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         ):
             self.assertIn(marker, governance)
 
-    def test_development_pages_are_truthfully_labeled(self) -> None:
+    def test_development_pages_are_truthfully_labeled_and_current(self) -> None:
         for path in DEVELOPMENT_PAGES:
             text = path.read_text(encoding="utf-8")
             lower = text.lower()
@@ -207,16 +248,43 @@ class ProfessionalPortfolioTests(unittest.TestCase):
                 self.assertNotIn("production ready", lower)
                 self.assertNotIn("fully verified release", lower)
 
+        workflow = (PORTFOLIO / "workflow-case-management-platform.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("Version 0.4.1 / `WCM-B006`", workflow)
+        self.assertIn("Version 0.3.1 / `WCM-B004`", workflow)
+        self.assertIn("120 unique cases across eight workers", workflow)
+
+        policy = (PORTFOLIO / "policy-procedure-navigator.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("Version 0.3.2", policy)
+        self.assertIn("80/80 managed identity checks", policy)
+        self.assertIn("67/67 automated tests", policy)
+        self.assertIn("5/5 synthetic golden evaluations", policy)
+        self.assertIn("| Doctor | Ready in the reviewed package |", policy)
+
+        reliability = (
+            PORTFOLIO / "pc-reliability-incident-intelligence-suite.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("Version 0.2.2", reliability)
+        self.assertIn("83/83 automated tests", reliability)
+        self.assertIn("94/94 managed runtime-identity checks", reliability)
+        self.assertIn("Exactly one BAT/CMD launcher", reliability)
+        self.assertIn("simulated Critical export", reliability)
+
         operations = (
             PORTFOLIO / "operations-intelligence-automation-platform.md"
         ).read_text(encoding="utf-8")
-        self.assertIn(
-            "96-entry package has recorded passing ZIP integrity", operations
-        )
-        self.assertIn(
-            "23-entry package has recorded passing ZIP integrity", operations
-        )
-        self.assertIn("ZIP integrity alone does not establish", operations)
+        self.assertIn("Version 0.2.1", operations)
+        self.assertIn("97 archive entries", operations)
+        self.assertIn("26/26 application and security tests", operations)
+        self.assertIn("24/24 platform tests", operations)
+        self.assertIn("rather than a Windows/Norton-confirmed public release", operations)
+
+        overview = (PORTFOLIO / "README.md").read_text(encoding="utf-8")
+        self.assertIn("Doctor readiness", overview)
+        self.assertIn("a simulated bounded Critical export", overview)
 
     def test_profile_labels_every_development_program(self) -> None:
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
@@ -229,7 +297,7 @@ class ProfessionalPortfolioTests(unittest.TestCase):
 
     def test_public_marketing_leads_with_outcomes(self) -> None:
         overview = (PORTFOLIO / "README.md").read_text(encoding="utf-8")
-        opening = overview[:700].lower()
+        opening = overview[:800].lower()
         self.assertIn("practical tools", opening)
         self.assertNotIn("chatgpt", opening)
         self.assertNotIn("prompt", opening)
