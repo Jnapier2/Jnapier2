@@ -43,7 +43,7 @@
         "active_bat_cmd_launchers": 1,
         "doctor": "10/10 pass with no advisories",
         "database_quick_check": "pass",
-        "migration_head": "0003_governance",
+        "governance_migration": "current migration pass",
         "clean_release_requalification": "pass",
         "immediate_rollback": "0.2.2"
       },
