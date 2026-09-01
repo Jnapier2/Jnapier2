@@ -58,7 +58,7 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         metadata = json.loads(
             (PORTFOLIO / "SHOWCASE_METADATA.json").read_text(encoding="utf-8")
         )
-        self.assertEqual(metadata["schema_version"], "1.4")
+        self.assertEqual(metadata["schema_version"], "1.5")
         self.assertEqual(metadata["classification"], "public")
         self.assertEqual(len(metadata["projects"]), 5)
         self.assertEqual(len(metadata["held_programs"]), 1)
@@ -80,6 +80,19 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         self.assertEqual(governance["verification"]["managed_files_verified"], 140)
         self.assertEqual(governance["verification"]["source_tests_passed"], 84)
         self.assertEqual(governance["verification"]["typescript_build"], "pass")
+        self.assertEqual(governance["verification"]["windows_field_evidence"], "pass")
+        self.assertEqual(governance["verification"]["active_bat_cmd_launchers"], 1)
+        self.assertEqual(
+            governance["verification"]["doctor"],
+            "10/10 pass with no advisories",
+        )
+        self.assertEqual(governance["verification"]["database_quick_check"], "pass")
+        self.assertEqual(
+            governance["verification"]["governance_migration"],
+            "current migration pass",
+        )
+        self.assertNotIn("migration_head", governance["verification"])
+        self.assertEqual(governance["verification"]["immediate_rollback"], "0.2.2")
 
         workflow = by_id["workflow-case-management-platform"]
         self.assertEqual(workflow["version"], "0.5.2")
@@ -145,13 +158,21 @@ class ProfessionalPortfolioTests(unittest.TestCase):
             self.assertIn(marker, contract)
 
         for marker in (
+            "## Current verified save state",
             "Version | 0.3.0",
+            "Windows-working known-good save state",
             "84/84 source tests",
             "140/140 managed files",
+            "Doctor 10/10",
+            "Immediate rollback | Version 0.2.2",
             "Public case study; proprietary implementation",
             "## Evidence boundary",
         ):
             self.assertIn(marker, governance)
+        self.assertNotIn("0003_governance", governance)
+
+        overview = (PORTFOLIO / "README.md").read_text(encoding="utf-8")
+        self.assertIn("84/84 source tests", overview)
 
         self.assertIn("68 automated tests", workflow)
         self.assertIn("123/123 managed files", workflow)

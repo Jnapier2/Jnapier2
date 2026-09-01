@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.4",
+  "schema_version": "1.5",
   "classification": "public",
   "collection": "Professional Portfolio Programs",
   "publisher": "Gateway Information Group LLC",
@@ -34,19 +34,25 @@
       "build": "DGPLP-0.3.0-20260831-TRUSTOPS1",
       "case_study_path": "professional-portfolio/data-governance-lineage-portal.md",
       "source_rights": "proprietary first-party source; public case study only",
-      "evidence_class": "qualified release candidate with source, build, release-identity, Doctor, and benchmark gates",
+      "evidence_class": "Windows-working known-good save state with exact-release identity, Doctor, database, and clean-release requalification evidence",
       "verification": {
         "source_tests_passed": 84,
         "managed_files_verified": 140,
         "typescript_build": "pass",
-        "doctor": "pass",
-        "benchmark_100000_assets": "pass within documented regression budget"
+        "windows_field_evidence": "pass",
+        "active_bat_cmd_launchers": 1,
+        "doctor": "10/10 pass with no advisories",
+        "database_quick_check": "pass",
+        "governance_migration": "current migration pass",
+        "clean_release_requalification": "pass",
+        "immediate_rollback": "0.2.2"
       },
       "excluded_claims": [
         "production deployment",
         "enterprise single sign-on",
         "live PostgreSQL certification",
-        "high-availability worker architecture"
+        "high-availability worker architecture",
+        "public source availability"
       ]
     },
     {
