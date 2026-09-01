@@ -158,6 +158,7 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         self.assertEqual(
             policy["verification"]["synthetic_golden_evaluations"], "5/5 pass"
         )
+        self.assertEqual(policy["verification"]["doctor"], "ready")
         self.assertEqual(
             policy["verification"]["unresolved_exact_duplicate_groups"], 0
         )
@@ -174,6 +175,9 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         self.assertEqual(reliability["verification"]["active_bat_cmd_launchers"], 1)
         self.assertEqual(
             reliability["verification"]["unresolved_exact_duplicate_groups"], 0
+        )
+        self.assertEqual(
+            reliability["verification"]["simulated_critical_export_items"], 20
         )
 
         operations = development["operations-intelligence-automation-platform"]
@@ -258,6 +262,7 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         self.assertIn("80/80 managed identity checks", policy)
         self.assertIn("67/67 automated tests", policy)
         self.assertIn("5/5 synthetic golden evaluations", policy)
+        self.assertIn("| Doctor | Ready in the reviewed package |", policy)
 
         reliability = (
             PORTFOLIO / "pc-reliability-incident-intelligence-suite.md"
@@ -266,6 +271,7 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         self.assertIn("83/83 automated tests", reliability)
         self.assertIn("94/94 managed runtime-identity checks", reliability)
         self.assertIn("Exactly one BAT/CMD launcher", reliability)
+        self.assertIn("simulated Critical export", reliability)
 
         operations = (
             PORTFOLIO / "operations-intelligence-automation-platform.md"
@@ -275,6 +281,10 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         self.assertIn("26/26 application and security tests", operations)
         self.assertIn("24/24 platform tests", operations)
         self.assertIn("rather than a Windows/Norton-confirmed public release", operations)
+
+        overview = (PORTFOLIO / "README.md").read_text(encoding="utf-8")
+        self.assertIn("Doctor readiness", overview)
+        self.assertIn("a simulated bounded Critical export", overview)
 
     def test_profile_labels_every_development_program(self) -> None:
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
