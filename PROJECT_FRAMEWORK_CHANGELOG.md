@@ -1,5 +1,37 @@
 # Reliable Project Delivery Framework — Changelog
 
+## v1.7.0 — 2026-09-02
+
+**Source baseline:** ChatGPT New Thread Project Parameters v2.17.13
+
+This release brings the public framework forward to the current reviewed private
+baseline while preserving the public/private boundary.
+
+### Added
+
+- One active implementation per capability and one BAT/CMD filename per action.
+- A canonical action registry covering backend, arguments, outputs, risk,
+  consumers, and approved aliases.
+- Consumer-proof requirements for compatibility names and self-test rejection of
+  unexpected duplicate launchers or retired action routes.
+- An automatic Critical diagnostic path: immediate containment, minimal crash
+  capsule, and one isolated full Export20 attempt when safe.
+- Export-trigger deduplication, cooldown, same-computer locking, retention, and
+  recursion prevention.
+- Audience-facing copy and technical-evidence separation for public portfolios,
+  product pages, and releases.
+- Explicit tests that public claims remain tied to current lifecycle evidence.
+
+### Clarified
+
+- Export20 does not call network, API, Drive, document, repair, migration, or
+  managed-file rehash paths while handling a Critical event.
+- Historical existence alone does not justify a compatibility launcher.
+- Distinct privilege, recovery, format, platform, third-party, signed-history,
+  and user-owned boundaries may remain separate when documented.
+- Public copy may include necessary technical detail, disclosures, attribution,
+  and limitations without exposing private strategy or internal process.
+
 ## v1.6.0 — 2026-08-17
 
 **Source baseline:** ChatGPT New Thread Project Parameters v2.17.9

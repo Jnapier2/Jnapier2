@@ -12,8 +12,8 @@ except ModuleNotFoundError:
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PUBLIC_VERSION = "1.6.0"
-SOURCE_BASELINE = "ChatGPT New Thread Project Parameters v2.17.9"
+PUBLIC_VERSION = "1.7.0"
+SOURCE_BASELINE = "ChatGPT New Thread Project Parameters v2.17.13"
 PUBLIC_FILES = (
     ROOT / "PROJECT_FRAMEWORK.md",
     ROOT / "PROJECT_FRAMEWORK_CHECKLIST.md",
@@ -57,32 +57,62 @@ class ProjectFrameworkTests(unittest.TestCase):
         self.assertEqual(metadata["runtime_dependencies"], [])
         self.assertFalse(metadata["verification"]["package_claim"])
         self.assertFalse(metadata["verification"]["runtime_claim"])
+        self.assertEqual(len(metadata["highlights"]), 5)
 
         framework = (ROOT / "PROJECT_FRAMEWORK.md").read_text(encoding="utf-8")
+        checklist = (ROOT / "PROJECT_FRAMEWORK_CHECKLIST.md").read_text(
+            encoding="utf-8"
+        )
         changelog = (ROOT / "PROJECT_FRAMEWORK_CHANGELOG.md").read_text(
             encoding="utf-8"
         )
         self.assertIn(f"v{PUBLIC_VERSION}", framework)
-        self.assertIn(SOURCE_BASELINE, framework)
+        self.assertIn(f"v{PUBLIC_VERSION}", checklist)
         self.assertIn(f"v{PUBLIC_VERSION}", changelog)
+        self.assertIn(SOURCE_BASELINE, framework)
         self.assertIn(SOURCE_BASELINE, changelog)
+        self.assertNotIn(
+            "**Source baseline:** ChatGPT New Thread Project Parameters v2.17.9",
+            framework,
+        )
 
     def test_framework_contains_required_public_contracts(self) -> None:
         text = (ROOT / "PROJECT_FRAMEWORK.md").read_text(encoding="utf-8")
         required = (
             "## 1. Evidence and instruction order",
             "## 2. Scope, triage, and coverage",
-            "## 3. One canonical identity and a lean file surface",
+            "## 3. One canonical identity and a lean file-and-action surface",
             "## 4. Project-local and portable operation",
             "## 6. Critical input assurance",
             "## 7. Release identity before sensitive startup",
             "## 8. Independent operation across computers",
             "## 11. Privacy-conscious diagnostics and Export20",
-            "## 12. Program-specific risk controls",
-            "## 13. Verification and definition of done",
+            "## 12. Audience-facing copy and technical evidence",
+            "## 13. Program-specific risk controls",
+            "## 14. Verification and definition of done",
             "## Public boundary",
             "recognized → validated → mapped → exercised → confirmed",
-            "twenty high-value items",
+            "one BAT/CMD filename and one authoritative backend",
+            "current shortcut, task,",
+            "minimal crash capsule",
+            "one isolated full Export20",
+            "never prompts",
+            "Public-facing product and portfolio copy leads",
+        )
+        for marker in required:
+            self.assertIn(marker, text)
+
+    def test_checklist_enforces_new_release_boundaries(self) -> None:
+        text = (ROOT / "PROJECT_FRAMEWORK_CHECKLIST.md").read_text(encoding="utf-8")
+        required = (
+            "one BAT/CMD filename and one authoritative backend",
+            "current consumer or protected boundary",
+            "unexpected duplicate launchers",
+            "minimal crash capsule",
+            "Attempt only one isolated full Export20",
+            "Never prompt, recurse, call network/API/Drive/document services",
+            "Lead public copy with the audience, problem, outcome, and practical value",
+            "Verify every public claim against current evidence",
         )
         for marker in required:
             self.assertIn(marker, text)

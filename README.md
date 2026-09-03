@@ -20,7 +20,7 @@ I build practical tools that turn complex information and operating problems int
 
 ## Featured projects
 
-- **[Reliable Project Delivery Framework v1.6.0](PROJECT_FRAMEWORK.md)** — My public operating framework for evidence-first planning, lean project inventories, portable Windows delivery, critical-input assurance, release integrity, bounded recovery, privacy-conscious diagnostics, and truthful completion reporting.
+- **[Reliable Project Delivery Framework v1.7.0](PROJECT_FRAMEWORK.md)** — My public operating framework for evidence-first planning, one active implementation per capability, portable Windows delivery, critical-input assurance, release integrity, bounded recovery, privacy-conscious diagnostics, and truthful public communication.
 - **[BotOps Manager](https://github.com/Jnapier2/botops-manager)** — A local Windows operations console for launching, monitoring, stopping, and reviewing independent automation projects. [Reliability case study](https://github.com/Jnapier2/automation-reliability-case-studies/blob/main/docs/botops-control-plane-cohesion.md).
 - **[Digital Asset Governance Audit](https://github.com/Jnapier2/digital-asset-governance-case-study)** — A synthetic-data case study that turns metadata quality, provenance, confidence, and duplicate signals into a prioritized stewardship queue.
 - **[MediaTaggerBot](https://github.com/Jnapier2/media-tagger-bot)** — Organizes media libraries through evidence-based matching, reviewable changes, verified renames, and rollback records.

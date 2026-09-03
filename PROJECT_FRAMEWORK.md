@@ -1,7 +1,7 @@
 # Reliable Project Delivery Framework
 
-**Public edition:** v1.6.0  
-**Source baseline:** ChatGPT New Thread Project Parameters v2.17.9  
+**Public edition:** v1.7.0  
+**Source baseline:** ChatGPT New Thread Project Parameters v2.17.13  
 **Status:** Current public principles  
 **Owner:** Gateway Information Group LLC
 
@@ -28,7 +28,7 @@ is in [metadata](PROJECT_FRAMEWORK_METADATA.json).
 
 ```mermaid
 flowchart LR
-    A["Establish authority and scope"] --> B["Inventory and plan"]
+    A["Establish authority and scope"] --> B["Inventory files and actions"]
     B --> C["Repair or implement"]
     C --> D["Verify critical behavior"]
     D --> E{"Evidence sufficient?"}
@@ -65,31 +65,41 @@ preserved, deferred, blocked, not found, or left unresolved. Finalization time
 is reserved for saving, packaging, high-value checks, rollback evidence, and an
 honest completion report.
 
-## 3. One canonical identity and a lean file surface
+## 3. One canonical identity and a lean file-and-action surface
 
-Each project keeps one canonical name, one stable execution namespace, and one
-primary entrypoint. Versions and build identifiers belong in metadata and
-release records rather than in everyday launcher names. Historical names may
-remain as documented aliases or logic-free forwarding shims.
+Each project keeps one canonical human-facing name, one stable execution
+namespace, and one primary entrypoint. Versions and build identifiers belong in
+metadata and release records rather than everyday launcher names. Historical
+names remain aliases only when they serve a current, documented need.
 
 A deep cleanup or lean-release review starts with one reconciled inventory of
-every retained file. The inventory records relative path, type, size or hash,
-purpose, producer and consumer, references, lifecycle, lineage, and ownership.
+every retained file and action. The inventory records relative path, type, size
+or hash, purpose, producer and consumer, references, lifecycle, lineage, and
+ownership.
 
 - Exact duplicates are grouped by content hash.
 - Functional overlap is evaluated by behavior, inputs, outputs, side effects,
   and references—not filename similarity alone.
-- Each needed capability keeps one canonical source or implementation.
-- Safe variants are parameterized where practical.
-- Compatibility names remain only as thin forwarders when users or automation
-  still depend on them.
+- Each needed capability keeps one active implementation.
+- Each user action keeps one BAT/CMD filename and one authoritative backend.
+- The action registry records the action ID, backend, arguments or environment,
+  outputs, risk, current consumers, and approved aliases.
+- Menu, command-line, shortcut, and automation routes call the canonical action
+  instead of copying its logic.
+- A compatibility alias requires evidence of a current shortcut, task,
+  integration, dependency-bound name, signed-history boundary, or explicit user
+  requirement. Historical existence alone is not sufficient.
+- Approved aliases are logic-free forwarders whose target, argument forwarding,
+  and exit code are tested.
+- Self-test fails when an unexpected duplicate action launcher or retired action
+  route returns to the active package.
 
 Unique data or behavior, meaningful privilege or risk boundaries, different
 modes or outputs, platform or format needs, failure isolation, third-party
 requirements, signed or checksum-verified artifacts, rollback evidence, and
 user-owned files remain separate when justified.
 
-Before a file is merged, archived, or retired, code imports and calls,
+Before a file or route is merged, archived, or retired, code imports and calls,
 launchers, shortcuts, scheduled tasks, automation, configuration schemas,
 documentation, tests, and output consumers are mapped. Unknown or user-created
 files are never silently deleted. The final ledger reports actions, exceptions,
@@ -191,15 +201,46 @@ a separately reviewed mechanism.
 ## 11. Privacy-conscious diagnostics and Export20
 
 Support evidence is bounded, redacted, deterministic, read-only, and reviewable.
-An Export20 package contains no more than twenty high-value items. It is built in
-a project-local temporary location, integrity-tested, and atomically finalized.
+An Export20 package contains no more than twenty high-value items. It is staged
+in project-local temporary storage on the same volume, integrity-tested, and
+atomically finalized.
 
 The exporter serializes previously collected and sanitized evidence; it does not
-perform live network calls, platform writes, or invasive discovery merely to
-fill missing diagnostic fields. Failures and omissions are recorded without
-silently dropping the minimum recovery evidence.
+perform live network or API calls, platform or Drive writes, document crawling,
+repairs, migrations, managed-file rehashes, or invasive discovery merely to fill
+missing diagnostic fields. Collector failures and omissions are recorded
+without silently dropping the minimum recovery evidence.
 
-## 12. Program-specific risk controls
+After immediate safety containment, a terminal Critical failure may trigger an
+automatic diagnostic path:
+
+1. Atomically write a minimal crash capsule from bounded evidence already in
+   memory or on disk.
+2. Attempt one isolated full Export20 only when process state, storage, and the
+   shutdown budget remain usable.
+3. Preserve the capsule and exact failure reason when full export cannot finish.
+
+The Critical path never prompts, never delays an emergency shutdown, and never
+recursively triggers itself. Trigger fingerprints, cooldowns, bounded buffers,
+a same-computer exporter lock, and retention limits prevent duplicate or
+runaway exports while preserving Critical and known-good evidence.
+
+## 12. Audience-facing copy and technical evidence
+
+Public-facing product and portfolio copy leads with the audience, problem,
+outcome, practical value, and truthful evidence. It avoids private prompts,
+parameter-ingestion details, tool orchestration, backend strategy, drafting
+process, and other internal implementation context unless that detail is
+requested or necessary for trust, safety, attribution, or correct use.
+
+Technical evidence remains available in clearly labeled architecture,
+verification, release, security, limitation, and recovery sections. Marketing
+copy does not invent capabilities, testimonials, results, scarcity, guarantees,
+or implementation status, and it does not promote a candidate beyond its
+verified evidence. Required disclosures, licenses, third-party attribution, and
+material limitations remain visible.
+
+## 13. Program-specific risk controls
 
 Long-running bots, miners, and trading systems add controls appropriate to their
 risk.
@@ -219,7 +260,7 @@ Public editions of credentialed, financial, mining, security, or administrative
 projects are sanitized separately from the owner-operated package. A public
 version does not inherit private release authority merely by sharing a name.
 
-## 13. Verification and definition of done
+## 14. Verification and definition of done
 
 Verification covers the useful minimum for the project:
 
@@ -227,11 +268,14 @@ Verification covers the useful minimum for the project:
 - launch from an unrelated working directory;
 - root and effective output locations;
 - configuration and critical-input behavior;
+- action-registry coverage, one backend per action, and approved alias behavior;
 - relevant duplicate-instance handling;
 - migration, move, rename, fresh-extract, or repair behavior when applicable;
 - sensitive-startup integrity gates when applicable;
-- bounded retries, shutdown, state recovery, logs, diagnostics, and export;
+- bounded retries, shutdown, state recovery, logs, diagnostics, manual Export20,
+  and the Critical crash-capsule/export path where implemented;
 - dependency, metadata, license, and public-sanitization checks;
+- audience-facing claims against their technical evidence;
 - exact artifact or source-tree identity after packaging or publication.
 
 A substantial deliverable is complete only when required checks ran or are
@@ -239,17 +283,18 @@ clearly marked not run. Reports distinguish verified work from rushed,
 unverified, deferred, blocked, skipped, or not-found work. Untested computers,
 platforms, and artifacts are never described as passing.
 
-## 14. Maintenance and change impact
+## 15. Maintenance and change impact
 
 When behavior changes, update only the affected version and package identity,
-file inventory or manifest, output contract, dependency record, changelog,
-runbook, diagnostics, known-good record, transfer notes, tests, and public
-metadata.
+file or action inventory, manifest, output contract, dependency record,
+changelog, runbook, diagnostics, known-good record, transfer notes, tests, and
+public metadata.
 
 Each invariant has one authoritative home. Other files reference that source
-instead of repeating rules until they drift. New files, menus, commands, and
-checker stacks require a distinct purpose. Backward-compatible changes are
-preferred where they do not preserve unsafe behavior.
+instead of repeating rules until they drift. New files, menus, commands,
+launchers, aliases, and checker stacks require a distinct purpose.
+Backward-compatible changes are preferred where they do not preserve unsafe
+behavior.
 
 ## Public boundary
 

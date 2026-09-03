@@ -6,6 +6,7 @@ import re
 SENSITIVE_PATTERNS = {
     "personal_windows_path": re.compile(r"[A-Za-z]:\\Users\\", re.IGNORECASE),
     "unix_home_path": re.compile(r"/home/[A-Za-z0-9._-]+", re.IGNORECASE),
+    "macos_home_path": re.compile(r"/Users/[A-Za-z0-9._-]+", re.IGNORECASE),
     "private_drive_url": re.compile(r"https://(?:drive|docs)\.google\.com/", re.IGNORECASE),
     "internal_project_id": re.compile(r"\bg-p-[a-f0-9]{12,}\b", re.IGNORECASE),
     "openai_key": re.compile(r"\bsk-(?:proj-)?[A-Za-z0-9_-]{16,}\b"),
@@ -24,19 +25,27 @@ SENSITIVE_PATTERNS = {
         r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"
     ),
     "private_digest": re.compile(r"\b[a-fA-F0-9]{64}\b"),
+    "raw_ipv4_address": re.compile(
+        r"(?<![\d.])(?:25[0-5]|2[0-4]\d|1?\d?\d)"
+        r"(?:\.(?:25[0-5]|2[0-4]\d|1?\d?\d)){3}(?![\d.])"
+    ),
     "internal_vault": re.compile(r"ChatGPT_Project_Vault", re.IGNORECASE),
     "private_prompt_file": re.compile(
         r"(?:GLOBAL_CUSTOM_INSTRUCTIONS|PASTE_THIS_IN_NEW_THREAD|PASTE_THIS_DURING_THREAD_UPGRADE)",
         re.IGNORECASE,
     ),
     "operational_secret_assignment": re.compile(
-        r"(?i)\b(?:"
+        r"(?ix)\b(?:"
         r"api[_ -]?key|api[_ -]?secret|private[_ -]?key|wallet|password|token|"
         r"aws[_ -]?(?:access[_ -]?key[_ -]?id|secret[_ -]?access[_ -]?key|session[_ -]?token)|"
         r"github[_ -]?token|gitlab[_ -]?token|openai[_ -]?api[_ -]?key|"
         r"slack[_ -]?(?:app[_ -]?token|bot[_ -]?token|user[_ -]?token)|"
         r"npm[_ -]?token|pypi[_ -]?token"
-        r")\b\s*[:=]\s*[\"']?[^\s\"']{8,}"
+        r")\b\s*[:=]\s*(?:"
+        r"\"(?:\\.|[^\"\r\n])+\"|"
+        r"'(?:\\.|[^'\r\n])+'|"
+        r"[^\s,;}\]\r\n]+"
+        r")"
     ),
 }
 
@@ -66,5 +75,17 @@ CREDENTIAL_FIXTURES = {
     "operational_secret_assignment": (
         "AWS_SECRET_ACCESS_KEY=" + "A" * 40,
         "SLACK_APP_TOKEN=" + "A" * 24,
+        "password=hunter2",
+        "token=secret",
+        "password=\"my pass\"",
+        "api_key='x'",
     ),
+}
+
+
+PRIVATE_PATH_FIXTURES = {
+    "personal_windows_path": (r"C:\Users\example-user\private-project",),
+    "unix_home_path": ("/home/example-user/private-project",),
+    "macos_home_path": ("/Users/example-user/private-project",),
+    "raw_ipv4_address": ("192.0.2.42",),
 }

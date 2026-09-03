@@ -5,10 +5,15 @@ import unittest
 try:
     from tests.public_sanitization_patterns import (
         CREDENTIAL_FIXTURES,
+        PRIVATE_PATH_FIXTURES,
         SENSITIVE_PATTERNS,
     )
 except ModuleNotFoundError:
-    from public_sanitization_patterns import CREDENTIAL_FIXTURES, SENSITIVE_PATTERNS
+    from public_sanitization_patterns import (
+        CREDENTIAL_FIXTURES,
+        PRIVATE_PATH_FIXTURES,
+        SENSITIVE_PATTERNS,
+    )
 
 
 class PublicSanitizationPatternTests(unittest.TestCase):
@@ -19,12 +24,21 @@ class PublicSanitizationPatternTests(unittest.TestCase):
                 with self.subTest(pattern=label, value_prefix=value[:12]):
                     self.assertIsNotNone(pattern.search(value))
 
+    def test_private_path_and_address_formats_are_detected(self) -> None:
+        for label, values in PRIVATE_PATH_FIXTURES.items():
+            pattern = SENSITIVE_PATTERNS[label]
+            for value in values:
+                with self.subTest(pattern=label, value=value):
+                    self.assertIsNotNone(pattern.search(value))
+
     def test_benign_public_language_does_not_match_credentials(self) -> None:
         safe_examples = (
             "Use a secret manager and keep credentials out of public files.",
             "The AWS access-key field is intentionally blank.",
             "GitHub tokens are never included in support exports.",
             "Slack integration remains an optional deployment responsibility.",
+            "Passwords must never be committed.",
+            "The example uses a loopback endpoint without publishing an address.",
         )
         credential_labels = tuple(CREDENTIAL_FIXTURES)
         for text in safe_examples:

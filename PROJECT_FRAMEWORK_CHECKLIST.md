@@ -1,6 +1,6 @@
 # Reliable Project Delivery Framework — Implementation Checklist
 
-**Public edition:** v1.6.0  
+**Public edition:** v1.7.0  
 **Use:** Apply the sections that match the project's purpose and risk. Do not
 turn a small read-only task into a heavyweight release process.
 
@@ -12,13 +12,18 @@ turn a small read-only task into a heavyweight release process.
 - [ ] For broad work, create a coverage ledger with no silent omissions.
 - [ ] Reserve time for final checks, packaging, rollback, and the completion report.
 
-## File surface and project identity
+## File, action, and project identity
 
-- [ ] Keep one canonical execution namespace and one primary entrypoint.
-- [ ] Inventory every retained file before a deep cleanup or lean release.
+- [ ] Keep one canonical human-facing name, one execution namespace, and one primary entrypoint.
+- [ ] Inventory every retained file and visible action before a deep cleanup or lean release.
 - [ ] Group exact duplicates by hash and functional overlap by behavior.
-- [ ] Keep one canonical implementation for each required capability.
-- [ ] Parameterize safe variants; retain compatibility names only as thin forwarders.
+- [ ] Keep one active implementation for each required capability.
+- [ ] Keep one BAT/CMD filename and one authoritative backend for each user action.
+- [ ] Record action ID, backend, arguments or environment, outputs, risk, consumers, and aliases.
+- [ ] Make menus, command-line routes, shortcuts, and automation call the canonical action.
+- [ ] Retain an alias only when a current consumer or protected boundary is proven.
+- [ ] Keep approved aliases logic-free and test target, argument forwarding, and exit code.
+- [ ] Make self-test reject unexpected duplicate launchers and retired action routes.
 - [ ] Preserve unique, third-party, signed, historical, rollback, evidence, and user-owned assets.
 - [ ] Map imports, launchers, automation, config, docs, tests, and outputs before retirement.
 - [ ] Record keep, merge, parameterize, forward, archive, remove, and unresolved decisions.
@@ -61,8 +66,23 @@ turn a small read-only task into a heavyweight release process.
 
 - [ ] Use cached, sanitized evidence; do not perform live actions during export.
 - [ ] Limit Export20 to twenty or fewer high-value, redacted, read-only items.
-- [ ] Build in project-local temp, test archive integrity, then finalize atomically.
+- [ ] Stage on the same volume in project-local temp, test integrity, then finalize atomically.
 - [ ] Record collector failures and omissions without losing minimum recovery evidence.
+- [ ] For a terminal Critical failure, contain the risk before diagnostic work.
+- [ ] Atomically write a minimal crash capsule from bounded existing evidence.
+- [ ] Attempt only one isolated full Export20 when storage, process state, and shutdown budget allow.
+- [ ] Never prompt, recurse, call network/API/Drive/document services, repair, migrate, or rehash the managed package during the Critical export path.
+- [ ] Deduplicate by run and fingerprint, enforce cooldown and retention, and use only a same-computer exporter lock.
+- [ ] Record trigger, timing, result, path, hash, fallback, and suppression counts.
+
+## Audience-facing copy and technical evidence
+
+- [ ] Lead public copy with the audience, problem, outcome, and practical value.
+- [ ] Keep private prompts, orchestration, backend strategy, and drafting process out of public copy.
+- [ ] Put versions, architecture, verification, limitations, recovery, and security detail in a clearly labeled technical layer.
+- [ ] Preserve required disclosures, attribution, licenses, and material limitations.
+- [ ] Do not invent capabilities, metrics, results, testimonials, guarantees, or release status.
+- [ ] Verify every public claim against current evidence before publication.
 
 ## Program-specific controls
 
@@ -75,7 +95,10 @@ turn a small read-only task into a heavyweight release process.
 - [ ] Test the canonical entrypoint from an unrelated working directory.
 - [ ] Confirm effective root, outputs, logs, diagnostics, and recovery locations.
 - [ ] Exercise critical inputs and relevant migration, move, rename, and repair paths.
+- [ ] Verify action-registry coverage, approved aliases, and rejection of returned duplicates.
+- [ ] Test manual Export20 and the Critical capsule/export path when implemented.
 - [ ] Run sensitive-startup, dependency, license, metadata, and public-sanitization checks where applicable.
+- [ ] Compare audience-facing claims with technical evidence and lifecycle status.
 - [ ] Preserve the known-good rollback and exact tested source or artifact identity.
 - [ ] Report changed, reviewed, verified, unverified, deferred, blocked, skipped, and not-found work.
 - [ ] Never claim an untested computer, platform, package, or public release passed.
