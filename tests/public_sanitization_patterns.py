@@ -5,9 +5,9 @@ import re
 
 
 class _SecretAssignmentDetector:
-    """Find same-line credential assignments while allowing explicit empty sentinels."""
+    """Find credential assignments without crossing lines or flagging redacted placeholders."""
 
-    _candidate = re.compile(
+    _assignment = re.compile(
         r"""(?ix)
         (?<![A-Za-z0-9_])
         (?P<key_quote>["']?)
@@ -32,17 +32,14 @@ class _SecretAssignmentDetector:
         )
         (?P=key_quote)
         [ \t]*[:=][ \t]*
-        (?P<value>
-            "(?:\\.|[^"\r\n])*"
-            | '(?:\\.|[^'\r\n])*'
-            | \$\{[A-Za-z_][A-Za-z0-9_]*\}
-            | \$[A-Za-z_][A-Za-z0-9_]*
-            | %[A-Za-z_][A-Za-z0-9_]*%
-            | \$?\{\{[ \t]*[A-Za-z_][A-Za-z0-9_.-]*[ \t]*\}\}
-            | <[^<>\r\n]+>
-            | [^\s,;}\]\r\n#]+
-        )
+        (?P<value>[^\r\n]*)
         """
+    )
+    _quoted_value = re.compile(
+        r"^(?P<value>\"(?:\\.|[^\"\r\n])*\"|'(?:\\.|[^'\r\n])*')"
+    )
+    _block_indicator = re.compile(
+        r"^[|>](?:(?:[1-9][+-]?)|(?:[+-][1-9]?)|)?[ \t]*(?:#.*)?$"
     )
     _bare_sentinels = {
         "null",
@@ -80,8 +77,35 @@ class _SecretAssignmentDetector:
     )
 
     @classmethod
-    def _is_nonsecret_sentinel(cls, raw_value: str) -> bool:
+    def _strip_scalar_tail(cls, raw_value: str) -> str:
         value = raw_value.strip()
+        if not value or value.startswith("#"):
+            return ""
+
+        quoted = cls._quoted_value.match(value)
+        if quoted:
+            return quoted.group("value")
+
+        value = re.sub(r"[ \t]+#.*$", "", value).strip()
+        if not value:
+            return ""
+
+        no_trailing_separator = value.rstrip(",;").rstrip()
+        if any(
+            pattern.fullmatch(no_trailing_separator)
+            for pattern in cls._placeholder_patterns
+        ):
+            return no_trailing_separator
+
+        value = re.split(r"[,;]", value, maxsplit=1)[0].rstrip()
+        return value.rstrip("}]").rstrip()
+
+    @classmethod
+    def _is_nonsecret_scalar(cls, raw_value: str) -> bool:
+        value = cls._strip_scalar_tail(raw_value)
+        if not value:
+            return True
+
         quoted = (
             len(value) >= 2
             and value[0] == value[-1]
@@ -93,29 +117,85 @@ class _SecretAssignmentDetector:
                 return True
         elif value.casefold() in cls._bare_sentinels:
             return True
+
         return any(pattern.fullmatch(value) for pattern in cls._placeholder_patterns)
 
+    @staticmethod
+    def _indent_width(line: str) -> int:
+        prefix = line[: len(line) - len(line.lstrip(" \t"))]
+        return sum(4 if character == "\t" else 1 for character in prefix)
+
+    @classmethod
+    def _block_is_nonsecret(cls, lines: list[str], line_index: int) -> bool:
+        base_indent = cls._indent_width(lines[line_index])
+        values: list[str] = []
+        for following in lines[line_index + 1 :]:
+            if not following.strip():
+                continue
+            if cls._indent_width(following) <= base_indent:
+                break
+            values.append(following.strip())
+
+        return not values or all(cls._is_nonsecret_scalar(value) for value in values)
+
     def search(self, text: str) -> re.Match[str] | None:
-        for match in self._candidate.finditer(text):
-            if not self._is_nonsecret_sentinel(match.group("value")):
-                return match
+        lines = text.splitlines()
+        for line_index, line in enumerate(lines):
+            for match in self._assignment.finditer(line):
+                value = match.group("value")
+                if self._block_indicator.fullmatch(value.strip()):
+                    if not self._block_is_nonsecret(lines, line_index):
+                        return match
+                elif not self._is_nonsecret_scalar(value):
+                    return match
         return None
 
 
-class _IPv6AddressDetector:
-    """Recognize raw IPv6 literals without treating ordinary colon text as an address."""
+class _IPv4AddressDetector:
+    """Detect raw IPv4 addresses while excluding explicit four-part versions."""
 
     _candidate = re.compile(
-        r"(?<![A-Za-z0-9])\[?[0-9A-Fa-f:]{2,45}\]?(?:/[0-9]{1,3})?(?![A-Za-z0-9])"
+        r"(?<![\d.])(?:25[0-5]|2[0-4]\d|1?\d?\d)"
+        r"(?:\.(?:25[0-5]|2[0-4]\d|1?\d?\d)){3}(?![\d.])"
+    )
+    _version_context = re.compile(
+        r"(?i)(?:\b(?:version|ver|build|release)[ \t:=_-]*|(?<![A-Za-z0-9_])v[ \t]*)$"
     )
 
     def search(self, text: str) -> re.Match[str] | None:
         for match in self._candidate.finditer(text):
+            prefix = text[max(0, match.start() - 32) : match.start()]
+            if self._version_context.search(prefix):
+                continue
+            return match
+        return None
+
+
+class _IPv6AddressDetector:
+    """Detect raw IPv6 literals, including bracketed scoped endpoint forms."""
+
+    _bracketed = re.compile(
+        r"\[(?P<address>[0-9A-Fa-f:.]+)(?:%(?:25)?[A-Za-z0-9_.~-]+)?\]"
+        r"(?::[0-9]{1,5})?"
+    )
+    _plain = re.compile(
+        r"(?<![A-Za-z0-9])"
+        r"(?P<address>(?:[0-9A-Fa-f]{0,4}:){2,}[0-9A-Fa-f:.]{0,39})"
+        r"(?:%[A-Za-z0-9_.~-]+)?(?:/[0-9]{1,3})?"
+        r"(?![A-Za-z0-9])"
+    )
+
+    def search(self, text: str) -> re.Match[str] | None:
+        matches = sorted(
+            [*self._bracketed.finditer(text), *self._plain.finditer(text)],
+            key=lambda match: match.start(),
+        )
+        for match in matches:
             token = match.group(0)
-            if token.startswith("[") and "]" in token:
-                address = token[1 : token.index("]")]
+            if token.startswith("["):
+                address = token[1 : token.index("]")].split("%", 1)[0]
             else:
-                address = token.split("/", 1)[0]
+                address = token.split("/", 1)[0].split("%", 1)[0]
             try:
                 parsed = ipaddress.IPv6Address(address)
             except ValueError:
@@ -148,10 +228,7 @@ SENSITIVE_PATTERNS = {
         r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"
     ),
     "private_digest": re.compile(r"\b[a-fA-F0-9]{64}\b"),
-    "raw_ipv4_address": re.compile(
-        r"(?<![\d.])(?:25[0-5]|2[0-4]\d|1?\d?\d)"
-        r"(?:\.(?:25[0-5]|2[0-4]\d|1?\d?\d)){3}(?![\d.])"
-    ),
+    "raw_ipv4_address": _IPv4AddressDetector(),
     "raw_ipv6_address": _IPv6AddressDetector(),
     "internal_vault": re.compile(r"ChatGPT_Project_Vault", re.IGNORECASE),
     "private_prompt_file": re.compile(
@@ -194,6 +271,11 @@ CREDENTIAL_FIXTURES = {
         '"password": "hunter2"',
         "'api_key': 'x'",
         '{"token":"secret"}',
+        "password=$PASSWORD-hunter2",
+        "token=${TOKEN}secret",
+        "api_key=%KEY%actual",
+        "password: |\n  hunter2",
+        "token: >-\n  secret",
     ),
 }
 
@@ -202,8 +284,13 @@ PRIVATE_PATH_FIXTURES = {
     "personal_windows_path": (r"C:\Users\example-user\private-project",),
     "unix_home_path": ("/home/example-user/private-project",),
     "macos_home_path": ("/Users/example-user/private-project",),
-    "raw_ipv4_address": ("192.0.2.42",),
-    "raw_ipv6_address": ("fd00::1234", "2001:4860:4860::8888"),
+    "raw_ipv4_address": ("192.0.2.42", "http://192.168.1.2:8080/"),
+    "raw_ipv6_address": (
+        "fd00::1234",
+        "2001:4860:4860::8888",
+        "[fe80::1%eth0]",
+        "http://[fe80::1%25eth0]:8080/",
+    ),
 }
 
 
@@ -217,4 +304,17 @@ SAFE_ASSIGNMENT_FIXTURES = (
     'password: ""',
     "password: # intentionally blank",
     "password: REDACTED",
+    "password: |\n  REDACTED",
+    "token: >-\n  ${TOKEN}",
+)
+
+
+SAFE_ADDRESS_FIXTURES = (
+    "version 1.2.3.4",
+    "v1.2.3.4",
+    "Version: 10.20.30.40",
+    "build 1.2.3.4",
+    "release_1.2.3.4",
+    "http://[::1]:8080/",
+    "::",
 )
