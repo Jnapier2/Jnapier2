@@ -5,7 +5,7 @@ import re
 
 
 class _SecretAssignmentDetector:
-    """Find credential assignments without crossing lines or flagging redacted placeholders."""
+    """Find credential assignments without crossing lines or flagging safe placeholders."""
 
     _key = re.compile(
         r"""(?ix)
@@ -35,7 +35,7 @@ class _SecretAssignmentDetector:
         """
     )
     _quoted_value = re.compile(
-        r'^(?P<value>"(?:\\.|[^"\r\n])*"|\'(?:\\.|[^\'\r\n])*\')'
+        r"""^(?P<value>"(?:\\.|[^"\r\n])*"|'(?:\\.|[^'\r\n])*')"""
     )
     _block_indicator = re.compile(
         r"^[|>](?:(?P<indent_first>[1-9])(?P<chomp_after>[+-])?"
@@ -43,8 +43,8 @@ class _SecretAssignmentDetector:
         r"[ \t]*(?:#.*)?$"
     )
     _next_field = re.compile(
-        r'^,[ \t]*(?:(?:["\'][^"\'\r\n]+["\'])|'
-        r'(?:[A-Za-z_][A-Za-z0-9_. -]*))[ \t]*:'
+        r"""^,[ \t]*(?:(?:["'][^"'\r\n]+["'])|"""
+        r"""(?:[A-Za-z_][A-Za-z0-9_. -]*))[ \t]*:"""
     )
     _bare_sentinels = {
         "null",
@@ -89,8 +89,39 @@ class _SecretAssignmentDetector:
             pattern.fullmatch(normalized) for pattern in cls._placeholder_patterns
         )
 
+    @staticmethod
+    def _inside_flow_mapping(prefix: str) -> bool:
+        """Return True when the key begins inside an unmatched ``{...}`` map."""
+        stack: list[str] = []
+        quote: str | None = None
+        escaped = False
+        for character in prefix:
+            if quote is not None:
+                if escaped:
+                    escaped = False
+                elif character == "\\":
+                    escaped = True
+                elif character == quote:
+                    quote = None
+                continue
+            if character in {'"', "'"}:
+                quote = character
+            elif character in "{[":
+                stack.append(character)
+            elif character == "}" and stack and stack[-1] == "{":
+                stack.pop()
+            elif character == "]" and stack and stack[-1] == "[":
+                stack.pop()
+        return "{" in stack
+
     @classmethod
-    def _is_structured_tail(cls, tail: str, separator: str) -> bool:
+    def _is_structured_tail(
+        cls,
+        tail: str,
+        separator: str,
+        *,
+        flow_mapping: bool,
+    ) -> bool:
         if not tail:
             return True
 
@@ -101,9 +132,7 @@ class _SecretAssignmentDetector:
         normalized = tail.lstrip()
         if not normalized:
             return True
-        if normalized.startswith("#"):
-            return False
-        if separator != ":":
+        if normalized.startswith("#") or separator != ":" or not flow_mapping:
             return False
         if re.fullmatch(r",?[ \t]*(?:#.*)?", normalized):
             return True
@@ -112,7 +141,13 @@ class _SecretAssignmentDetector:
         return bool(cls._next_field.match(normalized))
 
     @classmethod
-    def _is_nonsecret_scalar(cls, raw_value: str, separator: str) -> bool:
+    def _is_nonsecret_scalar(
+        cls,
+        raw_value: str,
+        separator: str,
+        *,
+        flow_mapping: bool = False,
+    ) -> bool:
         value = raw_value.strip()
         if not value or value.startswith("#"):
             return True
@@ -120,7 +155,11 @@ class _SecretAssignmentDetector:
         quoted = cls._quoted_value.match(value)
         if quoted:
             token = quoted.group("value")
-            if not cls._is_structured_tail(value[quoted.end() :], separator):
+            if not cls._is_structured_tail(
+                value[quoted.end() :],
+                separator,
+                flow_mapping=flow_mapping,
+            ):
                 return False
             return cls._is_safe_token(token[1:-1], quoted=True)
 
@@ -130,11 +169,14 @@ class _SecretAssignmentDetector:
         if cls._is_safe_token(value):
             return True
 
-        if separator == ":":
+        if separator == ":" and flow_mapping:
             comma = value.find(",")
-            if comma >= 0 and cls._is_structured_tail(value[comma:], separator):
-                if cls._is_safe_token(value[:comma]):
-                    return True
+            if comma >= 0 and cls._is_structured_tail(
+                value[comma:],
+                separator,
+                flow_mapping=True,
+            ):
+                return cls._is_safe_token(value[:comma])
 
             trimmed = value
             while trimmed.endswith(("}", "]")):
@@ -153,19 +195,26 @@ class _SecretAssignmentDetector:
     def _column_width(prefix: str) -> int:
         return sum(4 if character == "\t" else 1 for character in prefix)
 
+    @staticmethod
+    def _is_sequence_indicator(value: str) -> bool:
+        return value == "-" or value.startswith("- ")
+
     @classmethod
     def _continuation_line_is_nonsecret(cls, line: str) -> bool:
         value = line.strip()
         if not value or value.startswith("#"):
             return True
 
-        # YAML sequence items can carry an otherwise ordinary scalar value.
-        while value.startswith("- "):
-            value = value[2:].lstrip()
+        # Sequence markers are structure outside block scalars. Repeated
+        # markers can introduce nested sequences.
+        while cls._is_sequence_indicator(value):
+            if value == "-":
+                return True
+            value = value[1:].lstrip()
         if not value or value.startswith("#"):
             return True
 
-        return cls._is_nonsecret_scalar(value, ":")
+        return cls._is_nonsecret_scalar(value, ":", flow_mapping=False)
 
     @classmethod
     def _indented_value_is_nonsecret(
@@ -200,8 +249,9 @@ class _SecretAssignmentDetector:
                 content_indent = indent
                 break
 
-            # YAML permits an indentless sequence as a mapping value.
-            if indent == key_column and stripped.startswith("- "):
+            # YAML permits an indentless sequence as a mapping value, including
+            # a bare dash whose item begins on the next line.
+            if indent == key_column and cls._is_sequence_indicator(stripped):
                 first_index = candidate_index
                 content_indent = indent
                 indentless_sequence = True
@@ -223,12 +273,15 @@ class _SecretAssignmentDetector:
             if indentless_sequence:
                 if indent < content_indent:
                     break
-                if indent == content_indent and not stripped.startswith("- "):
+                if (
+                    indent == content_indent
+                    and not cls._is_sequence_indicator(stripped)
+                ):
                     break
             elif indent < content_indent:
                 break
 
-            if stripped.startswith("#"):
+            if stripped.startswith("#") or stripped == "-":
                 continue
             values.append(stripped)
 
@@ -312,6 +365,7 @@ class _SecretAssignmentDetector:
                 value = line[match.end() :]
                 separator = match.group("separator")
                 key_column = self._column_width(line[: match.start()])
+                flow_mapping = self._inside_flow_mapping(line[: match.start()])
 
                 if self._block_indicator.fullmatch(value.strip()):
                     if not self._block_is_nonsecret(
@@ -328,7 +382,11 @@ class _SecretAssignmentDetector:
                         key_column,
                     ):
                         return match
-                elif not self._is_nonsecret_scalar(value, separator):
+                elif not self._is_nonsecret_scalar(
+                    value,
+                    separator,
+                    flow_mapping=flow_mapping,
+                ):
                     return match
         return None
 
@@ -380,8 +438,11 @@ class _IPv6AddressDetector:
             else:
                 address = token.split("/", 1)[0].split("%", 1)[0]
 
+            # Try the complete candidate first. If prose contributes one extra
+            # colon (including the triple-colon case after a compressed address),
+            # retry after removing exactly that punctuation character.
             candidates = [address]
-            if address.endswith(":") and not address.endswith("::"):
+            if address.endswith(":"):
                 candidates.append(address[:-1])
 
             for candidate in candidates:
@@ -455,7 +516,7 @@ CREDENTIAL_FIXTURES = {
         "SLACK_APP_TOKEN=" + "A" * 24,
         "password=hunter2",
         "token=secret",
-        "password=\"my pass\"",
+        'password="my pass"',
         "api_key='x'",
         '"password": "hunter2"',
         "'api_key': 'x'",
@@ -470,6 +531,7 @@ CREDENTIAL_FIXTURES = {
         "password=${TOKEN},hunter2",
         'password="${TOKEN}"#hunter2',
         'password="REDACTED"#hunter2',
+        "password: ${TOKEN},suffix:hunter2",
         "password: |\n  hunter2",
         "password: |\n  #hunter2",
         "token: >-\n  secret",
@@ -478,6 +540,8 @@ CREDENTIAL_FIXTURES = {
         "password:\n  - hunter2",
         "- password:\n    hunter2\n  id: 1",
         "password:\n- hunter2",
+        "password:\n-\n  hunter2",
+        "- password:\n  -\n    hunter2",
         "password: |2\n  hunter2",
     ),
 }
@@ -499,6 +563,7 @@ PRIVATE_PATH_FIXTURES = {
         "http://[fe80::1%25eth0]:8080/",
         "Endpoint 2001:db8::1.",
         "Endpoint 2001:db8::1: the service failed",
+        "Endpoint 2001:db8::: the service failed",
     ),
 }
 
@@ -521,6 +586,8 @@ SAFE_ASSIGNMENT_FIXTURES = (
     "password:\n  - ${TOKEN}",
     "- password:\n    REDACTED\n  id: 1",
     "password:\n- ${TOKEN}",
+    "password:\n-\n  REDACTED",
+    "- password:\n  -\n    ${TOKEN}",
     "password: |2\n  REDACTED",
     "- password: |\n    REDACTED\n   # explanatory comment\n  id: 1",
 )
