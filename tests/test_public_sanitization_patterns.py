@@ -6,12 +6,14 @@ try:
     from tests.public_sanitization_patterns import (
         CREDENTIAL_FIXTURES,
         PRIVATE_PATH_FIXTURES,
+        SAFE_ASSIGNMENT_FIXTURES,
         SENSITIVE_PATTERNS,
     )
 except ModuleNotFoundError:
     from public_sanitization_patterns import (
         CREDENTIAL_FIXTURES,
         PRIVATE_PATH_FIXTURES,
+        SAFE_ASSIGNMENT_FIXTURES,
         SENSITIVE_PATTERNS,
     )
 
@@ -30,6 +32,12 @@ class PublicSanitizationPatternTests(unittest.TestCase):
             for value in values:
                 with self.subTest(pattern=label, value=value):
                     self.assertIsNotNone(pattern.search(value))
+
+    def test_empty_and_placeholder_assignments_do_not_match(self) -> None:
+        pattern = SENSITIVE_PATTERNS["operational_secret_assignment"]
+        for value in SAFE_ASSIGNMENT_FIXTURES:
+            with self.subTest(value=value):
+                self.assertIsNone(pattern.search(value))
 
     def test_benign_public_language_does_not_match_credentials(self) -> None:
         safe_examples = (
