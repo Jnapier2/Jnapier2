@@ -35,17 +35,36 @@ SENSITIVE_PATTERNS = {
         re.IGNORECASE,
     ),
     "operational_secret_assignment": re.compile(
-        r"(?ix)\b(?:"
-        r"api[_ -]?key|api[_ -]?secret|private[_ -]?key|wallet|password|token|"
-        r"aws[_ -]?(?:access[_ -]?key[_ -]?id|secret[_ -]?access[_ -]?key|session[_ -]?token)|"
-        r"github[_ -]?token|gitlab[_ -]?token|openai[_ -]?api[_ -]?key|"
-        r"slack[_ -]?(?:app[_ -]?token|bot[_ -]?token|user[_ -]?token)|"
-        r"npm[_ -]?token|pypi[_ -]?token"
-        r")\b\s*[:=]\s*(?:"
-        r"\"(?:\\.|[^\"\r\n])+\"|"
-        r"'(?:\\.|[^'\r\n])+'|"
-        r"[^\s,;}\]\r\n]+"
-        r")"
+        r"""(?ix)
+        (?<![A-Za-z0-9_])
+        (?P<key_quote>["']?)
+        (?:
+            api[_ -]?key
+            | api[_ -]?secret
+            | private[_ -]?key
+            | wallet
+            | password
+            | token
+            | aws[_ -]?(?:
+                access[_ -]?key[_ -]?id
+                | secret[_ -]?access[_ -]?key
+                | session[_ -]?token
+            )
+            | github[_ -]?token
+            | gitlab[_ -]?token
+            | openai[_ -]?api[_ -]?key
+            | slack[_ -]?(?:app[_ -]?token|bot[_ -]?token|user[_ -]?token)
+            | npm[_ -]?token
+            | pypi[_ -]?token
+        )
+        (?P=key_quote)
+        \s*[:=]\s*
+        (?:
+            "(?:\\.|[^"\r\n])+"
+            | '(?:\\.|[^'\r\n])+'
+            | [^\s,;}\]\r\n]+
+        )
+        """
     ),
 }
 
@@ -79,6 +98,9 @@ CREDENTIAL_FIXTURES = {
         "token=secret",
         "password=\"my pass\"",
         "api_key='x'",
+        '"password": "hunter2"',
+        "'api_key': 'x'",
+        '{"token":"secret"}',
     ),
 }
 
