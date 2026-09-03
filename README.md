@@ -12,23 +12,23 @@ I build practical tools that turn complex information and operating problems int
 
 - **[Data Contract Monitor](professional-portfolio/data-contract-monitor.md)** — Catches broken schemas, stale records, duplicate keys, invalid values, and unreviewed sensitive fields so teams can address unreliable data before using it. [Source and runnable demos](https://github.com/Jnapier2/data-contract-monitor).
 - **[Data Governance & Lineage Portal](professional-portfolio/data-governance-lineage-portal.md)** — Helps teams understand what data means, who owns it, why it can be trusted, and what changes will affect downstream reports and processes.
-- **[Workflow & Case Management Platform](professional-portfolio/workflow-case-management-platform.md)** — Turns requests into assigned, time-bound, auditable workflows with business-calendar service targets and controlled automation.
-- **[Policy and Procedure Navigator](professional-portfolio/policy-procedure-navigator.md)** — Delivers permission-aware, evidence-grounded answers with citations, abstention, and structured follow-up.
-- **[Operations Intelligence & Automation Platform](professional-portfolio/operations-intelligence-automation-platform.md)** — Converts service operations data into trusted measures, explainable findings, and measured follow-through.
+- **[Workflow & Case Management Platform](professional-portfolio/workflow-case-management-platform.md)** — Turns requests into assigned, time-bound, auditable workflows with business-calendar service targets and controlled automation. [Source](https://github.com/Jnapier2/workflow-case-management-platform).
+- **[Policy and Procedure Navigator](professional-portfolio/policy-procedure-navigator.md)** — Delivers permission-aware, evidence-grounded answers with citations, abstention, and structured follow-up. [Source](https://github.com/Jnapier2/policy-procedure-navigator).
+- **[Operations Intelligence & Automation Platform](professional-portfolio/operations-intelligence-automation-platform.md)** — Converts service operations data into trusted measures, explainable findings, and measured follow-through. [Source](https://github.com/Jnapier2/operations-intelligence-platform).
 - **[PC Reliability & Incident Intelligence Suite](professional-portfolio/pc-reliability-incident-intelligence-suite.md)** — A package-qualified reliability case study held for physical-Windows collector evidence and final portfolio positioning.
 - **[Professional Portfolio Program Index](professional-portfolio/README.md)** — Current verification status, publication boundaries, and related governance work.
 
 ## Featured projects
 
 - **[Reliable Project Delivery Framework v1.6.0](PROJECT_FRAMEWORK.md)** — My public operating framework for evidence-first planning, lean project inventories, portable Windows delivery, critical-input assurance, release integrity, bounded recovery, privacy-conscious diagnostics, and truthful completion reporting.
-- **[BotOps Manager](https://github.com/Jnapier2/botops-manager)** — A local Windows operations console for launching, monitoring, stopping, and reviewing independent automation projects.
+- **[BotOps Manager](https://github.com/Jnapier2/botops-manager)** — A local Windows operations console for launching, monitoring, stopping, and reviewing independent automation projects. [Reliability case study](https://github.com/Jnapier2/automation-reliability-case-studies/blob/main/docs/botops-control-plane-cohesion.md).
 - **[Digital Asset Governance Audit](https://github.com/Jnapier2/digital-asset-governance-case-study)** — A synthetic-data case study that turns metadata quality, provenance, confidence, and duplicate signals into a prioritized stewardship queue.
 - **[MediaTaggerBot](https://github.com/Jnapier2/media-tagger-bot)** — Organizes media libraries through evidence-based matching, reviewable changes, verified renames, and rollback records.
 
 ## Data and analysis
 
 - **[Chicago Food Inspection Outcomes](https://github.com/Jnapier2/chicago-food-inspections-analysis)** — Reproducible analysis of public inspection records, with careful separation of inspection outcomes and facility-risk categories.
-- **[Automation Reliability Case Studies](https://github.com/Jnapier2/automation-reliability-case-studies)** — Thirteen sanitized engineering studies covering Vdownloader queue recovery, MediaTaggerBot launcher consolidation, PC Improve repair governance, Gateway Intelligence Core local-first evidence and manual external-action boundaries, GPU-mining readiness, Kraken/Coinbase/Binance spread-bot reconciliation, Kalshi data quality, save-state truth and structural parity, fail-closed game-release acceptance, network-guard evidence, and process supervision.
+- **[Automation Reliability Case Studies](https://github.com/Jnapier2/automation-reliability-case-studies)** — Fourteen sanitized engineering studies covering Vdownloader queue recovery, MediaTaggerBot launcher consolidation, BotOps control-plane cohesion, PC Improve repair governance, Gateway Intelligence Core local-first evidence and manual external-action boundaries, GPU-mining readiness, Kraken/Coinbase/Binance spread-bot reconciliation, Kalshi data quality, save-state truth and structural parity, fail-closed game-release acceptance, network-guard evidence, and process supervision.
 
 ## Automation and diagnostics
 

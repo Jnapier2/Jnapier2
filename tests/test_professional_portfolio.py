@@ -194,6 +194,21 @@ class ProfessionalPortfolioTests(unittest.TestCase):
             with self.subTest(target=target):
                 self.assertIn(target, readme)
 
+    def test_profile_links_current_public_sources_and_study_count(self) -> None:
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        public_targets = (
+            "https://github.com/Jnapier2/data-contract-monitor",
+            "https://github.com/Jnapier2/workflow-case-management-platform",
+            "https://github.com/Jnapier2/policy-procedure-navigator",
+            "https://github.com/Jnapier2/operations-intelligence-platform",
+            "https://github.com/Jnapier2/automation-reliability-case-studies/blob/main/docs/botops-control-plane-cohesion.md",
+        )
+        for target in public_targets:
+            with self.subTest(target=target):
+                self.assertIn(target, readme)
+        self.assertIn("Fourteen sanitized engineering studies", readme)
+        self.assertIn("BotOps control-plane cohesion", readme)
+
     def test_public_marketing_leads_with_outcomes(self) -> None:
         overview = (PORTFOLIO / "README.md").read_text(encoding="utf-8")
         opening = overview[:800].lower()
