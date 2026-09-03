@@ -10,7 +10,7 @@ class _SecretAssignmentDetector:
     _key = re.compile(
         r"""(?ix)
         (?<![A-Za-z0-9_])
-        (?P<key_quote>["']?)
+        (?P<key_quote>[#']?)
         (?:
             api[_ -]?key
             | api[_ -]?secret
@@ -88,9 +88,18 @@ class _SecretAssignmentDetector:
 
     @classmethod
     def _is_structured_tail(cls, tail: str, separator: str) -> bool:
-        normalized = tail.lstrip()
-        if not normalized or normalized.startswith("#"):
+        if not tail:
             return True
+
+        # Comments require separation whitespace.  An unspaced hash is literal
+        # shell/YAML content and must not hide a suffix such as #hunter2.
+        if tail[0] in " \t" and tail.lstrip().startswith("#"):
+            return True
+        normalized = tail.lstrip()
+        if not normalized:
+            return True
+        if normalized.startswith("#"):
+            return False
         if separator != ":":
             return False
         if re.fullmatch(r",?[ \t]*(?:#.*)?", normalized):
@@ -137,6 +146,10 @@ class _SecretAssignmentDetector:
         prefix = line[: len(line) - len(line.lstrip(" \t"))]
         return sum(4 if character == "\t" else 1 for character in prefix)
 
+    @staticmethod
+    def _column_width(prefix: str) -> int:
+        return sum(4 if character == "\t" else 1 for character in prefix)
+
     @classmethod
     def _block_line_is_nonsecret(cls, line: str) -> bool:
         value = line.strip()
@@ -148,13 +161,17 @@ class _SecretAssignmentDetector:
         return cls._is_safe_token(value)
 
     @classmethod
-    def _block_is_nonsecret(cls, lines: list[str], line_index: int) -> bool:
-        base_indent = cls._indent_width(lines[line_index])
+    def _block_is_nonsecret(
+        cls,
+        lines: list[str],
+        line_index: int,
+        key_column: int,
+    ) -> bool:
         values: list[str] = []
         for following in lines[line_index + 1 :]:
             if not following.strip():
                 continue
-            if cls._indent_width(following) <= base_indent:
+            if cls._indent_width(following) <= key_column:
                 break
             values.append(following.strip())
 
@@ -167,7 +184,8 @@ class _SecretAssignmentDetector:
                 value = line[match.end() :]
                 separator = match.group("separator")
                 if self._block_indicator.fullmatch(value.strip()):
-                    if not self._block_is_nonsecret(lines, line_index):
+                    key_column = self._column_width(line[: match.start()])
+                    if not self._block_is_nonsecret(lines, line_index, key_column):
                         return match
                 elif not self._is_nonsecret_scalar(value, separator):
                     return match
@@ -179,16 +197,16 @@ class _IPv4AddressDetector:
 
     _candidate = re.compile(
         r"(?<![\d.])(?:25[0-5]|2[0-4]\d|1?\d?\d)"
-        r"(?:\.(?:25[0-5]|2[0-4]\d|1?\d?\d)){3}(?![\d.])"
+        r"(?:\.(?:25[0-5]|2[0-4]\d|1?\d?\d)){3}(?!\d)(?!\.\d)"
     )
     _version_context = re.compile(
         r"(?i)(?:^|[^A-Za-z0-9])(?:v(?:ersion)?|ver|build|release)"
-        r"[ \t:=_\-`*~\[]*$"
+        r"[ \t:=_\-`*~\[({<]*$"
     )
 
     def search(self, text: str) -> re.Match[str] | None:
         for match in self._candidate.finditer(text):
-            prefix = text[max(0, match.start() - 40) : match.start()]
+            prefix = text[max(0, match.start() - 48) : match.start()]
             if self._version_context.search(prefix):
                 continue
             return match
@@ -215,7 +233,7 @@ class _IPv6AddressDetector:
             key=lambda match: match.start(),
         )
         for match in matches:
-            token = match.group(0)
+            token = match.group(0).rstrip(".,;!?")
             if token.startswith("["):
                 address = token[1 : token.index("]")].split("%", 1)[0]
             else:
@@ -303,9 +321,12 @@ CREDENTIAL_FIXTURES = {
         'token="${TOKEN}"secret',
         'password="${TOKEN}",hunter2',
         "password=${TOKEN},hunter2",
+        'password="${TOKEN}"#hunter2',
+        'password="REDACTED"#hunter2',
         "password: |\n  hunter2",
         "password: |\n  #hunter2",
         "token: >-\n  secret",
+        "- password: |\n    hunter2\n  id: 1",
     ),
 }
 
@@ -314,12 +335,17 @@ PRIVATE_PATH_FIXTURES = {
     "personal_windows_path": (r"C:\Users\example-user\private-project",),
     "unix_home_path": ("/home/example-user/private-project",),
     "macos_home_path": ("/Users/example-user/private-project",),
-    "raw_ipv4_address": ("192.0.2.42", "http://192.168.1.2:8080/"),
+    "raw_ipv4_address": (
+        "192.0.2.42",
+        "http://192.168.1.2:8080/",
+        "Endpoint 192.168.1.2.",
+    ),
     "raw_ipv6_address": (
         "fd00::1234",
         "2001:4860:4860::8888",
         "[fe80::1%eth0]",
         "http://[fe80::1%25eth0]:8080/",
+        "Endpoint 2001:db8::1.",
     ),
 }
 
@@ -334,10 +360,12 @@ SAFE_ASSIGNMENT_FIXTURES = (
     'password: ""',
     "password: # intentionally blank",
     "password: REDACTED",
+    'password="${TOKEN}" # intentional placeholder',
     "password: |\n  REDACTED",
     "token: >-\n  ${TOKEN}",
     '{"password": null, "token": "${TOKEN}"}',
     '{"password":"${TOKEN}","id":1}',
+    "- password: |\n    REDACTED\n  id: 1",
 )
 
 
@@ -351,6 +379,7 @@ SAFE_ADDRESS_FIXTURES = (
     "runtime version `1.2.3.4`",
     "version **1.2.3.4**",
     "build _1.2.3.4_",
+    "runtime version (1.2.3.4)",
     "http://[::1]:8080/",
     "::",
 )
