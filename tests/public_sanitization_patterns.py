@@ -35,13 +35,16 @@ class _SecretAssignmentDetector:
         """
     )
     _quoted_value = re.compile(
-        r"^(?P<value>\"(?:\\.|[^\"\r\n])*\"|'(?:\\.|[^'\r\n])*')"
+        r'^(?P<value>"(?:\\.|[^"\r\n])*"|\'(?:\\.|[^\'\r\n])*\')'
     )
     _block_indicator = re.compile(
-        r"^[|>](?:(?:[1-9][+-]?)|(?:[+-][1-9]?)|)?[ \t]*(?:#.*)?$"
+        r"^[|>](?:(?P<indent_first>[1-9])(?P<chomp_after>[+-])?"
+        r"|(?P<chomp_first>[+-])(?P<indent_after>[1-9])?)?"
+        r"[ \t]*(?:#.*)?$"
     )
     _next_field = re.compile(
-        r"^,[ \t]*(?:(?:[\"'][^\"'\r\n]+[\"'])|(?:[A-Za-z_][A-Za-z0-9_. -]*))[ \t]*:"
+        r'^,[ \t]*(?:(?:["\'][^"\'\r\n]+["\'])|'
+        r'(?:[A-Za-z_][A-Za-z0-9_. -]*))[ \t]*:'
     )
     _bare_sentinels = {
         "null",
@@ -91,7 +94,7 @@ class _SecretAssignmentDetector:
         if not tail:
             return True
 
-        # Comments require separation whitespace.  An unspaced hash is literal
+        # Comments require separation whitespace. An unspaced hash is literal
         # shell/YAML content and must not hide a suffix such as #hunter2.
         if tail[0] in " \t" and tail.lstrip().startswith("#"):
             return True
@@ -151,6 +154,89 @@ class _SecretAssignmentDetector:
         return sum(4 if character == "\t" else 1 for character in prefix)
 
     @classmethod
+    def _continuation_line_is_nonsecret(cls, line: str) -> bool:
+        value = line.strip()
+        if not value or value.startswith("#"):
+            return True
+
+        # YAML sequence items can carry an otherwise ordinary scalar value.
+        while value.startswith("- "):
+            value = value[2:].lstrip()
+        if not value or value.startswith("#"):
+            return True
+
+        return cls._is_nonsecret_scalar(value, ":")
+
+    @classmethod
+    def _indented_value_is_nonsecret(
+        cls,
+        lines: list[str],
+        line_index: int,
+        key_column: int,
+    ) -> bool:
+        """Inspect a YAML value continued onto following indented lines."""
+
+        first_index: int | None = None
+        content_indent: int | None = None
+        indentless_sequence = False
+
+        for candidate_index in range(line_index + 1, len(lines)):
+            candidate = lines[candidate_index]
+            if not candidate.strip():
+                continue
+
+            indent = cls._indent_width(candidate)
+            stripped = candidate.lstrip(" \t")
+
+            # Plain YAML comments are not scalar content; keep looking for the
+            # first actual value line inside the same mapping scope.
+            if stripped.startswith("#"):
+                if indent < key_column:
+                    return True
+                continue
+
+            if indent > key_column:
+                first_index = candidate_index
+                content_indent = indent
+                break
+
+            # YAML permits an indentless sequence as a mapping value.
+            if indent == key_column and stripped.startswith("- "):
+                first_index = candidate_index
+                content_indent = indent
+                indentless_sequence = True
+                break
+
+            return True
+
+        if first_index is None or content_indent is None:
+            return True
+
+        values: list[str] = []
+        for candidate in lines[first_index:]:
+            if not candidate.strip():
+                continue
+
+            indent = cls._indent_width(candidate)
+            stripped = candidate.lstrip(" \t")
+
+            if indentless_sequence:
+                if indent < content_indent:
+                    break
+                if indent == content_indent and not stripped.startswith("- "):
+                    break
+            elif indent < content_indent:
+                break
+
+            if stripped.startswith("#"):
+                continue
+            values.append(stripped)
+
+        return not values or all(
+            cls._continuation_line_is_nonsecret(value) for value in values
+        )
+
+    @classmethod
     def _block_line_is_nonsecret(cls, line: str) -> bool:
         value = line.strip()
         if not value:
@@ -166,16 +252,58 @@ class _SecretAssignmentDetector:
         lines: list[str],
         line_index: int,
         key_column: int,
+        indicator: str,
     ) -> bool:
-        values: list[str] = []
-        for following in lines[line_index + 1 :]:
-            if not following.strip():
-                continue
-            if cls._indent_width(following) <= key_column:
-                break
-            values.append(following.strip())
+        """Inspect only the YAML block scalar's actual content indentation."""
 
-        return not values or all(cls._block_line_is_nonsecret(value) for value in values)
+        indicator_match = cls._block_indicator.fullmatch(indicator.strip())
+        explicit_indent: int | None = None
+        if indicator_match:
+            digit = (
+                indicator_match.group("indent_first")
+                or indicator_match.group("indent_after")
+            )
+            if digit:
+                explicit_indent = int(digit)
+
+        content_indent = (
+            key_column + explicit_indent if explicit_indent is not None else None
+        )
+        first_index: int | None = None
+
+        for candidate_index in range(line_index + 1, len(lines)):
+            candidate = lines[candidate_index]
+            if not candidate.strip():
+                continue
+
+            indent = cls._indent_width(candidate)
+            if content_indent is None:
+                if indent <= key_column:
+                    return True
+                content_indent = indent
+
+            if indent < content_indent:
+                return True
+
+            first_index = candidate_index
+            break
+
+        if first_index is None or content_indent is None:
+            return True
+
+        values: list[str] = []
+        for candidate in lines[first_index:]:
+            if not candidate.strip():
+                continue
+
+            indent = cls._indent_width(candidate)
+            if indent < content_indent:
+                break
+            values.append(candidate.strip())
+
+        return not values or all(
+            cls._block_line_is_nonsecret(value) for value in values
+        )
 
     def search(self, text: str) -> re.Match[str] | None:
         lines = text.splitlines()
@@ -183,9 +311,22 @@ class _SecretAssignmentDetector:
             for match in self._key.finditer(line):
                 value = line[match.end() :]
                 separator = match.group("separator")
+                key_column = self._column_width(line[: match.start()])
+
                 if self._block_indicator.fullmatch(value.strip()):
-                    key_column = self._column_width(line[: match.start()])
-                    if not self._block_is_nonsecret(lines, line_index, key_column):
+                    if not self._block_is_nonsecret(
+                        lines,
+                        line_index,
+                        key_column,
+                        value,
+                    ):
+                        return match
+                elif not value.strip() or value.lstrip().startswith("#"):
+                    if not self._indented_value_is_nonsecret(
+                        lines,
+                        line_index,
+                        key_column,
+                    ):
                         return match
                 elif not self._is_nonsecret_scalar(value, separator):
                     return match
@@ -238,13 +379,19 @@ class _IPv6AddressDetector:
                 address = token[1 : token.index("]")].split("%", 1)[0]
             else:
                 address = token.split("/", 1)[0].split("%", 1)[0]
-            try:
-                parsed = ipaddress.IPv6Address(address)
-            except ValueError:
-                continue
-            if parsed.is_unspecified or parsed.is_loopback:
-                continue
-            return match
+
+            candidates = [address]
+            if address.endswith(":") and not address.endswith("::"):
+                candidates.append(address[:-1])
+
+            for candidate in candidates:
+                try:
+                    parsed = ipaddress.IPv6Address(candidate)
+                except ValueError:
+                    continue
+                if parsed.is_unspecified or parsed.is_loopback:
+                    continue
+                return match
         return None
 
 
@@ -327,6 +474,11 @@ CREDENTIAL_FIXTURES = {
         "password: |\n  #hunter2",
         "token: >-\n  secret",
         "- password: |\n    hunter2\n  id: 1",
+        "password:\n  hunter2",
+        "password:\n  - hunter2",
+        "- password:\n    hunter2\n  id: 1",
+        "password:\n- hunter2",
+        "password: |2\n  hunter2",
     ),
 }
 
@@ -346,6 +498,7 @@ PRIVATE_PATH_FIXTURES = {
         "[fe80::1%eth0]",
         "http://[fe80::1%25eth0]:8080/",
         "Endpoint 2001:db8::1.",
+        "Endpoint 2001:db8::1: the service failed",
     ),
 }
 
@@ -360,12 +513,16 @@ SAFE_ASSIGNMENT_FIXTURES = (
     'password: ""',
     "password: # intentionally blank",
     "password: REDACTED",
-    'password="${TOKEN}" # intentional placeholder',
     "password: |\n  REDACTED",
     "token: >-\n  ${TOKEN}",
     '{"password": null, "token": "${TOKEN}"}',
     '{"password":"${TOKEN}","id":1}',
-    "- password: |\n    REDACTED\n  id: 1",
+    "password:\n  REDACTED",
+    "password:\n  - ${TOKEN}",
+    "- password:\n    REDACTED\n  id: 1",
+    "password:\n- ${TOKEN}",
+    "password: |2\n  REDACTED",
+    "- password: |\n    REDACTED\n   # explanatory comment\n  id: 1",
 )
 
 
