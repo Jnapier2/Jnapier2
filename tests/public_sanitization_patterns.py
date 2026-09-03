@@ -31,7 +31,7 @@ class _SecretAssignmentDetector:
             | pypi[_ -]?token
         )
         (?P=key_quote)
-        [ \t]*[:=][ \t]*
+        [ \t]*(?P<separator>[:=])[ \t]*
         """
     )
     _quoted_value = re.compile(
@@ -39,6 +39,9 @@ class _SecretAssignmentDetector:
     )
     _block_indicator = re.compile(
         r"^[|>](?:(?:[1-9][+-]?)|(?:[+-][1-9]?)|)?[ \t]*(?:#.*)?$"
+    )
+    _next_field = re.compile(
+        r"^,[ \t]*(?:(?:[\"'][^\"'\r\n]+[\"'])|(?:[A-Za-z_][A-Za-z0-9_. -]*))[ \t]*:"
     )
     _bare_sentinels = {
         "null",
@@ -76,56 +79,73 @@ class _SecretAssignmentDetector:
     )
 
     @classmethod
-    def _strip_scalar_tail(cls, raw_value: str) -> str:
+    def _is_safe_token(cls, value: str, *, quoted: bool = False) -> bool:
+        normalized = value.strip()
+        sentinels = cls._quoted_sentinels if quoted else cls._bare_sentinels
+        return normalized.casefold() in sentinels or any(
+            pattern.fullmatch(normalized) for pattern in cls._placeholder_patterns
+        )
+
+    @classmethod
+    def _is_structured_tail(cls, tail: str, separator: str) -> bool:
+        normalized = tail.lstrip()
+        if not normalized or normalized.startswith("#"):
+            return True
+        if separator != ":":
+            return False
+        if re.fullmatch(r",?[ \t]*(?:#.*)?", normalized):
+            return True
+        if re.match(r"^[}\]][ \t]*(?:,?[ \t]*(?:#.*)?)?$", normalized):
+            return True
+        return bool(cls._next_field.match(normalized))
+
+    @classmethod
+    def _is_nonsecret_scalar(cls, raw_value: str, separator: str) -> bool:
         value = raw_value.strip()
         if not value or value.startswith("#"):
-            return ""
+            return True
 
         quoted = cls._quoted_value.match(value)
         if quoted:
-            tail = value[quoted.end() :].lstrip()
-            if tail and tail[0] not in ",;} ]#":
-                return value
-            return quoted.group("value")
+            token = quoted.group("value")
+            if not cls._is_structured_tail(value[quoted.end() :], separator):
+                return False
+            return cls._is_safe_token(token[1:-1], quoted=True)
 
         value = re.sub(r"[ \t]+#.*$", "", value).strip()
         if not value:
-            return ""
-
-        no_trailing_separator = value.rstrip(",;").rstrip()
-        if any(
-            pattern.fullmatch(no_trailing_separator)
-            for pattern in cls._placeholder_patterns
-        ):
-            return no_trailing_separator
-
-        value = re.split(r"[,;]", value, maxsplit=1)[0].rstrip()
-        return value.rstrip("}]").rstrip()
-
-    @classmethod
-    def _is_nonsecret_scalar(cls, raw_value: str) -> bool:
-        value = cls._strip_scalar_tail(raw_value)
-        if not value:
+            return True
+        if cls._is_safe_token(value):
             return True
 
-        quoted = (
-            len(value) >= 2
-            and value[0] == value[-1]
-            and value[0] in {'"', "'"}
-        )
-        if quoted:
-            value = value[1:-1].strip()
-            if value.casefold() in cls._quoted_sentinels:
-                return True
-        elif value.casefold() in cls._bare_sentinels:
-            return True
+        if separator == ":":
+            comma = value.find(",")
+            if comma >= 0 and cls._is_structured_tail(value[comma:], separator):
+                if cls._is_safe_token(value[:comma]):
+                    return True
 
-        return any(pattern.fullmatch(value) for pattern in cls._placeholder_patterns)
+            trimmed = value
+            while trimmed.endswith(("}", "]")):
+                trimmed = trimmed[:-1].rstrip()
+                if cls._is_safe_token(trimmed):
+                    return True
+
+        return False
 
     @staticmethod
     def _indent_width(line: str) -> int:
         prefix = line[: len(line) - len(line.lstrip(" \t"))]
         return sum(4 if character == "\t" else 1 for character in prefix)
+
+    @classmethod
+    def _block_line_is_nonsecret(cls, line: str) -> bool:
+        value = line.strip()
+        if not value:
+            return True
+        quoted = cls._quoted_value.fullmatch(value)
+        if quoted:
+            return cls._is_safe_token(value[1:-1], quoted=True)
+        return cls._is_safe_token(value)
 
     @classmethod
     def _block_is_nonsecret(cls, lines: list[str], line_index: int) -> bool:
@@ -138,17 +158,18 @@ class _SecretAssignmentDetector:
                 break
             values.append(following.strip())
 
-        return not values or all(cls._is_nonsecret_scalar(value) for value in values)
+        return not values or all(cls._block_line_is_nonsecret(value) for value in values)
 
     def search(self, text: str) -> re.Match[str] | None:
         lines = text.splitlines()
         for line_index, line in enumerate(lines):
             for match in self._key.finditer(line):
                 value = line[match.end() :]
+                separator = match.group("separator")
                 if self._block_indicator.fullmatch(value.strip()):
                     if not self._block_is_nonsecret(lines, line_index):
                         return match
-                elif not self._is_nonsecret_scalar(value):
+                elif not self._is_nonsecret_scalar(value, separator):
                     return match
         return None
 
@@ -161,12 +182,13 @@ class _IPv4AddressDetector:
         r"(?:\.(?:25[0-5]|2[0-4]\d|1?\d?\d)){3}(?![\d.])"
     )
     _version_context = re.compile(
-        r"(?i)(?:^|[^A-Za-z0-9])(?:v(?:ersion)?|ver|build|release)[ \t:=_-]*$"
+        r"(?i)(?:^|[^A-Za-z0-9])(?:v(?:ersion)?|ver|build|release)"
+        r"[ \t:=_\-`*~\[]*$"
     )
 
     def search(self, text: str) -> re.Match[str] | None:
         for match in self._candidate.finditer(text):
-            prefix = text[max(0, match.start() - 32) : match.start()]
+            prefix = text[max(0, match.start() - 40) : match.start()]
             if self._version_context.search(prefix):
                 continue
             return match
@@ -279,7 +301,10 @@ CREDENTIAL_FIXTURES = {
         "api_key=%KEY%actual",
         'password="REDACTED"hunter2',
         'token="${TOKEN}"secret',
+        'password="${TOKEN}",hunter2',
+        "password=${TOKEN},hunter2",
         "password: |\n  hunter2",
+        "password: |\n  #hunter2",
         "token: >-\n  secret",
     ),
 }
@@ -312,6 +337,7 @@ SAFE_ASSIGNMENT_FIXTURES = (
     "password: |\n  REDACTED",
     "token: >-\n  ${TOKEN}",
     '{"password": null, "token": "${TOKEN}"}',
+    '{"password":"${TOKEN}","id":1}',
 )
 
 
@@ -322,6 +348,9 @@ SAFE_ADDRESS_FIXTURES = (
     "build 1.2.3.4",
     "release_1.2.3.4",
     "api_version=1.2.3.4",
+    "runtime version `1.2.3.4`",
+    "version **1.2.3.4**",
+    "build _1.2.3.4_",
     "http://[::1]:8080/",
     "::",
 )
