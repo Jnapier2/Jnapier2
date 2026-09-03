@@ -10,7 +10,7 @@ class _SecretAssignmentDetector:
     _key = re.compile(
         r"""(?ix)
         (?<![A-Za-z0-9_])
-        (?P<key_quote>[#']?)
+        (?P<key_quote>["']?)
         (?:
             api[_ -]?key
             | api[_ -]?secret
