@@ -33,7 +33,7 @@
     "third_party_notices": "Preserve third-party rights and licenses in linked projects."
   },
   "verification": {
-    "method": "Repository CI validates UTF-8, local links, version consistency, action and launcher consolidation, Critical diagnostic boundaries, audience/technical evidence separation, metadata, rights notices, and sensitive-residue exclusions.",
+    "method": "Repository CI validates UTF-8, local links, version consistency, documented contract presence and internal consistency, metadata, rights notices, and sensitive-residue exclusions. It does not validate a runtime launcher, action registry, Critical exporter, package, or operational implementation.",
     "package_claim": false,
     "runtime_claim": false
   }
