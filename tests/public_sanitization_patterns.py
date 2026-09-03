@@ -83,6 +83,9 @@ class _SecretAssignmentDetector:
 
         quoted = cls._quoted_value.match(value)
         if quoted:
+            tail = value[quoted.end() :].lstrip()
+            if tail and tail[0] not in ",;} ]#":
+                return value
             return quoted.group("value")
 
         value = re.sub(r"[ \t]+#.*$", "", value).strip()
@@ -274,6 +277,8 @@ CREDENTIAL_FIXTURES = {
         "password=$PASSWORD-hunter2",
         "token=${TOKEN}secret",
         "api_key=%KEY%actual",
+        'password="REDACTED"hunter2',
+        'token="${TOKEN}"secret',
         "password: |\n  hunter2",
         "token: >-\n  secret",
     ),
