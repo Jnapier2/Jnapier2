@@ -7,7 +7,7 @@ import re
 class _SecretAssignmentDetector:
     """Find credential assignments without crossing lines or flagging redacted placeholders."""
 
-    _assignment = re.compile(
+    _key = re.compile(
         r"""(?ix)
         (?<![A-Za-z0-9_])
         (?P<key_quote>["']?)
@@ -32,7 +32,6 @@ class _SecretAssignmentDetector:
         )
         (?P=key_quote)
         [ \t]*[:=][ \t]*
-        (?P<value>[^\r\n]*)
         """
     )
     _quoted_value = re.compile(
@@ -141,8 +140,8 @@ class _SecretAssignmentDetector:
     def search(self, text: str) -> re.Match[str] | None:
         lines = text.splitlines()
         for line_index, line in enumerate(lines):
-            for match in self._assignment.finditer(line):
-                value = match.group("value")
+            for match in self._key.finditer(line):
+                value = line[match.end() :]
                 if self._block_indicator.fullmatch(value.strip()):
                     if not self._block_is_nonsecret(lines, line_index):
                         return match
@@ -159,7 +158,7 @@ class _IPv4AddressDetector:
         r"(?:\.(?:25[0-5]|2[0-4]\d|1?\d?\d)){3}(?![\d.])"
     )
     _version_context = re.compile(
-        r"(?i)(?:\b(?:version|ver|build|release)[ \t:=_-]*|(?<![A-Za-z0-9_])v[ \t]*)$"
+        r"(?i)(?:^|[^A-Za-z0-9])(?:v(?:ersion)?|ver|build|release)[ \t:=_-]*$"
     )
 
     def search(self, text: str) -> re.Match[str] | None:
@@ -271,6 +270,7 @@ CREDENTIAL_FIXTURES = {
         '"password": "hunter2"',
         "'api_key': 'x'",
         '{"token":"secret"}',
+        '{"password": null, "token": "secret"}',
         "password=$PASSWORD-hunter2",
         "token=${TOKEN}secret",
         "api_key=%KEY%actual",
@@ -306,6 +306,7 @@ SAFE_ASSIGNMENT_FIXTURES = (
     "password: REDACTED",
     "password: |\n  REDACTED",
     "token: >-\n  ${TOKEN}",
+    '{"password": null, "token": "${TOKEN}"}',
 )
 
 
@@ -315,6 +316,7 @@ SAFE_ADDRESS_FIXTURES = (
     "Version: 10.20.30.40",
     "build 1.2.3.4",
     "release_1.2.3.4",
+    "api_version=1.2.3.4",
     "http://[::1]:8080/",
     "::",
 )
