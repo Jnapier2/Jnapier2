@@ -58,6 +58,10 @@ class ProjectFrameworkTests(unittest.TestCase):
         self.assertFalse(metadata["verification"]["package_claim"])
         self.assertFalse(metadata["verification"]["runtime_claim"])
         self.assertEqual(len(metadata["highlights"]), 5)
+        verification_method = metadata["verification"]["method"]
+        self.assertIn("documented contract presence", verification_method)
+        self.assertIn("does not validate a runtime launcher", verification_method)
+        self.assertIn("Critical exporter", verification_method)
 
         framework = (ROOT / "PROJECT_FRAMEWORK.md").read_text(encoding="utf-8")
         checklist = (ROOT / "PROJECT_FRAMEWORK_CHECKLIST.md").read_text(
