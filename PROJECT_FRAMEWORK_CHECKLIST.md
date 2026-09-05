@@ -22,7 +22,7 @@ turn a small read-only task into a heavyweight release process.
 - [ ] Keep one active implementation for each required capability.
 - [ ] Keep one BAT/CMD filename and one authoritative backend for each user action.
 - [ ] Make menus, CLI routes, shortcuts, and automation call the canonical action rather than copy logic.
-- [ ] Retain an alias only when a current consumer or protected boundary is proven.
+- [ ] Retain an alias only when a current consumer, protected boundary, or explicit user requirement is proven.
 - [ ] Keep approved aliases logic-free and test target, argument forwarding, and exit code.
 - [ ] Make self-test reject unexpected duplicate launchers and retired action routes.
 - [ ] Preserve unique, third-party, signed, historical, rollback, evidence, and user-owned assets.
@@ -71,7 +71,7 @@ turn a small read-only task into a heavyweight release process.
 - [ ] Stage project-locally on the same volume, validate privacy/CRC/count/size, then finalize atomically.
 - [ ] Record collector failures and omissions without losing minimum recovery evidence.
 - [ ] For terminal Critical failures, contain safety risk before diagnostic work.
-- [ ] Write a minimal crash capsule from bounded evidence already available.
+- [ ] Stage and finalize the minimal crash capsule atomically from bounded evidence already available.
 - [ ] Attempt only one isolated full Export20 when trusted code, storage, process state, and shutdown budget allow.
 - [ ] Never prompt, recurse, rescan, rehash managed release files, call network/API/Drive/docs/Norton, repair, migrate, or perform live business action in the Critical path.
 - [ ] Deduplicate by run/fingerprint/cooldown and use only a same-computer exporter lock.
