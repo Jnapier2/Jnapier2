@@ -20,11 +20,11 @@ turn a small read-only task into a heavyweight release process.
 - [ ] Inventory every retained file and visible action before a deep cleanup or lean release.
 - [ ] Group exact duplicates by hash and functional overlap by behavior.
 - [ ] Keep one active implementation for each required capability.
-- [ ] Keep one BAT/CMD filename and one authoritative backend for each user action.
-- [ ] Make menus, CLI routes, shortcuts, and automation call the canonical action rather than copy logic.
-- [ ] Retain an alias only when a current consumer, protected boundary, or explicit user requirement is proven.
+- [ ] Keep one canonical BAT/CMD launcher and one authoritative backend for each user action.
+- [ ] Retain a compatibility BAT/CMD alias only when a current consumer, protected boundary, or explicit user requirement is proven.
 - [ ] Keep approved aliases logic-free and test target, argument forwarding, and exit code.
-- [ ] Make self-test reject unexpected duplicate launchers and retired action routes.
+- [ ] Make menus, CLI routes, shortcuts, and automation call the canonical action rather than copy logic.
+- [ ] Make self-test reject unexpected duplicate launchers and retired action routes while accepting only the declared approved-alias set.
 - [ ] Preserve unique, third-party, signed, historical, rollback, evidence, and user-owned assets.
 - [ ] Map imports, launchers, automation, config, docs, tests, and outputs before retirement.
 
@@ -97,7 +97,7 @@ turn a small read-only task into a heavyweight release process.
 - [ ] Test the canonical entrypoint from an unrelated working directory when a runtime exists.
 - [ ] Confirm effective root, outputs, logs, diagnostics, and recovery locations.
 - [ ] Exercise critical inputs and relevant migration, move, rename, and repair paths.
-- [ ] Verify one-backend-per-action, approved aliases, and rejection of returned duplicate launchers.
+- [ ] Verify canonical-launcher ownership, one backend per action, approved forwarding aliases, and rejection of undeclared duplicate launchers.
 - [ ] Test manual Export20 and the Critical capsule/export path when implemented.
 - [ ] Run sensitive-startup, dependency, license, metadata, and public-sanitization checks where applicable.
 - [ ] Compare audience-facing claims with technical evidence and lifecycle status.
