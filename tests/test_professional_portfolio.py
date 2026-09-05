@@ -206,8 +206,9 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         for target in public_targets:
             with self.subTest(target=target):
                 self.assertIn(target, readme)
-        self.assertIn("Fourteen sanitized engineering studies", readme)
+        self.assertIn("Fifteen sanitized engineering studies", readme)
         self.assertIn("BotOps control-plane cohesion", readme)
+        self.assertIn("SageMath WSL cross-boundary installation and recovery", readme)
 
     def test_public_marketing_leads_with_outcomes(self) -> None:
         overview = (PORTFOLIO / "README.md").read_text(encoding="utf-8")
