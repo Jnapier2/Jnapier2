@@ -110,9 +110,9 @@ class ProjectFrameworkTests(unittest.TestCase):
         )
         required = (
             "one BAT/CMD filename and one authoritative backend",
-            "current consumer or protected boundary",
+            "current consumer, protected boundary, or explicit user requirement",
             "unexpected duplicate launchers",
-            "minimal crash capsule",
+            "minimal crash capsule atomically",
             "Attempt only one isolated full Export20",
             "Never prompt, recurse, rescan, rehash managed release files",
             "Lead public copy with the audience, problem, outcome, practical value",
