@@ -31,5 +31,18 @@ jobs:
         run: python -m compileall -q tests
       - name: Validate public framework
         run: python -m unittest discover -s tests -v
+  account-demo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Validate synthetic calculations
+        run: |
+          node --version
+          node --test tests/test_account_analytics.cjs
+      - name: Browser smoke without protection changes
+        run: python3 tests/account_browser_smoke.py
 
 # Copyright © 2026 Gateway Information Group LLC. All rights reserved.

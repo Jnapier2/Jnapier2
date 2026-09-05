@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="description" content="An offline, synthetic-data Account Analyst Portfolio Showcase: spend, savings, lookup rules, and data-quality review.">
+<title>Account Analyst Portfolio Showcase</title>
+<style>
+:root{color-scheme:light;font:16px/1.55 system-ui,sans-serif;color:#173047;background:#f3f6fa}*{box-sizing:border-box}body{margin:0}main{max-width:1180px;margin:auto;padding:38px 24px}h1{font-size:clamp(2rem,4vw,3.2rem);line-height:1.1;margin:12px 0}h2{font-size:1.3rem;margin:0 0 14px}.eyebrow{font-size:.8rem;font-weight:750;letter-spacing:.14em;text-transform:uppercase;color:#176e73}.lede{max-width:850px;color:#415d72}.notice{background:#e2eff0;border-left:4px solid #176e73;padding:14px 18px;border-radius:6px}.filters{display:flex;flex-wrap:wrap;align-items:end;gap:16px;margin:26px 0 20px}label{display:flex;flex-direction:column;gap:6px;font-weight:650}select,button{font:inherit;padding:9px 12px;border:1px solid #a6b6c4;border-radius:6px;background:white;color:#173047}button{cursor:pointer}select:focus-visible,button:focus-visible{outline:3px solid #176e73;outline-offset:3px}.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card,section{background:white;border:1px solid #dce4ec;border-radius:10px;padding:20px}.card span{display:block;font-size:.82rem;color:#415d72}.card strong{display:block;font-size:1.9rem;margin:5px 0}.card small{color:#415d72}.split>section{min-width:0}.split{display:grid;grid-template-columns:1fr 1.5fr;gap:18px;margin:22px 0}p{margin:10px 0 18px}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:.84rem}caption{text-align:left;margin-bottom:12px;color:#415d72}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid #dce4ec;white-space:nowrap}thead th{background:#edf3f7}tbody th{font-weight:500}.bar-row{display:grid;grid-template-columns:70px 1fr 75px;align-items:center;gap:10px;margin:22px 0}meter{width:100%;height:24px}.bar-row strong{font-size:.88rem;text-align:right}.method{margin-top:22px}.muted,footer{color:#415d72;font-size:.87rem}#error{color:#9d251e;font-weight:700}footer{padding-top:26px}code{background:#edf3f7;padding:2px 4px}noscript{display:block;padding:16px;background:#fff0db}@media(max-width:760px){main{padding:24px 16px}.split{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)}.filters>*{flex:1 1 140px}.card{padding:14px}.card strong{font-size:1.55rem}}@media print{body{background:white}main{padding:0}.filters{display:none}.split{display:block}section{margin-top:16px}.table-wrap{overflow:visible}}
+</style>
+<script src="analytics.js" defer></script>
+</head>
+<body><main>
+<header><div class="eyebrow">Professional Portfolio · Analytics demonstration · v1.0.0</div>
+<h1>From project spend<br>to reviewable decisions.</h1>
+<p class="lede">Account Analyst Portfolio Showcase: connect lookup rules, spend classification, savings summaries, and missing-input checks in a single reviewable view.</p>
+<p class="notice"><strong>Entirely synthetic data.</strong> The records, amounts, and outcomes below are invented for demonstration. They are not client results, realized savings, or a forecast. This page has no data-upload, account, or network-request functionality.</p></header>
+<noscript>JavaScript is required for the interactive calculations. Enable it only according to your normal browser policy, or review analytics.js and the documented formulas instead.</noscript>
+<div class="filters" role="group" aria-label="Filter synthetic projects">
+<label for="client">Client<select id="client"><option>All</option><option>Client A</option><option>Client B</option><option>Client C</option></select></label>
+<label for="type">Production type<select id="type"><option>All</option><option>Motion</option><option>Digital</option><option>Print</option></select></label>
+<label for="quality">Data quality<select id="quality"><option>All</option><option>Complete</option><option>Review</option></select></label>
+<button id="reset" type="button">Reset filters</button></div>
+<p id="error" role="alert"></p>
+<div class="kpis" aria-label="Synthetic project summary">
+<div class="card"><span>Projects in view</span><strong id="count">—</strong><small>Bundled demonstration records</small></div>
+<div class="card"><span>Spend reviewed</span><strong id="spend">—</strong><small>All records in the current view</small></div>
+<div class="card"><span>Savings on complete records</span><strong id="savings">—</strong><small>Hard plus soft; incomplete rows excluded</small></div>
+<div class="card"><span>Complete-record savings rate</span><strong id="rate">—</strong><small>Weighted by eligible reviewed spend</small></div>
+<div class="card"><span>Records needing review</span><strong id="review">—</strong><small>Missing is not the same as zero</small></div>
+<div class="card"><span>Low-spend projects</span><strong id="low">—</strong><small>At or below the type-specific threshold</small></div></div>
+<p id="status" role="status" aria-live="polite" class="muted"></p>
+<div class="split"><section><h2>Savings by client</h2><p class="muted">Complete records only. The comparison table carries the same values in text.</p><div id="bars"></div></section>
+<section><h2>Client comparison</h2><div class="table-wrap"><table><caption>Counts and rates reconcile to the current filters.</caption><thead><tr><th scope="col">Client</th><th scope="col">Projects</th><th scope="col">Complete</th><th scope="col">Spend</th><th scope="col">Savings</th><th scope="col">Rate</th></tr></thead><tbody id="groups"></tbody></table></div></section></div>
+<section><h2>Follow the evidence</h2><div class="table-wrap"><table><caption>Two deliberately incomplete records demonstrate the review path.</caption><thead><tr><th scope="col">Project</th><th scope="col">Client</th><th scope="col">Type</th><th scope="col">Region</th><th scope="col">Spend</th><th scope="col">Hard</th><th scope="col">Soft</th><th scope="col">Savings</th><th scope="col">Low spend</th><th scope="col">Quality</th></tr></thead><tbody id="records"></tbody></table></div></section>
+<section class="method"><h2>Rules you can explain</h2><p>Region comes from one client lookup. Low spend means <code>spend ≤ threshold</code>: Motion $15,000; Digital $10,000; Print $8,000. These are synthetic demonstration thresholds, not recommendations.</p><p>A record is complete only when both hard and soft savings are present. A genuine zero is valid. Incomplete rows remain visible for review but contribute neither savings nor denominator spend to the savings rate. No eligible spend means “Not available,” not a fabricated zero-percent result.</p><p class="muted">Adapted from the existing Account Analyst Excel showcase. This public edition uses new fixtures and explicit complete-record reporting; it is not a copy of the original workbook or its underlying dataset. Filters are temporary and reset when the page reloads.</p></section>
+<footer>Account Analyst Portfolio Showcase · Public synthetic-data edition 1.0.0<br>Copyright © 2026 Gateway Information Group LLC. All rights reserved. Repository rights apply.</footer>
+</main></body></html>

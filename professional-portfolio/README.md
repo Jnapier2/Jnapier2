@@ -2,6 +2,10 @@
 
 These projects turn data quality, governance, knowledge, and operations challenges into practical tools. Each public entry separates demonstrated behavior from future production work and links claims to runnable source or a documented verification boundary.
 
+## Interactive analytics showcase
+
+**[Account Analyst Portfolio Showcase](account-analytics/README.md)** connects client lookup rules, spend classification, savings summaries, and missing-input review in a small browser demonstration. It is a new public adaptation of existing Excel portfolio work, with entirely synthetic records instead of the original workbook or business data. [View the page source](account-analytics/index.html) and its tested calculation module; no hosted deployment or production qualification is claimed. This related analytics example is separate from the five featured programs below.
+
 ## Featured programs
 
 | Program | Outcome | Current evidence | Public material |
@@ -30,7 +34,7 @@ The combined Professional Portfolio v0.3.0 archive remains an exact-archive-qual
 
 The portfolio contains public source where rights and product strategy permit it, plus case studies where the implementation remains proprietary. It does not publish private release archives, support exports, user or machine identifiers, local paths, credentials, production datasets, private policy content, or private operating records.
 
-Data Contract Monitor is available under Apache-2.0. The three supporting source repositories use first-party portfolio review licenses. Data Governance & Lineage Portal and PC Reliability & Incident Intelligence Suite remain public case studies rather than source releases.
+Data Contract Monitor is available under Apache-2.0. The three supporting source repositories use first-party portfolio review licenses. Data Governance & Lineage Portal and PC Reliability & Incident Intelligence Suite remain public case studies rather than source releases. The synthetic Account Analyst adaptation follows this profile repository's rights notice; public visibility does not grant an open-source license.
 
 ## Related work
 
