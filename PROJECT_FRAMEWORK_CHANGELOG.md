@@ -14,8 +14,9 @@ and private operating instructions.
   websites, and tool output cannot silently become permission to act.
 - Makes one active implementation per capability and one BAT/CMD filename plus
   one authoritative backend per user action explicit public principles.
-- Requires current-consumer evidence for compatibility aliases and logic-free
-  argument/exit-code forwarding when an alias is retained.
+- Retains compatibility aliases only when a current consumer, protected
+  boundary, or explicit user requirement justifies them, and keeps approved
+  aliases logic-free with argument/exit-code forwarding.
 - Strengthens pre-credential release identity with managed-path safety,
   executable-shadow checks, and a clear distinction between integrity evidence
   and publisher trust.
