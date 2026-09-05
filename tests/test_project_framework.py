@@ -58,6 +58,10 @@ class ProjectFrameworkTests(unittest.TestCase):
         self.assertFalse(metadata["verification"]["package_claim"])
         self.assertFalse(metadata["verification"]["runtime_claim"])
         self.assertEqual(len(metadata["highlights"]), 5)
+        self.assertIn(
+            "current consumer, protected boundary, or explicit user requirement",
+            metadata["highlights"][2],
+        )
         method = metadata["verification"]["method"]
         self.assertIn("documented contract presence", method)
         self.assertIn("does not validate a runtime launcher", method)
@@ -74,6 +78,10 @@ class ProjectFrameworkTests(unittest.TestCase):
             self.assertIn(f"v{PUBLIC_VERSION}", text)
         self.assertIn(SOURCE_BASELINE, framework)
         self.assertIn(SOURCE_BASELINE, changelog)
+        self.assertIn(
+            "current consumer, protected\n  boundary, or explicit user requirement",
+            changelog,
+        )
         self.assertNotIn(
             "**Source baseline:** ChatGPT New Thread Project Parameters v2.17.9",
             framework,
