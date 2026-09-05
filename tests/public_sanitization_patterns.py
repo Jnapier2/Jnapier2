@@ -5,7 +5,7 @@ import re
 
 
 class _SecretAssignmentDetector:
-    """Find credential assignments without crossing lines or flagging safe placeholders."""
+    """Detect credential assignments while accepting only explicit safe placeholders."""
 
     _key = re.compile(
         r"""(?ix)
@@ -42,33 +42,13 @@ class _SecretAssignmentDetector:
         r"|(?P<chomp_first>[+-])(?P<indent_after>[1-9])?)?"
         r"[ \t]*(?:#.*)?$"
     )
-    _next_field = re.compile(
-        r"""^,[ \t]*(?:(?:["'][^"'\r\n]+["'])|"""
-        r"""(?:[A-Za-z_][A-Za-z0-9_. -]*))[ \t]*:"""
-    )
     _bare_sentinels = {
-        "null",
-        "none",
-        "nil",
-        "undefined",
-        "~",
-        "unset",
-        "missing",
-        "not_set",
-        "not-set",
-        "redacted",
-        "<redacted>",
-        "[redacted]",
-        "***",
-        "*****",
+        "null", "none", "nil", "undefined", "~", "unset", "missing",
+        "not_set", "not-set", "redacted", "<redacted>", "[redacted]",
+        "***", "*****",
     }
     _quoted_sentinels = {
-        "",
-        "redacted",
-        "<redacted>",
-        "[redacted]",
-        "***",
-        "*****",
+        "", "redacted", "<redacted>", "[redacted]", "***", "*****",
     }
     _placeholder_patterns = (
         re.compile(r"^\$\{[A-Za-z_][A-Za-z0-9_]*\}$"),
@@ -89,102 +69,22 @@ class _SecretAssignmentDetector:
             pattern.fullmatch(normalized) for pattern in cls._placeholder_patterns
         )
 
-    @staticmethod
-    def _inside_flow_mapping(prefix: str) -> bool:
-        """Return True when the key begins inside an unmatched ``{...}`` map."""
-        stack: list[str] = []
-        quote: str | None = None
-        escaped = False
-        for character in prefix:
-            if quote is not None:
-                if escaped:
-                    escaped = False
-                elif character == "\\":
-                    escaped = True
-                elif character == quote:
-                    quote = None
-                continue
-            if character in {'"', "'"}:
-                quote = character
-            elif character in "{[":
-                stack.append(character)
-            elif character == "}" and stack and stack[-1] == "{":
-                stack.pop()
-            elif character == "]" and stack and stack[-1] == "[":
-                stack.pop()
-        return "{" in stack
-
     @classmethod
-    def _is_structured_tail(
-        cls,
-        tail: str,
-        separator: str,
-        *,
-        flow_mapping: bool,
-    ) -> bool:
-        if not tail:
-            return True
-
-        # Comments require separation whitespace. An unspaced hash is literal
-        # shell/YAML content and must not hide a suffix such as #hunter2.
-        if tail[0] in " \t" and tail.lstrip().startswith("#"):
-            return True
-        normalized = tail.lstrip()
-        if not normalized:
-            return True
-        if normalized.startswith("#") or separator != ":" or not flow_mapping:
-            return False
-        if re.fullmatch(r",?[ \t]*(?:#.*)?", normalized):
-            return True
-        if re.match(r"^[}\]][ \t]*(?:,?[ \t]*(?:#.*)?)?$", normalized):
-            return True
-        return bool(cls._next_field.match(normalized))
-
-    @classmethod
-    def _is_nonsecret_scalar(
-        cls,
-        raw_value: str,
-        separator: str,
-        *,
-        flow_mapping: bool = False,
-    ) -> bool:
-        value = raw_value.strip()
-        if not value or value.startswith("#"):
-            return True
-
-        quoted = cls._quoted_value.match(value)
-        if quoted:
-            token = quoted.group("value")
-            if not cls._is_structured_tail(
-                value[quoted.end() :],
-                separator,
-                flow_mapping=flow_mapping,
-            ):
-                return False
-            return cls._is_safe_token(token[1:-1], quoted=True)
-
-        value = re.sub(r"[ \t]+#.*$", "", value).strip()
+    def _is_safe_scalar(cls, raw: str, *, block_literal: bool = False) -> bool:
+        value = raw.strip()
         if not value:
             return True
-        if cls._is_safe_token(value):
+        if not block_literal and value.startswith("#"):
             return True
-
-        if separator == ":" and flow_mapping:
-            comma = value.find(",")
-            if comma >= 0 and cls._is_structured_tail(
-                value[comma:],
-                separator,
-                flow_mapping=True,
-            ):
-                return cls._is_safe_token(value[:comma])
-
-            trimmed = value
-            while trimmed.endswith(("}", "]")):
-                trimmed = trimmed[:-1].rstrip()
-                if cls._is_safe_token(trimmed):
-                    return True
-
-        return False
+        quoted = cls._quoted_value.fullmatch(value)
+        if quoted:
+            token = quoted.group("value")
+            return cls._is_safe_token(token[1:-1], quoted=True)
+        if not block_literal:
+            value = re.sub(r"[ \t]+#.*$", "", value).strip()
+            if not value:
+                return True
+        return cls._is_safe_token(value)
 
     @staticmethod
     def _indent_width(line: str) -> int:
@@ -200,193 +100,233 @@ class _SecretAssignmentDetector:
         return value == "-" or value.startswith("- ")
 
     @classmethod
-    def _continuation_line_is_nonsecret(cls, line: str) -> bool:
-        value = line.strip()
-        if not value or value.startswith("#"):
-            return True
+    def _brace_pairs(cls, text: str) -> list[tuple[int, int]]:
+        pairs: list[tuple[int, int]] = []
+        stack: list[tuple[str, int]] = []
+        quote: str | None = None
+        escaped = False
+        for index, character in enumerate(text):
+            if quote is not None:
+                if escaped:
+                    escaped = False
+                elif character == "\\":
+                    escaped = True
+                elif character == quote:
+                    quote = None
+                continue
+            if character in {'"', "'"}:
+                quote = character
+            elif character in "{[":
+                stack.append((character, index))
+            elif character in "}]":
+                expected = "{" if character == "}" else "["
+                if stack and stack[-1][0] == expected:
+                    opener, start = stack.pop()
+                    if opener == "{":
+                        pairs.append((start, index))
+        return pairs
 
-        # Sequence markers are structure outside block scalars. Repeated
-        # markers can introduce nested sequences.
-        while cls._is_sequence_indicator(value):
-            if value == "-":
-                return True
-            value = value[1:].lstrip()
-        if not value or value.startswith("#"):
-            return True
-
-        return cls._is_nonsecret_scalar(value, ":", flow_mapping=False)
+    @staticmethod
+    def _top_level_segments(text: str) -> list[str]:
+        segments: list[str] = []
+        start = 0
+        stack: list[str] = []
+        quote: str | None = None
+        escaped = False
+        for index, character in enumerate(text):
+            if quote is not None:
+                if escaped:
+                    escaped = False
+                elif character == "\\":
+                    escaped = True
+                elif character == quote:
+                    quote = None
+                continue
+            if character in {'"', "'"}:
+                quote = character
+            elif character in "{[":
+                stack.append(character)
+            elif character in "}]":
+                expected = "{" if character == "}" else "["
+                if stack and stack[-1] == expected:
+                    stack.pop()
+            elif character == "," and not stack:
+                segments.append(text[start:index])
+                start = index + 1
+        segments.append(text[start:])
+        return segments
 
     @classmethod
-    def _indented_value_is_nonsecret(
+    def _enclosing_flow_map(
+        cls,
+        text: str,
+        key_start: int,
+        pairs: list[tuple[int, int]],
+    ) -> tuple[int, int] | None:
+        candidates = [pair for pair in pairs if pair[0] < key_start < pair[1]]
+        for start, end in sorted(candidates, key=lambda pair: pair[1] - pair[0]):
+            prefix = text[start + 1 : key_start]
+            segments = cls._top_level_segments(prefix)
+            current = segments[-1].strip()
+            previous = [segment.strip() for segment in segments[:-1] if segment.strip()]
+            if current:
+                continue
+            if all(":" in segment for segment in previous):
+                return start, end
+        return None
+
+    @staticmethod
+    def _extract_flow_value(text: str, value_start: int, map_end: int) -> str:
+        index = value_start
+        while index < map_end and text[index].isspace():
+            index += 1
+        start = index
+        stack: list[str] = []
+        quote: str | None = None
+        escaped = False
+        while index < map_end:
+            character = text[index]
+            if quote is not None:
+                if escaped:
+                    escaped = False
+                elif character == "\\":
+                    escaped = True
+                elif character == quote:
+                    quote = None
+                index += 1
+                continue
+            if character in {'"', "'"}:
+                quote = character
+            elif character in "{[":
+                stack.append(character)
+            elif character in "}]":
+                expected = "{" if character == "}" else "["
+                if stack and stack[-1] == expected:
+                    stack.pop()
+                elif not stack:
+                    break
+            elif character == "," and not stack:
+                break
+            index += 1
+        return text[start:index].strip()
+
+    @classmethod
+    def _block_content_is_safe(
         cls,
         lines: list[str],
-        line_index: int,
-        key_column: int,
-    ) -> bool:
-        """Inspect a YAML value continued onto following indented lines."""
-
-        first_index: int | None = None
-        content_indent: int | None = None
-        indentless_sequence = False
-
-        for candidate_index in range(line_index + 1, len(lines)):
-            candidate = lines[candidate_index]
-            if not candidate.strip():
-                continue
-
-            indent = cls._indent_width(candidate)
-            stripped = candidate.lstrip(" \t")
-
-            # Plain YAML comments are not scalar content; keep looking for the
-            # first actual value line inside the same mapping scope.
-            if stripped.startswith("#"):
-                if indent < key_column:
-                    return True
-                continue
-
-            if indent > key_column:
-                first_index = candidate_index
-                content_indent = indent
-                break
-
-            # YAML permits an indentless sequence as a mapping value, including
-            # a bare dash whose item begins on the next line.
-            if indent == key_column and cls._is_sequence_indicator(stripped):
-                first_index = candidate_index
-                content_indent = indent
-                indentless_sequence = True
-                break
-
-            return True
-
-        if first_index is None or content_indent is None:
-            return True
-
-        values: list[str] = []
-        for candidate in lines[first_index:]:
-            if not candidate.strip():
-                continue
-
-            indent = cls._indent_width(candidate)
-            stripped = candidate.lstrip(" \t")
-
-            if indentless_sequence:
-                if indent < content_indent:
-                    break
-                if (
-                    indent == content_indent
-                    and not cls._is_sequence_indicator(stripped)
-                ):
-                    break
-            elif indent < content_indent:
-                break
-
-            if stripped.startswith("#") or stripped == "-":
-                continue
-            values.append(stripped)
-
-        return not values or all(
-            cls._continuation_line_is_nonsecret(value) for value in values
-        )
-
-    @classmethod
-    def _block_line_is_nonsecret(cls, line: str) -> bool:
-        value = line.strip()
-        if not value:
-            return True
-        quoted = cls._quoted_value.fullmatch(value)
-        if quoted:
-            return cls._is_safe_token(value[1:-1], quoted=True)
-        return cls._is_safe_token(value)
-
-    @classmethod
-    def _block_is_nonsecret(
-        cls,
-        lines: list[str],
-        line_index: int,
-        key_column: int,
+        indicator_index: int,
+        indicator_column: int,
         indicator: str,
     ) -> bool:
-        """Inspect only the YAML block scalar's actual content indentation."""
-
-        indicator_match = cls._block_indicator.fullmatch(indicator.strip())
+        match = cls._block_indicator.fullmatch(indicator.strip())
         explicit_indent: int | None = None
-        if indicator_match:
-            digit = (
-                indicator_match.group("indent_first")
-                or indicator_match.group("indent_after")
-            )
+        if match:
+            digit = match.group("indent_first") or match.group("indent_after")
             if digit:
                 explicit_indent = int(digit)
-
-        content_indent = (
-            key_column + explicit_indent if explicit_indent is not None else None
-        )
-        first_index: int | None = None
-
-        for candidate_index in range(line_index + 1, len(lines)):
-            candidate = lines[candidate_index]
-            if not candidate.strip():
+        content_indent = indicator_column + explicit_indent if explicit_indent is not None else None
+        first_content: int | None = None
+        for index in range(indicator_index + 1, len(lines)):
+            line = lines[index]
+            if not line.strip():
                 continue
-
-            indent = cls._indent_width(candidate)
+            indent = cls._indent_width(line)
             if content_indent is None:
-                if indent <= key_column:
+                if indent <= indicator_column:
                     return True
                 content_indent = indent
-
             if indent < content_indent:
                 return True
-
-            first_index = candidate_index
+            first_content = index
             break
-
-        if first_index is None or content_indent is None:
+        if first_content is None or content_indent is None:
             return True
-
-        values: list[str] = []
-        for candidate in lines[first_index:]:
-            if not candidate.strip():
+        for line in lines[first_content:]:
+            if not line.strip():
                 continue
-
-            indent = cls._indent_width(candidate)
+            indent = cls._indent_width(line)
             if indent < content_indent:
                 break
-            values.append(candidate.strip())
+            if not cls._is_safe_scalar(line.strip(), block_literal=True):
+                return False
+        return True
 
-        return not values or all(
-            cls._block_line_is_nonsecret(value) for value in values
-        )
+    @classmethod
+    def _yaml_continuation_is_safe(
+        cls,
+        lines: list[str],
+        key_index: int,
+        key_column: int,
+    ) -> bool:
+        index = key_index + 1
+        found = False
+        while index < len(lines):
+            line = lines[index]
+            if not line.strip():
+                index += 1
+                continue
+            indent = cls._indent_width(line)
+            stripped = line.lstrip(" \t")
+            if stripped.startswith("#"):
+                if indent < key_column:
+                    break
+                index += 1
+                continue
+            include = indent > key_column or (indent == key_column and cls._is_sequence_indicator(stripped))
+            if not include:
+                break
+            found = True
+            value = stripped
+            while cls._is_sequence_indicator(value):
+                if value == "-":
+                    value = ""
+                    break
+                value = value[1:].lstrip()
+            if not value:
+                index += 1
+                continue
+            if cls._block_indicator.fullmatch(value.strip()):
+                indicator_column = cls._column_width(line[: len(line) - len(line.lstrip(" \t"))])
+                if stripped.startswith("-"):
+                    marker_offset = len(stripped) - len(stripped.lstrip("- "))
+                    indicator_column += marker_offset
+                if not cls._block_content_is_safe(lines, index, indicator_column, value):
+                    return False
+                index += 1
+                continue
+            if not cls._is_safe_scalar(value):
+                return False
+            index += 1
+        return True if found else True
 
     def search(self, text: str) -> re.Match[str] | None:
         lines = text.splitlines()
+        offsets: list[int] = []
+        cursor = 0
+        for line in lines:
+            offsets.append(cursor)
+            cursor += len(line) + 1
+        pairs = self._brace_pairs(text)
         for line_index, line in enumerate(lines):
             for match in self._key.finditer(line):
+                absolute_start = offsets[line_index] + match.start()
+                absolute_end = offsets[line_index] + match.end()
+                flow_map = self._enclosing_flow_map(text, absolute_start, pairs)
+                if flow_map is not None:
+                    value = self._extract_flow_value(text, absolute_end, flow_map[1])
+                    if not self._is_safe_scalar(value):
+                        return match
+                    continue
                 value = line[match.end() :]
-                separator = match.group("separator")
-                key_column = self._column_width(line[: match.start()])
-                flow_mapping = self._inside_flow_mapping(line[: match.start()])
-
                 if self._block_indicator.fullmatch(value.strip()):
-                    if not self._block_is_nonsecret(
-                        lines,
-                        line_index,
-                        key_column,
-                        value,
-                    ):
+                    key_column = self._column_width(line[: match.start()])
+                    if not self._block_content_is_safe(lines, line_index, key_column, value):
                         return match
                 elif not value.strip() or value.lstrip().startswith("#"):
-                    if not self._indented_value_is_nonsecret(
-                        lines,
-                        line_index,
-                        key_column,
-                    ):
+                    key_column = self._column_width(line[: match.start()])
+                    if not self._yaml_continuation_is_safe(lines, line_index, key_column):
                         return match
-                elif not self._is_nonsecret_scalar(
-                    value,
-                    separator,
-                    flow_mapping=flow_mapping,
-                ):
+                elif not self._is_safe_scalar(value):
                     return match
         return None
 
@@ -437,14 +377,9 @@ class _IPv6AddressDetector:
                 address = token[1 : token.index("]")].split("%", 1)[0]
             else:
                 address = token.split("/", 1)[0].split("%", 1)[0]
-
-            # Try the complete candidate first. If prose contributes one extra
-            # colon (including the triple-colon case after a compressed address),
-            # retry after removing exactly that punctuation character.
             candidates = [address]
             if address.endswith(":"):
                 candidates.append(address[:-1])
-
             for candidate in candidates:
                 try:
                     parsed = ipaddress.IPv6Address(candidate)
@@ -463,9 +398,7 @@ SENSITIVE_PATTERNS = {
     "private_drive_url": re.compile(r"https://(?:drive|docs)\.google\.com/", re.IGNORECASE),
     "internal_project_id": re.compile(r"\bg-p-[a-f0-9]{12,}\b", re.IGNORECASE),
     "openai_key": re.compile(r"\bsk-(?:proj-)?[A-Za-z0-9_-]{16,}\b"),
-    "github_token": re.compile(
-        r"\b(?:gh[pousr]_[A-Za-z0-9_]{20,}|github_pat_[A-Za-z0-9_]{20,})\b"
-    ),
+    "github_token": re.compile(r"\b(?:gh[pousr]_[A-Za-z0-9_]{20,}|github_pat_[A-Za-z0-9_]{20,})\b"),
     "gitlab_token": re.compile(r"\bglpat-[A-Za-z0-9_-]{20,}\b"),
     "aws_access_key": re.compile(r"\b(?:AKIA|ASIA)[0-9A-Z]{16}\b"),
     "google_api_key": re.compile(r"\bAIza[0-9A-Za-z_-]{35}\b"),
@@ -474,9 +407,7 @@ SENSITIVE_PATTERNS = {
     "pypi_token": re.compile(r"\bpypi-[A-Za-z0-9_-]{40,}\b"),
     "stripe_secret": re.compile(r"\b(?:sk|rk)_live_[A-Za-z0-9]{16,}\b"),
     "huggingface_token": re.compile(r"\bhf_[A-Za-z0-9]{20,}\b"),
-    "private_key_header": re.compile(
-        r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"
-    ),
+    "private_key_header": re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"),
     "private_digest": re.compile(r"\b[a-fA-F0-9]{64}\b"),
     "raw_ipv4_address": _IPv4AddressDetector(),
     "raw_ipv6_address": _IPv6AddressDetector(),
@@ -491,15 +422,9 @@ SENSITIVE_PATTERNS = {
 
 CREDENTIAL_FIXTURES = {
     "openai_key": ("sk-proj-" + "A" * 24,),
-    "github_token": (
-        "ghp_" + "A" * 30,
-        "github_pat_" + "A" * 30,
-    ),
+    "github_token": ("ghp_" + "A" * 30, "github_pat_" + "A" * 30),
     "gitlab_token": ("glpat-" + "A" * 24,),
-    "aws_access_key": (
-        "AKIA" + "ABCDEFGHIJKLMNOP",
-        "ASIA" + "QRSTUVWXYZABCDEF",
-    ),
+    "aws_access_key": ("AKIA" + "ABCDEFGHIJKLMNOP", "ASIA" + "QRSTUVWXYZABCDEF"),
     "google_api_key": ("AIza" + "A" * 35,),
     "slack_token": (
         "xoxb-" + "1234567890-ABCDEFGHIJK",
@@ -522,6 +447,9 @@ CREDENTIAL_FIXTURES = {
         "'api_key': 'x'",
         '{"token":"secret"}',
         '{"password": null, "token": "secret"}',
+        '{"password":\n"hunter2"}',
+        "{\n  \"password\": \"hunter2\",\n  \"id\": 1\n}",
+        "An opening brace `{` appears here; password: ${TOKEN},suffix:hunter2",
         "password=$PASSWORD-hunter2",
         "token=${TOKEN}secret",
         "api_key=%KEY%actual",
@@ -543,6 +471,8 @@ CREDENTIAL_FIXTURES = {
         "password:\n-\n  hunter2",
         "- password:\n  -\n    hunter2",
         "password: |2\n  hunter2",
+        "password:\n- |\n  hunter2",
+        "password:\n  |\n    hunter2",
     ),
 }
 
@@ -582,6 +512,7 @@ SAFE_ASSIGNMENT_FIXTURES = (
     "token: >-\n  ${TOKEN}",
     '{"password": null, "token": "${TOKEN}"}',
     '{"password":"${TOKEN}","id":1}',
+    "{\n  \"password\": \"${TOKEN}\",\n  \"id\": 1\n}",
     "password:\n  REDACTED",
     "password:\n  - ${TOKEN}",
     "- password:\n    REDACTED\n  id: 1",
@@ -590,6 +521,8 @@ SAFE_ASSIGNMENT_FIXTURES = (
     "- password:\n  -\n    ${TOKEN}",
     "password: |2\n  REDACTED",
     "- password: |\n    REDACTED\n   # explanatory comment\n  id: 1",
+    "password:\n- |\n  REDACTED",
+    "password:\n  |\n    REDACTED",
 )
 
 
