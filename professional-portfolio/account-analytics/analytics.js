@@ -73,7 +73,7 @@ if (typeof document !== "undefined") {
       result.rows.forEach(r => tableRow(body, [r.id, r.client, r.type, r.region, money(r.spend), money(r.hard), money(r.soft), r.savings === null ? "Excluded" : money(r.savings), r.low ? "Yes" : "No", r.quality]));
       if (!result.rows.length) tableRow(body, ["No matching records", "", "", "", "", "", "", "", "", ""]);
       const groups = document.getElementById("groups"); groups.replaceChildren();
-      result.clients.forEach(g => tableRow(groups, [g.client, g.count, g.complete, money(g.spend), money(g.savings), percent(g.rate)]));
+      result.clients.forEach(g => tableRow(groups, [g.client, g.count, g.complete, money(g.spend), money(g.eligibleSpend), money(g.savings), percent(g.rate)]));
       const chart = document.getElementById("bars"); chart.replaceChildren();
       const max = Math.max(1, ...result.clients.map(g => g.savings));
       result.clients.forEach(g => {

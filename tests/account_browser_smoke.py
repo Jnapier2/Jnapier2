@@ -25,6 +25,11 @@ try {
   check(text("spend") === "$165,500", "initial spend");
   check(text("savings") === "$17,750", "initial savings");
   check(text("review") === "2", "initial quality");
+  const clientA = document.querySelector("#groups tr").children;
+  check(clientA[3].textContent === "$60,000", "client all spend");
+  check(clientA[4].textContent === "$52,000", "client eligible spend");
+  check(clientA[5].textContent === "$6,500", "client complete savings");
+  check(clientA[6].textContent === "12.5%", "client rate denominator");
   select("client", "Client A"); check(text("count") === "4", "client filter");
   select("quality", "Review"); check(text("count") === "1", "quality filter");
   check(text("rate") === "Not available", "incomplete denominator");

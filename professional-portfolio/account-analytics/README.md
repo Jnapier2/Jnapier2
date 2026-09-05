@@ -12,7 +12,7 @@ Filter by client, production type, or data quality. The summary, client comparis
 
 ## Existing work and public adaptation
 
-The existing Account Analyst Excel showcase uses five views: Portfolio Overview, Dashboard, Clean Project Data, Formula Walkthrough, and Lookup Tables. It connects INDEX/MATCH lookups, IF classifications, and SUMIFS/COUNTIFS summaries to data-quality review.
+The existing Account Analyst Excel portfolio work inspired this demonstration of lookups, classification, aggregation, and data-quality review. Source-workbook layout and formula inventory are intentionally omitted.
 
 This is a new browser adaptation of that workflow, **not a recovered version of the original workbook**. All twelve records, amounts, client labels, regions, and thresholds in this edition are invented. The original workbook, its financial figures, document metadata, and underlying business records are not distributed. The public results are not realized savings, client results, or a forecast.
 

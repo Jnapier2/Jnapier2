@@ -75,7 +75,8 @@ class AccountAnalyticsPrivacyTests(unittest.TestCase):
         text = (DEMO / "README.md").read_text(encoding="utf-8")
         for marker in ("not a recovered version", "All twelve records", "Complete-record reporting is an explicit rule",
                        "Source demonstration, not a production release", "No hosted website deployment is claimed",
-                       "Physical Windows, Norton"):
+                       "Physical Windows, Norton", "Source-workbook layout and formula inventory are intentionally omitted"):
+
             self.assertIn(marker, text)
         for target in re.findall(r"\]\(([^)]+)\)", text):
             self.assertTrue((DEMO / target).resolve().is_relative_to(ROOT))
