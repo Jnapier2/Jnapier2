@@ -59,6 +59,11 @@ class ProjectFrameworkTests(unittest.TestCase):
         self.assertFalse(metadata["verification"]["runtime_claim"])
         self.assertEqual(len(metadata["highlights"]), 5)
         self.assertIn(
+            "one canonical BAT/CMD launcher and one authoritative backend per action",
+            metadata["highlights"][1],
+        )
+        self.assertIn("declared approved forwarding aliases", metadata["highlights"][1])
+        self.assertIn(
             "current consumer, protected boundary, or explicit user requirement",
             metadata["highlights"][2],
         )
@@ -78,6 +83,7 @@ class ProjectFrameworkTests(unittest.TestCase):
             self.assertIn(f"v{PUBLIC_VERSION}", text)
         self.assertIn(SOURCE_BASELINE, framework)
         self.assertIn(SOURCE_BASELINE, changelog)
+        self.assertIn("one canonical BAT/CMD\n  launcher", changelog)
         self.assertIn(
             "current consumer, protected\n  boundary, or explicit user requirement",
             changelog,
@@ -103,7 +109,8 @@ class ProjectFrameworkTests(unittest.TestCase):
             "## 14. Verification and definition of done",
             "## Public boundary",
             "recognized → validated → normalized → mapped → exercised → confirmed",
-            "one BAT/CMD filename and one authoritative backend",
+            "one canonical BAT/CMD launcher and one authoritative backend",
+            "declared approved-alias set",
             "minimal crash capsule",
             "one isolated full Export20 attempt",
             "does not prompt, recurse, rescan the project",
@@ -117,9 +124,9 @@ class ProjectFrameworkTests(unittest.TestCase):
             encoding="utf-8"
         )
         required = (
-            "one BAT/CMD filename and one authoritative backend",
+            "one canonical BAT/CMD launcher and one authoritative backend",
             "current consumer, protected boundary, or explicit user requirement",
-            "unexpected duplicate launchers",
+            "declared approved-alias set",
             "minimal crash capsule atomically",
             "Attempt only one isolated full Export20",
             "Never prompt, recurse, rescan, rehash managed release files",
