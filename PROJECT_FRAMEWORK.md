@@ -75,15 +75,16 @@ When a deep cleanup or lean release is requested:
 - group exact duplicates by content hash and functional overlap by behavior,
   inputs, outputs, side effects, and references;
 - keep one active implementation for each required capability;
-- keep one BAT/CMD filename and one authoritative backend for each user action;
+- keep one canonical BAT/CMD launcher and one authoritative backend for each
+  user action;
+- allow only explicitly approved compatibility BAT/CMD aliases when a current
+  consumer, protected boundary, or explicit user requirement proves they are
+  still needed, and keep those aliases as logic-free forwarders;
 - make menus, command-line routes, shortcuts, and automation call the canonical
   action instead of copying its logic;
-- keep a compatibility alias only when a current shortcut, task, integration,
-  dependency-bound name, protected history boundary, or explicit user
-  requirement proves it is still needed;
-- keep approved aliases logic-free and preserve arguments and exit codes;
-- make self-test reject unexpected duplicate launchers or returned retired
-  action routes.
+- preserve arguments and exit codes through every approved forwarder;
+- make self-test reject unexpected duplicate launchers and any returned retired
+  action route, while recognizing the declared approved-alias set.
 
 Unique data or behavior, material privilege or risk boundaries, distinct modes
 or outputs, platform or format needs, third-party requirements, signed history,
@@ -251,7 +252,8 @@ check as PASS, FAIL, or NOT RUN. Relevant checks may include:
 - launch from an unrelated working directory;
 - effective root and output containment;
 - configuration and critical-input behavior;
-- one-backend-per-action and approved alias behavior;
+- one-backend-per-action, canonical-launcher ownership, and approved forwarding
+  alias behavior;
 - duplicate-instance handling;
 - migration, move, rename, fresh-extract, or repair behavior;
 - sensitive-startup identity gates;
