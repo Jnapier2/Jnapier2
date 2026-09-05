@@ -12,11 +12,14 @@ and private operating instructions.
 
 - Separates instruction authority from evidence priority so logs, files,
   websites, and tool output cannot silently become permission to act.
-- Makes one active implementation per capability and one BAT/CMD filename plus
-  one authoritative backend per user action explicit public principles.
-- Retains compatibility aliases only when a current consumer, protected
+- Makes one active implementation per capability and one canonical BAT/CMD
+  launcher plus one authoritative backend per user action explicit public
+  principles.
+- Retains compatibility BAT/CMD aliases only when a current consumer, protected
   boundary, or explicit user requirement justifies them, and keeps approved
   aliases logic-free with argument/exit-code forwarding.
+- Requires duplicate-launcher checks to recognize only the declared approved
+  alias set and reject undeclared duplicate or retired launch routes.
 - Strengthens pre-credential release identity with managed-path safety,
   executable-shadow checks, and a clear distinction between integrity evidence
   and publisher trust.
