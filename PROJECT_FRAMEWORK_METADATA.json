@@ -1,8 +1,8 @@
 {
   "asset_id": "GIG-RPDF-PUBLIC",
   "canonical_name": "Reliable Project Delivery Framework",
-  "public_version": "1.6.0",
-  "source_baseline": "ChatGPT New Thread Project Parameters v2.17.9",
+  "public_version": "1.7.0",
+  "source_baseline": "ChatGPT New Thread Project Parameters v2.17.14",
   "status": "current",
   "classification": "public",
   "artifact_type": "documentation-framework",
@@ -12,6 +12,13 @@
     "PROJECT_FRAMEWORK_CHECKLIST.md",
     "PROJECT_FRAMEWORK_CHANGELOG.md",
     "PROJECT_FRAMEWORK_METADATA.json"
+  ],
+  "highlights": [
+    "one active implementation per capability",
+    "one BAT/CMD filename and one authoritative backend per action",
+    "consumer-backed logic-free compatibility aliases",
+    "minimal Critical crash capsule followed by at most one isolated Export20 attempt",
+    "audience-facing copy separated from technical evidence and lifecycle claims"
   ],
   "public_boundary": [
     "No private custom instructions or account prompts",
@@ -26,7 +33,7 @@
     "third_party_notices": "Preserve third-party rights and licenses in linked projects."
   },
   "verification": {
-    "method": "Repository CI validates UTF-8, local links, version consistency, required public contracts, metadata, rights notices, and sensitive-residue exclusions.",
+    "method": "Repository CI validates UTF-8, local links, version consistency, documented contract presence and internal consistency, metadata, rights notices, and sensitive-residue exclusions. It does not validate a runtime launcher, action registry, Critical exporter, release package, or external deployment.",
     "package_claim": false,
     "runtime_claim": false
   }
