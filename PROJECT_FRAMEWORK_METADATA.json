@@ -16,7 +16,7 @@
   "highlights": [
     "one active implementation per capability",
     "one BAT/CMD filename and one authoritative backend per action",
-    "consumer-backed logic-free compatibility aliases",
+    "compatibility aliases retained only for a current consumer, protected boundary, or explicit user requirement, with logic-free forwarding",
     "minimal Critical crash capsule followed by at most one isolated Export20 attempt",
     "audience-facing copy separated from technical evidence and lifecycle claims"
   ],
