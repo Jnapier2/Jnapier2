@@ -1,26 +1,32 @@
 # Operations Intelligence & Automation Platform
 
-Operations Intelligence & Automation Platform turns service-request data into trusted measures, explainable operational findings, and controlled follow-through. It is designed to show not only what changed, but which data was trusted, what likely contributed, what action is proposed, and how improvement would be measured.
+**Connect operational measures with explainable findings and measurable next steps.**
+
+Operations Intelligence & Automation Platform turns service-request data into validated measures, operational findings, and controlled follow-through. It helps reviewers examine what changed, which data supports the finding, what may have contributed, and how a proposed improvement would be assessed.
 
 [Explore the source](https://github.com/Jnapier2/operations-intelligence-platform)
 
+## What it does
 
-The test results below are historical qualification records for the stated version. Current repository workflows provide dated, commit-specific checks.
+Data-contract checks hold back blocking defects before measures are calculated. The platform examines service performance, backlog, timeliness, quality, and process variants. Scenario planning makes assumptions, uncertainty, and capacity constraints visible, while before-and-after measures support follow-up on proposed actions.
 
-## Highlights
+## What makes the design distinctive
 
-- Data-contract checks that quarantine blocking defects before KPI calculation.
-- Deterministic service, backlog, timeliness, and quality measures.
-- Explainable root-factor ranking that keeps association separate from causation.
-- Process-variant analysis without inventing timestamps that are not present.
-- Scenario planning with assumptions, uncertainty, capacity constraints, and a held-out backtest.
-- Bounded automation opportunities, audit records, and before-and-after measures.
-- A static reviewer experience plus a local operational API, both using synthetic data.
+The project connects data quality, analysis, and follow-through rather than presenting them as disconnected reports. Explanations rank possible contributing factors without confusing association with causation. Process analysis does not invent missing timestamps, and scenario evaluation includes a held-out backtest rather than relying only on the data used to develop the scenario.
+
+## Why it is useful
+
+Operations managers and analysts can explore where work is accumulating, compare possible responses, and define how a change should be evaluated. The demonstration makes the reasoning behind a recommendation inspectable instead of asking reviewers to accept an unexplained alert or score.
+
+<details>
+<summary>Version-specific evidence and evaluation limits</summary>
 
 ## Verification
 
-Version 0.3.1 (`OIAP-0.3.1-20260831-FIELDLOG1`) passed 33/33 application tests, 32/32 platform checks, 5/5 launcher-contract checks, 40/40 HTTP smoke checks, and 46/46 release-identity checks. A fresh public clone passed the release gate. GitHub reported no open Dependabot alerts at publication.
+Version 0.3.1 (`OIAP-0.3.1-20260831-FIELDLOG1`) passed 33/33 application tests, 32/32 platform checks, 5/5 launcher-contract checks, 40/40 HTTP smoke checks, and 46/46 release-identity checks. A fresh public clone passed the release gate. These are historical qualification records; current repository workflows provide dated, commit-specific checks.
 
-The local demonstration access code is not production authentication. Optional external analysis is disabled by default and accepts only bounded aggregate evidence when deliberately enabled. The repository does not claim a production deployment or causal proof from observational data.
+The demonstration uses synthetic data and does not establish production authentication or deployment. Optional external analysis is disabled by default and is limited to deliberately approved aggregate evidence. Observational findings do not prove causation. The repository's portfolio review license applies.
+
+</details>
 
 Copyright © 2026 Gateway Information Group LLC. All rights reserved.

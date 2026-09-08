@@ -1,43 +1,45 @@
 # Data Contract Monitor
 
-Data Contract Monitor turns readable data expectations into repeatable checks. It helps teams catch schema drift, invalid values, stale records, duplicate keys, referential breaks, and unreviewed sensitive fields before unreliable data reaches a report, model, or operating process.
+**Turn data-quality expectations into checks people can understand and act on.**
+
+Data Contract Monitor helps teams identify unreliable data before it reaches a report, model, or operating process. It translates readable business expectations into repeatable checks for schema changes, invalid values, stale records, duplicate keys, broken references, and unreviewed sensitive fields.
 
 [Explore the source](https://github.com/Jnapier2/data-contract-monitor) · [Download v0.3.4](https://github.com/Jnapier2/data-contract-monitor/releases/tag/v0.3.4) · [Try the included demos](https://github.com/Jnapier2/data-contract-monitor/tree/main/examples)
 
+## What it does
+
+It validates CSV, JSON, JSON Lines, Parquet, and Excel inputs against an explicit contract. Reviewers can examine required fields, types, ranges, patterns, allowed values, uniqueness, freshness, aggregate reconciliation, and reference existence. Results are available in readable reports and structured formats for further analysis.
+
+## What makes the design distinctive
+
+The same contract and result model support different review interfaces, keeping the meaning of a check consistent. Exact and bounded streaming profiles make it clear when a result is complete and when an approximation is intentional. The emphasis is not simply on finding an error, but on explaining which expectation failed and leaving evidence that can be reviewed.
+
+## Why it is useful
+
+Analysts, data stewards, and operations teams can make data acceptance criteria explicit, repeat checks across incoming files, and investigate quality problems before relying on the affected information. The project demonstrates how business rules become executable controls without making those rules inaccessible to reviewers.
+
+<details>
+<summary>Version-specific evidence and evaluation limits</summary>
+
 ## Release qualification record
 
-| Item | Verified state |
+| Item | Recorded state |
 | --- | --- |
 | Version | 0.3.4 public alpha prerelease |
 | Build | `DCM-0.3.4-B20260901-SECURITY1` |
 | Automated suite | 71 tests passed on the prepared Windows source tree |
 | Release identity | 145/145 files managed by the public repository manifest verified |
-| Distribution | Rebuilt ZIP, SHA-256 sidecar, and verification receipt attached to the GitHub release |
+| Distribution | ZIP, checksum, and verification receipt available with the release |
 | License | Apache-2.0 |
 
-This release validates report identifiers against verified run directories, keeps database exception details out of the public health response, and adds bounded retry handling for transient Windows file-replacement contention. Its checksum sidecar and verification receipt are published with the release archive.
-
-These are the published release qualification results, not a new test run. See [repository checks](https://github.com/Jnapier2/data-contract-monitor/actions) for dated, commit-specific results.
-
-## What it does
-
-- Validates CSV, JSON, JSON Lines, Parquet, and Excel inputs through a common contract model.
-- Checks required fields, types, ranges, patterns, allowed values, uniqueness, freshness, aggregate reconciliation, and reference existence.
-- Supports exact and bounded streaming profiles so reviewers can see where a result is complete or intentionally approximate.
-- Produces JSON, CSV, Markdown, HTML, and local dashboard evidence from the same result model.
-- Fits local review, command-line use, containers, and CI workflows without requiring a hosted service.
-- Keeps state, logs, diagnostics, and recovery output project-local and excluded from source control.
-
-## Design
-
-![Data Contract Monitor architecture](assets/data-contract-monitor-architecture.svg)
-
-Contracts remain readable YAML. The engine loads a contract, reads the selected data source, applies the same validation rules across interfaces, and records result evidence with the release identity that produced it.
+These are published historical qualification results, not a new test run. See [repository checks](https://github.com/Jnapier2/data-contract-monitor/actions) for dated, commit-specific results.
 
 ## Evidence boundary
 
-Historical v0.1.2 synthetic measurements remain available in the [benchmark review](evidence/data-contract-monitor-benchmark-review.json). They are retained as regression context, not presented as v0.3.4 throughput or a production service-level promise. Hardware, storage, format, row width, and rule complexity materially affect performance.
+Historical v0.1.2 synthetic measurements remain available in the [benchmark review](evidence/data-contract-monitor-benchmark-review.json). They are retained as regression context, not presented as v0.3.4 throughput or a production service-level promise. Performance depends on the environment, file format, dataset, and rules evaluated.
 
-This is evaluation software, not a production certification, distributed processing service, or data-loss-prevention guarantee. The repository documents known limitations and includes synthetic examples for safe review.
+This is evaluation software, not a production certification, distributed processing service, or data-loss-prevention guarantee. Included examples are synthetic.
+
+</details>
 
 Copyright © 2026 Gateway Information Group LLC. All rights reserved.

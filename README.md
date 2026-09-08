@@ -2,7 +2,9 @@
 
 **Information management · Data governance · Analytics · Reliable automation**
 
-I build practical tools that turn complex information and operating problems into clear, dependable workflows. My background spans production operations, database operations, digital asset management, reporting, metadata, taxonomy, analytics, and process improvement.
+I turn complex information and operational requirements into practical software that helps people trust their data, understand their work, and make better-informed decisions. My background spans production operations, database operations, digital asset management, reporting, metadata, taxonomy, analytics, and process improvement.
+
+My portfolio connects business needs with working demonstrations and evidence-backed design studies. The work emphasizes clear ownership, understandable results, visible exceptions, and thoughtful controls—not just a dashboard or an automated task, but a useful way to understand and manage the work behind it.
 
 **M.S. in Information Management · Certificate in Digital Curation · Dominican University**
 
@@ -10,56 +12,57 @@ I build practical tools that turn complex information and operating problems int
 
 ## Data, governance, and operations
 
-- **[Data Contract Monitor](professional-portfolio/data-contract-monitor.md)** — Catches broken schemas, stale records, duplicate keys, invalid values, and unreviewed sensitive fields so teams can address unreliable data before using it. [Source and runnable demos](https://github.com/Jnapier2/data-contract-monitor).
-- **[Data Governance & Lineage Portal](professional-portfolio/data-governance-lineage-portal.md)** — Helps teams understand what data means, who owns it, and what changes could affect downstream work. Public case study; implementation remains private.
-- **[Workflow & Case Management Platform](professional-portfolio/workflow-case-management-platform.md)** — Turns requests into assigned, time-bound, auditable workflows with business-calendar service targets and controlled automation. [Source](https://github.com/Jnapier2/workflow-case-management-platform).
-- **[Policy and Procedure Navigator](professional-portfolio/policy-procedure-navigator.md)** — Delivers permission-aware, evidence-grounded answers with citations, abstention, and structured follow-up. [Source](https://github.com/Jnapier2/policy-procedure-navigator).
-- **[Operations Intelligence & Automation Platform](professional-portfolio/operations-intelligence-automation-platform.md)** — Converts service operations data into trusted measures, explainable findings, and measured follow-through. [Source](https://github.com/Jnapier2/operations-intelligence-platform).
-- **[PC Reliability & Incident Intelligence Suite](professional-portfolio/pc-reliability-incident-intelligence-suite.md)** — A documentation-only diagnostic case study; native Windows validation is incomplete and source remains private.
-- **[Professional Portfolio Program Index](professional-portfolio/README.md)** — Compare runnable demonstrations, public case studies, and their evidence limits.
+- **[Data Contract Monitor](professional-portfolio/data-contract-monitor.md)** — Turns business expectations into repeatable data-quality checks, helping teams catch unreliable inputs before they affect reports, models, or operational decisions. [Source and runnable demos](https://github.com/Jnapier2/data-contract-monitor).
+- **[Data Governance & Lineage Portal](professional-portfolio/data-governance-lineage-portal.md)** — Connects business definitions, accountable owners, quality evidence, and data dependencies so reviewers can understand what a dataset means and what a proposed change could affect. Public case study; implementation remains private.
+- **[Workflow & Case Management Platform](professional-portfolio/workflow-case-management-platform.md)** — Gives requests a clear owner, a business-calendar deadline, and a traceable path through approvals and escalation. Combines visual process design with accountable follow-through. [Source](https://github.com/Jnapier2/workflow-case-management-platform).
+- **[Policy and Procedure Navigator](professional-portfolio/policy-procedure-navigator.md)** — Helps people find applicable policy guidance, inspect its supporting citations, and route unresolved questions for review. Considers permissions and document status instead of presenting every search result as an authoritative answer. [Source](https://github.com/Jnapier2/policy-procedure-navigator).
+- **[Operations Intelligence & Automation Platform](professional-portfolio/operations-intelligence-automation-platform.md)** — Connects validated service data with explainable findings, scenario planning, and measurable follow-through. Makes assumptions and uncertainty visible rather than treating an observed pattern as proof of its cause. [Source](https://github.com/Jnapier2/operations-intelligence-platform).
+- **[PC Reliability & Incident Intelligence Suite](professional-portfolio/pc-reliability-incident-intelligence-suite.md)** — Explores a more useful approach to troubleshooting: reconstruct the incident, track recurrence, and check whether an intervention actually held. Documentation-only diagnostic case study; native Windows validation is incomplete and source remains private.
+- **[Professional Portfolio Program Index](professional-portfolio/README.md)** — Explore each program's purpose, distinctive design choices, and available demonstration or case study.
 
 ## Featured projects
 
-- **[BotOps Manager](https://github.com/Jnapier2/botops-manager)** — A local Windows operations console for launching, monitoring, stopping, and reviewing independent automation projects. [Reliability case study](https://github.com/Jnapier2/automation-reliability-case-studies/blob/main/docs/botops-control-plane-cohesion.md).
-- **[Digital Asset Governance Audit](https://github.com/Jnapier2/digital-asset-governance-case-study)** — A synthetic-data case study that turns metadata quality, provenance, confidence, and duplicate signals into a prioritized stewardship queue.
-- **[MediaTaggerBot](https://github.com/Jnapier2/media-tagger-bot)** — Organizes media libraries through evidence-based matching, reviewable changes, verified renames, and rollback records.
+- **[Account Analyst Portfolio Showcase](professional-portfolio/account-analytics/README.md)** — An interactive browser demonstration of client-level spend analysis, savings summaries, and data-quality review. Missing inputs remain visible and are kept out of eligible savings calculations; all records and results are synthetic.
+- **[BotOps Manager](https://github.com/Jnapier2/botops-manager)** — Brings independent automation projects into one Windows operations console for launching, monitoring, stopping, and reviewing their status. [Reliability case study](https://github.com/Jnapier2/automation-reliability-case-studies/blob/main/docs/botops-control-plane-cohesion.md).
+- **[Digital Asset Governance Audit](https://github.com/Jnapier2/digital-asset-governance-case-study)** — Turns metadata quality, provenance, confidence, and duplicate signals into a prioritized stewardship queue, showing where reviewers should focus their attention. Uses synthetic data.
+- **[MediaTaggerBot](https://github.com/Jnapier2/media-tagger-bot)** — Makes media-library cleanup reviewable through evidence-based matching, proposed changes, verified renames, and rollback records.
 
 ## Data and analysis
 
-- **[Chicago Food Inspection Outcomes](https://github.com/Jnapier2/chicago-food-inspections-analysis)** — Reproducible analysis of public inspection records, with careful separation of inspection outcomes and facility-risk categories.
-- **[Automation Reliability Case Studies](https://github.com/Jnapier2/automation-reliability-case-studies)** — Fifteen documentation-only studies using synthetic scenarios to examine reliability and evidence quality. These are design analyses, not fifteen released programs.
+- **[Chicago Food Inspection Outcomes](https://github.com/Jnapier2/chicago-food-inspections-analysis)** — Reproducible analysis of public inspection records that keeps inspection outcomes distinct from facility-risk categories, supporting a more careful interpretation of the data.
+- **[Automation Reliability Case Studies](https://github.com/Jnapier2/automation-reliability-case-studies)** — Fifteen documentation-only studies examining how automation handles interruptions, uncertain state, recovery, and evidence quality. Synthetic scenarios make the design trade-offs tangible; these are design analyses, not fifteen released programs.
 
 ## Automation and diagnostics
 
-- **[Avalon Q Supervisor](https://github.com/Jnapier2/avalon-q-supervisor)** — Converts local device telemetry into understandable health states and bounded recovery actions.
-- **[NetLossDoctor](https://github.com/Jnapier2/net-loss-doctor)** — Correlates gateway, route, DNS, TCP, latency, Windows event, and optional trace evidence without changing network configuration.
-- **[Gateway LAN Link](https://github.com/Jnapier2/lan-router-comms)** — Provides cloud-free authenticated text and resumable file exchange between trusted Windows computers. The repository slug preserves its historical LAN Router Comms alias.
-- **[Windows Health Audit](https://github.com/Jnapier2/windows-health-audit)** — Creates a read-only Windows health baseline with privacy-conscious normalization and failure-isolated collectors.
+- **[Avalon Q Supervisor](https://github.com/Jnapier2/avalon-q-supervisor)** — Turns device telemetry into understandable health states and bounded recovery actions, giving operators a clearer view of equipment behavior.
+- **[NetLossDoctor](https://github.com/Jnapier2/net-loss-doctor)** — Brings connection, routing, DNS, latency, and Windows-event evidence together to investigate network problems without changing network configuration.
+- **[Gateway LAN Link](https://github.com/Jnapier2/lan-router-comms)** — Supports authenticated messaging and resumable file exchange between trusted Windows computers without relying on a cloud service. The repository retains the LAN Router Comms alias.
+- **[Windows Health Audit](https://github.com/Jnapier2/windows-health-audit)** — Creates a read-only Windows health baseline with privacy-conscious reporting and isolated collectors, so one failed collection does not obscure the rest of the review.
 
 ## Media and utility tools
 
-- **[Safe Video Downloader](https://github.com/Jnapier2/safe-video-downloader)** — Retrieves authorized media with reviewable planning, duplicate controls, bounded workers, and verified output.
-- **[MP3 Downloader](https://github.com/Jnapier2/mp3-downloader)** — Converts an authorized source into a validated MP3 with metadata review, retry limits, and duplicate reconciliation.
-- **[Image Downloader](https://github.com/Jnapier2/image-downloader)** — Collects permitted images with controlled discovery, a recoverable queue, bounded concurrency, safe filenames, and session records.
-- **[Large Text Chunker](https://github.com/Jnapier2/large-text-chunker)** — Splits local documents at readable boundaries and verifies exact reconstruction.
+- **[Safe Video Downloader](https://github.com/Jnapier2/safe-video-downloader)** — Organizes authorized media retrieval around reviewable plans, duplicate controls, limited concurrent work, and verified output.
+- **[MP3 Downloader](https://github.com/Jnapier2/mp3-downloader)** — Converts authorized media into validated MP3 files with metadata review, bounded retries, and duplicate reconciliation.
+- **[Image Downloader](https://github.com/Jnapier2/image-downloader)** — Makes permitted image collection easier to manage through a recoverable queue, controlled concurrency, safe filenames, and session records.
+- **[Large Text Chunker](https://github.com/Jnapier2/large-text-chunker)** — Breaks local documents into readable sections while checking that the original content can be reconstructed exactly.
 
 ## Games and interactive projects
 
-- **[Beta Earth](https://github.com/Jnapier2/beta-earth)** — A local-first browser RPG with a shared battlefield clock, faction and civic systems, resilient SQLite saves, and an accessible tactical HUD.
-- **[QuipKite](https://github.com/Jnapier2/quipkite)** — Turns small reactive word choices into short stories, keepsakes, and reviewable progress in a clearly labeled simulated Solo preview; proprietary source remains private.
-- **[Inbox From Hell](https://zappytap.itch.io/inbox-from-hell)** — A workplace-horror browser game built around branching support cases, persistent progression, and accessible controls. Its playable release remains available while the source repository is private.
+- **[Beta Earth](https://github.com/Jnapier2/beta-earth)** — A browser role-playing game combining shared-clock tactical encounters, faction and civic systems, persistent saves, and an accessible tactical interface.
+- **[QuipKite](https://github.com/Jnapier2/quipkite)** — Turns reactive word choices into short stories, keepsakes, and visible progress in a clearly labeled simulated Solo preview; proprietary source remains private.
+- **[Inbox From Hell](https://zappytap.itch.io/inbox-from-hell)** — A workplace-horror browser game built around branching support cases, persistent progression, and accessible controls. Its playable release is public; its source repository remains private.
 
 ## Financial learning tools
 
-- **[Kalshi 10×1¢ Public Edition](https://github.com/Jnapier2/kalshi-10x1c-public)** — An offline educational planner that rejects stale or contradictory snapshots and prevents duplicate intents without credentials, network access, or order authority.
-- **[Kalshi 15-Minute Sell Preview](https://github.com/Jnapier2/kalshi-15m-sell-bot-public-preview)** — A dry-run exit-planning preview with live writes disabled.
+- **[Kalshi 10×1¢ Public Edition](https://github.com/Jnapier2/kalshi-10x1c-public)** — An offline educational planner demonstrating stale-data checks, contradiction handling, and duplicate-intent prevention. It has no credentials, network access, or order authority.
+- **[Kalshi 15-Minute Sell Preview](https://github.com/Jnapier2/kalshi-15m-sell-bot-public-preview)** — A dry-run exit-planning demonstration with live writes disabled.
 
 ## Professional focus
 
-I am interested in analytics, data governance, information management, operations, and reliable automation work where complex systems need clearer evidence, stronger controls, and more usable workflows.
+I am interested in analytics, data governance, information management, operations, and reliable automation roles where business requirements need to become clear rules, usable tools, and decisions that people can explain.
 
-## Public repository boundary
+## Availability and evidence
 
-This profile repository is intentionally limited to project summaries, evidence-backed public case studies, and a synthetic analytics demonstration. Private release packages, operating records, support evidence, credentials, production datasets, and proprietary implementation details are not published here.
+This portfolio includes runnable source, synthetic demonstrations, and documentation-only case studies. Each project identifies what is available and the limits of its evidence; a demonstration is not a claim of production deployment. Private business records, credentials, and proprietary implementation details are not part of these portfolio descriptions. Each repository's license and rights notice apply.
 
 Copyright © 2026 Gateway Information Group LLC. All rights reserved.

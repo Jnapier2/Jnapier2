@@ -1,38 +1,43 @@
 # Data Governance & Lineage Portal
 
-Data Governance & Lineage Portal helps people understand what data means, who owns it, why it can be trusted, and what a proposed change could affect. It brings business definitions, technical metadata, lineage, quality evidence, stewardship, and controlled change into one navigable catalog.
+**Make data meaning, accountability, and change impact easy to navigate.**
 
-## Recorded verification
+Data Governance & Lineage Portal connects business definitions, technical metadata, ownership, lineage, and quality evidence in one catalog. It helps reviewers answer practical questions: What does this data mean? Who is responsible for it? What supports its use? What could a proposed change affect?
 
-| Item | Verified state |
-| --- | --- |
-| Version | 0.3.0 |
-| Windows status | Field-confirmed Windows-working known-good save state |
-| Automated suite | 84/84 source tests passed across deterministic shards |
-| Release identity | 140/140 managed files verified before and after testing |
-| Launcher and Doctor | Exactly one BAT/CMD launcher; Doctor 10/10 passed with no advisories |
-| Runtime evidence | Healthy Windows launch, project-local environment reuse, database quick check, and current governance migration passed |
-| Publication model | Public case study; proprietary implementation |
-
-These results describe the prior v0.3.0 qualification record. The public deliverable is this case study; source and runtime records remain private.
+**Public case study; proprietary implementation.**
 
 ## What it demonstrates
 
-- A governed glossary linking definitions, owners, stewards, policies, quality checks, and technical fields.
-- Search that connects business language to datasets, columns, reports, and operational processes.
-- Column- and asset-level lineage with upstream and downstream impact paths.
-- Change proposals that show affected assets and require review before approval.
-- Trust summaries that keep ownership, freshness, quality, and policy evidence visible together.
-- Synthetic catalog generation and a static reviewer experience that do not expose production metadata.
+The catalog links business terms with datasets, columns, reports, policies, quality checks, and accountable owners. Search connects business language with technical assets, while upstream and downstream lineage shows how information moves and where dependencies exist. Change proposals make affected assets visible before an approval decision.
 
-## Why it matters
+## What makes the design distinctive
 
-Governance often fails when definitions, technical systems, quality evidence, and accountability live in separate places. This design treats them as connected records, allowing a reviewer to move from a business term to its owner, physical fields, upstream sources, downstream reports, and open change activity without reconstructing the chain by hand.
+Governance is treated as a connected set of records rather than separate glossaries, inventories, and diagrams. A reviewer can follow a business term to its owner, underlying fields, quality evidence, dependent reports, and open change activity. Trust summaries keep ownership, freshness, quality, and policy context visible together instead of reducing trust to an unexplained label.
+
+## Why it is useful
+
+The design supports data discovery, stewardship, and impact review. It gives business and technical reviewers a shared context for discussing the same asset and helps them examine a change without reconstructing its dependencies by hand. Synthetic examples illustrate the experience without exposing production metadata.
+
+<details>
+<summary>Version-specific evidence and availability</summary>
+
+## Recorded verification
+
+| Item | Recorded state |
+| --- | --- |
+| Version | 0.3.0 |
+| Windows status | Field-confirmed Windows-working known-good save state |
+| Automated suite | 84/84 source tests passed |
+| Release identity | 140/140 managed files verified before and after testing |
+| Diagnostic checks | Doctor 10/10 passed with no advisories |
+| Publication model | Public case study; proprietary implementation |
+
+These are prior v0.3.0 qualification results, not a new runtime assessment. The public deliverable is this case study; source, operational records, and executable distribution remain private.
 
 ## Evidence boundary
 
-The exact v0.3.0 release was requalified from a fresh extraction and then matched to a healthy Windows field installation through managed release identity and core control-file comparison. The field evidence recorded a healthy launch, one active launcher, Doctor 10/10, database integrity, and a current governance migration. The public page does not include the private archive, checksum, support export, paths, machine identifiers, migration identifier, or catalog records.
+The case study does not claim production deployment, enterprise authentication, or high availability. It describes the design and previously verified behavior without distributing private catalog records or implementation details.
 
-This case study does not claim a production deployment, enterprise single sign-on, live PostgreSQL certification, high-availability worker architecture, or public source availability. The proprietary implementation remains private while the public case study documents the design and verified behavior.
+</details>
 
 Copyright © 2026 Gateway Information Group LLC. All rights reserved.
