@@ -214,7 +214,7 @@ loss, OOM, or failed storage may prevent capture and must not be hidden.
 
 ## 12. Audience-facing copy and technical evidence
 
-Public product and portfolio copy leads with the audience, problem, outcome,
+Public product and project descriptions lead with the audience, problem, outcome,
 practical value, and truthful evidence. Private prompts, parameter-ingestion
 details, tool orchestration, backend strategy, and drafting process remain out
 of public marketing unless required, requested, or necessary for accuracy and

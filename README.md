@@ -39,6 +39,7 @@ I build practical tools that turn complex information and operating problems int
 
 ## Media and utility tools
 
+- **[Facebook Birthday Assistant](https://github.com/Jnapier2/facebook-birthday-assistant)** — Reviews a local birthday list, validates dates and profile links, and keeps private completion records while you choose and send each greeting.
 - **[Safe Video Downloader](https://github.com/Jnapier2/safe-video-downloader)** — Retrieves authorized media with reviewable planning, duplicate controls, bounded workers, and verified output.
 - **[MP3 Downloader](https://github.com/Jnapier2/mp3-downloader)** — Converts an authorized source into a validated MP3 with metadata review, retry limits, and duplicate reconciliation.
 - **[Image Downloader](https://github.com/Jnapier2/image-downloader)** — Collects permitted images with controlled discovery, a recoverable queue, bounded concurrency, safe filenames, and session records.
