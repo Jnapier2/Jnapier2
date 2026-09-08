@@ -2,15 +2,16 @@
 
 PC Reliability & Incident Intelligence Suite reconstructs what happened around a Windows reliability incident, correlates failures with system changes, tracks recurrence, and records whether a controlled intervention held. It is a read-only diagnostic companion, not an antivirus, registry cleaner, driver updater, or automatic repair utility.
 
-## Current candidate
+## Candidate qualification record
 
 | Item | Verified state |
 | --- | --- |
 | Version | 0.3.1 |
-| Build | `PCRIIS-0.3.1-B20260831-01` |
 | Automated suite | 104 tests passed through the deterministic release builder |
 | Package | Deterministic release archive rebuilt and verified |
 | Publication status | Case study only; source held |
+
+The table records prior package qualification. This public deliverable is a case study; source and an executable download are not included.
 
 ## What it demonstrates
 
@@ -21,9 +22,9 @@ PC Reliability & Incident Intelligence Suite reconstructs what happened around a
 - Application, Windows-build, hardware-trend, crash, network, and optional Sysmon context.
 - Bounded, redacted support exports and one deterministic launcher.
 
-## Why it remains held
+## Evidence boundary
 
-The package and automated suite are qualified, but exact physical-Windows evidence remains open for native Event Log, WER, dump/debugger, Sysmon, WPR, network-probe, display-scaling, Norton, and SmartScreen behavior. Its public positioning also overlaps NetLossDoctor and Windows Health Audit, so publishing another source repository now would make the portfolio less clear.
+The package and automated suite are qualified, but exact physical-Windows evidence remains open for native Event Log, WER, dump/debugger, Sysmon, WPR, network-probe, display-scaling, Norton, and SmartScreen behavior.
 
 Normal collection is local and read-only. The suite does not upload telemetry, install Sysmon, change drivers or startup entries, weaken system protection, or automatically repair the computer.
 

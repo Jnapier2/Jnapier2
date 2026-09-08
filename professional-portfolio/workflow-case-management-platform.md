@@ -4,6 +4,9 @@ Workflow & Case Management Platform turns requests into assigned, time-bound, au
 
 [Explore the source](https://github.com/Jnapier2/workflow-case-management-platform)
 
+
+The test results below are historical qualification records for the stated version. Current repository workflows provide dated, commit-specific checks.
+
 ## Highlights
 
 - Visual workflow definitions with versioning and validation before activation.

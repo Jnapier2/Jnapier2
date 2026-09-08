@@ -2,9 +2,9 @@
 
 Data Contract Monitor turns readable data expectations into repeatable checks. It helps teams catch schema drift, invalid values, stale records, duplicate keys, referential breaks, and unreviewed sensitive fields before unreliable data reaches a report, model, or operating process.
 
-[Explore the source](https://github.com/Jnapier2/data-contract-monitor) · [Download v0.3.4](https://github.com/Jnapier2/data-contract-monitor/releases/tag/v0.3.4) · [Try the included demos](https://github.com/Jnapier2/data-contract-monitor#try-the-included-demos)
+[Explore the source](https://github.com/Jnapier2/data-contract-monitor) · [Download v0.3.4](https://github.com/Jnapier2/data-contract-monitor/releases/tag/v0.3.4) · [Try the included demos](https://github.com/Jnapier2/data-contract-monitor/tree/main/examples)
 
-## Current release
+## Release qualification record
 
 | Item | Verified state |
 | --- | --- |
@@ -15,7 +15,9 @@ Data Contract Monitor turns readable data expectations into repeatable checks. I
 | Distribution | Rebuilt ZIP, SHA-256 sidecar, and verification receipt attached to the GitHub release |
 | License | Apache-2.0 |
 
-The current release validates report identifiers against verified run directories, keeps database exception details out of the public health response, and adds bounded retry handling for transient Windows file-replacement contention. Its checksum sidecar and verification receipt are published with the release archive.
+This release validates report identifiers against verified run directories, keeps database exception details out of the public health response, and adds bounded retry handling for transient Windows file-replacement contention. Its checksum sidecar and verification receipt are published with the release archive.
+
+These are the published release qualification results, not a new test run. See [repository checks](https://github.com/Jnapier2/data-contract-monitor/actions) for dated, commit-specific results.
 
 ## What it does
 

@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.5",
+  "schema_version": "1.6",
   "classification": "public",
   "collection": "Professional Portfolio Programs",
   "publisher": "Gateway Information Group LLC",
@@ -25,13 +25,13 @@
         "production service-level guarantee",
         "distributed processing service",
         "data-loss-prevention certification"
-      ]
+      ],
+      "public_deliverable_type": "runnable-source"
     },
     {
       "id": "data-governance-lineage-portal",
       "display_name": "Data Governance & Lineage Portal",
       "version": "0.3.0",
-      "build": "DGPLP-0.3.0-20260831-TRUSTOPS1",
       "case_study_path": "professional-portfolio/data-governance-lineage-portal.md",
       "source_rights": "proprietary first-party source; public case study only",
       "evidence_class": "Windows-working known-good save state with exact-release identity, Doctor, database, and clean-release requalification evidence",
@@ -44,8 +44,7 @@
         "doctor": "10/10 pass with no advisories",
         "database_quick_check": "pass",
         "governance_migration": "current migration pass",
-        "clean_release_requalification": "pass",
-        "immediate_rollback": "0.2.2"
+        "clean_release_requalification": "pass"
       },
       "excluded_claims": [
         "production deployment",
@@ -53,7 +52,8 @@
         "live PostgreSQL certification",
         "high-availability worker architecture",
         "public source availability"
-      ]
+      ],
+      "public_deliverable_type": "case-study-documentation"
     },
     {
       "id": "workflow-case-management-platform",
@@ -74,7 +74,8 @@
         "production identity provider",
         "production PostgreSQL deployment",
         "physical Windows launcher acceptance"
-      ]
+      ],
+      "public_deliverable_type": "runnable-source"
     },
     {
       "id": "policy-procedure-navigator",
@@ -97,7 +98,8 @@
         "legal advice",
         "production policy authority",
         "enterprise access-management certification"
-      ]
+      ],
+      "public_deliverable_type": "runnable-source"
     },
     {
       "id": "operations-intelligence-platform",
@@ -121,7 +123,8 @@
         "production deployment",
         "production authentication",
         "causal proof from observational data"
-      ]
+      ],
+      "public_deliverable_type": "runnable-source"
     }
   ],
   "held_programs": [
@@ -129,25 +132,13 @@
       "id": "pc-reliability-incident-intelligence-suite",
       "display_name": "PC Reliability & Incident Intelligence Suite",
       "version": "0.3.1",
-      "build": "PCRIIS-0.3.1-B20260831-01",
       "case_study_path": "professional-portfolio/pc-reliability-incident-intelligence-suite.md",
       "automated_tests_passed": 104,
       "status": "held from public source publication",
-      "reason": "physical-Windows collector evidence, product overlap, and presentation scope remain under review"
+      "reason": "Native Windows collector validation is incomplete.",
+      "public_deliverable_type": "case-study-documentation"
     }
   ],
-  "collection_package": {
-    "version": "0.3.0",
-    "classification": "exact-archive-qualified candidate",
-    "rollback": "0.2.1",
-    "archive_entries": 112,
-    "active_launchers": 1,
-    "intentional_duplicate_groups": 7,
-    "unresolved_duplicate_implementation_groups": 0,
-    "doctor": "pass in build-host review",
-    "browser_and_http_readiness": "pass in build-host review",
-    "remaining_gate": "exact Windows and normal-protection acceptance"
-  },
   "sanitization": {
     "private_release_archives": false,
     "support_exports": false,
@@ -160,5 +151,7 @@
     "private_policy_content": false,
     "proprietary_implementation": false
   },
-  "copyright": "Copyright © 2026 Gateway Information Group LLC. All rights reserved."
+  "copyright": "Copyright © 2026 Gateway Information Group LLC. All rights reserved.",
+  "reviewed_date": "2026-09-08",
+  "evidence_scope": "Historical version-specific qualification records; not a current runtime test or production certification."
 }
