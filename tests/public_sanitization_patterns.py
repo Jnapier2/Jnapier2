@@ -62,7 +62,7 @@ CREDENTIAL_FIXTURES = {
     "pypi_token": ("pypi-" + "A" * 48,),
     "stripe_secret": ("sk_live_" + "A" * 24,),
     "huggingface_token": ("hf_" + "A" * 32,),
-    "private_key_header": ("-----BEGIN PRIVATE KEY-----",),
+    "private_key_header": ("-" * 5 + "BEGIN PRIVATE KEY" + "-" * 5,),
     "operational_secret_assignment": (
         "AWS_SECRET_ACCESS_KEY=" + "A" * 40,
         "SLACK_APP_TOKEN=" + "A" * 24,

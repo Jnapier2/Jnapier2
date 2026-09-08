@@ -4,6 +4,9 @@ Policy and Procedure Navigator helps people find an applicable policy, understan
 
 [Explore the source](https://github.com/Jnapier2/policy-procedure-navigator)
 
+
+The test results below are historical qualification records for the stated version. Current repository workflows provide dated, commit-specific checks.
+
 ## Highlights
 
 - Evidence-grounded answers with document and section citations.

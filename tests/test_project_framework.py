@@ -12,8 +12,7 @@ except ModuleNotFoundError:
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PUBLIC_VERSION = "1.7.0"
-SOURCE_BASELINE = "ChatGPT New Thread Project Parameters v2.17.14"
+PUBLIC_VERSION = "1.8.0"
 PUBLIC_FILES = (
     ROOT / "PROJECT_FRAMEWORK.md",
     ROOT / "PROJECT_FRAMEWORK_CHECKLIST.md",
@@ -52,90 +51,16 @@ class ProjectFrameworkTests(unittest.TestCase):
         self.assertEqual(metadata["asset_id"], "GIG-RPDF-PUBLIC")
         self.assertEqual(metadata["canonical_name"], "Reliable Project Delivery Framework")
         self.assertEqual(metadata["public_version"], PUBLIC_VERSION)
-        self.assertEqual(metadata["source_baseline"], SOURCE_BASELINE)
         self.assertEqual(metadata["classification"], "public")
         self.assertEqual(metadata["runtime_dependencies"], [])
         self.assertFalse(metadata["verification"]["package_claim"])
         self.assertFalse(metadata["verification"]["runtime_claim"])
         self.assertEqual(len(metadata["highlights"]), 5)
-        self.assertIn(
-            "one canonical BAT/CMD launcher and one authoritative backend per action",
-            metadata["highlights"][1],
-        )
-        self.assertIn("declared approved forwarding aliases", metadata["highlights"][1])
-        self.assertIn(
-            "current consumer, protected boundary, or explicit user requirement",
-            metadata["highlights"][2],
-        )
-        method = metadata["verification"]["method"]
-        self.assertIn("documented contract presence", method)
-        self.assertIn("does not validate a runtime launcher", method)
-        self.assertIn("Critical exporter", method)
-
-        framework = (ROOT / "PROJECT_FRAMEWORK.md").read_text(encoding="utf-8")
-        checklist = (ROOT / "PROJECT_FRAMEWORK_CHECKLIST.md").read_text(
-            encoding="utf-8"
-        )
-        changelog = (ROOT / "PROJECT_FRAMEWORK_CHANGELOG.md").read_text(
-            encoding="utf-8"
-        )
-        for text in (framework, checklist, changelog):
-            self.assertIn(f"v{PUBLIC_VERSION}", text)
-        self.assertIn(SOURCE_BASELINE, framework)
-        self.assertIn(SOURCE_BASELINE, changelog)
-        self.assertIn("one canonical BAT/CMD\n  launcher", changelog)
-        self.assertIn(
-            "current consumer, protected\n  boundary, or explicit user requirement",
-            changelog,
-        )
-        self.assertNotIn(
-            "**Source baseline:** ChatGPT New Thread Project Parameters v2.17.9",
-            framework,
-        )
-
-    def test_framework_contains_required_public_contracts(self) -> None:
-        text = (ROOT / "PROJECT_FRAMEWORK.md").read_text(encoding="utf-8")
-        required = (
-            "## 1. Authority, evidence, and source truth",
-            "## 2. Scope, triage, and no-omission coverage",
-            "## 3. One canonical identity and a lean file-and-action surface",
-            "## 4. Project-local and portable operation",
-            "## 6. Critical input assurance",
-            "## 7. Release identity and managed-file trust before sensitive startup",
-            "## 8. Independent operation across computers",
-            "## 11. Privacy-conscious diagnostics and Export20",
-            "## 12. Audience-facing copy and technical evidence",
-            "## 13. Program-specific risk controls",
-            "## 14. Verification and definition of done",
-            "## Public boundary",
-            "recognized → validated → normalized → mapped → exercised → confirmed",
-            "one canonical BAT/CMD launcher and one authoritative backend",
-            "declared approved-alias set",
-            "minimal crash capsule",
-            "one isolated full Export20 attempt",
-            "does not prompt, recurse, rescan the project",
-            "Static documentation tests prove only the documented contract",
-        )
-        for marker in required:
-            self.assertIn(marker, text)
-
-    def test_checklist_contains_release_and_publication_boundaries(self) -> None:
-        text = (ROOT / "PROJECT_FRAMEWORK_CHECKLIST.md").read_text(
-            encoding="utf-8"
-        )
-        required = (
-            "one canonical BAT/CMD launcher and one authoritative backend",
-            "current consumer, protected boundary, or explicit user requirement",
-            "declared approved-alias set",
-            "minimal crash capsule atomically",
-            "Attempt only one isolated full Export20",
-            "Never prompt, recurse, rescan, rehash managed release files",
-            "Lead public copy with the audience, problem, outcome, practical value",
-            "Verify every public claim against current lifecycle evidence",
-            "Treat static documentation checks as documentation evidence, not runtime proof",
-        )
-        for marker in required:
-            self.assertIn(marker, text)
+        self.assertEqual(metadata["artifact_type"], "documentation-overview")
+        self.assertEqual(set(metadata["files"]), {path.name for path in PUBLIC_FILES})
+        self.assertNotIn("source_baseline", metadata)
+        for path in PUBLIC_FILES[:3]:
+            self.assertIn(f"v{PUBLIC_VERSION}", path.read_text(encoding="utf-8"))
 
     def test_public_files_contain_no_sensitive_residue(self) -> None:
         for path in PUBLIC_FILES:

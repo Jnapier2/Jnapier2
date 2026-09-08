@@ -1,11 +1,10 @@
 {
   "asset_id": "GIG-RPDF-PUBLIC",
   "canonical_name": "Reliable Project Delivery Framework",
-  "public_version": "1.7.0",
-  "source_baseline": "ChatGPT New Thread Project Parameters v2.17.14",
+  "public_version": "1.8.0",
   "status": "current",
   "classification": "public",
-  "artifact_type": "documentation-framework",
+  "artifact_type": "documentation-overview",
   "runtime_dependencies": [],
   "files": [
     "PROJECT_FRAMEWORK.md",
@@ -14,17 +13,15 @@
     "PROJECT_FRAMEWORK_METADATA.json"
   ],
   "highlights": [
-    "one active implementation per capability",
-    "one canonical BAT/CMD launcher and one authoritative backend per action, with only declared approved forwarding aliases",
-    "compatibility aliases retained only for a current consumer, protected boundary, or explicit user requirement, with logic-free forwarding",
-    "minimal Critical crash capsule followed by at most one isolated Export20 attempt",
-    "audience-facing copy separated from technical evidence and lifecycle claims"
+    "Useful outcomes",
+    "Version-specific evidence",
+    "Usable controls",
+    "Reliability and recovery",
+    "Privacy and clear rights"
   ],
   "public_boundary": [
-    "No private custom instructions or account prompts",
-    "No Drive topology, file identifiers, or internal project identifiers",
-    "No computer profiles, credentials, live settings, or operational strategies",
-    "No private package contents or project-specific acceptance evidence"
+    "Public evaluation criteria only",
+    "Project-specific evidence remains with its deliverable"
   ],
   "rights": {
     "holder": "Gateway Information Group LLC",
@@ -33,7 +30,7 @@
     "third_party_notices": "Preserve third-party rights and licenses in linked projects."
   },
   "verification": {
-    "method": "Repository CI validates UTF-8, local links, version consistency, documented contract presence and internal consistency, metadata, rights notices, and sensitive-residue exclusions. It does not validate a runtime launcher, action registry, Critical exporter, release package, or external deployment.",
+    "method": "Documentation checks cover UTF-8, links, metadata consistency, rights notices, and sensitive-residue exclusions. They do not establish software functionality or deployment readiness.",
     "package_claim": false,
     "runtime_claim": false
   }

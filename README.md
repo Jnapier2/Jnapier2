@@ -8,19 +8,18 @@ I build practical tools that turn complex information and operating problems int
 
 [Portfolio](https://jerry-napier-portfolio.netlify.app/) · [LinkedIn](https://www.linkedin.com/in/jrnapier)
 
-## Professional portfolio programs
+## Data, governance, and operations
 
 - **[Data Contract Monitor](professional-portfolio/data-contract-monitor.md)** — Catches broken schemas, stale records, duplicate keys, invalid values, and unreviewed sensitive fields so teams can address unreliable data before using it. [Source and runnable demos](https://github.com/Jnapier2/data-contract-monitor).
-- **[Data Governance & Lineage Portal](professional-portfolio/data-governance-lineage-portal.md)** — Helps teams understand what data means, who owns it, why it can be trusted, and what changes will affect downstream reports and processes.
+- **[Data Governance & Lineage Portal](professional-portfolio/data-governance-lineage-portal.md)** — Helps teams understand what data means, who owns it, and what changes could affect downstream work. Public case study; implementation remains private.
 - **[Workflow & Case Management Platform](professional-portfolio/workflow-case-management-platform.md)** — Turns requests into assigned, time-bound, auditable workflows with business-calendar service targets and controlled automation. [Source](https://github.com/Jnapier2/workflow-case-management-platform).
 - **[Policy and Procedure Navigator](professional-portfolio/policy-procedure-navigator.md)** — Delivers permission-aware, evidence-grounded answers with citations, abstention, and structured follow-up. [Source](https://github.com/Jnapier2/policy-procedure-navigator).
 - **[Operations Intelligence & Automation Platform](professional-portfolio/operations-intelligence-automation-platform.md)** — Converts service operations data into trusted measures, explainable findings, and measured follow-through. [Source](https://github.com/Jnapier2/operations-intelligence-platform).
-- **[PC Reliability & Incident Intelligence Suite](professional-portfolio/pc-reliability-incident-intelligence-suite.md)** — A package-qualified reliability case study held for physical-Windows collector evidence and final portfolio positioning.
-- **[Professional Portfolio Program Index](professional-portfolio/README.md)** — Current verification status, publication boundaries, and related governance work.
+- **[PC Reliability & Incident Intelligence Suite](professional-portfolio/pc-reliability-incident-intelligence-suite.md)** — A documentation-only diagnostic case study; native Windows validation is incomplete and source remains private.
+- **[Professional Portfolio Program Index](professional-portfolio/README.md)** — Compare runnable demonstrations, public case studies, and their evidence limits.
 
 ## Featured projects
 
-- **[Reliable Project Delivery Framework v1.7.0](PROJECT_FRAMEWORK.md)** — My public operating framework for evidence-first planning, one active implementation per capability, portable Windows delivery, release integrity, bounded Critical diagnostics, privacy-conscious support evidence, and truthful public communication.
 - **[BotOps Manager](https://github.com/Jnapier2/botops-manager)** — A local Windows operations console for launching, monitoring, stopping, and reviewing independent automation projects. [Reliability case study](https://github.com/Jnapier2/automation-reliability-case-studies/blob/main/docs/botops-control-plane-cohesion.md).
 - **[Digital Asset Governance Audit](https://github.com/Jnapier2/digital-asset-governance-case-study)** — A synthetic-data case study that turns metadata quality, provenance, confidence, and duplicate signals into a prioritized stewardship queue.
 - **[MediaTaggerBot](https://github.com/Jnapier2/media-tagger-bot)** — Organizes media libraries through evidence-based matching, reviewable changes, verified renames, and rollback records.
@@ -28,7 +27,7 @@ I build practical tools that turn complex information and operating problems int
 ## Data and analysis
 
 - **[Chicago Food Inspection Outcomes](https://github.com/Jnapier2/chicago-food-inspections-analysis)** — Reproducible analysis of public inspection records, with careful separation of inspection outcomes and facility-risk categories.
-- **[Automation Reliability Case Studies](https://github.com/Jnapier2/automation-reliability-case-studies)** — Fifteen sanitized engineering studies covering Vdownloader queue recovery, MediaTaggerBot launcher consolidation, BotOps control-plane cohesion, PC Improve repair governance, Gateway Intelligence Core local-first evidence and manual external-action boundaries, SageMath WSL cross-boundary installation and recovery, GPU-mining readiness, Kraken/Coinbase/Binance spread-bot reconciliation, Kalshi data quality, save-state truth and structural parity, fail-closed game-release acceptance, network-guard evidence, and process supervision.
+- **[Automation Reliability Case Studies](https://github.com/Jnapier2/automation-reliability-case-studies)** — Fifteen documentation-only studies using synthetic scenarios to examine reliability and evidence quality. These are design analyses, not fifteen released programs.
 
 ## Automation and diagnostics
 
@@ -55,21 +54,12 @@ I build practical tools that turn complex information and operating problems int
 - **[Kalshi 10×1¢ Public Edition](https://github.com/Jnapier2/kalshi-10x1c-public)** — An offline educational planner that rejects stale or contradictory snapshots and prevents duplicate intents without credentials, network access, or order authority.
 - **[Kalshi 15-Minute Sell Preview](https://github.com/Jnapier2/kalshi-15m-sell-bot-public-preview)** — A dry-run exit-planning preview with live writes disabled.
 
-## Framework resources
-
-- [Public framework](PROJECT_FRAMEWORK.md)
-- [Implementation checklist](PROJECT_FRAMEWORK_CHECKLIST.md)
-- [Version history](PROJECT_FRAMEWORK_CHANGELOG.md)
-- [Machine-readable metadata](PROJECT_FRAMEWORK_METADATA.json)
-
-The framework presents reusable delivery principles while project-specific operating records, credentials, and private implementation details remain outside the public portfolio.
-
 ## Professional focus
 
 I am interested in analytics, data governance, information management, operations, and reliable automation work where complex systems need clearer evidence, stronger controls, and more usable workflows.
 
 ## Public repository boundary
 
-This profile repository is intentionally limited to project summaries, evidence-backed public case studies, and the shared public framework. Private release packages, operating records, support evidence, credentials, production datasets, and proprietary implementation details are not published here.
+This profile repository is intentionally limited to project summaries, evidence-backed public case studies, and a synthetic analytics demonstration. Private release packages, operating records, support evidence, credentials, production datasets, and proprietary implementation details are not published here.
 
 Copyright © 2026 Gateway Information Group LLC. All rights reserved.

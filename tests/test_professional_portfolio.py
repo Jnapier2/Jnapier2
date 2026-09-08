@@ -58,7 +58,7 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         metadata = json.loads(
             (PORTFOLIO / "SHOWCASE_METADATA.json").read_text(encoding="utf-8")
         )
-        self.assertEqual(metadata["schema_version"], "1.5")
+        self.assertEqual(metadata["schema_version"], "1.6")
         self.assertEqual(metadata["classification"], "public")
         self.assertEqual(len(metadata["projects"]), 5)
         self.assertEqual(len(metadata["held_programs"]), 1)
@@ -92,7 +92,6 @@ class ProfessionalPortfolioTests(unittest.TestCase):
             "current migration pass",
         )
         self.assertNotIn("migration_head", governance["verification"])
-        self.assertEqual(governance["verification"]["immediate_rollback"], "0.2.2")
 
         workflow = by_id["workflow-case-management-platform"]
         self.assertEqual(workflow["version"], "0.5.2")
@@ -118,10 +117,13 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         self.assertEqual(held["automated_tests_passed"], 104)
         self.assertTrue((ROOT / held["case_study_path"]).is_file())
 
-        collection = metadata["collection_package"]
-        self.assertEqual(collection["version"], "0.3.0")
-        self.assertEqual(collection["active_launchers"], 1)
-        self.assertEqual(collection["unresolved_duplicate_implementation_groups"], 0)
+        self.assertNotIn("collection_package", metadata)
+        self.assertIn("Historical", metadata["evidence_scope"])
+        for item in [*metadata["projects"], *metadata["held_programs"]]:
+            expected = "runnable-source" if item.get("repository_url") else "case-study-documentation"
+            self.assertEqual(item["public_deliverable_type"], expected)
+            if expected == "case-study-documentation":
+                self.assertNotIn("build", item)
 
     def test_case_studies_preserve_evidence_boundaries(self) -> None:
         contract = (PORTFOLIO / "data-contract-monitor.md").read_text(encoding="utf-8")
@@ -158,13 +160,12 @@ class ProfessionalPortfolioTests(unittest.TestCase):
             self.assertIn(marker, contract)
 
         for marker in (
-            "## Current verified save state",
+            "## Recorded verification",
             "Version | 0.3.0",
             "Windows-working known-good save state",
             "84/84 source tests",
             "140/140 managed files",
             "Doctor 10/10",
-            "Immediate rollback | Version 0.2.2",
             "Public case study; proprietary implementation",
             "## Evidence boundary",
         ):
@@ -172,7 +173,7 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         self.assertNotIn("0003_governance", governance)
 
         overview = (PORTFOLIO / "README.md").read_text(encoding="utf-8")
-        self.assertIn("84/84 source tests", overview)
+        self.assertIn("Historical test counts", overview)
 
         self.assertIn("68 automated tests", workflow)
         self.assertIn("123/123 managed files", workflow)
@@ -206,9 +207,8 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         for target in public_targets:
             with self.subTest(target=target):
                 self.assertIn(target, readme)
-        self.assertIn("Fifteen sanitized engineering studies", readme)
-        self.assertIn("BotOps control-plane cohesion", readme)
-        self.assertIn("SageMath WSL cross-boundary installation and recovery", readme)
+        self.assertIn("Fifteen documentation-only studies", readme)
+        self.assertIn("not fifteen released programs", readme)
 
     def test_public_marketing_leads_with_outcomes(self) -> None:
         overview = (PORTFOLIO / "README.md").read_text(encoding="utf-8")

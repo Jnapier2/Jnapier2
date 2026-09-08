@@ -2,19 +2,19 @@
 
 Data Governance & Lineage Portal helps people understand what data means, who owns it, why it can be trusted, and what a proposed change could affect. It brings business definitions, technical metadata, lineage, quality evidence, stewardship, and controlled change into one navigable catalog.
 
-## Current verified save state
+## Recorded verification
 
 | Item | Verified state |
 | --- | --- |
 | Version | 0.3.0 |
-| Build | `DGPLP-0.3.0-20260831-TRUSTOPS1` |
 | Windows status | Field-confirmed Windows-working known-good save state |
 | Automated suite | 84/84 source tests passed across deterministic shards |
 | Release identity | 140/140 managed files verified before and after testing |
 | Launcher and Doctor | Exactly one BAT/CMD launcher; Doctor 10/10 passed with no advisories |
 | Runtime evidence | Healthy Windows launch, project-local environment reuse, database quick check, and current governance migration passed |
 | Publication model | Public case study; proprietary implementation |
-| Immediate rollback | Version 0.2.2 remains the preserved rollback |
+
+These results describe the prior v0.3.0 qualification record. The public deliverable is this case study; source and runtime records remain private.
 
 ## What it demonstrates
 

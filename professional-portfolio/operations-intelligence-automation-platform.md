@@ -4,6 +4,9 @@ Operations Intelligence & Automation Platform turns service-request data into tr
 
 [Explore the source](https://github.com/Jnapier2/operations-intelligence-platform)
 
+
+The test results below are historical qualification records for the stated version. Current repository workflows provide dated, commit-specific checks.
+
 ## Highlights
 
 - Data-contract checks that quarantine blocking defects before KPI calculation.
