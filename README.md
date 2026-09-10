@@ -44,7 +44,7 @@ My portfolio connects business needs with working demonstrations and evidence-ba
 - **[Safe Video Downloader](https://github.com/Jnapier2/safe-video-downloader)** — Organizes authorized media retrieval around reviewable plans, duplicate controls, limited concurrent work, and verified output.
 - **[MP3 Downloader](https://github.com/Jnapier2/mp3-downloader)** — Converts authorized media into validated MP3 files with metadata review, bounded retries, and duplicate reconciliation.
 - **[Image Downloader](https://github.com/Jnapier2/image-downloader)** — Makes permitted image collection easier to manage through a recoverable queue, controlled concurrency, safe filenames, and session records.
-- **[Large Text Chunker](https://github.com/Jnapier2/large-text-chunker)** — Breaks local documents into readable sections while checking that the original content can be reconstructed exactly.
+- **[Large Text Chunker](https://github.com/Jnapier2/large-text-chunker)** — Breaks local documents into readable sections while checking that normalized text can be reconstructed exactly.
 
 ## Games and interactive projects
 
@@ -56,7 +56,7 @@ My portfolio connects business needs with working demonstrations and evidence-ba
 ## Financial learning tools
 
 - **[Kalshi 10×1¢ Public Edition](https://github.com/Jnapier2/kalshi-10x1c-public)** — An offline educational planner demonstrating stale-data checks, contradiction handling, and duplicate-intent prevention. It has no credentials, network access, or order authority.
-- **[Kalshi 15-Minute Sell Preview](https://github.com/Jnapier2/kalshi-15m-sell-bot-public-preview)** — A dry-run exit-planning demonstration with live writes disabled.
+- **[Kalshi 15-Minute Sell Preview](https://github.com/Jnapier2/kalshi-15m-sell-bot-public-preview)** — An offline educational exit planner with fee and freshness checks, duplicate-intent protection, and no account access or live orders.
 
 ## Professional focus
 
