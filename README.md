@@ -48,6 +48,7 @@ My portfolio connects business needs with working demonstrations and evidence-ba
 
 ## Games and interactive projects
 
+- **[Scam the Scammer: Hold, Please!](games/scam-the-scammer.md)** — A playable comedy card roguelite combining readable tactical choices, branching encounters, repeatable challenges, and local save recovery. [Play in the browser](https://zappytap.itch.io/scam-the-scammer-hold-please).
 - **[Beta Earth](https://github.com/Jnapier2/beta-earth)** — A browser role-playing game combining shared-clock tactical encounters, faction and civic systems, persistent saves, and an accessible tactical interface.
 - **[QuipKite](https://github.com/Jnapier2/quipkite)** — Turns reactive word choices into short stories, keepsakes, and visible progress in a clearly labeled simulated Solo preview; proprietary source remains private.
 - **[Inbox From Hell](https://zappytap.itch.io/inbox-from-hell)** — A workplace-horror browser game built around branching support cases, persistent progression, and accessible controls. Its playable release is public; its source repository remains private.
