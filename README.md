@@ -26,6 +26,7 @@ My portfolio connects business needs with working demonstrations and evidence-ba
 - **[BotOps Manager](https://github.com/Jnapier2/botops-manager)** — Brings independent automation projects into one Windows operations console for launching, monitoring, stopping, and reviewing their status. [Reliability case study](https://github.com/Jnapier2/automation-reliability-case-studies/blob/main/docs/botops-control-plane-cohesion.md).
 - **[Digital Asset Governance Audit](https://github.com/Jnapier2/digital-asset-governance-case-study)** — Turns metadata quality, provenance, confidence, and duplicate signals into a prioritized stewardship queue, showing where reviewers should focus their attention. Uses synthetic data.
 - **[MediaTaggerBot](https://github.com/Jnapier2/media-tagger-bot)** — Makes media-library cleanup reviewable through evidence-based matching, proposed changes, verified renames, and rollback records.
+- **[Media Metadata Preservation & Reconciliation](professional-portfolio/media-metadata-preservation.md)** — Examines how metadata edits can preserve existing media information and how an audit detects changes outside the application. A documentation-only case study of the Music Renaming Project, with its unresolved reconciliation hold stated explicitly.
 
 ## Data and analysis
 
@@ -55,7 +56,7 @@ My portfolio connects business needs with working demonstrations and evidence-ba
 
 ## Financial learning tools
 
-- **[Kalshi 10×1¢ Public Edition](https://github.com/Jnapier2/kalshi-10x1c-public)** — An offline educational planner demonstrating stale-data checks, contradiction handling, and duplicate-intent prevention. It has no credentials, network access, or order authority.
+- **[Kalshi 10×1¢ Public Edition](https://github.com/Jnapier2/kalshi-15m-10contractx1cent-public)** — An offline educational planner demonstrating stale-data checks, contradiction handling, and duplicate-intent prevention. It has no credentials, network access, or order authority.
 - **[Kalshi 15-Minute Sell Preview](https://github.com/Jnapier2/kalshi-15m-sell-bot-public-preview)** — An offline educational exit planner with fee and freshness checks, duplicate-intent protection, and no account access or live orders.
 
 ## Professional focus
