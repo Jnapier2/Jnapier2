@@ -137,6 +137,34 @@
       "status": "held from public source publication",
       "reason": "Native Windows collector validation is incomplete.",
       "public_deliverable_type": "case-study-documentation"
+    },
+    {
+      "id": "gateway-memory-guard",
+      "display_name": "Gateway Memory Guard",
+      "version": "0.2.7",
+      "case_study_path": "professional-portfolio/memory-reliability.md",
+      "status": "held from public source publication",
+      "reason": "Engineering candidate; native Windows, endpoint-security acceptance and supported-toolchain rebuild remain outstanding.",
+      "public_deliverable_type": "case-study-documentation",
+      "source_rights": "private implementation; public documentation follows this repository rights notice",
+      "evidence_class": "dated private-source and archive verification; synthetic review scenario",
+      "verification": {
+        "observation_date": "2026-09-18",
+        "environment": "Linux Go 1.23.2, offline; modules not downloaded",
+        "top_level_tests_passed": 76,
+        "immutable_payloads_verified": 34,
+        "scope": "Prior offline review, including separate extraction; not a new runtime test performed while preparing this page",
+        "native_windows": "not run for candidate",
+        "norton": "not run for candidate",
+        "supported_toolchain_rebuild": "outstanding"
+      },
+      "excluded_claims": [
+        "public source availability",
+        "prevention of freezes",
+        "measured performance gains",
+        "production deployment",
+        "candidate Windows or security clearance"
+      ]
     }
   ],
   "sanitization": {

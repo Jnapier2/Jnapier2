@@ -14,6 +14,7 @@ This collection shows how I translate business and information-management challe
 | [Operations Intelligence & Automation Platform](operations-intelligence-automation-platform.md) | Connect validated measures with explainable findings, scenario planning, and measurable next steps | [Source and synthetic operations data](https://github.com/Jnapier2/operations-intelligence-platform), v0.3.1 |
 | [Data Governance & Lineage Portal](data-governance-lineage-portal.md) | Understand data meaning, ownership, quality, and the downstream impact of change in one catalog | Public case study of v0.3.0; implementation remains private |
 | [PC Reliability & Incident Intelligence Suite](pc-reliability-incident-intelligence-suite.md) | Reconstruct incidents, track recurring failures, and examine whether a change resolved the problem | Public case study of a v0.3.1 candidate; native Windows validation is incomplete and source remains private |
+| [Gateway Memory Guard](memory-reliability.md) | Examine memory pressure, process continuity, and gaps in observation without treating missing samples as healthy readings | Documentation-only case study of v0.2.7; implementation remains private and native Windows acceptance is outstanding |
 
 ## Distinctive design choices
 
