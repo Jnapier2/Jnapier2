@@ -56,8 +56,8 @@ My portfolio connects business needs with working demonstrations and evidence-ba
 
 ## Financial learning tools
 
-- **[Kalshi 10×1¢ Public Edition](https://github.com/Jnapier2/kalshi-15m-10contractx1cent-public)** — An offline educational planner demonstrating stale-data checks, contradiction handling, and duplicate-intent prevention. It has no credentials, network access, or order authority.
-- **[Kalshi 15-Minute Sell Preview](https://github.com/Jnapier2/kalshi-15m-sell-bot-public-preview)** — An offline educational exit planner with fee and freshness checks, duplicate-intent protection, and no account access or live orders.
+- **[Kalshi 10×1¢ Public Edition](https://github.com/Jnapier2/kalshi-15m-10contractx1cent-public)** — An offline educational planner demonstrating scoped funding checks, stale-data rejection, contradiction handling, and duplicate-intent prevention. It has no credentials, network access, or order authority.
+- **[Kalshi 15-Minute Sell Preview](https://github.com/Jnapier2/kalshi-15m-sell-bot-public-preview)** — An offline educational exit planner demonstrating a 60% target at 2¢, fee and freshness checks, and duplicate-intent protection. It has no account access or live orders.
 
 ## Professional focus
 
