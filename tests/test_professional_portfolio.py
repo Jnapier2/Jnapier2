@@ -20,6 +20,7 @@ PROGRAM_PAGES = (
     PORTFOLIO / "policy-procedure-navigator.md",
     PORTFOLIO / "operations-intelligence-automation-platform.md",
     PORTFOLIO / "pc-reliability-incident-intelligence-suite.md",
+    PORTFOLIO / "memory-reliability.md",
 )
 PUBLIC_FILES = (
     PORTFOLIO / "README.md",
@@ -61,7 +62,7 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         self.assertEqual(metadata["schema_version"], "1.6")
         self.assertEqual(metadata["classification"], "public")
         self.assertEqual(len(metadata["projects"]), 5)
-        self.assertEqual(len(metadata["held_programs"]), 1)
+        self.assertEqual(len(metadata["held_programs"]), 2)
         by_id = {item["id"]: item for item in metadata["projects"]}
 
         contract = by_id["data-contract-monitor"]
@@ -225,6 +226,30 @@ class ProfessionalPortfolioTests(unittest.TestCase):
             for label, pattern in SENSITIVE_PATTERNS.items():
                 with self.subTest(path=path.relative_to(ROOT), pattern=label):
                     self.assertIsNone(pattern.search(text))
+
+    def test_memory_case_study_preserves_candidate_and_privacy_boundary(self) -> None:
+        metadata = json.loads((PORTFOLIO / "SHOWCASE_METADATA.json").read_text(encoding="utf-8"))
+        matches = [item for item in metadata["held_programs"] if item["id"] == "gateway-memory-guard"]
+        self.assertEqual(len(matches), 1)
+        item = matches[0]
+        self.assertEqual(item["version"], "0.2.7")
+        self.assertEqual(item["public_deliverable_type"], "case-study-documentation")
+        self.assertEqual(item["status"], "held from public source publication")
+        self.assertNotIn("repository_url", item)
+        self.assertNotIn("release_url", item)
+        self.assertNotIn("build", item)
+        self.assertEqual(item["verification"]["top_level_tests_passed"], 76)
+        self.assertEqual(item["verification"]["immutable_payloads_verified"], 34)
+        self.assertEqual(item["verification"]["native_windows"], "not run for candidate")
+        self.assertEqual(item["verification"]["norton"], "not run for candidate")
+        text = (ROOT / item["case_study_path"]).read_text(encoding="utf-8")
+        for marker in ("Documentation only", "implementation remains private", "engineering candidate",
+                       "synthetic", "76 top-level tests", "34 recorded immutable payloads",
+                       "supported-toolchain rebuild requirement", "No prevention-of-freezes"):
+            self.assertIn(marker, text)
+        self.assertIn("[Gateway Memory Guard](memory-reliability.md)", (PORTFOLIO / "README.md").read_text(encoding="utf-8"))
+        self.assertIn("[Program index](README.md)", text)
+        self.assertIn("[GitHub profile](../README.md)", text)
 
     def test_rights_notice_is_present(self) -> None:
         notice = "Copyright © 2026 Gateway Information Group LLC. All rights reserved."
