@@ -22,7 +22,7 @@ This scenario illustrates the evidence problem; it is not a measured result from
 
 ## Evidence and limitations
 
-A September 18, 2026 offline review checked the candidate's 34 recorded immutable payloads. Its final Linux source-test run passed 76 top-level tests, including verification of a separately extracted package; nested subcases are not counted as additional top-level tests.
+The retained v0.2.7 package records a passing source-test run with 76 top-level tests; nested subcases are not counted as additional top-level tests. A separate September 19, 2026 archive review verified its 34 recorded immutable payloads against the manifest. That review did not rerun the application tests, and the retained test summary does not independently establish the run date.
 
 These results support the tested source and package checks only. They do not establish native Windows telemetry, graphical-interface behavior, long-session effectiveness, or endpoint-security acceptance for the candidate. Earlier limited Windows evidence belongs to an older version. The release documentation also retains a supported-toolchain rebuild requirement.
 

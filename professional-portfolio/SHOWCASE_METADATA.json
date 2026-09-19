@@ -149,11 +149,12 @@
       "source_rights": "private implementation; public documentation follows this repository rights notice",
       "evidence_class": "dated private-source and archive verification; synthetic review scenario",
       "verification": {
-        "observation_date": "2026-09-18",
-        "environment": "Linux Go 1.23.2, offline; modules not downloaded",
+        "observation_date": null,
+        "archive_review_date": "2026-09-19",
+        "environment": "Retained offline source-test evidence; current review checked archive integrity",
         "top_level_tests_passed": 76,
         "immutable_payloads_verified": 34,
-        "scope": "Prior offline review, including separate extraction; not a new runtime test performed while preparing this page",
+        "scope": "Package summary records prior source-test passes without an independently established run date; September 19 archive review verified all managed payloads without running the application",
         "native_windows": "not run for candidate",
         "norton": "not run for candidate",
         "supported_toolchain_rebuild": "outstanding"
