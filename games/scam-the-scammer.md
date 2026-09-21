@@ -4,7 +4,7 @@
 
 Scam the Scammer: Hold, Please! is a turn-based comedy card roguelite about outwitting fictional fraud crews. Players read caller tells, choose cover tactics, manage suspicion, and build a case through escalating encounters.
 
-**[Play the free browser game](https://zappytap.itch.io/scam-the-scammer-hold-please)** · Public test, version 0.13.3 · Proprietary source
+**[Play the free browser game](https://zappytap.itch.io/scam-the-scammer-hold-please)** · Public test, version 0.15.3 · Proprietary source
 
 ![Promotional interface image distributed with the game: a fictional call desk, guided play, daily challenges, and a local casebook.](assets/scam-the-scammer-home.jpg)
 
@@ -21,7 +21,7 @@ The game brings together interaction design, stateful application behavior, narr
 
 ## Availability and evidence
 
-The public game and its version display were checked on September 9, 2026. The retained 0.13.3 release archive passed a fresh integrity check. This review did not repeat the complete gameplay suite; physical-phone and formal assistive-technology coverage remain incomplete. No adoption, revenue, or measured learning-effectiveness claims are made.
+The public listing and active browser package were checked on September 21, 2026 against the retained 0.15.3 release archive. Hosted files matched the archive apart from the inspected platform script appended to the entry page. This review did not repeat the complete gameplay suite; physical-phone and formal assistive-technology coverage remain incomplete. No adoption, revenue, or measured learning-effectiveness claims are made.
 
 All crews and events are fictional. The game is entertainment, not guidance for contacting or retaliating against real scammers. The linked release includes its applicable credits and disclosures.
 
