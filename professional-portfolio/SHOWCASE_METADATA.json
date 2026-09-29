@@ -125,6 +125,29 @@
         "causal proof from observational data"
       ],
       "public_deliverable_type": "runnable-source"
+    },
+    {
+      "id": "website-opportunity-scanner",
+      "display_name": "Website Opportunity Scanner",
+      "case_study_path": "professional-portfolio/website-opportunity-scanner.md",
+      "demonstration_url": "https://gatewayinformationgroup.com/website-opportunity-scanner#report",
+      "source_rights": "proprietary first-party implementation; public case study only",
+      "evidence_class": "public illustrative report and focused offline verification",
+      "public_deliverable_type": "case-study-documentation",
+      "verification": {
+        "observation_date": "2026-09-29",
+        "focused_offline_tests_passed": 28,
+        "environment": "synthetic responses; no live scan or purchase",
+        "public_service_page": "HTTP 200 with illustrative report",
+        "live_report_delivery": "not exercised"
+      },
+      "excluded_claims": [
+        "public source availability",
+        "measured customer outcomes",
+        "live end-to-end verification",
+        "accessibility certification",
+        "guaranteed rankings or revenue"
+      ]
     }
   ],
   "held_programs": [

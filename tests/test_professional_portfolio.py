@@ -14,6 +14,7 @@ except ModuleNotFoundError:
 ROOT = Path(__file__).resolve().parents[1]
 PORTFOLIO = ROOT / "professional-portfolio"
 PROGRAM_PAGES = (
+    PORTFOLIO / "website-opportunity-scanner.md",
     PORTFOLIO / "data-contract-monitor.md",
     PORTFOLIO / "data-governance-lineage-portal.md",
     PORTFOLIO / "workflow-case-management-platform.md",
@@ -61,7 +62,7 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         )
         self.assertEqual(metadata["schema_version"], "1.6")
         self.assertEqual(metadata["classification"], "public")
-        self.assertEqual(len(metadata["projects"]), 5)
+        self.assertEqual(len(metadata["projects"]), 6)
         self.assertEqual(len(metadata["held_programs"]), 2)
         by_id = {item["id"]: item for item in metadata["projects"]}
 
