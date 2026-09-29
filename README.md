@@ -43,6 +43,7 @@ The browser demonstration runs from its downloaded files; GitHub's file viewer d
 
 ## Data and analysis
 
+- **[Website Opportunity Scanner](professional-portfolio/website-opportunity-scanner.md)** — Turns public website pages into prioritized findings with supporting page evidence and practical next steps. Explore an illustrative report and hosted preview; implementation remains private.
 - **[Chicago Food Inspection Outcomes](https://github.com/Jnapier2/chicago-food-inspections-analysis)** — Reproducible analysis of public inspection records that keeps inspection outcomes distinct from facility-risk categories, supporting a more careful interpretation of the data.
 - **[Automation Reliability Case Studies](https://github.com/Jnapier2/automation-reliability-case-studies)** — Fifteen documentation-only studies examining how automation handles interruptions, uncertain state, recovery, and evidence quality. Synthetic scenarios make the design trade-offs tangible; these are design analyses, not fifteen released programs.
 
@@ -65,7 +66,7 @@ The browser demonstration runs from its downloaded files; GitHub's file viewer d
 - **[Scam the Scammer: Hold, Please!](games/scam-the-scammer.md)** — A playable comedy card roguelite combining readable tactical choices, branching encounters, repeatable challenges, and local save recovery. [Play in the browser](https://zappytap.itch.io/scam-the-scammer-hold-please).
 - **[Beta Earth](https://github.com/Jnapier2/beta-earth)** — A browser role-playing game combining shared-clock tactical encounters, faction and civic systems, persistent saves, and an accessible tactical interface.
 - **[QuipKite](https://github.com/Jnapier2/quipkite)** — Turns reactive word choices into short stories, keepsakes, and visible progress in a clearly labeled simulated Solo preview; proprietary source remains private.
-- **[Inbox From Hell](https://zappytap.itch.io/inbox-from-hell)** — A workplace-horror browser game built around branching support cases, persistent progression, and accessible controls. Its playable release is public; its source repository remains private.
+- **[Inbox From Hell](games/inbox-from-hell.md)** — A workplace-horror browser game built around branching support cases, persistent progression, and adjustable reading controls. [Play in the browser](https://zappytap.itch.io/inbox-from-hell); implementation remains private.
 
 ## Financial learning tools
 
