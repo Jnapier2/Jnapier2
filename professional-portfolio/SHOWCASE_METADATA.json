@@ -148,6 +148,29 @@
         "accessibility certification",
         "guaranteed rankings or revenue"
       ]
+    },
+    {
+      "id": "gateway-directory",
+      "display_name": "Gateway Directory",
+      "case_study_path": "professional-portfolio/gateway-directory.md",
+      "demonstration_url": "https://gatewayinformationgroup.com/directory",
+      "source_rights": "proprietary first-party implementation; public case study only",
+      "evidence_class": "public interactive demonstration and JSON listing inspection",
+      "public_deliverable_type": "case-study-documentation",
+      "verification": {
+        "observation_date": "2026-10-04",
+        "browser_search_and_category_filter": "pass",
+        "expanded_listing_evidence": "pass",
+        "public_json_filtering_and_pagination": "pass",
+        "scope": "Public browse behavior; older local source tests are separate evidence"
+      },
+      "excluded_claims": [
+        "public source availability",
+        "provider endorsement",
+        "monitored uptime",
+        "compatibility certification",
+        "measured traffic or revenue growth"
+      ]
     }
   ],
   "held_programs": [
