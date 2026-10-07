@@ -1,0 +1,6 @@
+http://example.test/assets/introduction.mp4?sig=DEMO%2F123
+http://example.test/assets/ambient.mp3
+http://example.test/assets/cover.webp
+https://www.youtube.com/embed/demo
+http://example.test/assets/stream.m3u8
+http://example.test/assets/chapter-2.webm

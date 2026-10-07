@@ -57,6 +57,8 @@ The browser demonstration runs from its downloaded files; GitHub's file viewer d
 
 ## Media and utility tools
 
+- **[Media Link Collector](professional-portfolio/media-link-collector.md)** — Organizes discovered media references with source context, bounded scope, resumable collection, and deliberate TXT/CSV export. Inspect the synthetic output example; application implementation remains private.
+
 - **[Safe Video Downloader](https://github.com/Jnapier2/safe-video-downloader)** — Organizes authorized media retrieval around reviewable plans, duplicate controls, limited concurrent work, and verified output.
 - **[MP3 Downloader](https://github.com/Jnapier2/mp3-downloader)** — Converts authorized media into validated MP3 files with metadata review, bounded retries, and duplicate reconciliation.
 - **[Image Downloader](https://github.com/Jnapier2/image-downloader)** — Makes permitted image collection easier to manage through a recoverable queue, controlled concurrency, safe filenames, and session records.
