@@ -16,10 +16,10 @@ These examples show complementary work in data quality, governance, analytics, a
 
 | Project | Purpose and usefulness | Evidence to explore |
 | --- | --- | --- |
-| **Data Contract Monitor** | Check whether data meets explicit business expectations before it affects reporting | [Case study and evidence](professional-portfolio/data-contract-monitor.md) · [Source, sample data, and local quickstart](https://github.com/Jnapier2/data-contract-monitor#readme) |
+| **Data Contract Monitor** | Check whether data meets explicit business expectations before it affects reporting | [Case study and evidence](professional-portfolio/data-contract-monitor.md) · [Review guide, report screenshot, and demo instructions](https://github.com/Jnapier2/data-contract-monitor/blob/main/docs/RECRUITER_REVIEW.md) · [Source and local quickstart](https://github.com/Jnapier2/data-contract-monitor#readme) |
 | **Digital Asset Governance Audit** | Prioritize metadata and provenance issues for stewardship review | [Runnable analysis, synthetic example, and sample outputs](https://github.com/Jnapier2/digital-asset-governance-case-study#readme) |
 | **Account Analyst Portfolio Showcase** | Examine client spend, savings calculations, and incomplete records together | [Synthetic browser demonstration and instructions](professional-portfolio/account-analytics/README.md#explore-the-demonstration) |
-| **Workflow & Case Management Platform** | Give requests clear ownership, deadlines, and a traceable review process | [Case study](professional-portfolio/workflow-case-management-platform.md) · [Local setup and product walkthrough](https://github.com/Jnapier2/workflow-case-management-platform#product-walkthrough) |
+| **Workflow & Case Management Platform** | Give requests clear ownership, deadlines, and a traceable review process | [Case study](professional-portfolio/workflow-case-management-platform.md) · [Local setup](https://github.com/Jnapier2/workflow-case-management-platform#readme) · [Synthetic product walkthrough](https://github.com/Jnapier2/workflow-case-management-platform/blob/main/docs/PORTFOLIO_DEMO_GUIDE.md) |
 
 The browser demonstration runs from its downloaded files; GitHub's file viewer displays its source. Case studies describe their evidence limits, and repository instructions explain how to run the available examples.
 
@@ -45,15 +45,15 @@ The browser demonstration runs from its downloaded files; GitHub's file viewer d
 
 - **[Gateway Directory](professional-portfolio/gateway-directory.md)** — Connects resource discovery with source evidence, access requirements, and practical next steps. Explore the public filters and matching JSON listings; implementation remains private.
 - **[Website Opportunity Scanner](professional-portfolio/website-opportunity-scanner.md)** — Turns public website pages into prioritized findings with supporting page evidence and practical next steps. Explore an illustrative report and hosted preview; implementation remains private.
-- **[Chicago Food Inspection Outcomes](https://github.com/Jnapier2/chicago-food-inspections-analysis)** — Reproducible analysis of public inspection records that keeps inspection outcomes distinct from facility-risk categories, supporting a more careful interpretation of the data.
+- **[Chicago Food Inspection Outcomes](https://github.com/Jnapier2/chicago-food-inspections-analysis)** — Reproducible analysis of public inspection records that keeps inspection outcomes distinct from facility-risk categories, supporting a more careful interpretation of the data. [Inspect the notebook and saved results](https://github.com/Jnapier2/chicago-food-inspections-analysis/blob/main/notebooks/chicago_food_inspections.ipynb).
 - **[Automation Reliability Case Studies](https://github.com/Jnapier2/automation-reliability-case-studies)** — Fifteen documentation-only studies examining how automation handles interruptions, uncertain state, recovery, and evidence quality. Synthetic scenarios make the design trade-offs tangible; these are design analyses, not fifteen released programs.
 
 ## Automation and diagnostics
 
 - **[Avalon Q Supervisor](https://github.com/Jnapier2/avalon-q-supervisor)** — Turns device telemetry into understandable health states and bounded recovery actions, giving operators a clearer view of equipment behavior.
-- **[NetLossDoctor](https://github.com/Jnapier2/net-loss-doctor)** — Brings connection, routing, DNS, latency, and Windows-event evidence together to investigate network problems without changing network configuration.
+- **[NetLossDoctor](https://github.com/Jnapier2/net-loss-doctor)** — Brings connection, routing, DNS, latency, and Windows-event evidence together to investigate network problems without changing network configuration. [Inspect a synthetic diagnostic summary](https://github.com/Jnapier2/net-loss-doctor/blob/main/examples/sample-diagnostic-summary.json).
 - **[Gateway LAN Link](https://github.com/Jnapier2/lan-router-comms)** — Supports authenticated messaging and resumable file exchange between trusted Windows computers without relying on a cloud service. The repository retains the LAN Router Comms alias.
-- **[Windows Health Audit](https://github.com/Jnapier2/windows-health-audit)** — Creates a read-only Windows health baseline with privacy-conscious reporting and isolated collectors, so one failed collection does not obscure the rest of the review.
+- **[Windows Health Audit](https://github.com/Jnapier2/windows-health-audit)** — Creates a read-only Windows health baseline with privacy-conscious reporting and isolated collectors, so one failed collection does not obscure the rest of the review. [Inspect a synthetic health snapshot](https://github.com/Jnapier2/windows-health-audit/blob/main/examples/synthetic-snapshot.json).
 
 ## Media and utility tools
 
