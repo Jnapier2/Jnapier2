@@ -15,6 +15,7 @@ For a small machine-readable example, inspect the [JSON listing response](https:
 ## Design choices worth inspecting
 
 - **Make provenance visible.** Source links and review dates let readers examine where a listing's information came from.
+- **Explore related options.** Related resource links help readers move between relevant listings while keeping original documentation, access requirements, and limitations visible.
 - **Connect discovery with a next step.** Purpose filters and owner guidance help turn a list of tools into choices someone can evaluate.
 - **Keep access and cost limits visible.** A useful resource description explains what a reader needs before trying it.
 - **Keep claims proportionate.** A listing does not establish monitored uptime, compatibility, traffic growth, or provider endorsement.
@@ -22,6 +23,8 @@ For a small machine-readable example, inspect the [JSON listing response](https:
 ## Evidence boundary
 
 This is a documentation-only case study with a public interactive demonstration; implementation remains private. On October 4, 2026, browser search, category filtering, expanded listing details, and public JSON filtering and pagination were checked. The local source snapshot reviewed separately is older than the live application, so its offline test results are not presented as current production qualification.
+
+An October 7 follow-up checked the published related-resource profiles and their incoming links through public responses. This confirms that the links are present; it does not establish search ranking, user engagement, or provider compatibility.
 
 Listing information comes from public sources and can change. Inclusion is an editorial introduction, not a certification. No search-ranking, traffic, adoption, or revenue outcomes are claimed.
 

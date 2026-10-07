@@ -14,6 +14,7 @@ except ModuleNotFoundError:
 ROOT = Path(__file__).resolve().parents[1]
 PORTFOLIO = ROOT / "professional-portfolio"
 PROGRAM_PAGES = (
+    PORTFOLIO / "media-link-collector.md",
     PORTFOLIO / "gateway-directory.md",
     PORTFOLIO / "website-opportunity-scanner.md",
     PORTFOLIO / "data-contract-monitor.md",
@@ -28,6 +29,8 @@ PUBLIC_FILES = (
     PORTFOLIO / "README.md",
     *PROGRAM_PAGES,
     PORTFOLIO / "SHOWCASE_METADATA.json",
+    PORTFOLIO / "evidence" / "media-link-collector-sample.csv",
+    PORTFOLIO / "evidence" / "media-link-collector-sample.txt",
     PORTFOLIO / "evidence" / "data-contract-monitor-benchmark-review.json",
     PORTFOLIO / "assets" / "data-contract-monitor-architecture.svg",
 )
@@ -63,7 +66,7 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         )
         self.assertEqual(metadata["schema_version"], "1.6")
         self.assertEqual(metadata["classification"], "public")
-        self.assertEqual(len(metadata["projects"]), 7)
+        self.assertEqual(len(metadata["projects"]), 8)
         self.assertEqual(len(metadata["held_programs"]), 2)
         by_id = {item["id"]: item for item in metadata["projects"]}
 
@@ -257,7 +260,12 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         notice = "Copyright © 2026 Gateway Information Group LLC. All rights reserved."
         for path in PUBLIC_FILES[:-1]:
             with self.subTest(path=path.relative_to(ROOT)):
-                self.assertIn(notice, path.read_text(encoding="utf-8"))
+                if path.name in ("media-link-collector-sample.csv", "media-link-collector-sample.txt"):
+                    case = (PORTFOLIO / "media-link-collector.md").read_text(encoding="utf-8")
+                    self.assertIn(notice, case)
+                    self.assertIn("evidence/" + path.name, case)
+                else:
+                    self.assertIn(notice, path.read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":

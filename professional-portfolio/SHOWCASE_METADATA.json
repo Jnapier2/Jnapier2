@@ -162,7 +162,12 @@
         "browser_search_and_category_filter": "pass",
         "expanded_listing_evidence": "pass",
         "public_json_filtering_and_pagination": "pass",
-        "scope": "Public browse behavior; older local source tests are separate evidence"
+        "scope": "Public browse behavior; older local source tests are separate evidence",
+        "related_resource_profiles": {
+          "observation_date": "2026-10-07",
+          "public_profiles_and_incoming_links": "pass",
+          "scope": "HTTP readback; not a new full browser or runtime qualification"
+        }
       },
       "excluded_claims": [
         "public source availability",
@@ -170,6 +175,27 @@
         "monitored uptime",
         "compatibility certification",
         "measured traffic or revenue growth"
+      ]
+    },
+    {
+      "id": "media-link-collector",
+      "display_name": "Media Link Collector",
+      "version": "0.1.0",
+      "case_study_path": "professional-portfolio/media-link-collector.md",
+      "source_rights": "private application; redistribution license not specified; public case study follows profile rights notice",
+      "evidence_class": "retained tested candidate and sanitized synthetic export example",
+      "public_deliverable_type": "case-study-documentation",
+      "verification": {
+        "observation_date": "2026-10-07",
+        "scope": "Exact retained artifact and synthetic-output inspection; dated launcher/browser evidence remains separate",
+        "public_application_download": false
+      },
+      "excluded_claims": [
+        "public application or source availability",
+        "exhaustive collection",
+        "verified remote media playback",
+        "broad site compatibility",
+        "measured productivity or adoption outcomes"
       ]
     }
   ],
