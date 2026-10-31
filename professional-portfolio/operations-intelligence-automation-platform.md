@@ -4,7 +4,7 @@
 
 Operations Intelligence & Automation Platform turns service-request data into validated measures, operational findings, and controlled follow-through. It helps reviewers examine what changed, which data supports the finding, what may have contributed, and how a proposed improvement would be assessed.
 
-[Explore the source](https://github.com/Jnapier2/operations-intelligence-platform)
+[Explore the source](https://github.com/Jnapier2/operations-intelligence-platform) · [Guided synthetic walkthrough](https://github.com/Jnapier2/operations-intelligence-platform/blob/main/docs/RECRUITER_DEMO_SCRIPT.md)
 
 ## What it does
 

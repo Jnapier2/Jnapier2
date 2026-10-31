@@ -25,6 +25,7 @@ The browser demonstration runs from its downloaded files; GitHub's file viewer d
 
 ## Data, governance, and operations
 
+- **[Gateway ENV Updater](professional-portfolio/configuration-change-review.md)** — Makes settings changes reviewable while preserving existing values and keeping uncertain changes under human control. Inspect the captured synthetic preview; implementation remains private.
 - **[Data Contract Monitor](professional-portfolio/data-contract-monitor.md)** — Turns business expectations into repeatable data-quality checks, helping teams catch unreliable inputs before they affect reports, models, or operational decisions. [Source and runnable demos](https://github.com/Jnapier2/data-contract-monitor).
 - **[Data Governance & Lineage Portal](professional-portfolio/data-governance-lineage-portal.md)** — Connects business definitions, accountable owners, quality evidence, and data dependencies so reviewers can understand what a dataset means and what a proposed change could affect. Public case study; implementation remains private.
 - **[Workflow & Case Management Platform](professional-portfolio/workflow-case-management-platform.md)** — Gives requests a clear owner, a business-calendar deadline, and a traceable path through approvals and escalation. Combines visual process design with accountable follow-through. [Source](https://github.com/Jnapier2/workflow-case-management-platform).

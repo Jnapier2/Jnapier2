@@ -8,6 +8,7 @@ This collection shows how I translate business and information-management challe
 
 | Project | What it makes possible | Available deliverable |
 | --- | --- | --- |
+| [Gateway ENV Updater](configuration-change-review.md) | Review missing or ambiguous settings without silently changing working values | Documentation-only case study and captured synthetic review example; implementation remains private |
 | [Media Link Collector](media-link-collector.md) | Review discovered media references with source context, explicit scope, and selected exports | Case study and retained synthetic TXT/CSV output; implementation remains private |
 | [Gateway Directory](gateway-directory.md) | Find website and agent resources with inspectable sources, access requirements, and practical next steps | Public case study, [interactive directory](https://gatewayinformationgroup.com/directory), and JSON listings; implementation remains private |
 | [Website Opportunity Scanner](website-opportunity-scanner.md) | Connect website findings with page evidence, clear priorities, and practical next steps | Public case study and [illustrative report](https://gatewayinformationgroup.com/website-opportunity-scanner#report); implementation remains private |

@@ -14,6 +14,7 @@ except ModuleNotFoundError:
 ROOT = Path(__file__).resolve().parents[1]
 PORTFOLIO = ROOT / "professional-portfolio"
 PROGRAM_PAGES = (
+    PORTFOLIO / "configuration-change-review.md",
     PORTFOLIO / "media-link-collector.md",
     PORTFOLIO / "gateway-directory.md",
     PORTFOLIO / "website-opportunity-scanner.md",
@@ -29,6 +30,7 @@ PUBLIC_FILES = (
     PORTFOLIO / "README.md",
     *PROGRAM_PAGES,
     PORTFOLIO / "SHOWCASE_METADATA.json",
+    PORTFOLIO / "evidence" / "configuration-review-example.json",
     PORTFOLIO / "evidence" / "media-link-collector-sample.csv",
     PORTFOLIO / "evidence" / "media-link-collector-sample.txt",
     PORTFOLIO / "evidence" / "data-contract-monitor-benchmark-review.json",
@@ -66,7 +68,7 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         )
         self.assertEqual(metadata["schema_version"], "1.6")
         self.assertEqual(metadata["classification"], "public")
-        self.assertEqual(len(metadata["projects"]), 8)
+        self.assertEqual(len(metadata["projects"]), 9)
         self.assertEqual(len(metadata["held_programs"]), 2)
         by_id = {item["id"]: item for item in metadata["projects"]}
 
