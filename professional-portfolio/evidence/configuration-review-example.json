@@ -1,0 +1,36 @@
+{
+  "example_type": "Captured synthetic configuration-review example",
+  "generated_on": "2026-10-31",
+  "method": "Executed the inspected private candidate review component with fictional bytes in memory. No installed configuration was read or changed.",
+  "input": {
+    "text": "# Synthetic review fixture\r\nexport APP_MODE = 'sample' # keep this comment\r\nRETRY_LIMIT=2\r\nRETRY_LIMIT=5  # duplicate kept\r\n\r\nLOCAL_NOTE=\"line one\r\nline two\"\r\n# MAX_WORKERS=\r\nEXTRA_FIELD=synthetic",
+    "encoding": "UTF-8 with BOM",
+    "line_endings": "CRLF",
+    "final_line_has_terminator": false
+  },
+  "declared_names": [
+    "APP_MODE",
+    "RETRY_LIMIT",
+    "MAX_WORKERS",
+    "EXPORT_DIR",
+    "TIMEOUT_SECONDS"
+  ],
+  "preview": {
+    "text": "# Synthetic review fixture\r\nexport APP_MODE = 'sample' # keep this comment\r\nRETRY_LIMIT=2\r\nRETRY_LIMIT=5  # duplicate kept\r\n\r\nLOCAL_NOTE=\"line one\r\nline two\"\r\n# MAX_WORKERS=\r\nEXTRA_FIELD=synthetic\r\n\r\n# Gateway Env Updater - supported field references (inactive)\r\n# Set a field only after reviewing its program documentation.\r\n# EXPORT_DIR=\r\n# TIMEOUT_SECONDS=\r\n",
+    "encoding": "UTF-8 with BOM",
+    "line_endings": "CRLF"
+  },
+  "checks": {
+    "original_bytes_preserved": true,
+    "active_assignments_unchanged": true,
+    "existing_reference_not_duplicated": true,
+    "duplicate_field_flagged": true,
+    "repeat_preview_unchanged": true,
+    "ambiguous_edit_refused": true
+  },
+  "limits": [
+    "All names and values are fictional, not a settings file for any actual program.",
+    "This component fixture does not test installation discovery, write approval, backup, rollback, GUI operation or security-product acceptance."
+  ],
+  "copyright": "Copyright © 2026 Gateway Information Group LLC. All rights reserved."
+}

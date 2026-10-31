@@ -197,6 +197,29 @@
         "broad site compatibility",
         "measured productivity or adoption outcomes"
       ]
+    },
+    {
+      "id": "gateway-env-updater",
+      "display_name": "Gateway ENV Updater",
+      "case_study_path": "professional-portfolio/configuration-change-review.md",
+      "source_rights": "Proprietary implementation; public case study and fictional example only",
+      "evidence_class": "Inspected private candidate source and executed synthetic in-memory component fixture",
+      "public_deliverable_type": "case-study-documentation",
+      "reviewed_date": "2026-10-31",
+      "verification": {
+        "component_fixture": "pass for byte preservation, inactive references, duplicate reporting, repeat preview and ambiguous-edit refusal",
+        "example_path": "professional-portfolio/evidence/configuration-review-example.json",
+        "application_discovery_apply_rollback": "not run in showcase review",
+        "native_gui": "not run in showcase review",
+        "norton": "not qualified"
+      },
+      "excluded_claims": [
+        "Public application release",
+        "Installed configuration acceptance",
+        "Provider authentication",
+        "Production deployment",
+        "Measured time savings"
+      ]
     }
   ],
   "held_programs": [
