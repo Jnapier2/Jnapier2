@@ -6,7 +6,7 @@ Gateway ENV Updater helps people review configuration differences without losing
 
 This is useful when maintaining tools whose settings have accumulated comments, repeated names, custom fields, and different update histories. A review should make those differences visible while preserving the information needed to understand them.
 
-**Available deliverable: documentation-only case study and a [captured synthetic review example](evidence/configuration-review-example.json).**
+**Available deliverable: documentation-only case study with [captured review output](evidence/configuration-review-example.json) and a [recovery test record](evidence/configuration-recovery-example.json).**
 
 ## Design choices worth inspecting
 
@@ -25,11 +25,17 @@ Open the [JSON capture](evidence/configuration-review-example.json). Its setting
 
 This demonstrates conservative change review and information preservation. It does not claim reduced support time, fewer incidents, or production adoption.
 
+## Inspect the recovery test
+
+The [recovery test record](evidence/configuration-recovery-example.json) follows a fictional configuration through review, an approved change, and rollback. Compare the refused stale update with the approved one. Then see why rollback preserved a later edit in one check and restored the original bytes in another. These safeguards help someone recover from a change without silently discarding work made afterward.
+
 ## Evidence and availability
 
 On October 31, 2026, the review checked the exact private candidate archive and its managed-file identities, inspected the relevant source, and executed its review component with fictional bytes held in memory. The example is captured component output, not an illustration of results that were never run. No installed configuration was read or changed.
 
-The application and proprietary implementation remain private. Full application operation, installed-file updates, backup and recovery, and security-product acceptance were not checked in this showcase review. The example establishes only its stated component behavior and is not a downloadable application release.
+On November 3, 2026, a separate Windows test exercised the corrected transaction component with a disposable fictional configuration file. The test checked stale-write refusal, encrypted backup, rollback conflict handling, and exact restoration. The public record summarizes those observed results.
+
+The application and proprietary implementation remain private. The examples cover the tested components. Full application operation, installed configuration changes, and endpoint-security acceptance for the repaired candidate remain unverified.
 
 [Program index](README.md) · [GitHub profile](../README.md)
 

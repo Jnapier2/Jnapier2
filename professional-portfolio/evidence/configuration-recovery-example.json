@@ -1,0 +1,25 @@
+{
+  "review_date": "2026-11-03",
+  "scope": "Isolated Windows transaction component with a fictional configuration file",
+  "fixture_is_synthetic": true,
+  "observations": [
+    {
+      "scenario": "Configuration changed after review",
+      "observed_result": "The prepared update was refused and the newer content was preserved."
+    },
+    {
+      "scenario": "Approved change with a current preview",
+      "observed_result": "The planned bytes were written and an encrypted backup was created."
+    },
+    {
+      "scenario": "A later edit conflicts with rollback",
+      "observed_result": "Rollback was refused and the later edit was preserved."
+    },
+    {
+      "scenario": "Approved rollback from the expected state",
+      "observed_result": "The original file was restored byte for byte."
+    }
+  ],
+  "limit": "The fixture did not exercise the full application, installed configurations, or endpoint protection.",
+  "copyright": "Copyright © 2026 Gateway Information Group LLC. All rights reserved."
+}

@@ -202,14 +202,20 @@
       "id": "gateway-env-updater",
       "display_name": "Gateway ENV Updater",
       "case_study_path": "professional-portfolio/configuration-change-review.md",
-      "source_rights": "Proprietary implementation; public case study and fictional example only",
-      "evidence_class": "Inspected private candidate source and executed synthetic in-memory component fixture",
+      "source_rights": "Proprietary implementation; public case study and fictional evidence only",
+      "evidence_class": "Inspected private candidate source and executed synthetic review and Windows transaction fixtures",
       "public_deliverable_type": "case-study-documentation",
       "reviewed_date": "2026-10-31",
       "verification": {
         "component_fixture": "pass for byte preservation, inactive references, duplicate reporting, repeat preview and ambiguous-edit refusal",
         "example_path": "professional-portfolio/evidence/configuration-review-example.json",
-        "application_discovery_apply_rollback": "not run in showcase review",
+        "windows_transaction_fixture": {
+          "reviewed_date": "2026-11-03",
+          "evidence_path": "professional-portfolio/evidence/configuration-recovery-example.json",
+          "scope": "Corrected component on a disposable fictional configuration",
+          "result": "Stale-write and rollback-conflict refusals, encrypted backup, and exact restoration verified"
+        },
+        "application_discovery_apply_rollback": "full application and installed configuration not tested for the repaired candidate",
         "native_gui": "not run in showcase review",
         "norton": "not qualified"
       },
