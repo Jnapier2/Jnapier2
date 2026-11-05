@@ -31,6 +31,7 @@ PUBLIC_FILES = (
     *PROGRAM_PAGES,
     PORTFOLIO / "SHOWCASE_METADATA.json",
     PORTFOLIO / "evidence" / "configuration-review-example.json",
+    PORTFOLIO / "evidence" / "configuration-recovery-example.json",
     PORTFOLIO / "evidence" / "media-link-collector-sample.csv",
     PORTFOLIO / "evidence" / "media-link-collector-sample.txt",
     PORTFOLIO / "evidence" / "data-contract-monitor-benchmark-review.json",
