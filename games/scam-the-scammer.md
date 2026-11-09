@@ -15,7 +15,7 @@ Scam the Scammer: Hold, Please! is a turn-based comedy card roguelite about outw
 - **Replay that supports learning.** Seeded challenges and shareable case codes make encounters repeatable. Local debriefs and a Casebook help players reflect on how a run unfolded.
 - **Recovery built into the experience.** Local progression, validated backup imports, and visible storage status make returning to a run part of the product design. Keyboard controls can be remapped, coaching is optional, and audio can be muted.
 
-The 0.20.0 release makes gadget advice easier to use. The forecast explains when a gadget is ready and what it can do, and reward advice reflects the gadget you picked. After a standard run, **New Seed · Same Kit** lets you try a different setup of encounters with the same selected kit. Each run starts with fresh progress.
+The 0.20.0 release makes gadget advice easier to use. The forecast explains when a gadget is ready and what it can do, and reward advice reflects the gadget you picked. After a standard run, **New Seed · Same Kit** lets you try a different setup of encounters with the same selected kit. Run-specific upgrades and choices reset.
 
 ## Try a short run
 
@@ -27,7 +27,7 @@ The game brings together interaction design, stateful application behavior, narr
 
 ## Availability and evidence
 
-On November 9, 2026, the public listing selected the reviewed 0.20.0 browser build. All 21 archive entries, including the file manifest, matched the hosted files. The entry page included the exact game HTML plus itch.io’s reviewed launcher. This check covered hosted file delivery. Physical-device, formal assistive-technology, and learning-effectiveness testing remain open.
+On November 9, 2026, the public listing selected the reviewed 0.20.0 browser build. Twenty files, including the manifest, matched byte for byte. The entry page retained the exact game HTML with itch.io’s reviewed launcher appended. This check covered hosted file delivery. Physical-device, formal assistive-technology, and learning-effectiveness testing remain open.
 
 All crews and events are fictional. The game is entertainment, not guidance for contacting or retaliating against real scammers. The linked release includes its applicable credits and disclosures.
 
