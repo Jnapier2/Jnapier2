@@ -4,7 +4,7 @@
 
 Inbox From Hell is a dark workplace-comedy browser game set at a supernatural support desk. Players interpret unusual requests, compare the available evidence with office policy, and choose responses that shape later cases and progression.
 
-**[Play in the browser](https://zappytap.itch.io/inbox-from-hell)** · Version 0.26.1 · Mature themes · Proprietary source
+**[Play in the browser](https://inbox-from-hell-demo.netlify.app/)** · Hosted demonstration · Version 0.28.0 · Mature themes
 
 ## What makes the experience distinctive
 
@@ -17,11 +17,11 @@ As a specialty develops, earned case tools offer more ways to investigate or man
 
 ## Try a case
 
-Open the browser player, read a request, compare its details with the current rule, then choose a reply and inspect the consequence. Try the reading controls to see how the presentation changes. The scenario and its institutions are fictional; review the storefront's content notes before playing.
+Open the browser player, read a request, compare its details with the current rule, then choose a reply and inspect the consequence. Then open **Desk journal → Filed cases** to revisit an answered email, the reply you chose, and the reason for its outcome. Try the reading controls to see how the presentation changes. The scenario and its institutions are fictional. Review the [storefront’s content notes](https://zappytap.itch.io/inbox-from-hell) before playing.
 
 ## Availability and evidence
 
-On October 4, 2026, the public listing and all 83 hosted package files were compared with the retained 0.26.1 release archive. Eighty-two matched exactly; the entry page contained the original HTML followed only by the inspected platform loader. This was an artifact and public-delivery check, not a new full-campaign or physical-device qualification. Formal screen-reader and broad physical-device testing remain incomplete; keyboard skip links are not yet reliable.
+The November 11, 2026 delivery check matched all 89 hosted player files to the retained 0.28.0 release archive. The November 3 release checks exercised the reader, replies, settings, and reload at desktop and mobile widths. Formal screen-reader and broad physical-device testing remain incomplete. Keyboard skip links were unreliable in the earlier review and were outside the November checks.
 
 This case study demonstrates interaction design, branching state, readable feedback, and local recovery. It makes no adoption, revenue, or learning-effectiveness claims. Implementation remains private. The game and storefront retain their credits, rights notices, and generative-tool disclosures.
 
