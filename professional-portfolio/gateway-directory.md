@@ -26,6 +26,8 @@ This is a documentation-only case study with a public interactive demonstration;
 
 An October 7 follow-up checked the published related-resource profiles and their incoming links through public responses. This confirms that the links are present; it does not establish search ranking, user engagement, or provider compatibility.
 
+On November 11, 2026, an offline check rendered 52,765 unique profiles from a verified copy of the published build. It checked each page for an HTML response, a title and description, a canonical URL, and indexing directives. A separate live check verified the sitemap index, both sitemap parts, and four sample profiles. This evidence covers page rendering and indexing signals.
+
 Listing information comes from public sources and can change. Inclusion is an editorial introduction, not a certification. No search-ranking, traffic, adoption, or revenue outcomes are claimed.
 
 [Program index](README.md) · [GitHub profile](../README.md)
