@@ -34,6 +34,10 @@ The design supports data discovery, stewardship, and impact review. It gives bus
 
 These are prior v0.3.0 qualification results, not a new runtime assessment. The public deliverable is this case study; source, operational records, and executable distribution remain private.
 
+## Newer Windows verification
+
+Version **0.3.2** adds a fallback for systems without the configured local time-zone data. On November 14, 2026, the Windows verification launcher completed. A separate fixture confirmed that timestamps explicitly use UTC when local time-zone data is unavailable. This keeps diagnostic timestamps interpretable on a clean Windows setup. The check covered the verification action. The table above describes the earlier 0.3.0 save state.
+
 ## Evidence boundary
 
 The case study does not claim production deployment, enterprise authentication, or high availability. It describes the design and previously verified behavior without distributing private catalog records or implementation details.

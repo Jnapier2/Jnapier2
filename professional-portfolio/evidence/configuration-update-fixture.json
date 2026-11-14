@@ -1,0 +1,21 @@
+{
+  "review_date": "2026-11-14",
+  "scope": "Controlled Windows Scan & update run with disposable fictional settings",
+  "fixture_is_synthetic": true,
+  "first_run": {
+    "existing_files_updated": 1,
+    "missing_files_created": 14,
+    "rows_left_for_review": 29,
+    "existing_active_values_changed": false
+  },
+  "repeat_run": {
+    "files_changed": 0,
+    "files_created": 0
+  },
+  "rollback": {
+    "original_file_bytes_restored": true,
+    "created_file_restored_to_absence": true
+  },
+  "limits": "The saved run used a headless interface check. Live credentials, installed configurations, and endpoint-security acceptance were outside the test.",
+  "copyright": "Copyright © 2026 Gateway Information Group LLC. All rights reserved."
+}

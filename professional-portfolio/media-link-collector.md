@@ -26,6 +26,8 @@ This is a documentation-only case study of the retained `0.1.0` Windows candidat
 
 An October 7, 2026 review checked the retained artifact and its synthetic output. Earlier local launcher and browser checks remain dated qualification evidence. Broad website compatibility, media playback, physical-device coverage and exhaustive collection are not established. JavaScript-only or authenticated media can be absent; this tool collects references and does not download or validate remote media.
 
+On November 14, 2026, a newer private build recovered the previous valid checkpoint after a simulated failure made the latest saved run unreadable. The recorded startup check verified the packaged prerequisites without opening the browser interface. A separate support export recovered failure evidence when startup was blocked. The October example above remains the inspectable export from the earlier candidate.
+
 The project demonstrates bounded discovery, evidence-preserving cataloging, resumable workflows, and deliberate export controls. No adoption, speed improvement, time-savings or completeness outcomes are claimed.
 
 [Program index](README.md) · [GitHub profile](../README.md)

@@ -4,7 +4,7 @@
 
 PC Reliability & Incident Intelligence Suite explores how to reconstruct a Windows reliability incident, relate failures to system changes, track recurrence, and check whether a controlled intervention held. It is a read-only diagnostic companion—not an antivirus, registry cleaner, driver updater, or automatic repair utility.
 
-**Documentation-only case study of a v0.3.1 candidate. Source remains private, and native Windows validation is incomplete.**
+**Documentation-only case study. Source remains private. The latest scoped Windows check covers version 0.3.5.**
 
 ## What it demonstrates
 
@@ -31,6 +31,10 @@ The case study demonstrates how fragmented diagnostic evidence can become a clea
 | Publication status | Case study only; source held |
 
 The table records prior package qualification, not a new field test. This public deliverable does not include source or an executable download.
+
+## Newer Windows verification
+
+On November 14, 2026, the **0.3.5** candidate opened its Windows command center from a clean extraction, checked the local database, and exited cleanly when input ended. The newer configuration handling also reports malformed or ambiguous settings as an error. The earlier table remains the qualification record for 0.3.1.
 
 ## Evidence boundary
 
