@@ -23,7 +23,7 @@ The project demonstrates a more accountable way to navigate policy collections: 
 
 ## Verification
 
-Version 0.3.2 (`PP-GKWA-0.3.2-B20260831-EXPORTENTRY1`) collected 67 test cases; the suite passed with one environment-dependent symbolic-link check skipped. Release identity verified 83/83 managed files, and a fresh public clone passed the same gate. These are historical qualification records; current repository workflows provide dated, commit-specific checks.
+Version 0.3.2 (`PP-GKWA-0.3.2-B20260831-EXPORTENTRY1`) collected 67 test cases; the suite passed with one environment-dependent symbolic-link check skipped. Release identity verified 83/83 managed files, and a fresh public clone passed the same gate. These are historical qualification records. The [Windows release gate](https://github.com/Jnapier2/policy-procedure-navigator/actions/runs/38115303661) passed for public source commit `5b8d7e7`.
 
 The included content is synthetic. The project is a reviewable portfolio demonstration, not legal advice, a production policy authority, or a substitute for enterprise access management. The repository's portfolio review license applies.
 
