@@ -23,7 +23,7 @@ Operations managers and analysts can explore where work is accumulating, compare
 
 ## Verification
 
-Version 0.3.1 (`OIAP-0.3.1-20260831-FIELDLOG1`) passed 33/33 application tests, 32/32 platform checks, 5/5 launcher-contract checks, 40/40 HTTP smoke checks, and 46/46 release-identity checks. A fresh public clone passed the release gate. These are historical qualification records; current repository workflows provide dated, commit-specific checks.
+Version 0.3.1 (`OIAP-0.3.1-20260831-FIELDLOG1`) passed 33/33 application tests, 32/32 platform checks, 5/5 launcher-contract checks, 40/40 HTTP smoke checks, and 46/46 release-identity checks. A fresh public clone passed the release gate. These are historical qualification records. The [Windows release gate](https://github.com/Jnapier2/operations-intelligence-platform/actions/runs/33490416294) passed for public source commit `de200ba`.
 
 The demonstration uses synthetic data and does not establish production authentication or deployment. Optional external analysis is disabled by default and is limited to deliberately approved aggregate evidence. Observational findings do not prove causation. The repository's portfolio review license applies.
 
