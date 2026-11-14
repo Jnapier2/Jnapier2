@@ -111,7 +111,14 @@
         "production policy authority",
         "enterprise access-management certification"
       ],
-      "public_deliverable_type": "runnable-source"
+      "public_deliverable_type": "runnable-source",
+      "reviewer_demo": {
+        "version": "0.4.1",
+        "type": "offline captured-results demonstration",
+        "release_url": "https://github.com/Jnapier2/policy-procedure-navigator/releases/tag/v0.4.1-reviewer-demo",
+        "fixture_is_synthetic": true,
+        "capture_date": "2026-11-14"
+      }
     },
     {
       "id": "operations-intelligence-platform",
@@ -136,7 +143,14 @@
         "production authentication",
         "causal proof from observational data"
       ],
-      "public_deliverable_type": "runnable-source"
+      "public_deliverable_type": "runnable-source",
+      "reviewer_demo": {
+        "version": "0.4.1",
+        "type": "offline captured-results demonstration",
+        "release_url": "https://github.com/Jnapier2/operations-intelligence-platform/releases/tag/v0.4.1-reviewer-demo",
+        "fixture_is_synthetic": true,
+        "capture_date": "2026-11-14"
+      }
     },
     {
       "id": "website-opportunity-scanner",

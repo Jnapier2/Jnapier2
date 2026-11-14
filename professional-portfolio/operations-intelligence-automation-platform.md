@@ -4,7 +4,9 @@
 
 Operations Intelligence & Automation Platform turns service-request data into validated measures, operational findings, and controlled follow-through. It helps reviewers examine what changed, which data supports the finding, what may have contributed, and how a proposed improvement would be assessed.
 
-[Explore the source](https://github.com/Jnapier2/operations-intelligence-platform) · [Guided synthetic walkthrough](https://github.com/Jnapier2/operations-intelligence-platform/blob/main/docs/RECRUITER_DEMO_SCRIPT.md)
+[Open the 0.4.1 reviewer demo](https://github.com/Jnapier2/operations-intelligence-platform/releases/tag/v0.4.1-reviewer-demo) · [Explore the 0.3.1 source](https://github.com/Jnapier2/operations-intelligence-platform/tree/de200badc17dbae19e020f1e699d1fb062128355) · [Guided walkthrough for the public source](https://github.com/Jnapier2/operations-intelligence-platform/blob/de200badc17dbae19e020f1e699d1fb062128355/docs/RECRUITER_DEMO_SCRIPT.md)
+
+The offline demo displays the November 14, 2026 run on fictional service requests. Compare the trusted workload counts, then see how a rise in demand and a rise in capacity affect the six-week backlog estimate. The saved results support scenario comparison.
 
 ## What it does
 
