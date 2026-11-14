@@ -4,7 +4,9 @@
 
 Policy and Procedure Navigator helps people locate relevant policy material, understand its supporting evidence, and take a controlled next step. It combines cited answers with permission checks, document-status checks, and structured follow-up when the available material cannot support a reliable conclusion.
 
-[Explore the source](https://github.com/Jnapier2/policy-procedure-navigator)
+[Open the 0.4.1 reviewer demo](https://github.com/Jnapier2/policy-procedure-navigator/releases/tag/v0.4.1-reviewer-demo) · [Explore the 0.3.2 source](https://github.com/Jnapier2/policy-procedure-navigator/tree/5b8d7e7f633c1218f85b6c3ead423a1988c43dc9)
+
+The offline demo compares a cited vendor-approval answer, the same fictional security question under two roles, and the results of an administrator export. It shows captured results from the November 14, 2026 check. Use the earlier public source if you want to run the application.
 
 ## What it does
 
