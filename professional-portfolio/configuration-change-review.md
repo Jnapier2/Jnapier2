@@ -35,7 +35,11 @@ On October 31, 2026, the review checked the exact private candidate archive and 
 
 On November 3, 2026, a separate Windows test exercised the corrected transaction component with a disposable fictional configuration file. The test checked stale-write refusal, encrypted backup, rollback conflict handling, and exact restoration. The public record summarizes those observed results.
 
-The application and proprietary implementation remain private. The examples cover the tested components. Full application operation, installed configuration changes, and endpoint-security acceptance for the repaired candidate remain unverified.
+## Review a newer update run
+
+The later Windows fixture exercised **Scan & update** with disposable settings. Open the [recorded outcomes](evidence/configuration-update-fixture.json) and compare the first run with the rerun. One existing file was updated while keeping its active values. Missing files were created from approved examples, and uncertain rows stayed available for review. The repeat run made no changes. The rollback checks restored the original file and removed the file created in the rollback fixture.
+
+The application and proprietary implementation remain private. The November 14, 2026 check used synthetic settings and a headless check of the interface action. Live credentials, installed configurations, and endpoint-security acceptance remain outside this evidence.
 
 [Program index](README.md) · [GitHub profile](../README.md)
 

@@ -53,7 +53,12 @@
         "high-availability worker architecture",
         "public source availability"
       ],
-      "public_deliverable_type": "case-study-documentation"
+      "public_deliverable_type": "case-study-documentation",
+      "newer_scoped_verification": {
+        "review_date": "2026-11-14",
+        "version": "0.3.2",
+        "scope": "Windows verification launcher and separate local time-zone fallback fixture"
+      }
     },
     {
       "id": "workflow-case-management-platform",
@@ -196,7 +201,11 @@
         "verified remote media playback",
         "broad site compatibility",
         "measured productivity or adoption outcomes"
-      ]
+      ],
+      "newer_scoped_verification": {
+        "review_date": "2026-11-14",
+        "scope": "Synthetic checkpoint recovery, packaged headless prerequisite check, and standalone startup failure export"
+      }
     },
     {
       "id": "gateway-env-updater",
@@ -225,7 +234,12 @@
         "Provider authentication",
         "Production deployment",
         "Measured time savings"
-      ]
+      ],
+      "newer_scoped_verification": {
+        "review_date": "2026-11-14",
+        "scope": "Windows Scan & update fixture with disposable settings and headless interface check",
+        "evidence_path": "professional-portfolio/evidence/configuration-update-fixture.json"
+      }
     }
   ],
   "held_programs": [
@@ -237,7 +251,12 @@
       "automated_tests_passed": 104,
       "status": "held from public source publication",
       "reason": "Native Windows collector validation is incomplete.",
-      "public_deliverable_type": "case-study-documentation"
+      "public_deliverable_type": "case-study-documentation",
+      "newer_scoped_verification": {
+        "review_date": "2026-11-14",
+        "version": "0.3.5",
+        "scope": "Clean Windows startup, local database check, and shutdown on end of input"
+      }
     },
     {
       "id": "gateway-memory-guard",

@@ -32,6 +32,7 @@ PUBLIC_FILES = (
     PORTFOLIO / "SHOWCASE_METADATA.json",
     PORTFOLIO / "evidence" / "configuration-review-example.json",
     PORTFOLIO / "evidence" / "configuration-recovery-example.json",
+    PORTFOLIO / "evidence" / "configuration-update-fixture.json",
     PORTFOLIO / "evidence" / "media-link-collector-sample.csv",
     PORTFOLIO / "evidence" / "media-link-collector-sample.txt",
     PORTFOLIO / "evidence" / "data-contract-monitor-benchmark-review.json",
@@ -216,8 +217,8 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         for target in public_targets:
             with self.subTest(target=target):
                 self.assertIn(target, readme)
-        self.assertIn("Sixteen documentation-only studies", readme)
-        self.assertIn("not sixteen released programs", readme)
+        self.assertIn("Documentation-only studies", readme)
+        self.assertIn("Captured synthetic examples and illustrative scenarios", readme)
 
     def test_public_marketing_leads_with_outcomes(self) -> None:
         overview = (PORTFOLIO / "README.md").read_text(encoding="utf-8")
