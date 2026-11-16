@@ -6,7 +6,7 @@ Crypto Market Rivals is a single-player trading game built around simulated fund
 
 [Download the Windows game](https://zappytap.itch.io/crypto-market-rivals) · [Steam listing](https://store.steampowered.com/app/5115590/) · In development · Proprietary source
 
-The current itch.io listing calls the unsigned Windows download **Read the Tape**. Its [November 9 release note](https://zappytap.itch.io/crypto-market-rivals/devlog/1764969/read-the-tape-candles-wicks-volume) shows how to read candle ranges, wicks, and simulated volume.
+The current itch.io Windows download is **0.38.2-desk-polish13**. The [Clearer charts, smoother returns release note](https://zappytap.itch.io/crypto-market-rivals/devlog/1782704/clearer-charts-smoother-returns) shows improvements to chart reading and returning to a saved career.
 
 Optional races against fictional rivals add a clear comparison without changing campaign rewards. Session Review and the Field Journal make earlier decisions easier to revisit. Reading, contrast, motion, and sound settings let players adjust the desk, while local checkpoints and backup controls support returning to a career.
 

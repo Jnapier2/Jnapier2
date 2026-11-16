@@ -4,7 +4,7 @@
 
 Inbox From Hell is a dark workplace-comedy browser game set at a supernatural support desk. Players interpret unusual requests, compare the available evidence with office policy, and choose responses that shape later cases and progression.
 
-**[Play in the browser](https://inbox-from-hell-demo.netlify.app/)** · Hosted demonstration · Version 0.28.0 · Mature themes
+**[Play in the browser](https://inbox-from-hell-demo.netlify.app/)** · Hosted demonstration · Version 0.28.6 · Mature themes
 
 ## What makes the experience distinctive
 
@@ -21,7 +21,9 @@ Open the browser player, read a request, compare its details with the current ru
 
 ## Availability and evidence
 
-The November 11, 2026 delivery check matched all 89 hosted player files to the retained 0.28.0 release archive. The November 3 release checks exercised the reader, replies, settings, and reload at desktop and mobile widths. Formal screen-reader and broad physical-device testing remain incomplete. Keyboard skip links were unreliable in the earlier review and were outside the November checks.
+On November 16, 2026, the hosted player reported **0.28.6** and the [player FAQ](https://inbox-from-hell-demo.netlify.app/faq.html) was available. The November 15 release check completed the timed campaign in desktop and phone-width browser sessions.
+
+The earlier November 11, 2026 delivery check matched all 89 hosted player files to the retained 0.28.0 release archive. The November 3 release checks exercised the reader, replies, settings, and reload at desktop and mobile widths. Formal screen-reader and broad physical-device testing remain incomplete. Keyboard skip links were unreliable in the earlier review and were outside the November checks.
 
 This case study demonstrates interaction design, branching state, readable feedback, and local recovery. It makes no adoption, revenue, or learning-effectiveness claims. Implementation remains private. The game and storefront retain their credits, rights notices, and generative-tool disclosures.
 

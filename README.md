@@ -69,7 +69,7 @@ The browser demonstration runs from its downloaded files; GitHub's file viewer d
 
 - **[Scam the Scammer: Hold, Please!](games/scam-the-scammer.md)** — A playable comedy card roguelite combining readable tactical choices, branching encounters, repeatable challenges, and local save recovery. [Play in the browser](https://zappytap.itch.io/scam-the-scammer-hold-please).
 - **[Beta Earth](https://github.com/Jnapier2/beta-earth)** — A Windows role-playing game pairing tactical adventure with a separate survival journey, persistent saves, and an included digital library. [Explore the current experimental game](https://zappytap.itch.io/beta-earth-sovereignty-next) or inspect the repository's clearly labeled source sample.
-- **[QuipKite](https://github.com/Jnapier2/quipkite)** — Turns reactive word choices into short stories, keepsakes, and visible progress in a clearly labeled simulated Solo preview; proprietary source remains private.
+- **[QuipKite](https://github.com/Jnapier2/quipkite)** — Turns word choices into short illustrated stories, with resumable Solo play and keepsakes. [Play in the browser](https://zappytap.itch.io/quipkite-simulated-solo-preview) or [get the Windows game](https://store.steampowered.com/app/5345880/).
 - **[Crypto Market Rivals](games/crypto-market-rivals.md)** — A Windows trading game using simulated funds, replayable scenarios, persistent careers, and decision feedback. [Find the current Windows download](https://zappytap.itch.io/crypto-market-rivals).
 - **[Inbox From Hell](games/inbox-from-hell.md)** — A workplace-horror browser game built around branching support cases, persistent progression, and adjustable reading controls. [Play the hosted demonstration](https://inbox-from-hell-demo.netlify.app/).
 
