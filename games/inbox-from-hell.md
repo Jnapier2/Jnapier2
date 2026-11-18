@@ -4,14 +4,14 @@
 
 Inbox From Hell is a dark workplace-comedy browser game set at a supernatural support desk. Players interpret unusual requests, compare the available evidence with office policy, and choose responses that shape later cases and progression.
 
-**[Play in the browser](https://inbox-from-hell-demo.netlify.app/)** · Hosted demonstration · Version 0.28.6 · Mature themes
+**[Play in the browser](https://inbox-from-hell-demo.netlify.app/)** · Hosted demonstration · Version 0.29.0 · Mature themes
 
 ## What makes the experience distinctive
 
 - **Evidence changes the decision.** Contradictory records and returning customers encourage the player to read the situation rather than memorize a reply.
 - **Consequences remain understandable.** The response leads to feedback before the next case, connecting a decision with its result.
 - **Reading preferences stay with the player.** Focus mode, adjustable text, high contrast, sound captions, and optional narration offer different ways to follow the case.
-- **Progress can be carried forward.** Local autosave and portable backup files support returning to a run. Saves are local; moving between browsers or devices requires a backup and restore.
+- **A career is easy to revisit.** Open career selection from the title screen, compare saved progress, and choose which run to continue. Named slots, local autosave, and portable backups support returning to the desk. Moving between browsers or devices requires a backup and restore.
 
 As a specialty develops, earned case tools offer more ways to investigate or manage difficult requests. Compact shift receipts show what changed and what a tool can do next, while saved career progress carries between assignments.
 
@@ -21,7 +21,7 @@ Open the browser player, read a request, compare its details with the current ru
 
 ## Availability and evidence
 
-On November 16, 2026, the hosted player reported **0.28.6** and the [player FAQ](https://inbox-from-hell-demo.netlify.app/faq.html) was available. The November 15 release check completed the timed campaign in desktop and phone-width browser sessions.
+On November 17, 2026, the hosted player and itch.io player reported **0.29.0**. The [player FAQ](https://inbox-from-hell-demo.netlify.app/faq.html) and [saved-career release note](https://zappytap.itch.io/inbox-from-hell/devlog/1785889/v0290-find-your-saved-career) explain the new controls. Release checks covered saved-career recovery and browser play at desktop and phone widths.
 
 The earlier November 11, 2026 delivery check matched all 89 hosted player files to the retained 0.28.0 release archive. The November 3 release checks exercised the reader, replies, settings, and reload at desktop and mobile widths. Formal screen-reader and broad physical-device testing remain incomplete. Keyboard skip links were unreliable in the earlier review and were outside the November checks.
 
