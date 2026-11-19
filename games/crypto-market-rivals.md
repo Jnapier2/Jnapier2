@@ -6,7 +6,7 @@ Crypto Market Rivals is a single-player trading game built around simulated fund
 
 [Download the Windows game](https://zappytap.itch.io/crypto-market-rivals) · [Steam listing](https://store.steampowered.com/app/5115590/) · In development · Proprietary source
 
-The current itch.io Windows download is **0.38.2-player-care4**. Open **First Flight** from the welcome screen for help with a practice trade and its review. Use **Save & Load** to name a checkpoint and **Device Backup** to carry selected checkpoints to another PC. [First Flight and portable saves release note](https://zappytap.itch.io/crypto-market-rivals/devlog/1790379/a-smoother-start-and-saves-you-can-take-with-you)
+The current itch.io Windows download is **0.38.2-player-care4**. Follow **First Flight** for help with a practice trade and its review. Use **Save & Load** to name a checkpoint, then **Export checkpoint** and **Import checkpoint** to move that saved run to another PC. [First Flight and portable saves release note](https://zappytap.itch.io/crypto-market-rivals/devlog/1790379/a-smoother-start-and-saves-you-can-take-with-you)
 
 Optional races against fictional rivals add a clear comparison without changing campaign rewards. Session Review and the Field Journal make earlier decisions easier to revisit. Reading, contrast, motion, and sound settings let players adjust the desk, while local checkpoints and backup controls support returning to a career.
 
