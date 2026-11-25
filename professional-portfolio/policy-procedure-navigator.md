@@ -4,9 +4,9 @@
 
 Policy and Procedure Navigator helps people locate relevant policy material, understand its supporting evidence, and take a controlled next step. It combines cited answers with permission checks, document-status checks, and structured follow-up when the available material cannot support a reliable conclusion.
 
-[Open the 0.4.1 reviewer demo](https://github.com/Jnapier2/policy-procedure-navigator/releases/tag/v0.4.1-reviewer-demo) · [Explore the 0.3.2 source](https://github.com/Jnapier2/policy-procedure-navigator/tree/5b8d7e7f633c1218f85b6c3ead423a1988c43dc9)
+[Download the 0.4.1 offline demo](https://github.com/Jnapier2/policy-procedure-navigator/releases/download/v0.4.1-reviewer-demo/PolicyNavigator_0.4.1_Reviewer_Demo_docs.1.zip) · [Demo release notes and checksum](https://github.com/Jnapier2/policy-procedure-navigator/releases/tag/v0.4.1-reviewer-demo) · [0.3.2 setup and SQLite check](https://github.com/Jnapier2/policy-procedure-navigator#explore-the-reviewer-demo)
 
-The offline demo compares a cited vendor-approval answer, the same fictional security question under two roles, and the results of an administrator export. It shows captured results from the November 14, 2026 check. Use the earlier public source if you want to run the application.
+The offline demo compares a cited vendor-approval answer, the same fictional security question under two roles, and the results of an administrator export. It shows captured results from the November 14, 2026 check. Extract the ZIP and open `index.html`. Follow the 0.3.2 setup guidance before running the separate application.
 
 ## What it does
 
@@ -25,7 +25,7 @@ The project demonstrates a more accountable way to navigate policy collections: 
 
 ## Verification
 
-Version 0.3.2 (`PP-GKWA-0.3.2-B20260831-EXPORTENTRY1`) collected 67 test cases; the suite passed with one environment-dependent symbolic-link check skipped. Release identity verified 83/83 managed files, and a fresh public clone passed the same gate. These are historical qualification records. The [Windows release gate](https://github.com/Jnapier2/policy-procedure-navigator/actions/runs/38115303661) passed for public source commit `5b8d7e7`.
+Version 0.3.2 (`PP-GKWA-0.3.2-B20260831-EXPORTENTRY1`) collected 67 test cases; the suite passed with one environment-dependent symbolic-link check skipped. Release identity verified 83/83 managed files, and a fresh public clone passed the same gate. The [Windows release gate](https://github.com/Jnapier2/policy-procedure-navigator/actions/runs/38115303661) records those historical checks against the [inspected 0.3.2 source snapshot](https://github.com/Jnapier2/policy-procedure-navigator/tree/5b8d7e7f633c1218f85b6c3ead423a1988c43dc9).
 
 The included content is synthetic. The project is a reviewable portfolio demonstration, not legal advice, a production policy authority, or a substitute for enterprise access management. The repository's portfolio review license applies.
 

@@ -32,7 +32,9 @@
         "type": "offline captured-results demonstration",
         "release_url": "https://github.com/Jnapier2/data-contract-monitor/releases/tag/v0.4.1-reviewer-demo",
         "fixture_is_synthetic": true,
-        "capture_date": "2026-11-14"
+        "capture_date": "2026-11-14",
+        "download_url": "https://github.com/Jnapier2/data-contract-monitor/releases/download/v0.4.1-reviewer-demo/Data_Contract_Monitor_0.4.1_Reviewer_Demo_docs.1.zip",
+        "sha256_url": "https://github.com/Jnapier2/data-contract-monitor/releases/download/v0.4.1-reviewer-demo/Data_Contract_Monitor_0.4.1_Reviewer_Demo_docs.1.zip.sha256"
       }
     },
     {
@@ -117,7 +119,9 @@
         "type": "offline captured-results demonstration",
         "release_url": "https://github.com/Jnapier2/policy-procedure-navigator/releases/tag/v0.4.1-reviewer-demo",
         "fixture_is_synthetic": true,
-        "capture_date": "2026-11-14"
+        "capture_date": "2026-11-14",
+        "download_url": "https://github.com/Jnapier2/policy-procedure-navigator/releases/download/v0.4.1-reviewer-demo/PolicyNavigator_0.4.1_Reviewer_Demo_docs.1.zip",
+        "sha256_url": "https://github.com/Jnapier2/policy-procedure-navigator/releases/download/v0.4.1-reviewer-demo/PolicyNavigator_0.4.1_Reviewer_Demo_docs.1.zip.sha256"
       }
     },
     {
@@ -149,7 +153,9 @@
         "type": "offline captured-results demonstration",
         "release_url": "https://github.com/Jnapier2/operations-intelligence-platform/releases/tag/v0.4.1-reviewer-demo",
         "fixture_is_synthetic": true,
-        "capture_date": "2026-11-14"
+        "capture_date": "2026-11-14",
+        "download_url": "https://github.com/Jnapier2/operations-intelligence-platform/releases/download/v0.4.1-reviewer-demo/Operations_Intelligence_0.4.1_Reviewer_Demo_docs.1.zip",
+        "sha256_url": "https://github.com/Jnapier2/operations-intelligence-platform/releases/download/v0.4.1-reviewer-demo/Operations_Intelligence_0.4.1_Reviewer_Demo_docs.1.zip.sha256"
       }
     },
     {
