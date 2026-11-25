@@ -4,9 +4,9 @@
 
 Data Contract Monitor helps teams identify unreliable data before it reaches a report, model, or operating process. It translates readable business expectations into repeatable checks for schema changes, invalid values, stale records, duplicate keys, broken references, and unreviewed sensitive fields.
 
-[Try the 0.4.1 reviewer demo](https://github.com/Jnapier2/data-contract-monitor/releases/tag/v0.4.1-reviewer-demo) · [Download the 0.3.4 application](https://github.com/Jnapier2/data-contract-monitor/releases/tag/v0.3.4) · [Explore the 0.3.4 source](https://github.com/Jnapier2/data-contract-monitor/tree/v0.3.4)
+[Download the 0.4.1 offline demo](https://github.com/Jnapier2/data-contract-monitor/releases/download/v0.4.1-reviewer-demo/Data_Contract_Monitor_0.4.1_Reviewer_Demo_docs.1.zip) · [Demo release notes and checksum](https://github.com/Jnapier2/data-contract-monitor/releases/tag/v0.4.1-reviewer-demo) · [0.3.4 setup and SQLite check](https://github.com/Jnapier2/data-contract-monitor#inspect-validation-evidence)
 
-The 0.4.1 reviewer demo lets you compare two captured results on fictional orders. Read the failing report to see how it separates key errors, freshness issues, and a privacy warning. The demo opens offline and displays saved results. Use the separate 0.3.4 application to run validation on files.
+The 0.4.1 reviewer demo lets you compare two captured results on fictional orders. Read the failing report to see how it separates key errors, freshness issues, and a privacy warning. Extract the ZIP and open `index.html` to inspect the saved results. To validate your own files, follow the setup guidance for the separate 0.3.4 edition. [Earlier application ZIP and receipt](https://github.com/Jnapier2/data-contract-monitor/releases/tag/v0.3.4)
 
 ## What it does
 

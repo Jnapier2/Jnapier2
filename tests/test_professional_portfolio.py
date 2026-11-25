@@ -122,6 +122,24 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         self.assertEqual(operations["verification"]["http_smoke_checks"], "40/40 pass")
         self.assertEqual(operations["verification"]["managed_files_verified"], 46)
 
+        for project_id in (
+            "data-contract-monitor",
+            "policy-procedure-navigator",
+            "operations-intelligence-platform",
+        ):
+            with self.subTest(project_id=project_id):
+                project = by_id[project_id]
+                demo = project["reviewer_demo"]
+                self.assertEqual(demo["version"], "0.4.1")
+                self.assertNotEqual(demo["version"], project["version"])
+                self.assertTrue(demo["fixture_is_synthetic"])
+                release_download = demo["release_url"].replace("/releases/tag/", "/releases/download/")
+                self.assertTrue(demo["download_url"].startswith(release_download + "/"))
+                self.assertTrue(demo["download_url"].endswith("_Reviewer_Demo_docs.1.zip"))
+                self.assertEqual(demo["sha256_url"], demo["download_url"] + ".sha256")
+                case_study = (ROOT / project["case_study_path"]).read_text(encoding="utf-8")
+                self.assertIn(demo["download_url"], case_study)
+
         held = metadata["held_programs"][0]
         self.assertEqual(held["id"], "pc-reliability-incident-intelligence-suite")
         self.assertEqual(held["version"], "0.3.1")

@@ -4,9 +4,9 @@
 
 Operations Intelligence & Automation Platform turns service-request data into validated measures, operational findings, and controlled follow-through. It helps reviewers examine what changed, which data supports the finding, what may have contributed, and how a proposed improvement would be assessed.
 
-[Open the 0.4.1 reviewer demo](https://github.com/Jnapier2/operations-intelligence-platform/releases/tag/v0.4.1-reviewer-demo) · [Explore the 0.3.1 source](https://github.com/Jnapier2/operations-intelligence-platform/tree/de200badc17dbae19e020f1e699d1fb062128355) · [Guided walkthrough for the public source](https://github.com/Jnapier2/operations-intelligence-platform/blob/de200badc17dbae19e020f1e699d1fb062128355/docs/RECRUITER_DEMO_SCRIPT.md)
+[Download the 0.4.1 offline demo](https://github.com/Jnapier2/operations-intelligence-platform/releases/download/v0.4.1-reviewer-demo/Operations_Intelligence_0.4.1_Reviewer_Demo_docs.1.zip) · [Demo release notes and checksum](https://github.com/Jnapier2/operations-intelligence-platform/releases/tag/v0.4.1-reviewer-demo) · [0.3.1 setup and SQLite check](https://github.com/Jnapier2/operations-intelligence-platform#governed-local-mode)
 
-The offline demo displays the November 14, 2026 run on fictional service requests. Compare the trusted workload counts, then see how a rise in demand and a rise in capacity affect the six-week backlog estimate. The saved results support scenario comparison.
+The offline demo displays the November 14, 2026 run on fictional service requests. Compare the trusted workload counts, then see how a rise in demand and a rise in capacity affect the six-week backlog estimate. Extract the ZIP and open `index.html` to compare the saved results. Follow the 0.3.1 setup guidance before running the separate application.
 
 ## What it does
 
@@ -25,7 +25,7 @@ Operations managers and analysts can explore where work is accumulating, compare
 
 ## Verification
 
-Version 0.3.1 (`OIAP-0.3.1-20260831-FIELDLOG1`) passed 33/33 application tests, 32/32 platform checks, 5/5 launcher-contract checks, 40/40 HTTP smoke checks, and 46/46 release-identity checks. A fresh public clone passed the release gate. These are historical qualification records. The [Windows release gate](https://github.com/Jnapier2/operations-intelligence-platform/actions/runs/33490416294) passed for public source commit `de200ba`.
+Version 0.3.1 (`OIAP-0.3.1-20260831-FIELDLOG1`) passed 33/33 application tests, 32/32 platform checks, 5/5 launcher-contract checks, 40/40 HTTP smoke checks, and 46/46 release-identity checks. A fresh public clone passed the release gate. The [Windows release gate](https://github.com/Jnapier2/operations-intelligence-platform/actions/runs/33490416294) records those historical checks against the [inspected 0.3.1 source snapshot](https://github.com/Jnapier2/operations-intelligence-platform/tree/de200badc17dbae19e020f1e699d1fb062128355). The [source walkthrough](https://github.com/Jnapier2/operations-intelligence-platform/blob/de200badc17dbae19e020f1e699d1fb062128355/docs/RECRUITER_DEMO_SCRIPT.md) describes that edition.
 
 The demonstration uses synthetic data and does not establish production authentication or deployment. Optional external analysis is disabled by default and is limited to deliberately approved aggregate evidence. Observational findings do not prove causation. The repository's portfolio review license applies.
 
