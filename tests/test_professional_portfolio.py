@@ -36,6 +36,7 @@ PUBLIC_FILES = (
     PORTFOLIO / "evidence" / "media-link-collector-sample.csv",
     PORTFOLIO / "evidence" / "media-link-collector-sample.txt",
     PORTFOLIO / "evidence" / "data-contract-monitor-benchmark-review.json",
+    PORTFOLIO / "evidence" / "memory-guard-windows-checks.json",
     PORTFOLIO / "assets" / "data-contract-monitor-architecture.svg",
 )
 MARKDOWN_LINK = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
@@ -241,20 +242,37 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         matches = [item for item in metadata["held_programs"] if item["id"] == "gateway-memory-guard"]
         self.assertEqual(len(matches), 1)
         item = matches[0]
-        self.assertEqual(item["version"], "0.2.7")
+        self.assertEqual(item["version"], "0.3.1")
         self.assertEqual(item["public_deliverable_type"], "case-study-documentation")
         self.assertEqual(item["status"], "held from public source publication")
         self.assertNotIn("repository_url", item)
         self.assertNotIn("release_url", item)
         self.assertNotIn("build", item)
-        self.assertEqual(item["verification"]["top_level_tests_passed"], 76)
-        self.assertEqual(item["verification"]["immutable_payloads_verified"], 34)
-        self.assertEqual(item["verification"]["native_windows"], "not run for candidate")
-        self.assertEqual(item["verification"]["norton"], "not run for candidate")
+        verification = item["verification"]
+        self.assertEqual(verification["norton"], "pending")
+        self.assertIn("full monitoring and dashboard use remain open", verification["native_windows"])
+        evidence_path = PORTFOLIO / "evidence" / "memory-guard-windows-checks.json"
+        self.assertEqual(ROOT / item["evidence_path"], evidence_path)
+        evidence = json.loads(evidence_path.read_text(encoding="utf-8"))
+        self.assertEqual(evidence["candidate_version"], item["version"])
+        self.assertEqual(evidence["observed_date"], verification["observation_date"])
+        self.assertEqual(
+            evidence["automated_source_suite"]["top_level_passed"],
+            verification["top_level_tests_passed"],
+        )
+        self.assertEqual(
+            evidence["automated_source_suite"]["top_level_skipped"],
+            verification["top_level_tests_skipped"],
+        )
         text = (ROOT / item["case_study_path"]).read_text(encoding="utf-8")
-        for marker in ("Documentation only", "implementation remains private", "engineering candidate",
-                       "synthetic", "76 top-level tests", "34 recorded immutable payloads",
-                       "supported-toolchain rebuild requirement", "No prevention-of-freezes"):
+        for marker in (
+            "Documentation only",
+            "implementation remains private",
+            "engineering candidate",
+            "synthetic",
+            "[sanitized verification summary](evidence/memory-guard-windows-checks.json)",
+            "endpoint-protection acceptance remain open",
+        ):
             self.assertIn(marker, text)
         self.assertIn("[Gateway Memory Guard](memory-reliability.md)", (PORTFOLIO / "README.md").read_text(encoding="utf-8"))
         self.assertIn("[Program index](README.md)", text)

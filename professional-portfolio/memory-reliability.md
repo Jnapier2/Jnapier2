@@ -4,7 +4,7 @@ A design and verification case study about making long-session resource pressure
 
 **Available here**
 
-A documentation-only case study with controlled Windows evidence from the private 0.3.1 candidate.
+Documentation only. The implementation remains private. The Windows checks cover the 0.3.1 engineering candidate.
 
 ## The problem
 

@@ -282,31 +282,30 @@
     {
       "id": "gateway-memory-guard",
       "display_name": "Gateway Memory Guard",
-      "version": "0.2.7",
+      "version": "0.3.1",
       "case_study_path": "professional-portfolio/memory-reliability.md",
       "status": "held from public source publication",
-      "reason": "Engineering candidate; native Windows, endpoint-security acceptance and supported-toolchain rebuild remain outstanding.",
+      "reason": "Private engineering candidate. Full interactive monitoring and endpoint-protection acceptance remain open.",
       "public_deliverable_type": "case-study-documentation",
       "source_rights": "private implementation; public documentation follows this repository rights notice",
-      "evidence_class": "dated private-source and archive verification; synthetic review scenario",
+      "evidence_class": "Controlled Windows checks and a sanitized verification summary",
       "verification": {
-        "observation_date": null,
-        "archive_review_date": "2026-09-19",
-        "environment": "Retained offline source-test evidence; current review checked archive integrity",
-        "top_level_tests_passed": 76,
-        "immutable_payloads_verified": 34,
-        "scope": "Package summary records prior source-test passes without an independently established run date; September 19 archive review verified all managed payloads without running the application",
-        "native_windows": "not run for candidate",
-        "norton": "not run for candidate",
-        "supported_toolchain_rebuild": "outstanding"
+        "observation_date": "2026-11-24",
+        "environment": "Windows",
+        "top_level_tests_passed": 118,
+        "top_level_tests_skipped": 2,
+        "scope": "Package integrity, headless startup check, simulated menu responses, and standalone diagnostics with the application executable present and absent",
+        "native_windows": "controlled checks passed; full monitoring and dashboard use remain open",
+        "norton": "pending"
       },
       "excluded_claims": [
         "public source availability",
         "prevention of freezes",
         "measured performance gains",
         "production deployment",
-        "candidate Windows or security clearance"
-      ]
+        "full Windows monitoring or endpoint-protection acceptance"
+      ],
+      "evidence_path": "professional-portfolio/evidence/memory-guard-windows-checks.json"
     }
   ],
   "sanitization": {

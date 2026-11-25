@@ -36,5 +36,6 @@
     "The menu responses were supplied by a fixture. The full interactive dashboard journey remains open.",
     "The missing-file test did not exercise an endpoint-protection quarantine.",
     "Long-session monitoring, performance outcomes, signing and endpoint-protection acceptance remain unverified."
-  ]
+  ],
+  "rights": "Copyright © 2026 Gateway Information Group LLC. All rights reserved."
 }
