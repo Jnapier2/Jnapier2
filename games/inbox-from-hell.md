@@ -19,11 +19,13 @@ As a specialty develops, earned case tools offer more ways to investigate or man
 
 Open the browser player, read a request, compare its details with the current rule, then choose a reply and inspect the consequence. Then open **Desk journal → Filed cases** to revisit an answered email, the reply you chose, and the reason for its outcome. Try the reading controls to see how the presentation changes. The scenario and its institutions are fictional. Review the [storefront’s content notes](https://zappytap.itch.io/inbox-from-hell) before playing.
 
+For keyboard review, use Tab to find **Start shift** and press Enter. If the desk opens a panel, use **Close desk panel**. Then Tab to **Read email & replies** and press Enter to open the reader.
+
 ## Availability and evidence
 
 On November 19, 2026, the Netlify and itch.io players reported **0.29.1**. Reopen a saved career to return to its last case report, then continue to the next email or shift audit. If a search hides unread cases, **Show open emails** brings them back. The release checks covered reloading a career and continuing from its case report. [Player FAQ](https://inbox-from-hell-demo.netlify.app/faq.html) · [0.29.1 release note](https://zappytap.itch.io/inbox-from-hell/devlog/1790527/v0291-pick-up-where-you-left-off)
 
-The earlier November 11, 2026 delivery check matched all 89 hosted player files to the retained 0.28.0 release archive. The November 3 release checks exercised the reader, replies, settings, and reload at desktop and mobile widths. Formal screen-reader and broad physical-device testing remain incomplete. Keyboard skip links were unreliable in the earlier review and were outside the November checks.
+The earlier November 11, 2026 delivery check matched all 89 hosted player files to the retained 0.28.0 release archive. The November 3 release checks exercised the reader, replies, settings, and reload at desktop and mobile widths. A November 24 check in a fresh Chromium session reached the reader using Tab and Enter. The skip-link check kept focus within the open panel. Formal screen-reader and broad physical-device testing remain incomplete.
 
 This case study demonstrates interaction design, branching state, readable feedback, and local recovery. It makes no adoption, revenue, or learning-effectiveness claims. Implementation remains private. The game and storefront retain their credits, rights notices, and generative-tool disclosures.
 
