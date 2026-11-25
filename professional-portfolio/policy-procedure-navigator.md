@@ -27,6 +27,8 @@ The project demonstrates a more accountable way to navigate policy collections: 
 
 Version 0.3.2 (`PP-GKWA-0.3.2-B20260831-EXPORTENTRY1`) collected 67 test cases; the suite passed with one environment-dependent symbolic-link check skipped. Release identity verified 83/83 managed files, and a fresh public clone passed the same gate. The [Windows release gate](https://github.com/Jnapier2/policy-procedure-navigator/actions/runs/38115303661) records those historical checks against the [inspected 0.3.2 source snapshot](https://github.com/Jnapier2/policy-procedure-navigator/tree/5b8d7e7f633c1218f85b6c3ead423a1988c43dc9).
 
+Use that snapshot to inspect the source. For a runnable evaluation, follow the current setup linked above, which uses an updated PDF dependency. [Historical pypdf advisory](https://github.com/advisories/GHSA-5849-834g-hvw5)
+
 The included content is synthetic. The project is a reviewable portfolio demonstration, not legal advice, a production policy authority, or a substitute for enterprise access management. The repository's portfolio review license applies.
 
 </details>
