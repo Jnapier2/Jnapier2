@@ -1,0 +1,40 @@
+{
+  "project": "Gateway Memory Guard",
+  "candidate_version": "0.3.1",
+  "observed_date": "2026-11-24",
+  "time_zone": "America/Chicago",
+  "evidence_type": "Sanitized summary of controlled Windows checks on a private candidate",
+  "checks": [
+    {
+      "scenario": "Cancel at a menu",
+      "method": "Supplied the Windows cancel response in a command-runner fixture for each menu.",
+      "observed": "Each menu exited normally."
+    },
+    {
+      "scenario": "Windows cannot read a menu selection",
+      "method": "Supplied the Windows input-error response in the same fixture.",
+      "observed": "Each menu showed an input error and returned a failure status."
+    },
+    {
+      "scenario": "Fresh setup with no cached monitoring data",
+      "method": "Ran the standalone diagnostics action from a clean extraction.",
+      "observed": "The action created a diagnostic archive and clearly reported partial capture."
+    },
+    {
+      "scenario": "Application executable absent",
+      "method": "Ran the standalone diagnostics action from a separate extraction with the executable intentionally omitted.",
+      "observed": "The action saved a limited startup report and clearly reported partial capture."
+    }
+  ],
+  "automated_source_suite": {
+    "method": "Windows source tests run from the extracted candidate",
+    "top_level_passed": 118,
+    "top_level_skipped": 2,
+    "skip_reason": "This Windows account lacked the privilege needed to create test symlinks."
+  },
+  "coverage_limits": [
+    "The menu responses were supplied by a fixture. The full interactive dashboard journey remains open.",
+    "The missing-file test did not exercise an endpoint-protection quarantine.",
+    "Long-session monitoring, performance outcomes, signing and endpoint-protection acceptance remain unverified."
+  ]
+}

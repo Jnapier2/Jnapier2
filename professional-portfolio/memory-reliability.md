@@ -2,7 +2,9 @@
 
 A design and verification case study about making long-session resource pressure easier to investigate without disrupting running applications.
 
-**Available here:** Documentation only. The implementation remains private, and version 0.2.7 is an engineering candidate—not a publicly released or Windows-qualified replacement.
+**Available here**
+
+A documentation-only case study with controlled Windows evidence from the private 0.3.1 candidate.
 
 ## The problem
 
@@ -20,13 +22,17 @@ Consider a synthetic session in which a process grows, collection briefly fails,
 
 This scenario illustrates the evidence problem; it is not a measured result from a user's workstation.
 
+## Inspect the Windows checks
+
+Open the [sanitized verification summary](evidence/memory-guard-windows-checks.json) in GitHub. Compare how a canceled menu selection and an input failure were reported, then inspect what the standalone diagnostics action saved in two incomplete setups.
+
+On a fresh extraction, the action produced a diagnostic archive and reported partial capture when there was no cached monitoring data. With the application executable deliberately omitted from a separate extraction, it still saved a limited startup report and reported partial capture. This gives support something useful to review even when the main application cannot start. [Diagnostic archive accountability](https://github.com/Jnapier2/automation-reliability-case-studies/blob/main/docs/diagnostic-archive-accountability.md)
+
 ## Evidence and limitations
 
-The retained v0.2.7 package records a passing source-test run with 76 top-level tests; nested subcases are not counted as additional top-level tests. A separate September 19, 2026 archive review verified its 34 recorded immutable payloads against the manifest. That review did not rerun the application tests, and the retained test summary does not independently establish the run date.
+The November 24, 2026 Windows qualification used an extracted 0.3.1 candidate. It covered package integrity, startup prerequisites without the dashboard, menu decisions supplied by a fixture, and the real standalone diagnostics action. Earlier v0.2.7 source and archive checks are recorded in the [previous case-study revision](https://github.com/Jnapier2/Jnapier2/blob/92474897a424a85031079df3d7244d6d78162f24/professional-portfolio/memory-reliability.md).
 
-These results support the tested source and package checks only. They do not establish native Windows telemetry, graphical-interface behavior, long-session effectiveness, or endpoint-security acceptance for the candidate. Earlier limited Windows evidence belongs to an older version. The release documentation also retains a supported-toolchain rebuild requirement.
-
-No prevention-of-freezes, performance gain, production deployment, or security-clearance claim is made. No private source, executable, machine record, or support archive accompanies this case study.
+Full interactive monitoring, long-session effects, and endpoint-protection acceptance remain open. The public evidence is a sanitized summary of controlled checks.
 
 [Program index](README.md) · [GitHub profile](../README.md)
 
