@@ -2,13 +2,13 @@
 
 **Information management · Data governance · Analytics · Reliable automation**
 
-I turn complex information and operational requirements into practical software that helps people trust their data, understand their work, and make better-informed decisions. My background spans production operations, database operations, digital asset management, reporting, metadata, taxonomy, analytics, and process improvement.
+I build tools that make data and operational decisions easier to verify. My background spans production and database operations, digital asset management, reporting, metadata, taxonomy, analytics, and process improvement.
 
-My portfolio connects business needs with working demonstrations and evidence-backed design studies. The work emphasizes clear ownership, understandable results, visible exceptions, and thoughtful controls—not just a dashboard or an automated task, but a useful way to understand and manage the work behind it.
+The examples below show how I turn business requirements into clear checks, readable evidence, and next steps people can act on.
 
 **M.S. in Information Management · Certificate in Digital Curation · Dominican University**
 
-[Portfolio](https://jerry-napier-portfolio.netlify.app/) · [LinkedIn](https://www.linkedin.com/in/jrnapier)
+[Professional project index](professional-portfolio/README.md) · [Portfolio website](https://jerry-napier-portfolio.netlify.app/) · [LinkedIn](https://www.linkedin.com/in/jrnapier)
 
 ## Start here
 
@@ -16,12 +16,12 @@ These examples show complementary work in data quality, governance, analytics, a
 
 | Project | Purpose and usefulness | Evidence to explore |
 | --- | --- | --- |
-| **Data Contract Monitor** | Check whether data meets explicit business expectations before it affects reporting | [Case study and evidence](professional-portfolio/data-contract-monitor.md) · [Download the 0.4.1 offline demo](https://github.com/Jnapier2/data-contract-monitor/releases/download/v0.4.1-reviewer-demo/Data_Contract_Monitor_0.4.1_Reviewer_Demo_docs.1.zip) · [Historical release and receipt](https://github.com/Jnapier2/data-contract-monitor/releases/tag/v0.3.4) |
+| **Data Contract Monitor** | Check whether data meets explicit business expectations before it affects reporting | [Case study and evidence](professional-portfolio/data-contract-monitor.md) · [Download the 0.4.1 offline demo](https://github.com/Jnapier2/data-contract-monitor/releases/download/v0.4.1-reviewer-demo/Data_Contract_Monitor_0.4.1_Reviewer_Demo_docs.1.zip) · [Historical 0.3.4 release record](https://github.com/Jnapier2/data-contract-monitor/releases/tag/v0.3.4) |
 | **Digital Asset Governance Audit** | Prioritize metadata and provenance issues for stewardship review | [Runnable analysis, synthetic example, and sample outputs](https://github.com/Jnapier2/digital-asset-governance-case-study#readme) |
 | **Account Analyst Portfolio Showcase** | Examine client spend, savings calculations, and incomplete records together | [Synthetic browser demonstration and instructions](professional-portfolio/account-analytics/README.md#explore-the-demonstration) |
 | **Workflow & Case Management Platform** | Give requests clear ownership, deadlines, and a traceable review process | [Case study](professional-portfolio/workflow-case-management-platform.md) · [Local setup](https://github.com/Jnapier2/workflow-case-management-platform#readme) · [Synthetic product walkthrough](https://github.com/Jnapier2/workflow-case-management-platform/blob/main/docs/PORTFOLIO_DEMO_GUIDE.md) |
 
-Extract the offline reviewer demo ZIP and open `index.html`. The account analytics demonstration runs from its downloaded files; GitHub's file viewer displays its source. Case studies describe their evidence limits, and repository instructions explain how to run the available examples.
+Extract the offline reviewer demo and open `index.html`. The [account analytics guide](professional-portfolio/account-analytics/README.md#explore-the-demonstration) includes the download and local setup. Each case study explains what was verified.
 
 ## Data, governance, and operations
 
@@ -32,7 +32,6 @@ Extract the offline reviewer demo ZIP and open `index.html`. The account analyti
 - **[Policy and Procedure Navigator](professional-portfolio/policy-procedure-navigator.md)** — Helps people find applicable policy guidance, inspect its supporting citations, and route unresolved questions for review. Considers permissions and document status instead of presenting every search result as an authoritative answer. [Download the 0.4.1 offline demo](https://github.com/Jnapier2/policy-procedure-navigator/releases/download/v0.4.1-reviewer-demo/PolicyNavigator_0.4.1_Reviewer_Demo_docs.1.zip).
 - **[Operations Intelligence & Automation Platform](professional-portfolio/operations-intelligence-automation-platform.md)** — Connects validated service data with explainable findings, scenario planning, and measurable follow-through. Makes assumptions and uncertainty visible rather than treating an observed pattern as proof of its cause. [Download the 0.4.1 offline demo](https://github.com/Jnapier2/operations-intelligence-platform/releases/download/v0.4.1-reviewer-demo/Operations_Intelligence_0.4.1_Reviewer_Demo_docs.1.zip).
 - **[PC Reliability & Incident Intelligence Suite](professional-portfolio/pc-reliability-incident-intelligence-suite.md)** — Explores a more useful approach to troubleshooting: reconstruct the incident, track recurrence, and check whether an intervention actually held. Documentation-only case study with a focused Windows launch check.
-- **[Professional Portfolio Program Index](professional-portfolio/README.md)** — Explore each program's purpose, distinctive design choices, and available demonstration or case study.
 
 ## Featured projects
 
@@ -70,7 +69,7 @@ Extract the offline reviewer demo ZIP and open `index.html`. The account analyti
 - **[Scam the Scammer: Hold, Please!](games/scam-the-scammer.md)** — A playable comedy card roguelite combining readable tactical choices, branching encounters, repeatable challenges, and local save recovery. [Play in the browser](https://zappytap.itch.io/scam-the-scammer-hold-please).
 - **[Beta Earth](https://github.com/Jnapier2/beta-earth)** — A Windows role-playing game pairing tactical adventure with a separate survival journey, persistent saves, and an included digital library. [Explore the current experimental game](https://zappytap.itch.io/beta-earth-sovereignty-next) or inspect the repository's clearly labeled source sample.
 - **[QuipKite](https://github.com/Jnapier2/quipkite)** — Turns word choices into short illustrated stories, with resumable Solo play and keepsakes. [Play in the browser](https://zappytap.itch.io/quipkite-simulated-solo-preview) or [get the Windows game](https://store.steampowered.com/app/5345880/).
-- **[Crypto Market Rivals](games/crypto-market-rivals.md)** — A Windows trading game using simulated funds, replayable scenarios, persistent careers, and decision feedback. [Find the current Windows download](https://zappytap.itch.io/crypto-market-rivals).
+- **[Crypto Market Rivals](games/crypto-market-rivals.md)** — A browser and Windows trading game using simulated funds, replayable scenarios, persistent careers, and decision feedback. [Play in the browser or find the Windows download](https://zappytap.itch.io/crypto-market-rivals).
 - **[Inbox From Hell](games/inbox-from-hell.md)** — A workplace-horror browser game built around branching support cases, persistent progression, and adjustable reading controls. [Play the hosted demonstration](https://inbox-from-hell-demo.netlify.app/).
 
 ## Financial learning tools

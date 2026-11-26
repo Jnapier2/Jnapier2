@@ -4,7 +4,9 @@
 
 Workflow & Case Management Platform turns incoming requests into assigned, time-bound, auditable work. Teams can define a process visually, manage queues and approvals, handle dependencies and escalation, and examine the evidence behind each transition.
 
-[Explore the source](https://github.com/Jnapier2/workflow-case-management-platform)
+[Explore the source](https://github.com/Jnapier2/workflow-case-management-platform) · [Synthetic walkthrough](https://github.com/Jnapier2/workflow-case-management-platform/blob/main/docs/PORTFOLIO_DEMO_GUIDE.md)
+
+Start with the Vendor Onboarding example. Inspect how a workflow revision defines the steps, then follow case ownership and the audit history through review.
 
 ## What it does
 

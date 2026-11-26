@@ -4,13 +4,15 @@
 
 Data Contract Monitor helps teams identify unreliable data before it reaches a report, model, or operating process. It translates readable business expectations into repeatable checks for schema changes, invalid values, stale records, duplicate keys, broken references, and unreviewed sensitive fields.
 
-[Download the 0.4.1 offline demo](https://github.com/Jnapier2/data-contract-monitor/releases/download/v0.4.1-reviewer-demo/Data_Contract_Monitor_0.4.1_Reviewer_Demo_docs.1.zip) · [Demo release notes and checksum](https://github.com/Jnapier2/data-contract-monitor/releases/tag/v0.4.1-reviewer-demo) · [Historical 0.3.4 application and receipt](https://github.com/Jnapier2/data-contract-monitor/releases/tag/v0.3.4)
+[Download the 0.4.1 offline demo](https://github.com/Jnapier2/data-contract-monitor/releases/download/v0.4.1-reviewer-demo/Data_Contract_Monitor_0.4.1_Reviewer_Demo_docs.1.zip) · [Demo release notes and checksum](https://github.com/Jnapier2/data-contract-monitor/releases/tag/v0.4.1-reviewer-demo) · [Historical 0.3.4 release record](https://github.com/Jnapier2/data-contract-monitor/releases/tag/v0.3.4)
 
 The 0.4.1 reviewer demo lets you compare two captured results on fictional orders. Read the failing report to see how it separates key errors, freshness issues, and a privacy warning. Extract the ZIP and open `index.html` to inspect the saved results.
 
+Use the offline demo for portfolio review. The historical v0.3.4 source and application ZIP have dependency pins affected by published advisories. [Archived release and dependency guidance](https://github.com/Jnapier2/data-contract-monitor#inspect-validation-evidence)
+
 ## What it does
 
-It validates CSV, JSON, JSON Lines, Parquet, and Excel inputs against an explicit contract. Reviewers can examine required fields, types, ranges, patterns, allowed values, uniqueness, freshness, aggregate reconciliation, and reference existence. Results are available in readable reports and structured formats for further analysis.
+It validates CSV, Excel, JSON, and JSON Lines inputs against an explicit contract, with optional Parquet support. Reviewers can examine required fields, types, ranges, patterns, allowed values, uniqueness, freshness, aggregate reconciliation, and reference existence. Results are available in readable reports and structured formats for further analysis.
 
 ## What makes the design distinctive
 
@@ -27,7 +29,7 @@ Analysts, data stewards, and operations teams can make data acceptance criteria 
 
 | Item | Recorded state |
 | --- | --- |
-| Version | 0.3.4 public alpha prerelease |
+| Version | 0.3.4 historical public evaluation release |
 | Build | `DCM-0.3.4-B20260901-SECURITY1` |
 | Automated suite | 71 tests passed on the prepared Windows source tree |
 | Release identity | 145/145 files managed by the public repository manifest verified |
