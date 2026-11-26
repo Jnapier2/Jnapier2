@@ -180,7 +180,7 @@ class ProfessionalPortfolioTests(unittest.TestCase):
                 )
 
         for marker in (
-            "0.3.4 public alpha prerelease",
+            "0.3.4 historical public evaluation release",
             "71 tests passed",
             "Historical v0.1.2 synthetic measurements",
             "not presented as v0.3.4 throughput",

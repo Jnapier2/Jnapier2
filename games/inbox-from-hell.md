@@ -4,7 +4,7 @@
 
 Inbox From Hell is a dark workplace-comedy browser game set at a supernatural support desk. Players interpret unusual requests, compare the available evidence with office policy, and choose responses that shape later cases and progression.
 
-**[Play in the browser](https://inbox-from-hell-demo.netlify.app/)** · Hosted demonstration · Version 0.29.1 · Mature themes
+**[Play in the browser](https://inbox-from-hell-demo.netlify.app/)** · Hosted Netlify demonstration · Version 0.29.7 · Mature themes
 
 ## What makes the experience distinctive
 
@@ -23,7 +23,9 @@ For keyboard review, use Tab to find **Start shift** and press Enter. If the des
 
 ## Availability and evidence
 
-On November 19, 2026, the Netlify and itch.io players reported **0.29.1**. Reopen a saved career to return to its last case report, then continue to the next email or shift audit. If a search hides unread cases, **Show open emails** brings them back. The release checks covered reloading a career and continuing from its case report. [Player FAQ](https://inbox-from-hell-demo.netlify.app/faq.html) · [0.29.1 release note](https://zappytap.itch.io/inbox-from-hell/devlog/1790527/v0291-pick-up-where-you-left-off)
+The Netlify player and FAQ reported **0.29.7** on November 25, 2026. This edition can recover earned progress after an interrupted save. Restoring a career preserves the Personnel Network progress already saved in that browser. The itch.io page describes its separate **0.29.5** edition. [Netlify player FAQ](https://inbox-from-hell-demo.netlify.app/faq.html) · [itch.io listing](https://zappytap.itch.io/inbox-from-hell)
+
+The November 19 check covered reloading a **0.29.1** career and continuing from its case report. [0.29.1 release note](https://zappytap.itch.io/inbox-from-hell/devlog/1790527/v0291-pick-up-where-you-left-off)
 
 The earlier November 11, 2026 delivery check matched all 89 hosted player files to the retained 0.28.0 release archive. The November 3 release checks exercised the reader, replies, settings, and reload at desktop and mobile widths. A November 24 check in a fresh Chromium session reached the reader using Tab and Enter. The skip-link check kept focus within the open panel. Formal screen-reader and broad physical-device testing remain incomplete.
 

@@ -14,7 +14,7 @@
       "release_url": "https://github.com/Jnapier2/data-contract-monitor/releases/tag/v0.3.4",
       "case_study_path": "professional-portfolio/data-contract-monitor.md",
       "source_rights": "Apache-2.0",
-      "evidence_class": "public alpha prerelease with a rebuilt release archive and Windows source-tree verification",
+      "evidence_class": "historical public evaluation release with a rebuilt archive and Windows source-tree verification",
       "verification": {
         "automated_tests_passed": 71,
         "managed_files_verified": 145,

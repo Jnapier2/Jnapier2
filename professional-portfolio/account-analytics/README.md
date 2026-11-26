@@ -14,7 +14,9 @@ The result is an example of analytical judgment as well as presentation: explain
 
 ## Explore the demonstration
 
-Open [index.html](index.html) together with its adjacent [analytics.js](analytics.js) file in a browser that permits local files. The GitHub file viewer shows source rather than running the page. Keep both files in the same folder. No installation, credentials, imported data, or third-party library is required by the page. Do not change browser or endpoint protections to run it.
+On the [showcase repository](../../), select **Code → Download ZIP**. Extract the ZIP and open `professional-portfolio/account-analytics/index.html` in a browser that permits local files. Keep `analytics.js` alongside it. The demo uses its bundled synthetic records without installation or credentials.
+
+To inspect the source on GitHub, open [the page markup](index.html) or [the calculation module](analytics.js). Keep browser and endpoint protections enabled.
 
 Filter by client, production type, or data quality. Reset returns to the complete bundled example; reloading discards filter choices.
 
