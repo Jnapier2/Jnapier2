@@ -72,7 +72,7 @@ class ProfessionalPortfolioTests(unittest.TestCase):
         )
         self.assertEqual(metadata["schema_version"], "1.6")
         self.assertEqual(metadata["classification"], "public")
-        self.assertEqual(len(metadata["projects"]), 9)
+        self.assertEqual(len(metadata["projects"]), 10)
         self.assertEqual(len(metadata["held_programs"]), 2)
         by_id = {item["id"]: item for item in metadata["projects"]}
 
