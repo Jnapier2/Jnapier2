@@ -17,6 +17,7 @@ PROGRAM_PAGES = (
     PORTFOLIO / "configuration-change-review.md",
     PORTFOLIO / "media-link-collector.md",
     PORTFOLIO / "gateway-directory.md",
+    PORTFOLIO / "gateway-website-search.md",
     PORTFOLIO / "website-opportunity-scanner.md",
     PORTFOLIO / "data-contract-monitor.md",
     PORTFOLIO / "data-governance-lineage-portal.md",
