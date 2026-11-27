@@ -6,13 +6,13 @@ Crypto Market Rivals is a single-player trading game built around simulated fund
 
 [Play in a browser or download for Windows](https://zappytap.itch.io/crypto-market-rivals) · [Steam listing](https://store.steampowered.com/app/5115590/) · In development · Proprietary source
 
-On November 25, 2026, itch.io offered a browser player and listed **0.38.2-career-xp1** for the Windows download. The two editions keep separate local saves. Use **Save & Load** to export a named checkpoint when you want to move that run to another device or edition. [itch.io download listing](https://zappytap.itch.io/crypto-market-rivals#download)
+On November 27, 2026, itch.io offered a browser player and listed **0.38.2-market-playback3** for the Windows download. The two editions keep separate local saves. Use **Save & Load** to export a named checkpoint when you want to move that run to another device or edition. [itch.io download listing](https://zappytap.itch.io/crypto-market-rivals#download) · [Clearer market playback release notes](https://zappytap.itch.io/crypto-market-rivals/devlog/1810263/clearer-market-playback)
 
 Optional races against fictional rivals add a clear comparison without changing campaign rewards. Session Review and the Field Journal make earlier decisions easier to revisit. Reading, contrast, motion, and sound settings let players adjust the desk, while local checkpoints and backup controls support returning to a career.
 
 The project demonstrates interactive simulation, persistent application state, replay design, and understandable decision feedback. All funds and rewards are simulated and have no cash value; it is a game, not financial advice.
 
-On October 4, 2026, the public Rival Challenge `0.38.2-rival-grudge2` listing was checked against its retained publication record. The corresponding Windows archive passed CRC and all 92 managed-file hash and size checks. That check covered the retained archive. The November 25 check covered the storefront listing. Current Windows download bytes, Steam gameplay, physical-device, assistive-technology, and real online two-player acceptance remain unverified here.
+On October 4, 2026, the public Rival Challenge `0.38.2-rival-grudge2` listing was checked against its retained publication record. The corresponding Windows archive passed CRC and all 92 managed-file hash and size checks. That check covered the retained archive. The November 27 check covered the current listing and release notes. Current Windows download bytes, Steam gameplay, physical-device, assistive-technology, and real online two-player acceptance remain unverified here.
 
 ## Try a scenario
 

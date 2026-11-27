@@ -43,6 +43,7 @@ Extract the offline reviewer demo and open `index.html`. The [account analytics 
 
 ## Data and analysis
 
+- **[Gateway Website Search](professional-portfolio/gateway-website-search.md)** — Helps customers find products, support, and account entry points with familiar search terms. [Try Find on the live website](https://gatewayinformationgroup.com/).
 - **[Gateway Directory](professional-portfolio/gateway-directory.md)** — Connects resource discovery with source evidence, access requirements, and practical next steps. Explore the public filters and matching JSON listings; implementation remains private.
 - **[Website Opportunity Scanner](professional-portfolio/website-opportunity-scanner.md)** — Turns public website pages into prioritized findings with supporting page evidence and practical next steps. Explore an illustrative report and hosted preview; implementation remains private.
 - **[Chicago Food Inspection Outcomes](https://github.com/Jnapier2/chicago-food-inspections-analysis)** — Reproducible analysis of public inspection records that keeps inspection outcomes distinct from facility-risk categories, supporting a more careful interpretation of the data. [Inspect the notebook and saved results](https://github.com/Jnapier2/chicago-food-inspections-analysis/blob/main/notebooks/chicago_food_inspections.ipynb).
